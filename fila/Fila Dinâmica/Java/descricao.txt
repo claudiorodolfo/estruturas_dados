@@ -1,0 +1,2 @@
+Os arquivos Enfileiravel.java e FilaPrincipal.java são similares aos da Fila Estática.
+NoDuplo.java é comum a todas as estruturas de dados dinâmicas.

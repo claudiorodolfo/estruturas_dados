@@ -1,0 +1,2 @@
+Os arquivos Empilhavel.java e PilhaPrincipal.java são similares aos da Pilha Estática.
+NoDuplo.java é comum a todas as estruturas de dados dinâmicas.

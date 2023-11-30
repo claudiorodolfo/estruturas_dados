@@ -1,0 +1,2 @@
+Os arquivos Listavel.java e ListaPrincipal.java são similares aos da Lista Estática.
+NoDuplo.java é comum a todas as estruturas de dados dinâmicas.
