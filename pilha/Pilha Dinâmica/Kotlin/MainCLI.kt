@@ -3,7 +3,7 @@ import java.util.Scanner
 fun main(args: Array<String>) {
     var pilha = PilhaDinamica(7)
 
-    val scanner = Scanner(System.`in`) 
+    val scanner = Scanner(System.`in`)
     do {
         exibirMenu()
         print("Escolha uma opcao (0-4): ")
@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
             1 -> {
                 print("Digite o valor: ")
                 val valor = scanner.nextInt()
-               pilha.empilhar(valor)
+                pilha.empilhar(valor)
             }
             2 -> {
                 print("Deseja desempilhar[s/n]? ")
