@@ -67,7 +67,7 @@ class PilhaDinamica : Empilhavel {
 			if (i == quantidade-1)
 				resultado += "${ponteiroAuxiliar?.dado}"
 			else
-				resultado += "${ponteiroAuxiliar?.dado}, "
+				resultado += "${ponteiroAuxiliar?.dado},\n"
 			
 			ponteiroAuxiliar = ponteiroAuxiliar?.anterior
 		}

@@ -41,11 +41,11 @@ class PilhaEstatica : Empilhavel {
 	}
 	
 	override fun estaCheia(): Boolean {
-		return ponteiroTopo == dados.size - 1
+		return (ponteiroTopo == dados.size - 1)
 	}
 	
 	override fun estaVazia(): Boolean {
-		return ponteiroTopo == -1
+		return (ponteiroTopo == -1)
 	}
 	
 	override fun imprimir(): String {
@@ -54,7 +54,7 @@ class PilhaEstatica : Empilhavel {
 			if (i == 0)
 				resultado += "${dados[i]}"
 			else
-				resultado += "${dados[i]},"
+				resultado += "${dados[i]}, "
 		}
 		return (resultado + "]")
 	}
