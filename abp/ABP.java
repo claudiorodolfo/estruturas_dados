@@ -80,18 +80,18 @@ public class ABP<T> implements Arborizavel<T> {
 
     @Override
     public NoTriplo<T> apagar(NoTriplo<T> raiz, T dado) {
-        if (raiz == null) {
-            return null;
-        } else {
-            if (raiz.getDado() == dado) {
+        NoTriplo<T> noAuxiliar = null;
+        if (raiz != null) {
+            if (dado.equals(raiz.getDado())) {
                 //remover
             } else {
-                if (dado < raiz.getDado())
+                if ((Integer) dado < (Integer) raiz.getDado())
                     raiz.setEsquerda(apagar(raiz.getEsquerda(), dado));
                 else
                     raiz.setDireita(apagar(raiz.getDireita(), dado));
             }
         }
+        return noAuxiliar;
     }
 
     @Override
