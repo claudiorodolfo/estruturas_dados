@@ -2,7 +2,7 @@ public class AVL<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
 
-    public ABP() {
+    public AVL() {
         raiz = null;
     }
 
