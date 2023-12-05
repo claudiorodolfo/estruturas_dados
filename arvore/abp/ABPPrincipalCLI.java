@@ -11,7 +11,6 @@ public class ABPPrincipalCLI {
         Arborizavel<Integer> arvore = new ABP<>();
         do {
             exibirMenu();
-            System.out.print("Escolha uma opcao (0-5): ");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 0:
@@ -33,24 +32,33 @@ public class ABPPrincipalCLI {
                     System.out.println(arvore.existe(valor));
                     break;
                 case 4:
-                    System.out.println("");
-                    System.out.println("Pre-Ordem: " + arvore.imprimirPreOrdem());
-                    System.out.println("");
+                    exibirMenuImprimir();
+                    int opcaoImprimir = scanner.nextInt();
+                    switch (opcaoImprimir) {
+                        case 1:
+                            System.out.println("");
+                            System.out.println("Pre-Ordem: " + arvore.imprimirPreOrdem());
+                            System.out.println("");                           
+                        break;
+                        case 2:
+                            System.out.println("");
+                            System.out.println("Em-Ordem: " + arvore.imprimirEmOrdem());
+                            System.out.println("");                           
+                        break;
+                        case 3:
+                            System.out.println("");                
+                            System.out.println("Pos-Ordem: " + arvore.imprimirPosOrdem());
+                            System.out.println("");                            
+                        break;                                               
+                        default:
+                            System.out.println("Opcao invalida.");
+                    }
                     break;                
-                case 5:
-                    System.out.println("");
-                    System.out.println("Em-Ordem: " + arvore.imprimirEmOrdem());
-                    System.out.println("");
-                    break;
-                case 6:
-                    System.out.println("");                
-                    System.out.println("Pos-Ordem: " + arvore.imprimirPosOrdem());
-                    System.out.println("");
-                    break;
                 default:
                     System.out.println("Opcao invalida. Tente novamente.");
             }
         } while (opcao != 0);
+        scanner.close();
     }
 
     private static void exibirMenu() {
@@ -59,8 +67,14 @@ public class ABPPrincipalCLI {
         System.out.println("1. Inserir");
         System.out.println("2. Apagar");
         System.out.println("3. Existe?");
-        System.out.println("4. Imprimir Pre-Ordem");
-        System.out.println("5. Imprimir Em-Ordem");
-        System.out.println("6. Imprimir Pos-Ordem");                
-    }    
+        System.out.println("4. Imprimir");
+        System.out.print("Escolha uma opcao (0-4): ");
+    }   
+
+    private static void exibirMenuImprimir() {
+        System.out.println("1. Imprimir Pre-Ordem");
+        System.out.println("2. Imprimir Em-Ordem");
+        System.out.println("3. Imprimir Pos-Ordem");                
+        System.out.print("Escolha uma opcao (1-3): ");
+    }         
 }

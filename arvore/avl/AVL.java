@@ -1,5 +1,3 @@
-import java.util.Stack;
-
 public class AVL<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
@@ -20,13 +18,17 @@ public class AVL<T> implements Arborizavel<T> {
         }
 
         //alturaEsquerda - alturaDireita
-        return nodo.getEsquerda().getAltura() - 
-                nodo.getDireita().getAltura();
+        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): 1;
+        int alturaDireita = nodo.getDireita() != null ? nodo.getEsquerda().getAltura(): 1;
+
+        return alturaEsquerda - alturaDireita;
     }
 
     private void atualizaAltura(NoTriplo<T> nodo) {
-        nodo.setAltura(1 + Math.max(nodo.getEsquerda().getAltura(), 
-                nodo.getDireita().getAltura()));
+        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): 1;
+        int alturaDireita = nodo.getDireita() != null ? nodo.getEsquerda().getAltura(): 1;
+        nodo.setAltura(1 + 
+                Math.max(alturaEsquerda, alturaDireita));
     }
 
     // Método para rotacionar à direita ao redor de um nó
