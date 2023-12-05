@@ -23,28 +23,28 @@ public class ABPPrincipalCLI {
                     arvore.inserir(valor);
                     break;
                 case 2:
-                    //System.out.print("Digite o valor : ");
-                    //valor = scanner.nextInt();                
-                    //arvore.apagar(valor);
+                    System.out.print("Digite o valor : ");
+                    valor = scanner.nextInt();                
+                    arvore.apagar(valor);
                     break;
                 case 3:
-                    //System.out.print("Digite o valor : ");
-                    //valor = scanner.nextInt();                
-                    //arvore.buscar(valor);
+                    System.out.print("Digite o valor : ");
+                    valor = scanner.nextInt();                
+                    System.out.println(arvore.existe(valor));
                     break;
                 case 4:
                     System.out.println("");
-                    System.out.println("Pre-Ordem: " + formataSaida(arvore.imprimirPreOrdem()));
+                    System.out.println("Pre-Ordem: " + arvore.imprimirPreOrdem());
                     System.out.println("");
                     break;                
                 case 5:
                     System.out.println("");
-                    System.out.println("Em-Ordem: " + formataSaida(arvore.imprimirEmOrdem()));
+                    System.out.println("Em-Ordem: " + arvore.imprimirEmOrdem());
                     System.out.println("");
                     break;
                 case 6:
                     System.out.println("");                
-                    System.out.println("Pos-Ordem: " + formataSaida(arvore.imprimirPosOrdem()));
+                    System.out.println("Pos-Ordem: " + arvore.imprimirPosOrdem());
                     System.out.println("");
                     break;
                 default:
@@ -57,21 +57,10 @@ public class ABPPrincipalCLI {
         System.out.println("=== Arvore Binaria de Pesquisa CLI ===");
         System.out.println("0. SAIR");
         System.out.println("1. Inserir");
-        System.out.println("2. Apagar (em construcao)");
-        System.out.println("3. Buscar (em Construcao)");
+        System.out.println("2. Apagar");
+        System.out.println("3. Existe?");
         System.out.println("4. Imprimir Pre-Ordem");
         System.out.println("5. Imprimir Em-Ordem");
         System.out.println("6. Imprimir Pos-Ordem");                
-    }
-
-    private static String formataSaida(String msg) {
-        String resultado;
-        do {
-            resultado = msg;
-            msg = msg.replace("  ", " "); //remove excesso de espaços
-        } while (!msg.equals(resultado));
-        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
-        msg = msg.replace(" ", ","); //troca espaço por vírgula
-        return "[" + msg + "]";
     }    
 }
