@@ -3,8 +3,12 @@ public class NoTriplo<T> {
 	private NoTriplo<T> genitor;
 	private NoTriplo<T> esquerda;
 	private NoTriplo<T> direita;
-	private int altura = 1;
+	private int altura;
 
+	public NoTriplo() {
+		altura = 0;
+	}
+	
 	public int getAltura() {
 		return altura;
 	}

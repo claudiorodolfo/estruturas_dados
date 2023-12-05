@@ -13,20 +13,17 @@ public class AVL<T> implements Arborizavel<T> {
 
     //métodos AVL
     private int balanceamento(NoTriplo<T> nodo) {
-        if (nodo == null) {
-            return 0;
-        }
-
         //alturaEsquerda - alturaDireita
-        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): 1;
-        int alturaDireita = nodo.getDireita() != null ? nodo.getEsquerda().getAltura(): 1;
+        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
+        int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
 
         return alturaEsquerda - alturaDireita;
     }
 
     private void atualizaAltura(NoTriplo<T> nodo) {
-        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): 1;
-        int alturaDireita = nodo.getDireita() != null ? nodo.getEsquerda().getAltura(): 1;
+        int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
+        int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
+        //noFolha tem altura zero 1 + (-1)
         nodo.setAltura(1 + 
                 Math.max(alturaEsquerda, alturaDireita));
     }
@@ -38,14 +35,15 @@ public class AVL<T> implements Arborizavel<T> {
 
         // Realiza a rotação
         x.setDireita(y);
-        y.setEsquerda(T2);
+        x.setGenitor(y.getGenitor());
+        y.setGenitor(x);
 
-        // Atualiza as alturas
-        y.setAltura(Math.max(y.getEsquerda().getAltura(), 
-                y.getDireita().getAltura()) + 1);
-        x.setAltura(Math.max(x.getEsquerda().getAltura(), 
-                x.getDireita().getAltura()) + 1);
+        y.setEsquerda(T2);        
+        if (T2 != null)
+            T2.setGenitor(y);
 
+        atualizaAltura(y);
+        atualizaAltura(x);
         // Retorna a nova raiz
         return x;
     }
@@ -57,11 +55,16 @@ public class AVL<T> implements Arborizavel<T> {
 
         // Realiza a rotação
         y.setEsquerda(x);
+        y.setGenitor(x.getGenitor()); 
+        x.setGenitor(y);
+        
         x.setDireita(T2);
+        if (T2 != null)
+            T2.setGenitor(x);
 
         // Atualiza as alturas
-        x.setAltura(Math.max(x.getEsquerda().getAltura(), x.getDireita().getAltura()) + 1);
-        y.setAltura(Math.max(y.getEsquerda().getAltura(), y.getDireita().getAltura()) + 1);
+        atualizaAltura(x);
+        atualizaAltura(y);
 
         // Retorna a nova raiz
         return y;
@@ -69,12 +72,12 @@ public class AVL<T> implements Arborizavel<T> {
 
     //rebalancear a árvore após inserção ou remoção
     private void rebalancear(T dado, NoTriplo<T> noAuxiliar) {
-        NoTriplo<T> referencia = noAuxiliar;
-        while (referencia != null) {
+        //NoTriplo<T> referencia = noAuxiliar;
+        while (noAuxiliar != null) {
 
             atualizaAltura(noAuxiliar);
             int desnivel = balanceamento(noAuxiliar);
-
+             
             // Caso 1: Rotação à direita
             if (desnivel > 1 && (Integer) dado < (Integer) noAuxiliar.getEsquerda().getDado()) {
                 noAuxiliar = rotacaoDireita(noAuxiliar);
@@ -106,7 +109,8 @@ public class AVL<T> implements Arborizavel<T> {
                 raiz = noAuxiliar;
             }
 
-            referencia = referencia.getGenitor();
+            noAuxiliar = noAuxiliar.getGenitor();
+
         }            
     }
 
@@ -143,7 +147,7 @@ public class AVL<T> implements Arborizavel<T> {
                 }
             }
             //rebalancear arvore
-            rebalancear(dado, noAuxiliar);
+            rebalancear(dado, novoNo);
         }
     }
 
@@ -168,7 +172,7 @@ public class AVL<T> implements Arborizavel<T> {
             apagarComDoisFilhos(noAuxiliar);
 
         //rebalancear arvore
-        rebalancear(dado, noAuxiliar);        
+        //rebalancear(dado, noAuxiliar);        
         
         return dado;
     }    

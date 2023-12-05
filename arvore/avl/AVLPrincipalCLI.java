@@ -45,7 +45,7 @@ public class AVLPrincipalCLI {
                             System.out.println("");
                             System.out.println("Em-Ordem: " + arvore.imprimirEmOrdem());
                             System.out.println("");                           
-                        break;
+                            break;
                         case 3:
                             System.out.println("");                
                             System.out.println("Pos-Ordem: " + arvore.imprimirPosOrdem());
