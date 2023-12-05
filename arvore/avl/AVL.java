@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class AVL<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
@@ -11,6 +13,102 @@ public class AVL<T> implements Arborizavel<T> {
         return raiz;
     }
 
+    //métodos AVL
+    private int balanceamento(NoTriplo<T> nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+
+        //alturaEsquerda - alturaDireita
+        return nodo.getEsquerda().getAltura() - 
+                nodo.getDireita().getAltura();
+    }
+
+    private void atualizaAltura(NoTriplo<T> nodo) {
+        nodo.setAltura(1 + Math.max(nodo.getEsquerda().getAltura(), 
+                nodo.getDireita().getAltura()));
+    }
+
+    // Método para rotacionar à direita ao redor de um nó
+    private NoTriplo<T> rotacaoDireita(NoTriplo<T> y) {
+        NoTriplo<T> x = y.getEsquerda();
+        NoTriplo<T> T2 = x.getDireita();
+
+        // Realiza a rotação
+        x.setDireita(y);
+        y.setEsquerda(T2);
+
+        // Atualiza as alturas
+        y.setAltura(Math.max(y.getEsquerda().getAltura(), 
+                y.getDireita().getAltura()) + 1);
+        x.setAltura(Math.max(x.getEsquerda().getAltura(), 
+                x.getDireita().getAltura()) + 1);
+
+        // Retorna a nova raiz
+        return x;
+    }
+
+    //rotacionar à esquerda ao redor de um nó
+    private NoTriplo<T> rotacaoEsquerda(NoTriplo<T> x) {
+        NoTriplo<T> y = x.getDireita();
+        NoTriplo<T> T2 = y.getEsquerda();
+
+        // Realiza a rotação
+        y.setEsquerda(x);
+        x.setDireita(T2);
+
+        // Atualiza as alturas
+        x.setAltura(Math.max(x.getEsquerda().getAltura(), x.getDireita().getAltura()) + 1);
+        y.setAltura(Math.max(y.getEsquerda().getAltura(), y.getDireita().getAltura()) + 1);
+
+        // Retorna a nova raiz
+        return y;
+    }
+
+    //rebalancear a árvore após inserção ou remoção
+    private void rebalancear(T dado, NoTriplo<T> noAuxiliar) {
+        NoTriplo<T> referencia = noAuxiliar;
+        while (referencia != null) {
+
+            atualizaAltura(noAuxiliar);
+            int desnivel = balanceamento(noAuxiliar);
+
+            // Caso 1: Rotação à direita
+            if (desnivel > 1 && (Integer) dado < (Integer) noAuxiliar.getEsquerda().getDado()) {
+                noAuxiliar = rotacaoDireita(noAuxiliar);
+            }
+            // Caso 2: Rotação à esquerda
+            else if (desnivel < -1 && (Integer) dado > (Integer) noAuxiliar.getDireita().getDado()) {
+                noAuxiliar = rotacaoEsquerda(noAuxiliar);
+            }
+            // Caso 3: Rotação dupla a direita
+            //Rotação à esquerda-direita
+            else if (desnivel > 1 && (Integer) dado > (Integer) noAuxiliar.getEsquerda().getDado()) {
+                noAuxiliar.setEsquerda(rotacaoEsquerda(noAuxiliar.getEsquerda()));
+                noAuxiliar = rotacaoDireita(noAuxiliar);
+            }
+            // Caso 4: Rotação dupla a esquerda
+            //Rotação à direita-esquerda
+            else if (desnivel < -1 && (Integer) dado < (Integer) noAuxiliar.getDireita().getDado()) {
+                noAuxiliar.setDireita(rotacaoDireita(noAuxiliar.getDireita()));
+                noAuxiliar = rotacaoEsquerda(noAuxiliar);
+            }
+
+            if (noAuxiliar.getGenitor() != null) {
+                if (noAuxiliar.equals(noAuxiliar.getGenitor().getEsquerda())) {
+                    noAuxiliar.getGenitor().setEsquerda(noAuxiliar);
+                } else {
+                    noAuxiliar.getGenitor().setDireita(noAuxiliar);
+                }
+            } else {
+                raiz = noAuxiliar;
+            }
+
+            referencia = referencia.getGenitor();
+        }            
+    }
+
+    //inserir
     @Override
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
@@ -25,7 +123,7 @@ public class AVL<T> implements Arborizavel<T> {
                     if (noAuxiliar.getEsquerda() != null) {
                         noAuxiliar = noAuxiliar.getEsquerda();
                     } else {
-                        //insiro o dado aq
+                        //insiro o dado aqui
                         noAuxiliar.setEsquerda(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;
@@ -35,72 +133,19 @@ public class AVL<T> implements Arborizavel<T> {
                     if (noAuxiliar.getDireita() != null) {
                         noAuxiliar = noAuxiliar.getDireita();
                     } else {
-                        //insiro o dado q
+                        //insiro o dado aqui
                         noAuxiliar.setDireita(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;
                     }
                 }
             }
+            //rebalancear arvore
+            rebalancear(dado, noAuxiliar);
         }
     }
 
-    @Override
-    public String imprimirPreOrdem() {
-        return formataSaida(imprimirPreOrdemRec(raiz));
-    }
-
-    @Override
-    public String imprimirEmOrdem() {
-        return formataSaida(imprimirEmOrdemRec(raiz));
-    }
-
-    @Override
-    public String imprimirPosOrdem() {
-        return formataSaida(imprimirPosOrdemRec(raiz));
-    }
-
-    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";
-        if (raiz != null) {
-            resultado = raiz.getDado() + " " + 
-                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
-                imprimirPreOrdemRec(raiz.getDireita());
-        }
-        return resultado;
-    }
-
-    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
-            raiz.getDado() + " " +
-            imprimirEmOrdemRec(raiz.getDireita());
-        }
-        return resultado;       
-    }
-
-    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
-                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
-                raiz.getDado();
-        }
-        return resultado;            
-    }
-
-    private String formataSaida(String msg) {
-        String resultado;
-        do {
-            resultado = msg;
-            msg = msg.replace("  ", " "); //remove excesso de espaços
-        } while (!msg.equals(resultado));
-        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
-        msg = msg.replace(" ", ","); //troca espaço por vírgula
-        return "[" + msg + "]";
-    }
-
+    //apagar
     @Override
     public T apagar(T dado) {
         NoTriplo<T> noAuxiliar = buscar(dado);
@@ -120,6 +165,9 @@ public class AVL<T> implements Arborizavel<T> {
         else
             apagarComDoisFilhos(noAuxiliar);
 
+        //rebalancear arvore
+        rebalancear(dado, noAuxiliar);        
+        
         return dado;
     }    
 
@@ -178,7 +226,7 @@ public class AVL<T> implements Arborizavel<T> {
         nodo.setDado(sucessor.getDado());
         sucessor.setDado(temp);
 
-        // Remove o menor a direita (que agora contém o dado original)
+        //remove o menor a direita (que agora contém o dado original)
         if (sucessor.getEsquerda() == null && 
         sucessor.getDireita() == null) {
             apagarNoFolha(sucessor);
@@ -203,6 +251,7 @@ public class AVL<T> implements Arborizavel<T> {
         return sucessor;
     } 
 
+    //existe
     @Override
     public boolean existe(T dado) {
         boolean retorno = false;
@@ -219,5 +268,62 @@ public class AVL<T> implements Arborizavel<T> {
             }
         }
         return retorno;
-    }  
+    }
+    
+    //imprimir
+    @Override
+    public String imprimirPreOrdem() {
+        return formataSaida(imprimirPreOrdemRec(raiz));
+    }
+
+    @Override
+    public String imprimirEmOrdem() {
+        return formataSaida(imprimirEmOrdemRec(raiz));
+    }
+
+    @Override
+    public String imprimirPosOrdem() {
+        return formataSaida(imprimirPosOrdemRec(raiz));
+    }
+
+    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";
+        if (raiz != null) {
+            resultado = raiz.getDado() + " " + 
+                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
+                imprimirPreOrdemRec(raiz.getDireita());
+        }
+        return resultado;
+    }
+
+    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";        
+        if (raiz != null) {
+            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
+            raiz.getDado() + " " +
+            imprimirEmOrdemRec(raiz.getDireita());
+        }
+        return resultado;       
+    }
+
+    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";        
+        if (raiz != null) {
+            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
+                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
+                raiz.getDado();
+        }
+        return resultado;            
+    }
+
+    private String formataSaida(String msg) {
+        String resultado;
+        do {
+            resultado = msg;
+            msg = msg.replace("  ", " "); //remove excesso de espaços
+        } while (!msg.equals(resultado));
+        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
+        msg = msg.replace(" ", ","); //troca espaço por vírgula
+        return "[" + msg + "]";
+    }    
 }

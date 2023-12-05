@@ -8,7 +8,7 @@ public class AVLPrincipalCLI {
         //Pos Ordem: [1,3,2,5,7,6,4]
         Scanner scanner = new Scanner(System.in);
         int opcao, valor;
-        ABP<Integer> arvore = new ABP<>();
+        Arborizavel<Integer> arvore = new AVL<>();
         do {
             exibirMenu();
             System.out.print("Escolha uma opcao (0-5): ");
@@ -54,7 +54,7 @@ public class AVLPrincipalCLI {
     }
 
     private static void exibirMenu() {
-        System.out.println("=== Arvore Binaria de Pesquisa CLI ===");
+        System.out.println("=== Arvore Binaria AVL ===");
         System.out.println("0. SAIR");
         System.out.println("1. Inserir");
         System.out.println("2. Apagar");

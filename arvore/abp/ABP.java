@@ -11,6 +11,7 @@ public class ABP<T> implements Arborizavel<T> {
         return raiz;
     }
 
+    //inserir
     @Override
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
@@ -45,62 +46,7 @@ public class ABP<T> implements Arborizavel<T> {
         }
     }
 
-    @Override
-    public String imprimirPreOrdem() {
-        return formataSaida(imprimirPreOrdemRec(raiz));
-    }
-
-    @Override
-    public String imprimirEmOrdem() {
-        return formataSaida(imprimirEmOrdemRec(raiz));
-    }
-
-    @Override
-    public String imprimirPosOrdem() {
-        return formataSaida(imprimirPosOrdemRec(raiz));
-    }
-
-    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";
-        if (raiz != null) {
-            resultado = raiz.getDado() + " " + 
-                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
-                imprimirPreOrdemRec(raiz.getDireita());
-        }
-        return resultado;
-    }
-
-    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
-            raiz.getDado() + " " +
-            imprimirEmOrdemRec(raiz.getDireita());
-        }
-        return resultado;       
-    }
-
-    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
-                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
-                raiz.getDado();
-        }
-        return resultado;            
-    }
-
-    private String formataSaida(String msg) {
-        String resultado;
-        do {
-            resultado = msg;
-            msg = msg.replace("  ", " "); //remove excesso de espaços
-        } while (!msg.equals(resultado));
-        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
-        msg = msg.replace(" ", ","); //troca espaço por vírgula
-        return "[" + msg + "]";
-    }
-
+    //apagar
     @Override
     public T apagar(T dado) {
         NoTriplo<T> noAuxiliar = buscar(dado);
@@ -203,6 +149,7 @@ public class ABP<T> implements Arborizavel<T> {
         return sucessor;
     } 
 
+    //existe
     @Override
     public boolean existe(T dado) {
         boolean retorno = false;
@@ -219,5 +166,62 @@ public class ABP<T> implements Arborizavel<T> {
             }
         }
         return retorno;
-    }  
+    }
+
+    //imprimir
+    @Override
+    public String imprimirPreOrdem() {
+        return formataSaida(imprimirPreOrdemRec(raiz));
+    }
+
+    @Override
+    public String imprimirEmOrdem() {
+        return formataSaida(imprimirEmOrdemRec(raiz));
+    }
+
+    @Override
+    public String imprimirPosOrdem() {
+        return formataSaida(imprimirPosOrdemRec(raiz));
+    }
+
+    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";
+        if (raiz != null) {
+            resultado = raiz.getDado() + " " + 
+                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
+                imprimirPreOrdemRec(raiz.getDireita());
+        }
+        return resultado;
+    }
+
+    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";        
+        if (raiz != null) {
+            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
+            raiz.getDado() + " " +
+            imprimirEmOrdemRec(raiz.getDireita());
+        }
+        return resultado;       
+    }
+
+    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
+        String resultado = "";        
+        if (raiz != null) {
+            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
+                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
+                raiz.getDado();
+        }
+        return resultado;            
+    }
+
+    private String formataSaida(String msg) {
+        String resultado;
+        do {
+            resultado = msg;
+            msg = msg.replace("  ", " "); //remove excesso de espaços
+        } while (!msg.equals(resultado));
+        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
+        msg = msg.replace(" ", ","); //troca espaço por vírgula
+        return "[" + msg + "]";
+    }
 }
