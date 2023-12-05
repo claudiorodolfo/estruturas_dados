@@ -34,17 +34,17 @@ public class ABPPrincipalCLI {
                     break;
                 case 4:
                     System.out.println("");
-                    System.out.println("Pre-Ordem: " + formataSaida(arvore.imprimirPreOrdem(arvore.getRaiz())));
+                    System.out.println("Pre-Ordem: " + formataSaida(arvore.imprimirPreOrdem()));
                     System.out.println("");
                     break;                
                 case 5:
                     System.out.println("");
-                    System.out.println("Em-Ordem: " + formataSaida(arvore.imprimirEmOrdem(arvore.getRaiz())));
+                    System.out.println("Em-Ordem: " + formataSaida(arvore.imprimirEmOrdem()));
                     System.out.println("");
                     break;
                 case 6:
                     System.out.println("");                
-                    System.out.println("Pos-Ordem: " + formataSaida(arvore.imprimirPosOrdem(arvore.getRaiz())));
+                    System.out.println("Pos-Ordem: " + formataSaida(arvore.imprimirPosOrdem()));
                     System.out.println("");
                     break;
                 default:

@@ -20,8 +20,8 @@ public class NoTriplo<T> {
 		return dado;
 	}
 
-	public void setPai(NoTriplo<T> pai) {
-		this.pai = pai;
+	public void setGenitor(NoTriplo<T> genitor) {
+		this.genitor = genitor;
 	}
 		
 	public void setEsquerda(NoTriplo<T> esquerda) {

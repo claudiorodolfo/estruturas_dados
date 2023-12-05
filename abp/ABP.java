@@ -46,61 +46,168 @@ public class ABP<T> implements Arborizavel<T> {
     }
 
     @Override
-    public String imprimirPreOrdem(NoTriplo<T> raiz) {
+    public String imprimirPreOrdem() {
+        return imprimirPreOrdemRec(raiz);
+    }
+
+    @Override
+    public String imprimirEmOrdem() {
+        return imprimirEmOrdemRec(raiz);
+    }
+
+    @Override
+    public String imprimirPosOrdem() {
+        return imprimirPosOrdemRec(raiz);
+    }
+
+    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";
         if (raiz != null) {
             resultado = raiz.getDado() + " " + 
-                imprimirPreOrdem(raiz.getEsquerda()) +  " " +
-                imprimirPreOrdem(raiz.getDireita());
+                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
+                imprimirPreOrdemRec(raiz.getDireita());
         }
         return resultado;
     }
 
-    @Override
-    public String imprimirEmOrdem(NoTriplo<T> raiz) {
+    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";        
         if (raiz != null) {
-            resultado = imprimirEmOrdem(raiz.getEsquerda()) + " " + 
+            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
             raiz.getDado() + " " +
-            imprimirEmOrdem(raiz.getDireita());
+            imprimirEmOrdemRec(raiz.getDireita());
         }
         return resultado;       
     }
 
-    @Override
-    public String imprimirPosOrdem(NoTriplo<T> raiz) {
+    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";        
         if (raiz != null) {
-            resultado = imprimirPosOrdem(raiz.getEsquerda()) + " " +
-                imprimirPosOrdem(raiz.getDireita()) +  " " +
+            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
+                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
                 raiz.getDado();
         }
         return resultado;            
     }
 
     @Override
-    public NoTriplo<T> apagar(NoTriplo<T> raiz, T dado) {
-        NoTriplo<T> noAuxiliar = null;
-        if (raiz != null) {
-            if (dado.equals(raiz.getDado())) {
-                //remover
+    public T apagar(T dado) {
+        NoTriplo<T> noAuxiliar = buscar(dado);
+        // Nó não encontrado na árvore
+        if (noAuxiliar == null)   
+            return null;
+
+        // Caso 1: Nó sem filhos
+        if (noAuxiliar.getEsquerda() == null &&
+                noAuxiliar.getDireita() == null)
+            apagarNoFolha(noAuxiliar);
+        // Caso 2: Nó com um filho
+        else if (noAuxiliar.getEsquerda() == null ||
+                noAuxiliar.getDireita() == null)
+            apagarComUmFilho(noAuxiliar);
+        // Caso 3: Nó com dois filhos
+        else
+            apagarComDoisFilhos(noAuxiliar);
+
+        return dado;
+    }    
+    
+    private void apagarNoFolha(NoTriplo<T> nodo) {
+        NoTriplo<T> pai = nodo.getGenitor();
+        if (pai == null) {
+            raiz = null;
+        } else {
+            if (nodo.equals(pai.getEsquerda()))
+                //nodo é filho da esquerda
+                pai.setEsquerda(null);
+            else 
+                //nodo é filho da direita        
+                pai.setDireita(null);
+        }
+    }
+
+    private void apagarComUmFilho(NoTriplo<T> nodo) {
+        NoTriplo<T> pai = nodo.getGenitor();
+        NoTriplo<T> filho = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
+        if (pai == null) {
+            raiz = filho;
+            raiz.setGenitor(null);
+        } else {
+            filho.setGenitor(pai);
+            if (nodo.equals(pai.getEsquerda())) {
+                pai.setEsquerda(filho);
             } else {
-                if ((Integer) dado < (Integer) raiz.getDado())
-                    raiz.setEsquerda(apagar(raiz.getEsquerda(), dado));
-                else
-                    raiz.setDireita(apagar(raiz.getDireita(), dado));
+                pai.setDireita(filho);
             }
         }
-        return noAuxiliar;
     }
+
+    private void apagarComDoisFilhos(NoTriplo<T> nodo) {
+        //sucessor pode ser o menor a direita ou o maior a esquerda
+        NoTriplo<T> sucessor = encontraMenorDireita(nodo);
+        //NoTriplo<T> sucessor = encontraMaiorEsquerda(nodo);
+        
+        //troca conteúdo do nó com o menor nó a direita
+        T temp = nodo.getDado();
+        nodo.setDado(sucessor.getDado());
+        sucessor.setDado(temp);
+
+        // Remove o menor a direita (que agora contém o dado original)
+        if (sucessor.getEsquerda() == null && 
+        sucessor.getDireita() == null) {
+            apagarNoFolha(sucessor);
+        } else {
+            apagarComUmFilho(sucessor);
+        }
+    } 
+
+    private NoTriplo<T> encontraMenorDireita(NoTriplo<T> nodo) {
+        NoTriplo<T> sucessor = nodo.getDireita();
+        while (sucessor.getEsquerda() != null)
+            sucessor = sucessor.getEsquerda();
+
+        return sucessor;
+    }  
+      
+    private NoTriplo<T> encontraMaiorEsquerda(NoTriplo<T> nodo) {
+        NoTriplo<T> sucessor = nodo.getEsquerda();
+        while (sucessor.getDireita() != null)
+            sucessor = sucessor.getDireita();
+
+        return sucessor;
+    } 
 
     @Override
     public boolean existe(T dado) {
-        return false;
+        boolean retorno = false;
+        NoTriplo<T> noAuxiliar = raiz;
+        while (noAuxiliar != null) {
+            if (dado.equals(noAuxiliar.getDado())) {
+                retorno = true;
+                break;
+            } else {
+                if ((Integer) dado < (Integer) raiz.getDado())
+                    noAuxiliar = noAuxiliar.getEsquerda();
+                else
+                    noAuxiliar = noAuxiliar.getDireita();
+            }
+        }
+        return retorno;
     }
 
     @Override
     public NoTriplo<T> buscar(T dado) {
+        NoTriplo<T> noAuxiliar = raiz;
+        while (noAuxiliar != null) {
+            if (dado.equals(noAuxiliar.getDado())) {
+                return noAuxiliar;
+            } else {
+                if ((Integer) dado < (Integer) raiz.getDado())
+                    noAuxiliar = noAuxiliar.getEsquerda();
+                else
+                    noAuxiliar = noAuxiliar.getDireita();
+            }
+        }
         return null;
     }  
 }

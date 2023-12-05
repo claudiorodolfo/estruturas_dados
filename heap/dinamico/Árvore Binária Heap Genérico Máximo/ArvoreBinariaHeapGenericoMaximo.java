@@ -156,7 +156,7 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
 
     }
 
-    private String imprimirRecursivo(NoTriplo no) {
+    private String imprimirRecursivo(NoTriplo<T> no) {
         String resultado = "";
         if (no != null) {
             imprimirRecursivo(no.getEsquerda());
