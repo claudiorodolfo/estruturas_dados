@@ -1,3 +1,5 @@
+package abp;
+
 public class ABP<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;

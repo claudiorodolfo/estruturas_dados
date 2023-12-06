@@ -1,8 +1,13 @@
 import java.util.Scanner;
+import avl.*;
+import abp.*;
 
 public class Prova {
-
+					
     public static void main(String args[]) {
+		Prova prova = new Prova();
+		ABP<Integer> arvore1 = new ABP<>();
+		AVL<Integer> arvore2 = new AVL<>();
 		int dados[][] = {
 			{26, 90, 89, 96, 45, 20, 17, 50, 12, 13},
 			{54, 13,  8, 87, 32, 21, 90, 76, 28, 53},
@@ -29,7 +34,7 @@ public class Prova {
 				
 		String matricula;
 		int deslocamento;
-		
+    
         Scanner scanner = new Scanner(System.in);
 		System.out.println("Informe o numero de matricula:");
 		matricula = scanner.next();
@@ -37,36 +42,41 @@ public class Prova {
 		deslocamento = scanner.nextInt();
 		
 		//Questão 1
+		System.out.println("");		
 		System.out.println("Questao 1");		
-		q1 = regra1(matricula, deslocamento);
+		q1 = prova.regra1(matricula, deslocamento);
 		System.out.print(q1+":");					
-		imprimeDados(dados[q1]);
-		resolveQ1(dados[q1]);
-
+		prova.imprimeDados(dados[q1]);
+		prova.resolveQ1(dados[q1], arvore1);
+		System.out.println("");
 		//Questão 2
+		System.out.println("");
 		System.out.println("Questao 2");		
-		q2 = regra2(matricula, deslocamento);
+		q2 = prova.regra2(matricula, deslocamento);
 		System.out.print(q2+":");			
-		imprimeDados(dados[q2]);
-		resolveQ2(dados[q2]);
-		
-		//Questão 3	
+		prova.imprimeDados(dados[q2]);
+		prova.resolveQ2(dados[q2], arvore1);
+		System.out.println("");		
+		//Questão 3
+		System.out.println("");			
 		System.out.println("Questao 3");		
-		q3 = regra3(matricula, deslocamento);
+		q3 = prova.regra3(matricula, deslocamento);
 		System.out.print(q3+":");			
-		imprimeDados(dados[q3]);
-		resolveQ3(dados[q3]);
-
+		prova.imprimeDados(dados[q3]);
+		prova.resolveQ3(dados[q3], arvore2);
+		System.out.println("");
 		//Questão 4
+		System.out.println("");		
 		System.out.println("Questao 4");
-		q4 = regra4(matricula, deslocamento);
+		q4 = prova.regra4(matricula, deslocamento);
 		System.out.print(q4+":");				
-		imprimeDados(dados[q4]);
-		resolveQ4(dados[q4]);		
+		prova.imprimeDados(dados[q4]);
+		prova.resolveQ4(dados[q4], arvore2);
+		System.out.println("");				
     }
 	
 	//("soma dos números da matrícula" * 5 + deslocamento) % 20	
-	public static int regra1(String matricula, int deslocamento) {
+	public int regra1(String matricula, int deslocamento) {
 		int soma = 0;
 		for (char letra : matricula.toCharArray()) {
 			int numero = Integer.parseInt(letra + "");			
@@ -76,7 +86,7 @@ public class Prova {
 	}
 	
 	//"multiplicação dos números da matrícula maiores que 2" * 7 + deslocamento) % 20 	
-	private static int regra2(String matricula, int deslocamento) {
+	private int regra2(String matricula, int deslocamento) {
 		int produto = 1;
 		for (char letra : matricula.toCharArray()) {
 			int numero = Integer.parseInt(letra + "");
@@ -87,7 +97,7 @@ public class Prova {
 	}
 
 	//("soma dos últimos 3 dígitos da matrícula" * 11 + deslocamento) % 20 
-	private static int regra3(String matricula, int deslocamento) {
+	private int regra3(String matricula, int deslocamento) {
 		int soma = 0;
 		for (int i = 0; i < matricula.length(); i++) {
 			if (i >= matricula.length() - 3) {
@@ -99,7 +109,7 @@ public class Prova {
 	}
 
 	//("multiplicação dos números da matrícula diferentes de zero" * 2 + deslocamento) % 20	
-	private static int regra4(String matricula, int deslocamento) {
+	private int regra4(String matricula, int deslocamento) {
 		int produto = 1;
 		for (char letra : matricula.toCharArray()) {
 			int numero = Integer.parseInt(letra + "");
@@ -109,47 +119,61 @@ public class Prova {
 		return (produto * 2 + deslocamento) % 20;
 	}	
 	
-	private static void imprimeDados(int dados[]) {
+	private void imprimeDados(int dados[]) {
 		for (int valor : dados)
 			System.out.print(valor + " ");
 		System.out.println("");
 	}
 	
-	private static void resolveQ1(int dados[]) {
+	private void resolveQ1(int dados[], ABP<Integer> arvore1) {
+		arvore1.limpar();
 		for (int dado : dados) {
-	//		abp.inserir(dado);
+			arvore1.inserir(dado);
 		}
-	//	System.out.println(abp.imprimirPosOrdem());
+		System.out.println(arvore1.imprimirPosOrdem());
 	}
 
-	private static void resolveQ2(int dados[]) {
+	private void resolveQ2(int dados[], ABP<Integer> arvore1) {
+		arvore1.limpar();
 		for (int dado : dados) {
-	//		abp.inserir(dado);
+			arvore1.inserir(dado);
 		}
-	//String resultado = abp.imprimirPosOrdem();
-		//quebrar string
-		//int valor1 = obtem o terceiro elemento
-		//int valor2 = obtem o setimo elemento
-		//abp.apagar(valor1);
-		//abp.apagar(valor2);
-		//String resultado = abp.imprimirPreOrdem();
-		//quebrar string
-		//imprimir só o quinto elemento;	
+		String resultado = arvore1.imprimirPosOrdem();
+		//remove os colchetes no inicio e fim
+		resultado = resultado.substring(1,resultado.length()-1);
+		//explode a string pela virgula
+		String[] valores = resultado.split(",");
+		//apaga o terceiro
+		arvore1.apagar(Integer.parseInt(valores[2]));
+		//apaga o sétimo
+		arvore1.apagar(Integer.parseInt(valores[6]));
+
+		resultado = arvore1.imprimirPreOrdem();
+		//remove os colchetes no inicio e fim
+		resultado = resultado.substring(1,resultado.length()-1);		
+		//explode a string pela virgula
+		valores = resultado.split(",");
+		System.out.println("Quinto elemento: "+ valores[4]);	
 	}
 
-	private static void resolveQ3(int dados[]) {
+	private void resolveQ3(int dados[], AVL<Integer> arvore2) {
+		arvore2.limpar();
 		for (int dado : dados) {
-	//		avl.inserir(dado);
+			arvore2.inserir(dado);
 		}
-	//	System.out.println(avl.getRaiz());
+		System.out.println("Raiz: "+arvore2.getRaiz().getDado());
 	}
 	
-	private static void resolveQ4(int dados[]) {
+	private void resolveQ4(int dados[], AVL<Integer> arvore2) {
+		arvore2.limpar();
 		for (int dado : dados) {
-		//	avl.inserir(dado);
+			arvore2.inserir(dado);
 		}
-		//String resultado = avl.imprimirPreOrdem();
-		//quebrar string
-		//imprimir só o sexto elemento;
+		String resultado = arvore2.imprimirPreOrdem();
+		//remove os colchetes no inicio e fim
+		resultado = resultado.substring(1,resultado.length()-1);
+		//explode a string pela virgula
+		String[] valores = resultado.split(",");
+		System.out.println("Sexto elemento: "+valores[5]);
 	}
 }

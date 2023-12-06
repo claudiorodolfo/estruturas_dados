@@ -1,3 +1,6 @@
+//cd "c:\Users\asus\Documents\GitHub\estruturas_dados\arvore\" ; if ($?) { javac abp/ABPPrincipalCLI.java } ; if ($?) { java abp/ABPPrincipalCLI }
+package abp;
+
 import java.util.Scanner;
 
 public class ABPPrincipalCLI {

@@ -1,3 +1,5 @@
+package abp;
+
 public class NoTriplo<T> {
 	private T dado;
 	private NoTriplo<T> genitor;
