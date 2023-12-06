@@ -68,13 +68,13 @@ public class AVL<T> implements Arborizavel<T> {
 
     //rotacionar à esquerda ao redor de um nó
     private NoTriplo<T> rotacaoEsquerda(NoTriplo<T> y) {
-		//         T0	    |             T0
-		//         |		|             | 
-		//  ANTES  y		|   DEPOIS    x
-		//        / \	    |            / \
+		//         T0       |             T0
+		//         |        |             | 
+		//  ANTES  y        |   DEPOIS    x
+		//        / \       |            / \
 		//       T3  x      |           y  T1
-		//          / \	    |          / \  
-		//         T2  T1	|         T3  T2
+		//          / \     |          / \  
+		//         T2  T1   |         T3  T2
         // T1 e T3 não sofrem alteração, 
         // por isso não aparecem no balanceamento
         NoTriplo<T> T0 = y.getGenitor();        
