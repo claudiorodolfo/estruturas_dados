@@ -48,10 +48,12 @@ public class AVL<T> implements Arborizavel<T> {
 
         //corrige ponteiros, descendo e subindo
         //[T0-->x], [T0<--x]
-        if (y.equals(T0.getEsquerda()))
-            T0.setEsquerda(x);
-        else
-            T0.setDireita(x);
+        if (T0 != null)
+            if (y.equals(T0.getEsquerda()))
+                T0.setEsquerda(x);
+            else
+                T0.setDireita(x);
+
         x.setGenitor(T0);
 
         //[x-->y], [x<--y]
@@ -86,10 +88,12 @@ public class AVL<T> implements Arborizavel<T> {
 
         //corrige ponteiros, descendo e subindo
         //[T0-->x], [T0<--x]
-        if (y.equals(T0.getEsquerda()))
-            T0.setEsquerda(x);
-        else
-            T0.setDireita(x);
+        if (T0 != null)        
+            if (y.equals(T0.getEsquerda()))
+                T0.setEsquerda(x);
+            else
+                T0.setDireita(x);
+                
         x.setGenitor(T0);
         
         //[x-->y], [x<--y]
