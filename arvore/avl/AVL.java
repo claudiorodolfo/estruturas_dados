@@ -172,7 +172,7 @@ public class AVL<T> implements Arborizavel<T> {
             apagarComDoisFilhos(noAuxiliar);
 
         //rebalancear arvore
-        //rebalancear(dado, noAuxiliar);        
+        rebalancear(dado, noAuxiliar);        
         
         return dado;
     }    
