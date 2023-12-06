@@ -38,26 +38,30 @@ public class Prova {
 		
 		//Questão 1
 		System.out.println("Questao 1");		
-		q1 = regra1(matricula, deslocamento);		
-		imprimeDados(q1 + ":" + dados[q1]);
+		q1 = regra1(matricula, deslocamento);
+		System.out.print(q1+":");					
+		imprimeDados(dados[q1]);
 		resolveQ1(dados[q1]);
 
 		//Questão 2
 		System.out.println("Questao 2");		
 		q2 = regra2(matricula, deslocamento);
-		imprimeDados(q2 + ":" + dados[q2]);
+		System.out.print(q2+":");			
+		imprimeDados(dados[q2]);
 		resolveQ1(dados[q2]);
 		
 		//Questão 3	
 		System.out.println("Questao 3");		
 		q3 = regra3(matricula, deslocamento);
-		imprimeDados(q3 + ":" + dados[q3]);
+		System.out.print(q3+":");			
+		imprimeDados(dados[q3]);
 		resolveQ1(dados[q3]);
 
 		//Questão 4
 		System.out.println("Questao 4");
-		q4 = regra4(matricula, deslocamento);				
-		imprimeDados(q4 + ":" + dados[q4]);
+		q4 = regra4(matricula, deslocamento);
+		System.out.print(q4+":");				
+		imprimeDados(dados[q4]);
 		resolveQ1(dados[q4]);		
     }
 	
@@ -102,6 +106,7 @@ public class Prova {
 			if (numero != 0)
 				produto *= numero;
 		}
+		System.out.pri
 		return (produto * 2 + deslocamento) % 20;
 	}	
 	
@@ -113,30 +118,30 @@ public class Prova {
 	
 	private static void resolveQ1(int dados[]) {
 		for (int dado : dados) {
-			abp.inserir(dado);
+	//		abp.inserir(dado);
 		}
-		System.out.println(abp.imprimirPosOrdem(abp.getRaiz()))
+	//	System.out.println(abp.imprimirPosOrdem());
 	}
 
 	private static void resolveQ2(int dados[]) {
 		for (int dado : dados) {
-			abp.inserir(dado);
+	//		abp.inserir(dado);
 		}
-		System.out.println(abp.imprimirPosOrdem(abp.getRaiz()));
+	//	System.out.println(abp.imprimirPosOrdem(abp.getRaiz()));
 	}
 
 	private static void resolveQ3(int dados[]) {
 		for (int dado : dados) {
-			avl.inserir(dado);
+	//		avl.inserir(dado);
 		}
-		System.out.println(abp.getRaiz());
+	//	System.out.println(abp.getRaiz());
 	}
 	
 	private static void resolveQ4(int dados[]) {
 		for (int dado : dados) {
-			avl.inserir(dado);
+		//	avl.inserir(dado);
 		}
-		String resultado = imprimirPreOrdem(abp.getRaiz());
+		//String resultado = imprimirPreOrdem();
 		//quebrar string
 		//imprimir só o sexto elemento;
 	}
