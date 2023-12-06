@@ -58,7 +58,7 @@ public class ABPPrincipalCLI {
                     arvore.limpar();
                     System.out.println("Arvore Limpa!");
                     break;
-                default:
+                    default:
                     System.out.println("Opcao invalida. Tente novamente.");
             }
         } while (opcao != 0);
@@ -73,7 +73,7 @@ public class ABPPrincipalCLI {
         System.out.println("3. Existe?");         
         System.out.println("4. Imprimir");
         System.out.println("5. Limpar");         
-        System.out.print("Escolha uma opcao (0-4): ");
+        System.out.print("Escolha uma opcao (0-5): ");
     }   
 
     private static void exibirMenuImprimir() {

@@ -48,21 +48,21 @@ public class Prova {
 		q2 = regra2(matricula, deslocamento);
 		System.out.print(q2+":");			
 		imprimeDados(dados[q2]);
-		resolveQ1(dados[q2]);
+		resolveQ2(dados[q2]);
 		
 		//Questão 3	
 		System.out.println("Questao 3");		
 		q3 = regra3(matricula, deslocamento);
 		System.out.print(q3+":");			
 		imprimeDados(dados[q3]);
-		resolveQ1(dados[q3]);
+		resolveQ3(dados[q3]);
 
 		//Questão 4
 		System.out.println("Questao 4");
 		q4 = regra4(matricula, deslocamento);
 		System.out.print(q4+":");				
 		imprimeDados(dados[q4]);
-		resolveQ1(dados[q4]);		
+		resolveQ4(dados[q4]);		
     }
 	
 	//("soma dos números da matrícula" * 5 + deslocamento) % 20	
@@ -126,21 +126,29 @@ public class Prova {
 		for (int dado : dados) {
 	//		abp.inserir(dado);
 		}
-	//	System.out.println(abp.imprimirPosOrdem(abp.getRaiz()));
+	//String resultado = abp.imprimirPosOrdem();
+		//quebrar string
+		//int valor1 = obtem o terceiro elemento
+		//int valor2 = obtem o setimo elemento
+		//abp.apagar(valor1);
+		//abp.apagar(valor2);
+		//String resultado = abp.imprimirPreOrdem();
+		//quebrar string
+		//imprimir só o quinto elemento;	
 	}
 
 	private static void resolveQ3(int dados[]) {
 		for (int dado : dados) {
 	//		avl.inserir(dado);
 		}
-	//	System.out.println(abp.getRaiz());
+	//	System.out.println(avl.getRaiz());
 	}
 	
 	private static void resolveQ4(int dados[]) {
 		for (int dado : dados) {
 		//	avl.inserir(dado);
 		}
-		//String resultado = imprimirPreOrdem();
+		//String resultado = avl.imprimirPreOrdem();
 		//quebrar string
 		//imprimir só o sexto elemento;
 	}

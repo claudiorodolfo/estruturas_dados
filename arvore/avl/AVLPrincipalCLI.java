@@ -74,7 +74,7 @@ public class AVLPrincipalCLI {
         System.out.println("3. Existe?");
         System.out.println("4. Imprimir");
         System.out.println("5. Limpar");        
-        System.out.print("Escolha uma opcao (0-4): ");
+        System.out.print("Escolha uma opcao (0-5): ");
     }   
 
     private static void exibirMenuImprimir() {
