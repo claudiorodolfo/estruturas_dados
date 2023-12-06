@@ -23,51 +23,86 @@ public class AVL<T> implements Arborizavel<T> {
     private void atualizaAltura(NoTriplo<T> nodo) {
         int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
         int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
-        //noFolha tem altura zero 1 + (-1)
+        //noFolha tem altura zero = 1 + (-1)
         nodo.setAltura(1 + 
                 Math.max(alturaEsquerda, alturaDireita));
     }
 
     // Método para rotacionar à direita ao redor de um nó
     private NoTriplo<T> rotacaoDireita(NoTriplo<T> y) {
+		//           T0     |           T0
+		//           |      |           | 
+		//  ANTES    y      |   DEPOIS  x
+		//          / \     |          / \
+		//         x  T3    |         T1  y
+		//        / \	    |            / \
+		//       T1  T2     |           T2 T3
+        // T1 e T3 não sofrem alteração, 
+        // por isso não aparecem no balanceamento
+        NoTriplo<T> T0 = y.getGenitor();
         NoTriplo<T> x = y.getEsquerda();
         NoTriplo<T> T2 = x.getDireita();
 
-        // Realiza a rotação
-        x.setDireita(y);
-        x.setGenitor(y.getGenitor());
-        y.setGenitor(x);
+        //corrige ponteiros, descendo e subindo
+        //[T0-->x], [T0<--x]
+        if (y.equals(T0.getEsquerda()))
+            T0.setEsquerda(x);
+        else
+            T0.setDireita(x);
+        x.setGenitor(T0);
 
+        //[x-->y], [x<--y]
+        x.setDireita(y);
+        y.setGenitor(x);   
+
+        //[y-->T2], [y<--T2]
         y.setEsquerda(T2);        
         if (T2 != null)
             T2.setGenitor(y);
 
         atualizaAltura(y);
         atualizaAltura(x);
-        // Retorna a nova raiz
+        //nova raiz é x
         return x;
     }
 
     //rotacionar à esquerda ao redor de um nó
-    private NoTriplo<T> rotacaoEsquerda(NoTriplo<T> x) {
-        NoTriplo<T> y = x.getDireita();
-        NoTriplo<T> T2 = y.getEsquerda();
+    private NoTriplo<T> rotacaoEsquerda(NoTriplo<T> y) {
+		//         T0	    |             T0
+		//         |		|             | 
+		//  ANTES  y		|   DEPOIS    x
+		//        / \	    |            / \
+		//       T3  x      |           y  T1
+		//          / \	    |          / \  
+		//         T2  T1	|         T3  T2
+        // T1 e T3 não sofrem alteração, 
+        // por isso não aparecem no balanceamento
+        NoTriplo<T> T0 = y.getGenitor();        
+        NoTriplo<T> x = y.getDireita();
+        NoTriplo<T> T2 = x.getEsquerda();
 
-        // Realiza a rotação
-        y.setEsquerda(x);
-        y.setGenitor(x.getGenitor()); 
-        x.setGenitor(y);
+        //corrige ponteiros, descendo e subindo
+        //[T0-->x], [T0<--x]
+        if (y.equals(T0.getEsquerda()))
+            T0.setEsquerda(x);
+        else
+            T0.setDireita(x);
+        x.setGenitor(T0);
         
-        x.setDireita(T2);
+        //[x-->y], [x<--y]
+        x.setEsquerda(y);
+        y.setGenitor(x); 
+
+        //[y-->T2], [y<--T2]
+        y.setDireita(T2);        
         if (T2 != null)
-            T2.setGenitor(x);
+            T2.setGenitor(y);
 
         // Atualiza as alturas
-        atualizaAltura(x);
         atualizaAltura(y);
-
+        atualizaAltura(x);
         // Retorna a nova raiz
-        return y;
+        return x;
     }
 
     //rebalancear a árvore após inserção ou remoção
