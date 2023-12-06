@@ -15,7 +15,7 @@ public class ABP<T> implements Arborizavel<T> {
     public void limpar() {
         raiz = null;
     }
-    
+
     //inserir
     @Override
     public void inserir(T dado) {
@@ -80,7 +80,7 @@ public class ABP<T> implements Arborizavel<T> {
             if (dado.equals(noAuxiliar.getDado())) {
                 return noAuxiliar;
             } else {
-                if ((Integer) dado < (Integer) raiz.getDado())
+                if ((Integer) dado < (Integer) noAuxiliar.getDado())
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();
@@ -97,7 +97,7 @@ public class ABP<T> implements Arborizavel<T> {
             if (nodo.equals(pai.getEsquerda()))
                 //nodo é filho da esquerda
                 pai.setEsquerda(null);
-            else 
+            else
                 //nodo é filho da direita        
                 pai.setDireita(null);
 
@@ -166,7 +166,7 @@ public class ABP<T> implements Arborizavel<T> {
                 retorno = true;
                 break;
             } else {
-                if ((Integer) dado < (Integer) raiz.getDado())
+                if ((Integer) dado < (Integer) noAuxiliar.getDado())
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();

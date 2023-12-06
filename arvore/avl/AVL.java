@@ -231,7 +231,7 @@ public class AVL<T> implements Arborizavel<T> {
             if (dado.equals(noAuxiliar.getDado())) {
                 return noAuxiliar;
             } else {
-                if ((Integer) dado < (Integer) raiz.getDado())
+                if ((Integer) dado < (Integer) noAuxiliar.getDado())
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();
@@ -317,7 +317,7 @@ public class AVL<T> implements Arborizavel<T> {
                 retorno = true;
                 break;
             } else {
-                if ((Integer) dado < (Integer) raiz.getDado())
+                if ((Integer) dado < (Integer) noAuxiliar.getDado())
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();
