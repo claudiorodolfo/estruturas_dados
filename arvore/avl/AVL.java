@@ -13,7 +13,8 @@ public class AVL<T> implements Arborizavel<T> {
 
     //métodos AVL
     private int balanceamento(NoTriplo<T> nodo) {
-        //alturaEsquerda - alturaDireita
+        //se um noFolha tem altura zero, 
+        //a ausencia de nó (null), tem altura -1
         int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
         int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
 
@@ -21,6 +22,8 @@ public class AVL<T> implements Arborizavel<T> {
     }
 
     private void atualizaAltura(NoTriplo<T> nodo) {
+        //se um noFolha tem altura zero, 
+        //a ausencia de nó (null), tem altura -1        
         int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
         int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
         //noFolha tem altura zero = 1 + (-1)
@@ -238,21 +241,23 @@ public class AVL<T> implements Arborizavel<T> {
             else 
                 //nodo é filho da direita        
                 pai.setDireita(null);
+
+            nodo.setGenitor(null);                
         }
     }
 
     private void apagarComUmFilho(NoTriplo<T> nodo) {
-        NoTriplo<T> pai = nodo.getGenitor();
-        NoTriplo<T> filho = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
-        if (pai == null) {
-            raiz = filho;
+        NoTriplo<T> avo = nodo.getGenitor();
+        NoTriplo<T> neto = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
+        if (avo == null) {
+            raiz = neto;
             raiz.setGenitor(null);
         } else {
-            filho.setGenitor(pai);
-            if (nodo.equals(pai.getEsquerda())) {
-                pai.setEsquerda(filho);
+            neto.setGenitor(avo);
+            if (nodo.equals(avo.getEsquerda())) {
+                avo.setEsquerda(neto);
             } else {
-                pai.setDireita(filho);
+                avo.setDireita(neto);
             }
         }
     }

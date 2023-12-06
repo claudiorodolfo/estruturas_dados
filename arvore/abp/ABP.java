@@ -95,21 +95,23 @@ public class ABP<T> implements Arborizavel<T> {
             else 
                 //nodo é filho da direita        
                 pai.setDireita(null);
+
+            nodo.setGenitor(null);
         }
     }
 
     private void apagarComUmFilho(NoTriplo<T> nodo) {
-        NoTriplo<T> pai = nodo.getGenitor();
-        NoTriplo<T> filho = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
-        if (pai == null) {
-            raiz = filho;
+        NoTriplo<T> avo = nodo.getGenitor();
+        NoTriplo<T> neto = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
+        if (avo == null) {
+            raiz = neto;
             raiz.setGenitor(null);
         } else {
-            filho.setGenitor(pai);
-            if (nodo.equals(pai.getEsquerda())) {
-                pai.setEsquerda(filho);
+            neto.setGenitor(avo);
+            if (nodo.equals(avo.getEsquerda())) {
+                avo.setEsquerda(neto);
             } else {
-                pai.setDireita(filho);
+                avo.setDireita(neto);
             }
         }
     }
