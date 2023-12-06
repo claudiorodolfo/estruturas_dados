@@ -11,6 +11,11 @@ public class AVL<T> implements Arborizavel<T> {
         return raiz;
     }
 
+    @Override
+    public void limpar() {
+        raiz = null;
+    }
+    
     //métodos AVL
     private int balanceamento(NoTriplo<T> nodo) {
         //se um noFolha tem altura zero, então 

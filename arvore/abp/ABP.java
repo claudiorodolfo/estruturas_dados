@@ -11,6 +11,11 @@ public class ABP<T> implements Arborizavel<T> {
         return raiz;
     }
 
+    @Override
+    public void limpar() {
+        raiz = null;
+    }
+    
     //inserir
     @Override
     public void inserir(T dado) {

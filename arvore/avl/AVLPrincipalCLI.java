@@ -54,7 +54,11 @@ public class AVLPrincipalCLI {
                         default:
                             System.out.println("Opcao invalida.");
                     }
-                    break;                
+                    break;
+                case 5:                    
+                    arvore.limpar();
+                    System.out.println("Arvore Limpa!");
+                break;                                   
                 default:
                     System.out.println("Opcao invalida. Tente novamente.");
             }
@@ -69,6 +73,7 @@ public class AVLPrincipalCLI {
         System.out.println("2. Apagar");
         System.out.println("3. Existe?");
         System.out.println("4. Imprimir");
+        System.out.println("5. Limpar");        
         System.out.print("Escolha uma opcao (0-4): ");
     }   
 
