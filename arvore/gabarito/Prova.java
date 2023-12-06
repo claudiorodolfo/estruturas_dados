@@ -106,7 +106,6 @@ public class Prova {
 			if (numero != 0)
 				produto *= numero;
 		}
-		System.out.pri
 		return (produto * 2 + deslocamento) % 20;
 	}	
 	
