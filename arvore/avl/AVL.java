@@ -40,7 +40,7 @@ public class AVL<T> implements Arborizavel<T> {
         // T1 e T3 não sofrem alteração, 
         // por isso não aparecem no balanceamento
         NoTriplo<T> T0 = y.getGenitor();
-        NoTriplo<T> x = y.getEsquerda();
+        NoTriplo<T> x  = y.getEsquerda();
         NoTriplo<T> T2 = x.getDireita();
 
         //corrige ponteiros, descendo e subindo
@@ -78,7 +78,7 @@ public class AVL<T> implements Arborizavel<T> {
         // T1 e T3 não sofrem alteração, 
         // por isso não aparecem no balanceamento
         NoTriplo<T> T0 = y.getGenitor();        
-        NoTriplo<T> x = y.getDireita();
+        NoTriplo<T> x  = y.getDireita();
         NoTriplo<T> T2 = x.getEsquerda();
 
         //corrige ponteiros, descendo e subindo
