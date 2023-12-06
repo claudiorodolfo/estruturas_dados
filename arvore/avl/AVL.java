@@ -13,7 +13,7 @@ public class AVL<T> implements Arborizavel<T> {
 
     //métodos AVL
     private int balanceamento(NoTriplo<T> nodo) {
-        //se um noFolha tem altura zero, 
+        //se um noFolha tem altura zero, então 
         //a ausencia de nó (null), tem altura -1
         int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
         int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
@@ -22,7 +22,7 @@ public class AVL<T> implements Arborizavel<T> {
     }
 
     private void atualizaAltura(NoTriplo<T> nodo) {
-        //se um noFolha tem altura zero, 
+        //se um noFolha tem altura zero, então
         //a ausencia de nó (null), tem altura -1        
         int alturaEsquerda = nodo.getEsquerda() != null ? nodo.getEsquerda().getAltura(): -1;
         int alturaDireita = nodo.getDireita() != null ? nodo.getDireita().getAltura(): -1;
@@ -151,6 +151,7 @@ public class AVL<T> implements Arborizavel<T> {
 
         }            
     }
+    //fim métodos AVL
 
     //inserir
     @Override

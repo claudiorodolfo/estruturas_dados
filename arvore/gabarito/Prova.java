@@ -105,7 +105,7 @@ public class Prova {
 		return (produto * 2 + deslocamento) % 20;
 	}	
 	
-	private void imprimeDados(int dados[]) {
+	private static void imprimeDados(int dados[]) {
 		for (int valor : dados)
 			System.out.print(valor + " ");
 		System.out.println("");
