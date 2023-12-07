@@ -1,3 +1,7 @@
+//Pra rodar
+//cd "estruturas_dados\arvore\"
+//javac Prova.java
+//java Prova
 import java.util.Scanner;
 import avl.*;
 import abp.*;
