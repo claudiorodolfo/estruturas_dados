@@ -2,7 +2,6 @@
 //cd "estruturas_dados\arvore\"
 //javac SegundaChamada.java
 //java SegundaChamada
-import java.util.Scanner;
 import avl.*;
 import abp.*;
 
