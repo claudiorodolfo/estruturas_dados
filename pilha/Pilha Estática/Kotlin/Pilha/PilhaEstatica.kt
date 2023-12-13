@@ -8,7 +8,7 @@ class PilhaEstatica : Empilhavel {
 		ponteiroTopo = -1
 	}
 	
-	constructor() : this(10) {}
+	constructor() : this(10)
     
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {
@@ -49,13 +49,13 @@ class PilhaEstatica : Empilhavel {
 	}
 	
 	override fun imprimir(): String {
-		var resultado : String = "["
+		var resultado = "["
 		for (i in ponteiroTopo downTo 0) {
 			if (i == 0)
 				resultado += "${dados[i]}"
 			else
 				resultado += "${dados[i]}, "
 		}
-		return (resultado + "]")
+		return "$resultado]"
 	}
 }
