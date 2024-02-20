@@ -1,14 +1,9 @@
-class PilhaEstatica : Empilhavel {
+class PilhaEstatica (
+    private val tamanho: Int = 10
+): Empilhavel {
     
-	private var ponteiroTopo: Int
-	private var dados: Array<Any?>
-	
-	constructor(tamanho: Int) {
-		dados = arrayOfNulls(tamanho)
-		ponteiroTopo = -1
-	}
-	
-	constructor() : this(10)
+	private var ponteiroTopo: Int = -1
+	private var dados: Array<Any?> = arrayOfNulls(tamanho)
     
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {
