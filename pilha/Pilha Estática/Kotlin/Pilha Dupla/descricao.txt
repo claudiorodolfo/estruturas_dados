@@ -1,0 +1,2 @@
+A Pilha1 funciona como a Pilha Estática
+A Pilha2 funciona como a Pilha Estática Invertida
