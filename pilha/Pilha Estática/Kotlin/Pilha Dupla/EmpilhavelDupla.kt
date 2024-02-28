@@ -3,7 +3,7 @@ public interface EmpilhavelDupla {
     fun empilhar1(dado: Any?)
     fun desempilhar1(): Any?
     fun topo1(): Any?
-    fun estaCheia1(): Boolean
+    fun estaCheia1(): Boolean  //igual a estaCheia2()
     fun estaVazia1(): Boolean
     fun imprimir1(): String	
 	
