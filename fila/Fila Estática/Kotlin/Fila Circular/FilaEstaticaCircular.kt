@@ -1,12 +1,18 @@
-class FilaEstatica(tamanho: Int = 10) : Enfileiravel {
+class FilaEstaticaCircular(tamanho: Int = 10) : Enfileiravel {
  
 	private var ponteiroInicio: Int = 0
 	private var ponteiroFim: Int = -1 
 	private var dados: Array<Any?> = arrayOfNulls(tamanho)
-    
+    private var quantidade: Int = 0
+
 	override fun enfileirar(dado: Any?) {
 		if (!estaCheia()) {
 			ponteiroFim++
+			//patch pra fila funcionar de forma circular
+			if (ponteiroFim == dados.size)
+				ponteiroFim = 0
+			quantidade++
+			//fim do patch			
 			dados[ponteiroFim] = dado
 		} else {
 			println("Queue is full!")
@@ -18,6 +24,11 @@ class FilaEstatica(tamanho: Int = 10) : Enfileiravel {
 		if (!estaVazia()) {
 			dadoInicio = dados[ponteiroInicio]
 			ponteiroInicio++
+			//patch pra fila funcionar de forma circular
+			if (ponteiroInicio == dados.size)
+				ponteiroInicio = 0
+			quantidade--
+			//fim do patch	
 		} else {
 			println("Queue is empty!")
 		}
@@ -35,20 +46,23 @@ class FilaEstatica(tamanho: Int = 10) : Enfileiravel {
 	}
 	
 	override fun estaCheia(): Boolean {
-		return ponteiroFim == dados.size - 1
+		return quantidade == dados.size
 	}
 	
 	override fun estaVazia(): Boolean {
-		return ponteiroInicio == ponteiroFim + 1
+		return quantidade == 0
 	}
 	
 	override fun imprimir(): String {
 		var resultado = "["
-		for (i in ponteiroInicio..ponteiroFim) {
-			if (i == ponteiroFim)
-				resultado += "${dados[i]}"
+		var ponteiroAux = ponteiroInicio
+		for (i in 0 .. quantidade-1) {
+			if (i == quantidade-1)
+				resultado += "${dados[ponteiroAux % dados.size]}"
 			else
-				resultado += "${dados[i]},"
+				resultado += "${dados[ponteiroAux % dados.size]},"
+
+			ponteiroAux++				
 		}
 		return "$resultado]"
 	}

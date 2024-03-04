@@ -1,5 +1,5 @@
 fun main() {
-    var fila: Enfileiravel = FilaEstatica()
+    var fila: Enfileiravel = FilaEstaticaCircular()
     fila.enfileirar("A");
     println("Espiar: ${fila.espiar()}")	
     fila.enfileirar("B")
