@@ -1,7 +1,7 @@
 class FilaEstatica(tamanho: Int = 10) : Enfileiravel {
  
-	private var ponteiroInicio: Int = 0
-	private var ponteiroFim: Int = -1 
+	private var ponteiroInicio = 0
+	private var ponteiroFim = -1 
 	private var dados: Array<Any?> = arrayOfNulls(tamanho)
     
 	override fun enfileirar(dado: Any?) {

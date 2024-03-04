@@ -3,7 +3,7 @@ class FilaEstaticaCircular(tamanho: Int = 10) : Enfileiravel {
 	private var ponteiroInicio = 0
 	private var ponteiroFim = -1 
 	private var dados: Array<Any?> = arrayOfNulls(tamanho)
-    private var quantidade = 0
+    private var quantidade: Int = 0
 
 	override fun enfileirar(dado: Any?) {
 		if (!estaCheia()) {
