@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    var pilha = PilhaEstaticaDupla(14)
+    var pilha: EmpilhavelDupla = PilhaEstaticaDupla(14)
     pilha.empilhar1("Instituto")
     pilha.empilhar1("Federal")
     println("Espiar:${pilha.topo1()}")
