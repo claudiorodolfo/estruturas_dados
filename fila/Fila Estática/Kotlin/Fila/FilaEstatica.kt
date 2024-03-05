@@ -1,4 +1,4 @@
-class FilaEstatica(tamanho: Int = 10) : Enfileiravel {
+class FilaEstatica(private val tamanho: Int = 10) : Enfileiravel {
  
 	private var ponteiroInicio = 0
 	private var ponteiroFim = -1 
