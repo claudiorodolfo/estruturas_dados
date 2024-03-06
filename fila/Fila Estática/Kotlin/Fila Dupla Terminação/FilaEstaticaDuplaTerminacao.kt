@@ -37,9 +37,12 @@ class FilaEstaticaDuplaTerminacao(private val tamanho: Int = 10) : EnfileiravelD
 		if (!estaCheia()) {
 			ponteiroInicio--
 			//patch pra fila funcionar de forma circular
-			if (ponteiroInicio == -1)
+			if (ponteiroInicio == -1) {
 				ponteiroInicio = dados.size-1
-			quantidade++
+                if (quantidade == 0)
+                    ponteiroFim = dados.size-1
+            }
+                quantidade++
 			//fim do patch			
 			dados[ponteiroInicio] = dado
 		} else {
