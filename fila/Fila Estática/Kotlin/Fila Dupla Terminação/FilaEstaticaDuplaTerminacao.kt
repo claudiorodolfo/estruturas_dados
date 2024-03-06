@@ -33,22 +33,22 @@ class FilaEstaticaDuplaTerminacao(private val tamanho: Int = 10) : EnfileiravelD
 		}
 	}
 
-	override fun enfileirarInicio(dado: Any?) {
-		if (!estaCheia()) {
-			ponteiroInicio--
-			//patch pra fila funcionar de forma circular
-			if (ponteiroInicio == -1) {
-				ponteiroInicio = dados.size-1
+    override fun enfileirarInicio(dado: Any?) {
+        if (!estaCheia()) {
+            ponteiroInicio--
+            //patch pra fila funcionar de forma circular
+            if (ponteiroInicio == -1) {
+                ponteiroInicio = dados.size-1
                 if (quantidade == 0)
                     ponteiroFim = dados.size-1
             }
-                quantidade++
-			//fim do patch			
-			dados[ponteiroInicio] = dado
-		} else {
-			println("Queue is full!")
-		}
-	}
+            quantidade++
+            //fim do patch			
+            dados[ponteiroInicio] = dado
+        } else {
+            println("Queue is full!")
+        }
+    }
 
 	override fun desenfileirarInicio(): Any? {
 		var dadoAux: Any? = null
