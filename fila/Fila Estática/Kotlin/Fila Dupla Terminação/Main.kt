@@ -1,5 +1,5 @@
 fun main() {
-	var fila: DuplamenteEnfileiravel = FilaEstaticaDuplaTerminacao()
+	var fila: EnfileiravelDupla = FilaEstaticaDuplaTerminacao()
 	fila.enfileirarInicio("A")
 	println(fila.imprimirFrentePraTras()) //[A]
 	println(fila.tras()) //A
