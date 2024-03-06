@@ -51,11 +51,11 @@ class PilhaEstaticaGenerica<T> : Empilhavel<T> {
     override fun imprimir(): String {
         var resultado = "["
         for (i in ponteiroTopo downTo 0) {
-            resultado += if (i == 0) {
+            resultado += if (i == 0)
                 "${dados[i]}"
-            } else {
+            else
                 "${dados[i]},"
-            }
+                
         }
         return "$resultado]"
     }

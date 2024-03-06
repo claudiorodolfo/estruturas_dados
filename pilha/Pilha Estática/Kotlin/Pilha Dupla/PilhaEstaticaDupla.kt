@@ -13,12 +13,19 @@ class PilhaEstaticaDupla : EmpilhavelDupla {
 	constructor() : this(10)
 
     //PILHA 1
+	override fun atualizar1(dado: Any?) {
+		if (!estaVazia1())
+			dados[ponteiroTopo1] = dado
+		else
+			println("Stack1 is empty!")
+	}
+
 	override fun empilhar1(dado: Any?) {
 		if (!estaCheia1()) {
 			ponteiroTopo1++
 			dados[ponteiroTopo1] = dado
 		} else {
-			println("Stack is full!")
+			println("Stack1 is full!")
 		}
 	}
 	
@@ -28,17 +35,17 @@ class PilhaEstaticaDupla : EmpilhavelDupla {
 			dadoTopo = dados[ponteiroTopo1]
 			ponteiroTopo1--
 		} else {
-			println("Stack is empty!")
+			println("Stack1 is empty!")
 		}
 		return dadoTopo
 	}
 	
-	override fun topo1(): Any? {
+	override fun espiar1(): Any? {
 		var dadoTopo: Any? = null
 		if (!estaVazia1()) {
 			dadoTopo = dados[ponteiroTopo1]
 		} else {
-			println("Stack is empty!")
+			println("Stack1 is empty!")
 		}
 		return dadoTopo
 	}
@@ -63,12 +70,19 @@ class PilhaEstaticaDupla : EmpilhavelDupla {
 	}
 
     //PILHA 2
+	override fun atualizar2(dado: Any?) {
+		if (!estaVazia2())
+			dados[ponteiroTopo2] = dado
+		else
+			println("Stack2 is empty!")
+	}
+
 	override fun empilhar2(dado: Any?) {
 		if (!estaCheia2()) {
 			ponteiroTopo2--
 			dados[ponteiroTopo2] = dado
 		} else {
-			println("Stack is full!")
+			println("Stack2 is full!")
 		}
 	}
 	
@@ -78,17 +92,17 @@ class PilhaEstaticaDupla : EmpilhavelDupla {
 			dadoTopo = dados[ponteiroTopo2]
 			ponteiroTopo2++
 		} else {
-			println("Stack is empty!")
+			println("Stack2 is empty!")
 		}
 		return dadoTopo
 	}
 	
-	override fun topo2(): Any? {
+	override fun espiar2(): Any? {
 		var dadoTopo: Any? = null
 		if (!estaVazia2()) {
 			dadoTopo = dados[ponteiroTopo2]
 		} else {
-			println("Stack is empty!")
+			println("Stack2 is empty!")
 		}
 		return dadoTopo
 	}

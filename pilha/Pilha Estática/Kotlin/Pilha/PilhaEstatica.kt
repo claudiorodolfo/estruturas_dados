@@ -9,7 +9,14 @@ class PilhaEstatica : Empilhavel {
 	}
 	
 	constructor() : this(10)
-    
+
+	override fun atualizar(dado: Any?) {
+		if (!estaVazia())
+			dados[ponteiroTopo] = dado
+		else
+			println("Stack is empty!")
+	}
+
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {
 			ponteiroTopo++
@@ -30,7 +37,7 @@ class PilhaEstatica : Empilhavel {
 		return dadoTopo
 	}
 	
-	override fun topo(): Any? {
+	override fun espiar(): Any? {
 		var dadoTopo: Any? = null
 		if (!estaVazia()) {
 			dadoTopo = dados[ponteiroTopo]
