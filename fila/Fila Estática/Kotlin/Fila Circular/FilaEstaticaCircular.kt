@@ -5,6 +5,13 @@ class FilaEstaticaCircular(private val tamanho: Int = 10) : Enfileiravel {
 	private var dados: Array<Any?> = arrayOfNulls(tamanho)
     private var quantidade = 0
 
+	override fun atualizar(dado: Any?) {
+		if (!estaVazia())
+			dados[ponteiroInicio] = dado
+		else
+			println("Queue is empty!")
+	}
+
 	override fun enfileirar(dado: Any?) {
 		if (!estaCheia()) {
 			ponteiroFim++
@@ -35,7 +42,7 @@ class FilaEstaticaCircular(private val tamanho: Int = 10) : Enfileiravel {
 		return dadoInicio
 	}
 	
-	override fun espiar(): Any? {
+	override fun frente(): Any? {
 		var dadoInicio: Any? = null
 		if (!estaVazia()) {
 			dadoInicio = dados[ponteiroInicio]

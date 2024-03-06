@@ -1,7 +1,7 @@
 fun main() {
     var fila: Enfileiravel = FilaEstatica()
     fila.enfileirar("A");
-    println("Espiar: ${fila.espiar()}")	
+    println("Frente: ${fila.frente()}")	
     fila.enfileirar("B")
     fila.enfileirar("C")
     fila.enfileirar("D")
@@ -9,8 +9,8 @@ fun main() {
     fila.enfileirar("E")
     val conteudo = fila.desenfileirar()
     fila.enfileirar("F")
-    println("Espiar: ${fila.espiar()}")
-    println("Espiar: ${fila.espiar()}")	
+    println("Frente: ${fila.frente()}")
+    println("Frente: ${fila.frente()}")	
     fila.enfileirar("G");
     fila.enfileirar(conteudo)
     fila.enfileirar("I")
