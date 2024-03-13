@@ -1,4 +1,4 @@
-class FilaEstaticaCircular(tamanho: Int = 10) : Enfileiravel {
+class FilaEstaticaCircular(val tamanho: Int = 10) : Enfileiravel {
  
 	private var ponteiroInicio = 0
 	private var ponteiroFim = -1 

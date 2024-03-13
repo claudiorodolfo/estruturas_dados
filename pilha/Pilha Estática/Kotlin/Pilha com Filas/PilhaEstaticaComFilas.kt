@@ -1,4 +1,4 @@
-class PilhaEstaticaComFilas(tamanho: Int = 10) : Empilhavel {
+class PilhaEstaticaComFilas(val tamanho: Int = 10) : Empilhavel {
 	
 	private var f1: Enfileiravel = FilaEstaticaCircular(tamanho)
 	private var f2: Enfileiravel = FilaEstaticaCircular(tamanho)
@@ -14,30 +14,21 @@ class PilhaEstaticaComFilas(tamanho: Int = 10) : Empilhavel {
 			//enfileira os dados pre-existentes
 			while(!f2.estaVazia())
 				f1.enfileirar(f2.desenfileirar())
-
 		} else {
 			println("Pilha Cheia!")
 		}			
 	}
-	
+
+	override fun atualizar(): Any? {
+		return f1.atualizar()
+	}
+
 	override fun desempilhar(): Any? {
-		var dadoAux: Any? = null
-		if (!estaVazia())
-			dadoAux = f1.desenfileirar()	
-		else
-			println("Pilha Vazia!")
-		
-		return dadoAux
+		return f1.desenfileirar()
 	}
 	
-	override fun topo(): Any? {
-		var dadoAux: Any? = null
-		if (!estaVazia())	
-			dadoAux = f1.espiar()
-		else
-			println("Pilha Vazia!")
-		
-		return dadoAux
+	override fun espiar(): Any? {
+		return f1.frente()
 	}
 		
 	override fun estaCheia(): Boolean {
