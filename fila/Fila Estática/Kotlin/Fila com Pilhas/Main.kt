@@ -1,5 +1,5 @@
 fun main() {
-    var fila: Enfileiravel = FilaComPilhas()
+    var fila: Enfileiravel = FilaEstaticaComPilhas()
     fila.enfileirar("A");
     println("Frente: ${fila.frente()}")	
     fila.enfileirar("B")

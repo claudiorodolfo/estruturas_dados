@@ -1,45 +1,45 @@
 class PilhaEstaticaComFilas(val tamanho: Int = 10) : Empilhavel {
 	
-	private var f1: Enfileiravel = FilaEstaticaCircular(tamanho)
-	private var f2: Enfileiravel = FilaEstaticaCircular(tamanho)
+	private var fila1: Enfileiravel = FilaEstaticaCircular(tamanho)
+	private var fila2: Enfileiravel = FilaEstaticaCircular(tamanho)
  	
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {	
 			//joga todo mundo pra fila 2
-			while(!f1.estaVazia())
-				f2.enfileirar(f1.desenfileirar());
+			while(!fila1.estaVazia())
+				fila2.enfileirar(fila1.desenfileirar());
 
 			//enfileira o dado
-			f1.enfileirar(dado)
+			fila1.enfileirar(dado)
 			//enfileira os dados pre-existentes
-			while(!f2.estaVazia())
-				f1.enfileirar(f2.desenfileirar())
+			while(!fila2.estaVazia())
+				fila1.enfileirar(fila2.desenfileirar())
 		} else {
 			println("Pilha Cheia!")
 		}			
 	}
 
-	override fun atualizar(): Any? {
-		return f1.atualizar()
+	override fun atualizar(dado: Any?)  {
+		fila1.atualizar(dado)
 	}
 
 	override fun desempilhar(): Any? {
-		return f1.desenfileirar()
+		return fila1.desenfileirar()
 	}
 	
 	override fun espiar(): Any? {
-		return f1.frente()
+		return fila1.frente()
 	}
 		
 	override fun estaCheia(): Boolean {
-		return f1.estaCheia()
+		return fila1.estaCheia()
 	}
 		
 	override fun estaVazia(): Boolean {
-		return f1.estaVazia()
+		return fila1.estaVazia()
 	}
 		
 	override fun imprimir(): String {
-		return f1.imprimir()
+		return fila1.imprimir()
 	}
 }

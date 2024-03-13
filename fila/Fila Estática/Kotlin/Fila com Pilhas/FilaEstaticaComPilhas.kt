@@ -1,4 +1,4 @@
-class FilaComPilhas(val tamanho: Int = 10) : Enfileiravel {
+class FilaEstaticaComPilhas(val tamanho: Int = 10) : Enfileiravel {
  
 	private var pilha1: Empilhavel = PilhaEstatica(tamanho) 
 	private var pilha2: Empilhavel = PilhaEstatica(tamanho)
