@@ -1,4 +1,4 @@
-fun main(args: Array<String>) {
+fun main() {
     var lista = ListaEstaticaCircular()
     lista.anexar("A")  
     lista.anexar("B")   

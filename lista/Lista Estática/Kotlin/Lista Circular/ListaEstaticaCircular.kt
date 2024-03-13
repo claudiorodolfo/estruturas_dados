@@ -1,42 +1,29 @@
-class ListaEstaticaCircular : Listavel {
+class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
  
-	private var ponteiroInicio: Int
-	private var ponteiroFim: Int
-	private var dados: Array<Any?>
-	private var quantidade: Int
+	private var dados: Array<Any?> = arrayOfNulls(tamanho)
+	private var quantidade = 0
+	private var ponteiroInicio = 0
+	private var ponteiroFim = -1
 
-	constructor(tamanho: Int) {
-		dados = arrayOfNulls(tamanho)
-		ponteiroInicio = 0
-		ponteiroFim = -1
-		quantidade = 0	
-	}
-	
-	constructor() : this(10) {}
-    
 	override fun anexar(dado: Any?) {
 		if (!estaCheia()) {
 			ponteiroFim++
 			if (ponteiroFim == dados.size)
 				ponteiroFim = 0
-
-			quantidade++			
+			
 			dados[ponteiroFim] = dado
+			quantidade++
 		} else {
-			println("List is full!")
+			println("Lista cheia!")
 		}
 	}
 
 	override fun selecionarTodos(): Array<Any?> {        
 		var dadosAux: Array<Any?> = arrayOfNulls(quantidade)
 		if (!estaVazia()) {
-			var ponteiroAux: Int = ponteiroInicio
+			var ponteiroAux = ponteiroInicio
             for (i in 0 until quantidade)  {
-				if (ponteiroAux == dados.size) {
-                    ponteiroAux = 0
-                }
-				dadosAux[i] = dados[ponteiroAux]
-				ponteiroAux++
+				dadosAux[i] = dados[(ponteiroAux+i)%dados.size]
             }
         }
         return dadosAux
@@ -53,11 +40,11 @@ class ListaEstaticaCircular : Listavel {
 				//(informado pelo usuário)
 				//PARA endereçamento físico 
 				//(onde o dado está no array)
-				var posicaoFisica: Int = 
+				var posicaoFisica = 
 					(ponteiroInicio + posicao) % dados.size
 				dadoAux = dados[posicaoFisica]
 			} else {
-				println("Indice Invalido!")	
+				println("Indice Inválido!")	
 			}
 		} else {
 			println("Lista Vazia!")		
@@ -75,11 +62,11 @@ class ListaEstaticaCircular : Listavel {
 				//(informado pelo usuário)
 				//PARA endereçamento físico 
 				//(onde o dado está no array)
-				var posicaoFisica: Int = 
+				var posicaoFisica = 
 					(ponteiroInicio + posicao) % dados.size
 				dados[posicaoFisica] = dado
 			} else {
-				println("Indice Invalido!")	
+				println("Indice Inválido!")	
 			}
 		} else {
 			println("Lista Vazia!")		
@@ -95,19 +82,15 @@ class ListaEstaticaCircular : Listavel {
 	}
 	
 	override fun imprimir(): String {
-		var resultado : String = "["
-		var ponteiroAux: Int = ponteiroInicio
+		var resultado = "["
+		var ponteiroAux = ponteiroInicio
 		for (i in 0 until quantidade) {
-			if (i == ponteiroFim)
-				resultado += 
-					"${dados[ponteiroAux % dados.size]}"
+			resultado += if (i == ponteiroFim)
+				"${dados[(ponteiroAux+i) % dados.size]}"
 			else
-				resultado += 
-					"${dados[ponteiroAux % dados.size]}, "
-			
-			ponteiroAux++				
+				"${dados[(ponteiroAux+i) % dados.size]}, "			
 		}
-		return resultado + "]"
+		return "$resultado]"
 	}
 
 	override fun apagar(posicao: Int): Any? {
@@ -121,16 +104,16 @@ class ListaEstaticaCircular : Listavel {
 				//(informado pelo usuário)
 				//PARA endereçamento físico 
 				//(onde o dado está no array)
-				var posicaoFisica: Int = 
+				var posicaoFisica = 
 				(ponteiroInicio + posicao) % dados.size
 				dadoAux = dados[posicaoFisica]
-				var ponteiroAux: Int = posicaoFisica
+				var ponteiroAux = posicaoFisica
 				for (i in posicao until (quantidade-1)) {
-					var atual: Int = ponteiroAux
+					var atual = ponteiroAux
 					if (ponteiroAux == dados.size-1) {
 						ponteiroAux = -1			
 					}
-					var proximo: Int = ponteiroAux+1
+					var proximo = ponteiroAux+1
 
 					dados[atual] = dados[proximo]
 					ponteiroAux++
@@ -141,7 +124,7 @@ class ListaEstaticaCircular : Listavel {
 				}
 				quantidade--
 			} else {
-				println("Indice Invalido!")
+				println("Indice Inválido!")
 			}
 		} else {
 			println("Lista Vazia!")
@@ -159,17 +142,17 @@ class ListaEstaticaCircular : Listavel {
 				//(informado pelo usuário)
 				//PARA endereçamento físico 
 				//(onde o dado está no array)
-				var posicaoFisica: Int = 
+				var posicaoFisica = 
 					(ponteiroInicio + posicao) % dados.size
 
-				var ponteiroAux: Int = ponteiroFim+1
+				var ponteiroAux = ponteiroFim+1
 				for (i in posicao until quantidade) {
-					var anterior: Int = ponteiroAux-1
+					var anterior = ponteiroAux-1
 
 					if(ponteiroAux == dados.size) {
 						ponteiroAux = 0			
 					} 
-					var atual: Int = ponteiroAux
+					var atual = ponteiroAux
 
 					dados[atual] = dados[anterior]
 					ponteiroAux--
@@ -182,7 +165,7 @@ class ListaEstaticaCircular : Listavel {
 				}
 				quantidade++
 			} else {
-				println("Indice Invalido")
+				println("Indice Inválido")
 			}
 		} else {
 			println("Lista Cheia!")

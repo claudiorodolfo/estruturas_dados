@@ -1,5 +1,3 @@
-//https://www.javainuse.com/java2kot
-//https://play.kotlinlang.org
 interface Listavel {
     // Metodos principais
     fun anexar(dado: Any?)
