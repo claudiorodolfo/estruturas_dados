@@ -5,6 +5,7 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 	private var ponteiroInicio = 0
 	private var ponteiroFim = -1
 
+	//idêntico ao enfileirar de FilaEstaticaCircular
 	override fun anexar(dado: Any?) {
 		if (!estaCheia()) {
 			ponteiroFim++
@@ -22,9 +23,9 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 		var dadosAux: Array<Any?> = arrayOfNulls(quantidade)
 		if (!estaVazia()) {
 			var ponteiroAux = ponteiroInicio
-            for (i in 0 until quantidade)  {
+			for (i in 0 until quantidade)
 				dadosAux[i] = dados[(ponteiroAux+i)%dados.size]
-            }
+            
         }
         return dadosAux
 	}
@@ -32,7 +33,7 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 	override fun selecionar (posicao: Int): Any? {
 		var dadoAux: Any? = null
 		if (!estaVazia()) {
-			//índice/posição é válido? 
+			//índice/posição lógica é válida? 
 			if (posicao >= 0 && 
 					posicao < quantidade) {
 				//mapeamento:
@@ -54,7 +55,7 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 
 	override fun atualizar (posicao: Int, dado: Any?) {
 		if (!estaVazia()) {
-			//índice/posição é válido? 
+			//índice/posição lógica é válida? 
 			if (posicao >= 0 && 
 					posicao < quantidade) {
 				//mapeamento:
@@ -96,7 +97,7 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 	override fun apagar(posicao: Int): Any? {
 		var dadoAux: Any? = null
 		if (!estaVazia()) {
-			//índice/posição é válido? 
+			//índice/posição lógica é válida? 
 			if (posicao >= 0 && 
 					posicao < quantidade) {
 				//mapeamento:
@@ -110,18 +111,15 @@ class ListaEstaticaCircular(val tamanho: Int = 10) : Listavel {
 				var ponteiroAux = posicaoFisica
 				for (i in posicao until (quantidade-1)) {
 					var atual = ponteiroAux
-					if (ponteiroAux == dados.size-1) {
-						ponteiroAux = -1			
-					}
-					var proximo = ponteiroAux+1
+					var proximo = (ponteiroAux+1)%dados.size
 
 					dados[atual] = dados[proximo]
 					ponteiroAux++
 				}
 				ponteiroFim--
-				if (ponteiroFim == -1) {
+				if (ponteiroFim == -1) 
 					ponteiroFim = dados.size - 1
-				}
+				
 				quantidade--
 			} else {
 				println("Indice Inválido!")
