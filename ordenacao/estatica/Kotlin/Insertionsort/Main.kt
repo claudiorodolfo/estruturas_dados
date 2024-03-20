@@ -16,12 +16,12 @@ fun main()  {
     }      
     //neste momento b já está ordenado, 
     //então tenho que ordenar novamente o array original, 
-    //por isso da necessidade de b1
+    //por isso da necessidade da cópia b1
     val tempoMili = measureTimeMillis {
         b1.ordenar()
     }
- 
     b.imprimir()
+
     println("Tempo de execução: $tempoNano ns")
     println("Tempo de execução: $tempoMili ms")
 }
