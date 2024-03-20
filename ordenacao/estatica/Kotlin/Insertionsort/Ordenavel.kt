@@ -1,4 +1,4 @@
 interface Ordenavel {
     fun imprimir()
-	fun ordenar()
+    fun ordenar()
 }
