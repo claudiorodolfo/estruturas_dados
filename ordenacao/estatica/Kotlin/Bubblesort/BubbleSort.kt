@@ -1,4 +1,4 @@
-class Bubblesort(private var dados: Array<Int>): Ordenavel {
+class BubbleSort(private var dados: Array<Int>): Ordenavel {
 
     //swap
     private fun trocar(i: Int, j: Int) {
