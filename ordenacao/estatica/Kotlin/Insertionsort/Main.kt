@@ -4,7 +4,7 @@ import kotlin.system.measureNanoTime
 
 fun main()  {
     val gerador = Random    
-    //10 números aleatórios entre 300 e 400
+    //10 números aleatórios entre 300 e 400, incluindo-os
     val dados = Array<Int>(10) { gerador.nextInt(300, 401) }
     var b = InsertionSort(dados)
     //cópia de b
