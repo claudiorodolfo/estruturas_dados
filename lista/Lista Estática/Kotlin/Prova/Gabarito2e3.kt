@@ -168,10 +168,12 @@ class Gabarito(val tamanho: Int = 10) {
 
 	//Questão 12
 	fun atualizarTodos(dado: Any?) {
-		var ponteiroAux = ponteiroInicio
-		for (i in 0 until quantidade) {
-			dados[ponteiroAux] = dado
-			ponteiroAux = avancar(ponteiroAux)	
+		if (!estaVazia()) {
+			var ponteiroAux = ponteiroInicio
+			for (i in 0 until quantidade) {
+				dados[ponteiroAux] = dado
+				ponteiroAux = avancar(ponteiroAux)	
+			}
 		}
 	}
 
@@ -238,22 +240,24 @@ class Gabarito(val tamanho: Int = 10) {
 
 	//Questão 17
  	fun ordenarCrescente() {
-		for (i in 0+ponteiroInicio until quantidade+ponteiroInicio) {
-			for (j in 0+ponteiroInicio until (quantidade-1)+ponteiroInicio) {
-				if ((dados[j%dados.size] as Int) > (dados[(j+1)%dados.size] as Int))
-					trocar(j%dados.size, (j+1)%dados.size)
-			}
-		}
+		if (!estaVazia())
+			for (i in 0+ponteiroInicio until quantidade+ponteiroInicio) {
+				for (j in 0+ponteiroInicio until (quantidade-1)+ponteiroInicio) {
+					if ((dados[j%dados.size] as Int) > (dados[(j+1)%dados.size] as Int))
+						trocar(j%dados.size, (j+1)%dados.size)
+				}
+			}	
 	}
 
 	//Questão 18
 	fun ordenarDecrescente() {
-		for (i in 0+ponteiroInicio until quantidade+ponteiroInicio) {
-			for (j in 0+ponteiroInicio until (quantidade-1)+ponteiroInicio) {
-				if ((dados[j%dados.size] as Int) < (dados[(j+1)%dados.size] as Int))
-					trocar(j%dados.size, (j+1)%dados.size)
+		if (!estaVazia())		
+			for (i in 0+ponteiroInicio until quantidade+ponteiroInicio) {
+				for (j in 0+ponteiroInicio until (quantidade-1)+ponteiroInicio) {
+					if ((dados[j%dados.size] as Int) < (dados[(j+1)%dados.size] as Int))
+						trocar(j%dados.size, (j+1)%dados.size)
+				}
 			}
-		}
 	}
 
 	//Questão 19
