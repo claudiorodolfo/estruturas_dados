@@ -7,37 +7,37 @@ class Gabarito(val tamanho: Int = 10) {
 	fun estaCheia(): Boolean { return quantidade == dados.size}
 	fun estaVazia(): Boolean { return quantidade == 0 }	
 	
-    private fun logicaPraFisica(posicao: Int): Int {
-        return (ponteiroInicio + posicao) % dados.size
-    }
+	private fun logicaPraFisica(posicao: Int): Int {
+		return (ponteiroInicio + posicao) % dados.size
+	}
 
-    private fun avancar(ponteiro: Int): Int {
-        var aux = ponteiro
-        aux.inc()
-        return if (aux == dados.size) 0 else aux
-    }
+	private fun avancar(ponteiro: Int): Int {
+		var aux = ponteiro
+		aux.inc()
+		return if (aux == dados.size) 0 else aux
+	}
 
-    private fun retroceder(ponteiro: Int): Int {
-        var aux = ponteiro
-        aux.dec()
-        return if (aux == -1) dados.size-1 else aux
-    }
+	private fun retroceder(ponteiro: Int): Int {
+		var aux = ponteiro
+		aux.dec()
+		return if (aux == -1) dados.size-1 else aux
+	}
 
-    private fun trocar(i: Int, j: Int) {
-        val dadoAux = dados[i]
-        dados[i] = dados[j]
-        dados[j] = dadoAux
-    }
+	private fun trocar(i: Int, j: Int) {
+		val dadoAux = dados[i]
+		dados[i] = dados[j]
+		dados[j] = dadoAux
+	}
 
 	//Questão 00
 	fun inserirInicio(dado: Any?) {
 		if (!estaCheia()) {
-            ponteiroInicio = retroceder(ponteiroInicio)
-            dados[ponteiroInicio] = dado
+			ponteiroInicio = retroceder(ponteiroInicio)
+			dados[ponteiroInicio] = dado
 			quantidade.inc() 
-            //primeira inserção, estado inicial
-            if (ponteiroFim == -1)
-                ponteiroFim = ponteiroInicio
+			//primeira inserção, estado inicial
+			if (ponteiroFim == -1)
+				ponteiroFim = ponteiroInicio
 		}
 	}
 
@@ -55,14 +55,14 @@ class Gabarito(val tamanho: Int = 10) {
 		if (!estaCheia()) {
 			if (posicao >= 0 && posicao <= quantidade) {
 				var posicaoFisica = logicaPraFisica(posicao)
-                var atual = ponteiroFim
-                var anterior = atual
-                atual = avancar(atual)
+				var atual = ponteiroFim
+				var anterior = atual
+				atual = avancar(atual)
 
 				for (i in posicao until quantidade) {
 					dados[atual] = dados[anterior]
 					atual = retroceder(atual)
-                    anterior = retroceder(anterior)
+					anterior = retroceder(anterior)
 				}
 				dados[posicaoFisica] = dado
 				ponteiroFim = avancar(ponteiroFim)
@@ -105,43 +105,43 @@ class Gabarito(val tamanho: Int = 10) {
 			var ponteiroAux = ponteiroInicio
 			for (i in 0 until quantidade) {
 				dadosAux[i] = dados[ponteiroAux]
-                ponteiroAux = avancar(ponteiroAux)	
-            }
+				ponteiroAux = avancar(ponteiroAux)	
+			}
 		}
 		return dadosAux
 	}
 
 	//Questão 07
-    fun primeiraOcorrencia(dado: Any?): Int {
+	fun primeiraOcorrencia(dado: Any?): Int {
 		var ocorrencia = -1
 		if (!estaVazia()) {	
-            var ponteiroAux = ponteiroInicio
-            for (i in 0 until quantidade) {
-                var dadoAtual = dados[ponteiroAux]
-                ponteiroAux = avancar(ponteiroAux)
-                if (dadoAtual == dado) {
-                    ocorrencia = i
-                    break
-                }	
-            }
-        }
+			var ponteiroAux = ponteiroInicio
+			for (i in 0 until quantidade) {
+				var dadoAtual = dados[ponteiroAux]
+				ponteiroAux = avancar(ponteiroAux)
+				if (dadoAtual == dado) {
+					ocorrencia = i
+					break
+				}	
+			}
+		}
 		return ocorrencia
 	}  
 
 	//Questão 08
-    fun ultimaOcorrencia(dado: Any?): Int {
+	fun ultimaOcorrencia(dado: Any?): Int {
 		var ocorrencia = quantidade
 		if (!estaVazia()) {		
-            var ponteiroAux = ponteiroFim
-            for (i in quantidade-1 downTo 0) {
-                var dadoAtual = dados[ponteiroAux]
-                ponteiroAux = retroceder(ponteiroAux)
-                if (dadoAtual == dado) {
-                    ocorrencia = i
-                    break
-                }	
-            }	
-        }	
+			var ponteiroAux = ponteiroFim
+			for (i in quantidade-1 downTo 0) {
+				var dadoAtual = dados[ponteiroAux]
+				ponteiroAux = retroceder(ponteiroAux)
+				if (dadoAtual == dado) {
+					ocorrencia = i
+					break
+				}	
+			}	
+		}	
 		return ocorrencia
 	}
 
@@ -167,13 +167,13 @@ class Gabarito(val tamanho: Int = 10) {
 	}
 
 	//Questão 12
-    fun atualizarTodos(dado: Any?) {
+	fun atualizarTodos(dado: Any?) {
 		var ponteiroAux = ponteiroInicio
 		for (i in 0 until quantidade) {
-		    dados[ponteiroAux] = dado
-            ponteiroAux = avancar(ponteiroAux)	
-        }
-    }
+			dados[ponteiroAux] = dado
+			ponteiroAux = avancar(ponteiroAux)	
+		}
+	}
 
 	//Questão 13
 	fun apagarInicio(): Any? {
@@ -205,13 +205,13 @@ class Gabarito(val tamanho: Int = 10) {
 				var posicaoFisica = logicaPraFisica(posicao)
 				dadoAux = dados[posicaoFisica]
 				
-                var atual = posicaoFisica
-                var proximo = atual
-                proximo = avancar(proximo)    
+				var atual = posicaoFisica
+				var proximo = atual
+				proximo = avancar(proximo)	
 				for (i in posicao until (quantidade-1)) {
 					dados[atual] = dados[proximo]
-                    atual = avancar(atual)
-                    proximo = avancar(proximo)
+					atual = avancar(atual)
+					proximo = avancar(proximo)
 				}
 				ponteiroFim = retroceder(ponteiroFim)
 				quantidade.dec()
@@ -223,12 +223,12 @@ class Gabarito(val tamanho: Int = 10) {
 	//Questão 16
 	fun apagarTodos(): Array<Any?> {
 		var dadosAux: Array<Any?> = arrayOfNulls(quantidade)
-        if (!estaVazia()) {
+		if (!estaVazia()) {
 			var ponteiroAux = ponteiroInicio
 			for (i in 0 until quantidade) {
 				dadosAux[i] = dados[ponteiroAux]
-                ponteiroAux = avancar(ponteiroAux)	
-            }	
+				ponteiroAux = avancar(ponteiroAux)	
+			}	
 			ponteiroInicio = 0		
 			ponteiroFim = -1
 			quantidade = 0
@@ -247,7 +247,7 @@ class Gabarito(val tamanho: Int = 10) {
 	}
 
 	//Questão 18
-    fun ordenarDecrescente() {
+	fun ordenarDecrescente() {
 		for (i in 0+ponteiroInicio until quantidade+ponteiroInicio) {
 			for (j in 0+ponteiroInicio until (quantidade-1)+ponteiroInicio) {
 				if ((dados[j%dados.size] as Int) < (dados[(j+1)%dados.size] as Int))
@@ -256,20 +256,20 @@ class Gabarito(val tamanho: Int = 10) {
 		}
 	}
 
-    //Questão 19
-    fun inverter() {
+	//Questão 19
+	fun inverter() {
 		if (!estaVazia()) {
 			var ponteiroAuxInicio = ponteiroInicio
-			var ponteiroAuxFim = ponteiroFim                        
+			var ponteiroAuxFim = ponteiroFim						
 			for (i in 0 until quantidade/2) {
 				trocar(ponteiroAuxInicio, ponteiroAuxFim)
 				ponteiroAuxInicio = avancar(ponteiroAuxInicio)
-                ponteiroAuxFim =retroceder(ponteiroAuxFim)
+				ponteiroAuxFim =retroceder(ponteiroAuxFim)
 			}
 		}
-    }
+	}
 }
 
 fun main() {
-    val gabarito = Gabarito()
+	val gabarito = Gabarito()
 }
