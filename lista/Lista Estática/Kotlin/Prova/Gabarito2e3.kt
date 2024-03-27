@@ -54,7 +54,7 @@ class Gabarito(val tamanho: Int = 10) {
 	fun inserir(posicao: Int, dado: Any?) {
 		if (!estaCheia()) {
 			if (posicao >= 0 && posicao <= quantidade) {
-				var posicaoFisica = logicaPraFisica(posicao)
+				val posicaoFisica = logicaPraFisica(posicao)
 				var atual = ponteiroFim
 				var anterior = atual
 				atual = avancar(atual)
@@ -92,7 +92,7 @@ class Gabarito(val tamanho: Int = 10) {
 		var dadoAux: Any? = null
 		if (!estaVazia())
 			if (posicao >= 0 && posicao < quantidade) {
-				var posicaoFisica = logicaPraFisica(posicao)
+				val posicaoFisica = logicaPraFisica(posicao)
 				dadoAux = dados[posicaoFisica]
 			}
 		return dadoAux
@@ -161,7 +161,7 @@ class Gabarito(val tamanho: Int = 10) {
 	fun atualizar (posicao: Int, dado: Any?) {
 		if (!estaVazia())
 			if (posicao >= 0 && posicao < quantidade) {
-				var posicaoFisica = logicaPraFisica(posicao)
+				val posicaoFisica = logicaPraFisica(posicao)
 				dados[posicaoFisica] = dado
 			}
 	}
@@ -202,7 +202,7 @@ class Gabarito(val tamanho: Int = 10) {
 		var dadoAux: Any? = null
 		if (!estaVazia()) {
 			if (posicao >= 0 && posicao < quantidade) {
-				var posicaoFisica = logicaPraFisica(posicao)
+				val posicaoFisica = logicaPraFisica(posicao)
 				dadoAux = dados[posicaoFisica]
 				
 				var atual = posicaoFisica
