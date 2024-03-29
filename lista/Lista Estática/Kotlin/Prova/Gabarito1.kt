@@ -145,6 +145,7 @@ interface ControleEncomendas {
     fun sistemaVazio(): Boolean
 }
 
+//Questão 05
 interface CatalogoProdutos {
     // Adiciona um novo produto ao catálogo de produtos.
     fun adicionarProduto(nome: String, preco: Double, quantidadeEstoque: Int): Produto
