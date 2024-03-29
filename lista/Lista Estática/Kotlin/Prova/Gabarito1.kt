@@ -162,7 +162,7 @@ interface CatalogoProdutos {
     // Obtém a quantidade em estoque de um produto com base no nome.
     fun obterQuantidadeEstoqueProduto(p: Produto): Int?
 
-    // Lista todos os itens no catálogo de produtos.
+    // Lista todos os produtos no catálogo de produtos.
     fun listarProdutos(): Array<Produto?>
 
     // Conta o número total de itens no catálogo.
