@@ -29,7 +29,7 @@ interface GestaoContatos {
 }
 
 //Questão 01
-interface CarrinhoDeCompras {
+interface CarrinhoCompras {
 	// Adiciona um produto ao carrinho.
 	fun adicionarProduto(nome: String, quantidade: Int, precoUnitario: Double): Produto
 
