@@ -41,6 +41,8 @@ class CalculadoraSoma : Application() {
 
         janela.title = "Calculadora de Soma"
         janela.scene = conteudo
+        //janela.width = 500.0
+        //janela.height = 500.0        
         janela.show()
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import javafx.scene.control.cell.PropertyValueFactory
 import javafx.stage.Stage
 import javafx.util.StringConverter
 import java.time.LocalDate
@@ -36,6 +37,19 @@ class ExemploComponentesJavaFX : Application() {
 
         val textoLongo = TextArea()
 
+        val tabela = TableView<Pessoa>()
+        val coluna1 = TableColumn<Pessoa, String>("Nome:")
+        coluna1.cellValueFactory = PropertyValueFactory<Pessoa, String>("nome")
+        val coluna2 = TableColumn<Pessoa, Int>("Idade:")
+        coluna2.cellValueFactory = PropertyValueFactory<Pessoa, Int>("idade")
+
+        tabela.columns.addAll(coluna1, coluna2)
+        tabela.items.addAll(
+            Pessoa("João", 30),
+            Pessoa("Maria", 40),
+            Pessoa("José", 23)
+        )
+
         val datas = DatePicker()
         datas.converter = object : StringConverter<LocalDate>() {
             override fun toString(UmaData: LocalDate?): String {
@@ -56,6 +70,7 @@ class ExemploComponentesJavaFX : Application() {
             HBox(10.0, Label("PasswordField:"), senha),
             HBox(10.0, Label("RadioButton:"), opcao1, opcao2),
             HBox(10.0, Label("TextArea:"), textoLongo),
+            HBox(10.0, Label("TableView:"), tabela),            
             HBox(10.0, Label("DatePicker:"), datas)
         )
         caixaVertical.padding = Insets(20.0)
@@ -64,9 +79,13 @@ class ExemploComponentesJavaFX : Application() {
 
         janela.title = "Exemplo Componentes JavaFX"
         janela.scene = conteudo
+        //janela.width = 800.0
+        //janela.height = 800.0
         janela.show()
     }
 }
+
+data class Pessoa(val nome: String, val idade: Int) {}
 
 fun main() {
     Application.launch(ExemploComponentesJavaFX::class.java)
