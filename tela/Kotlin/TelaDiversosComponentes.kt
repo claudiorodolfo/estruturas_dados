@@ -68,8 +68,6 @@ class ExemploComponentesJavaFX : Application() {
     }
 }
 
-data class Person(val nome: String, val idade: Int)
-
 fun main() {
     Application.launch(ExemploComponentesJavaFX::class.java)
 }
