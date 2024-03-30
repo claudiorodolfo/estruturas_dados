@@ -9,7 +9,7 @@ import javafx.stage.Stage
 import javafx.scene.control.Alert
 
 class CalculadoraSoma : Application() {
-    override fun start(primeiroEstagio: Stage) {
+    override fun start(janela: Stage) {
         val rotulo1 = Label("Digite o primeiro número:")
         val valor1 = TextField()
 
@@ -34,14 +34,14 @@ class CalculadoraSoma : Application() {
         grade.addRow(0, rotulo1, valor1)
         grade.addRow(1, rotulo2, valor2)
 
-        val vbox = VBox()
-        vbox.children.addAll(grade, calcula)
+        val caixaVertical = VBox()
+        caixaVertical.children.addAll(grade, calcula)
 
-        val cena = Scene(vbox, 300.0, 200.0)
+        val conteudo = Scene(caixaVertical, 300.0, 200.0)
 
-        primeiroEstagio.title = "Calculadora de Soma"
-        primeiroEstagio.scene = cena
-        primeiroEstagio.show()
+        janela.title = "Calculadora de Soma"
+        janela.scene = conteudo
+        janela.show()
     }
 }
 
