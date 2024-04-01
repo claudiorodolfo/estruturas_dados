@@ -1,16 +1,7 @@
-class PilhaDinamica : Empilhavel {
+class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
 
-	private var ponteiroTopo: NoDuplo?
-	private var quantidade: Int
-	private var tamanho: Int	
-
-	constructor(tamanho: Int) {
-		ponteiroTopo = NoDuplo(null,null,null)	
-		this.tamanho = tamanho
-		quantidade = 0
-	}
-	
-	constructor() : this(10) {}
+	private var ponteiroTopo: NoDuplo? = NoDuplo()
+	private var quantidade: Int = 0
  
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {
@@ -42,7 +33,7 @@ class PilhaDinamica : Empilhavel {
 		return dadoTopo
 	}
 	
-	override fun topo(): Any? {
+	override fun espiar(): Any? {
 		var dadoTopo: Any? = null
 		if (!estaVazia()) {
 			dadoTopo = ponteiroTopo?.dado
@@ -73,5 +64,4 @@ class PilhaDinamica : Empilhavel {
 		}
 		return (resultado + "]")
 	}
-	 
 }

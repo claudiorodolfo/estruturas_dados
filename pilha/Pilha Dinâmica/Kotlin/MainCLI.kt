@@ -1,13 +1,10 @@
-import java.util.Scanner
-
-fun main(args: Array<String>) {
+fun main() {
     var pilha = PilhaDinamica(7)
-
-    val scanner = Scanner(System.`in`)
     do {
         exibirMenu()
         print("Escolha uma opcao (0-4): ")
-        val opcao = scanner.nextInt()
+        val opcao = readLine()?.toIntOrNull()
+        
         when(opcao) {
             0 -> {
                 print("Saindo da Pilha. ") 
@@ -15,17 +12,17 @@ fun main(args: Array<String>) {
             }
             1 -> {
                 print("Digite o valor: ")
-                val valor = scanner.nextInt()
+                val valor = readLine()?.toIntOrNull()
                 pilha.empilhar(valor)
             }
             2 -> {
                 print("Deseja desempilhar[s/n]? ")
-                val confirmacao = scanner.next()
+                val confirmacao= readLine()
                 if (confirmacao == "s" || 
                         confirmacao == "S")
                     pilha.desempilhar()                   
             }
-            3 -> println("Topo: ${pilha.topo()}")
+            3 -> println("Topo: ${pilha.espiar()}")
             4 -> println(pilha.imprimir())
             else -> {
                 print("Opcao inválida. ")

@@ -1,8 +1,4 @@
-data class NoDuplo (
-		var anterior: NoDuplo?,
-		var dado: Any?,
-		var proximo: NoDuplo?
-	) {
-
-	constructor(dado: Any?) : this(null,dado,null) {}
+data class NoDuplo (var dado: Any? = null) {
+	var anterior: NoDuplo? = null
+	var proximo: NoDuplo? = null		
 }

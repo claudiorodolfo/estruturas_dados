@@ -1,13 +1,13 @@
-fun main(args: Array<String>) {
+fun main() {
     var pilha = PilhaDinamica(7)
     pilha.empilhar("Instituto")
     pilha.empilhar("Federal")
-    println("Topo: ${pilha.topo()}")
+    println("Topo: ${pilha.espiar()}")
     pilha.empilhar("de")
     pilha.empilhar("Educação")
     pilha.empilhar("Ciência")
     pilha.empilhar("e")
-    println("Topo: ${pilha.topo()}")
+    println("Topo: ${pilha.espiar()}")
     val conteudo = pilha.desempilhar()
     pilha.desempilhar()
     pilha.empilhar("Tecnologia")
