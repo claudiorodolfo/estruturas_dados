@@ -4,7 +4,7 @@ interface EnfileiravelDupla {
 	fun enfileirarFim(dado: Any?) //mesmo que enfileirar da Fila Normal
     fun desenfileirarInicio(): Any? //mesmo que desenfileirar da Fila Normal
 	fun desenfileirarFim(): Any?
-    fun atualizarInicio(dado: Any?)  
+    fun atualizarInicio(dado: Any?)  //mesmo que atualizar da Fila Normal
     fun atualizarFim(dado: Any?)          
     fun frente(): Any? //mesmo que frente da Fila Normal
     fun tras(): Any?
