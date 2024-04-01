@@ -2,7 +2,7 @@ fun main() {
     var fila = FilaDinamica(7)
     do {
         exibirMenu()
-        print("Escolha uma opcao (0-4): ")
+        print("Escolha uma opcao (0-5): ")
         val opcao = readLine()?.toIntOrNull()
         
         when(opcao) {
@@ -13,17 +13,22 @@ fun main() {
             1 -> {
                 print("Digite o valor: ")
                 val valor = readLine()?.toIntOrNull()
-                fila.emfilar(valor)
+                fila.enfileirar(valor)
             }
             2 -> {
                 print("Deseja desenfileirar[s/n]? ")
                 val confirmacao= readLine()
                 if (confirmacao == "s" || 
                         confirmacao == "S")
-                    fila.desemfilar()                   
+                    fila.desenfileirar()                   
             }
-            3 -> println("Frente: ${fila.espiar()}")
-            4 -> println(fila.imprimir())
+            3 -> println("Frente: ${fila.frente()}")
+            4 -> {
+                print("Digite o valor: ")
+                val valor = readLine()?.toIntOrNull()
+                fila.atualizar(valor)
+            }
+            5 -> println(fila.imprimir())
             else -> {
                 print("Opcao inválida. ")
                 println("Tente novamente.")
@@ -38,5 +43,6 @@ fun exibirMenu() {
     println("1. Enfileirar")
     println("2. Desenfileirar")
     println("3. Frente")
-    println("4. Imprimir")               
+    println("4. Atualizar")
+    println("5. Imprimir")               
 }

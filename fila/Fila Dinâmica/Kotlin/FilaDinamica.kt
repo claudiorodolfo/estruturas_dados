@@ -1,4 +1,4 @@
-class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
+class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 
 	private var ponteiroInicio: NoDuplo? = null
 	private var ponteiroFim: NoDuplo? = null
@@ -43,7 +43,15 @@ class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
 		}
 		return dadoAux
 	}
-	
+
+    override fun atualizar(dado: Any?) {
+		if (!estaVazia()) {
+			ponteiroInicio?.dado = dado 
+		} else {
+			println("Fila Vazia!")
+		}
+	}	
+
 	override fun estaCheia(): Boolean {
 		return quantidade == tamanho
 	}

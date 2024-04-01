@@ -43,6 +43,14 @@ class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
 		return dadoTopo
 	}
 	
+	override fun atualizar(dado: Any?) {
+		if (!estaVazia()) {
+			ponteiroTopo?.dado = dado
+		} else {
+			println("Pilha Vazia!")
+		}
+	}
+
 	override fun estaCheia(): Boolean {
 		return quantidade == tamanho
 	}

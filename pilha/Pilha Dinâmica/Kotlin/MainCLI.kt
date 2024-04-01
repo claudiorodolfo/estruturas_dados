@@ -2,7 +2,7 @@ fun main() {
     var pilha = PilhaDinamica(7)
     do {
         exibirMenu()
-        print("Escolha uma opcao (0-4): ")
+        print("Escolha uma opcao (0-5): ")
         val opcao = readLine()?.toIntOrNull()
         
         when(opcao) {
@@ -23,7 +23,12 @@ fun main() {
                     pilha.desempilhar()                   
             }
             3 -> println("Topo: ${pilha.espiar()}")
-            4 -> println(pilha.imprimir())
+            4 -> {
+                print("Digite o valor: ")
+                val valor = readLine()?.toIntOrNull()
+                pilha.atualizar(valor)
+            }
+            5 -> println(pilha.imprimir())
             else -> {
                 print("Opcao inválida. ")
                 println("Tente novamente.")
@@ -37,6 +42,7 @@ fun exibirMenu() {
     println("0. SAIR")
     println("1. Empilhar")
     println("2. Desempilhar")
-    println("3. Topo")
-    println("4. Imprimir")               
+    println("3. Espiar")
+    println("4. Atualizar")
+    println("5. Imprimir")               
 }
