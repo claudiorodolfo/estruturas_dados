@@ -8,7 +8,7 @@ fun main() {
 	heap.inserir(1)
 	println(heap.imprimir())	//[1,2,4,7,8]
 	println(heap.extrair())	//1
-	println(heap.obterRaiz())	//2
-	println(heap.obterRaiz())	//2
+	println(heap.obter())	//2
+	println(heap.obter())	//2
 	println(heap.imprimir()) //[2,7,4,8]
 }

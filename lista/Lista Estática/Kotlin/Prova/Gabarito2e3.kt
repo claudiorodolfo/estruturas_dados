@@ -13,13 +13,13 @@ class Gabarito(val tamanho: Int = 10) {
 
 	private fun avancar(ponteiro: Int): Int {
 		var aux = ponteiro
-		aux.inc()
+		aux = aux.inc()
 		return if (aux == dados.size) 0 else aux
 	}
 
 	private fun retroceder(ponteiro: Int): Int {
 		var aux = ponteiro
-		aux.dec()
+		aux = aux.dec()
 		return if (aux == -1) dados.size-1 else aux
 	}
 
@@ -34,7 +34,7 @@ class Gabarito(val tamanho: Int = 10) {
 		if (!estaCheia()) {
 			ponteiroInicio = retroceder(ponteiroInicio)
 			dados[ponteiroInicio] = dado
-			quantidade.inc() 
+			quantidade = quantidade.inc() 
 			//primeira inserção, estado inicial
 			if (ponteiroFim == -1)
 				ponteiroFim = ponteiroInicio
@@ -46,7 +46,7 @@ class Gabarito(val tamanho: Int = 10) {
 		if (!estaCheia()) {
 			ponteiroFim = avancar(ponteiroFim)
 			dados[ponteiroFim] = dado
-			quantidade.inc()
+			quantidade = quantidade.inc()
 		}
 	}
 
@@ -66,7 +66,7 @@ class Gabarito(val tamanho: Int = 10) {
 				}
 				dados[posicaoFisica] = dado
 				ponteiroFim = avancar(ponteiroFim)
-				quantidade.inc()
+				quantidade = quantidade.inc()
 			}
 		}
 	}
@@ -183,7 +183,7 @@ class Gabarito(val tamanho: Int = 10) {
 		if (!estaVazia()) {
 			dadoAux = dados[ponteiroInicio]
 			ponteiroInicio = avancar(ponteiroInicio)
-			quantidade.dec()
+			quantidade = quantidade.dec()
 		}
 		return dadoAux
 	}
@@ -194,7 +194,7 @@ class Gabarito(val tamanho: Int = 10) {
 		if (!estaVazia()) {
 			dadoAux = dados[ponteiroFim]
 			ponteiroFim = retroceder(ponteiroFim)
-			quantidade.dec()
+			quantidade = quantidade.dec()
 		}
 		return dadoAux
 	}
@@ -216,7 +216,7 @@ class Gabarito(val tamanho: Int = 10) {
 					proximo = avancar(proximo)
 				}
 				ponteiroFim = retroceder(ponteiroFim)
-				quantidade.dec()
+				quantidade = quantidade.dec()
 			}
 		}
 		return dadoAux
