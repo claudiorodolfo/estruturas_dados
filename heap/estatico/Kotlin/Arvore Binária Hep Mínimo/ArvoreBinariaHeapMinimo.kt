@@ -1,11 +1,12 @@
 class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
 
-	private var dados: Array<Any?> = arrayOfNulls(tamanho)
+	private var dados = IntArray(tamanho){0}
     private var ponteiroFim = -1 
 	
-    override fun inserir(dado: Any?) {
+    override fun inserir(dado: Int) {
         if (!estaCheia()) {
 			ponteiroFim = ponteiroFim.inc()
+            dados[ponteiroFim] = dado
 			ajustarAcima(ponteiroFim)
         } else {
 			println("Heap está Cheio!")
@@ -15,7 +16,7 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
     private fun ajustarAcima(indice: Int) {
         var indiceAtual = indice
         while (indiceAtual != 0) {
-            if (dados[indicePai(indiceAtual)] as Int > dados[indiceAtual] as Int) {
+            if (dados[indicePai(indiceAtual)] > dados[indiceAtual]) {
                 trocar(indiceAtual, indicePai(indiceAtual))
                 indiceAtual = indicePai(indiceAtual)
             } else {
@@ -30,12 +31,12 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         var menor = pai;
 
         if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
-            if (dados[menor] as Int > dados[filhoEsquerdo] as Int)
+            if (dados[menor] > dados[filhoEsquerdo])
                 menor = filhoEsquerdo
         }
 
         if (filhoDireito <= ponteiroFim) { //está dentro dos valores válidos do array
-            if (dados[menor] as Int > dados[filhoDireito] as Int)
+            if (dados[menor] > dados[filhoDireito])
                 menor = filhoDireito
         }
 
@@ -55,21 +56,21 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         return (filho-1)/2
     }
 
-	override fun extrair(): Any? {
-		var raiz: Any? = null
+	override fun extrair(): Int {
+		var dadoRaiz = 0
         if (!estaVazia()) {
-			raiz = dados[0]
+			dadoRaiz = dados[0]
 			dados[0] = dados[ponteiroFim]
-			ponteiroFim.dec()
+			ponteiroFim = ponteiroFim.dec()
 			ajustarAbaixo(0)
         } else {
 			println("Heap está Vazio!")
 		}
-        return raiz
+        return dadoRaiz
     }
 
-    override fun obter(): Any? {
-        var dadoRaiz: Any? = null
+    override fun obter(): Int {
+        var dadoRaiz: Int = 0
         if (!estaVazia())
             dadoRaiz = dados[0]
 
