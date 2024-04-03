@@ -1,16 +1,16 @@
 class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
 
-	private var dados: Array<Paciente?> = arrayOfNulls(tamanho)
+    private var dados: Array<Paciente?> = arrayOfNulls(tamanho)
     private var ponteiroFim = -1 
-	
+
     override fun inserir(dado: Paciente) {
         if (!estaCheia()) {
-			ponteiroFim = ponteiroFim.inc()
+            ponteiroFim = ponteiroFim.inc()
             dados[ponteiroFim] = dado
-			ajustarAcima(ponteiroFim)
+            ajustarAcima(ponteiroFim)
         } else {
-			println("Fila de Prioridades Cheia!")
-		}
+            println("Fila de Prioridades Cheia!")
+        }
     }
 
     private fun ajustarAcima(indice: Int) {
@@ -34,7 +34,7 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         return 2 * indicePai + 1
     }
 
-	private fun indiceFilhoDireita(indicePai: Int): Int	{
+    private fun indiceFilhoDireita(indicePai: Int): Int	{
         return (2 * indicePai + 1) + 1
     }
 
@@ -64,15 +64,15 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
     }
 
 	override fun extrair(): Paciente? {
-		var dadoRaiz: Paciente? = null
+        var dadoRaiz: Paciente? = null
         if (!estaVazia()) {
-			dadoRaiz = dados[0]
-			dados[0] = dados[ponteiroFim]
-			ponteiroFim = ponteiroFim.dec()
-			ajustarAbaixo(0)
+            dadoRaiz = dados[0]
+            dados[0] = dados[ponteiroFim]
+            ponteiroFim = ponteiroFim.dec()
+            ajustarAbaixo(0)
         } else {
-			println("Fila de Prioridades Vazia!")
-		}
+            println("Fila de Prioridades Vazia!")
+        }
         return dadoRaiz
     }
 
@@ -93,21 +93,21 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         return dadoRaiz
     }
         
-	override fun estaVazia(): Boolean {
+    override fun estaVazia(): Boolean {
         return ponteiroFim == -1
     }
 
-	override fun estaCheia(): Boolean {
-		return ponteiroFim == dados.size - 1
+    override fun estaCheia(): Boolean {
+        return ponteiroFim == dados.size - 1
     }
 
-	override fun imprimir(): String {
-		var resultado = "["
-		for (i in 0..ponteiroFim) {
+    override fun imprimir(): String {
+        var resultado = "["
+        for (i in 0..ponteiroFim) {
             resultado += "${dados[i]}"
-			if (i != ponteiroFim)
-				resultado += ","
-		}
-		return "$resultado]"
-	}
+            if (i != ponteiroFim)
+                resultado += ","
+        }
+        return "$resultado]"
+    }
 }
