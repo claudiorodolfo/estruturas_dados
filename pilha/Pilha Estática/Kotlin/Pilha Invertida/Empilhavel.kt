@@ -1,9 +1,9 @@
 interface Empilhavel {
     // Metodos principais
-    fun empilhar(dado: Any?)
-    fun desempilhar(): Any?
-    fun atualizar(dado: Any?)    
-    fun espiar(): Any?
+    fun empilhar(dado: Any?)    //C
+    fun atualizar(dado: Any?)   //U
+    fun espiar(): Any?          //R
+    fun desempilhar(): Any?     //D
     // Metodos auxiliares
     fun estaCheia(): Boolean
     fun estaVazia(): Boolean

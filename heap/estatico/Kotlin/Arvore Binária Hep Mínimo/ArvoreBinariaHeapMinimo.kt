@@ -30,15 +30,13 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         val filhoDireito = 2 * pai + 2
         var menor = pai;
 
-        if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
+        if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
             if (dados[menor] > dados[filhoEsquerdo])
                 menor = filhoEsquerdo
-        }
 
-        if (filhoDireito <= ponteiroFim) { //está dentro dos valores válidos do array
+        if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
             if (dados[menor] > dados[filhoDireito])
                 menor = filhoDireito
-        }
 
         if (menor != pai) {
             trocar(pai, menor)
@@ -52,12 +50,12 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         dados[j] = temp
     }
 
-    private fun indicePai(filho: Int): Int {
-        return (filho-1)/2
+    private fun indicePai(indiceFilho: Int): Int {
+        return (indiceFilho-1)/2
     }
 
 	override fun extrair(): Int {
-		var dadoRaiz = 0
+		var dadoRaiz = -1
         if (!estaVazia()) {
 			dadoRaiz = dados[0]
 			dados[0] = dados[ponteiroFim]
@@ -69,8 +67,17 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         return dadoRaiz
     }
 
+    override fun atualizar(dado: Int){
+        if (!estaVazia()) {
+            dados[0] = dado
+            ajustarAbaixo(0)
+        } else {
+            print("Heap Vazia!")
+        }
+    }
+
     override fun obter(): Int {
-        var dadoRaiz: Int = 0
+        var dadoRaiz = -1
         if (!estaVazia())
             dadoRaiz = dados[0]
 
