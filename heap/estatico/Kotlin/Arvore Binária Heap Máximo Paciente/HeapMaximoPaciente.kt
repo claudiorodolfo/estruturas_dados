@@ -1,24 +1,27 @@
-class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
+data class Paciente(val nome: String, val idade: Int, val prioridade: Int)
 
-	private var dados = IntArray(tamanho){0}
+class HeapMaximoPaciente(private val tamanho: Int = 10): Amontoavel {
+
+	private var dados = Array<Paciente>(tamanho)
     private var ponteiroFim = -1 
 	
-    override fun inserir(dado: Int) {
+    override fun inserir(dado: Paciente) {
         if (!estaCheia()) {
 			ponteiroFim = ponteiroFim.inc()
             dados[ponteiroFim] = dado
 			ajustarAcima(ponteiroFim)
         } else {
-			println("Heap está Cheio!")
+			println("Fila de Prioridades Cheia!")
 		}
     }
 
     private fun ajustarAcima(indice: Int) {
         var indiceAtual = indice
         while (indiceAtual != 0) {
-            if (dados[indicePai(indiceAtual)] > dados[indiceAtual]) {
-                trocar(indiceAtual, indicePai(indiceAtual))
-                indiceAtual = indicePai(indiceAtual)
+            val indicePai = indicePai(indiceAtual)
+            if (dados[indicePai].prioridade > dados[indiceAtual].prioridade) {
+                trocar(indiceAtual, indicePai)
+                indiceAtual = indicePai
             } else {
                 break
             }

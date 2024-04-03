@@ -1,4 +1,4 @@
-class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
+class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
 
 	private var dados = IntArray(tamanho){0}
     private var ponteiroFim = -1 
@@ -16,9 +16,10 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
     private fun ajustarAcima(indice: Int) {
         var indiceAtual = indice
         while (indiceAtual != 0) {
-            if (dados[indicePai(indiceAtual)] < dados[indiceAtual]) {
-                trocar(indiceAtual, indicePai(indiceAtual))
-                indiceAtual = indicePai(indiceAtual)
+            val indicePai = indicePai(indiceAtual)
+            if (dados[indicePai] > dados[indiceAtual]) {
+                trocar(indiceAtual, indicePai)
+                indiceAtual = indicePai
             } else {
                 break
             }
@@ -28,7 +29,7 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
     private fun indicePai(indiceFilho: Int): Int {
         return (indiceFilho-1)/2
     }
-        
+
     private fun indiceFilhoEsquerda(indicePai: Int): Int {
         return 2 * indicePai + 1
     }
@@ -40,19 +41,19 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
     private fun ajustarAbaixo(pai: Int) {
         val filhoEsquerdo = indiceFilhoEsquerda(pai)
         val filhoDireito = indiceFilhoDireita(pai)
-        var maior = pai;
+        var menor = pai;
 
         if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[maior] < dados[filhoEsquerdo])
-                maior = filhoEsquerdo
+            if (dados[menor] > dados[filhoEsquerdo])
+                menor = filhoEsquerdo
 
         if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[maior] < dados[filhoDireito])
-                maior = filhoDireito
+            if (dados[menor] > dados[filhoDireito])
+                menor = filhoDireito
 
-        if (maior != pai) {
-            trocar(pai, maior)
-            ajustarAbaixo(maior)
+        if (menor != pai) {
+            trocar(pai, menor)
+            ajustarAbaixo(menor)
         }
     }
 	
