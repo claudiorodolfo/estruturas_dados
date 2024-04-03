@@ -1,6 +1,4 @@
-data class Paciente(val nome: String, val idade: Int, val prioridade: Int)
-
-class HeapMaximoPaciente(private val tamanho: Int = 10): Amontoavel {
+class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
 
 	private var dados = Array<Paciente>(tamanho)
     private var ponteiroFim = -1 
@@ -43,19 +41,19 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): Amontoavel {
     private fun ajustarAbaixo(pai: Int) {
         val filhoEsquerdo = indiceFilhoEsquerda(pai)
         val filhoDireito = indiceFilhoDireita(pai)
-        var menor = pai;
+        var maior = pai;
 
         if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor] > dados[filhoEsquerdo])
-                menor = filhoEsquerdo
+            if (dados[menor].prioridade < dados[filhoEsquerdo].prioridade)
+                maior = filhoEsquerdo
 
         if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor] > dados[filhoDireito])
-                menor = filhoDireito
+            if (dados[menor].prioridade < dados[filhoDireito].prioridade)
+                maior = filhoDireito
 
-        if (menor != pai) {
-            trocar(pai, menor)
-            ajustarAbaixo(menor)
+        if (maior != pai) {
+            trocar(pai, maior)
+            ajustarAbaixo(maior)
         }
     }
 	
@@ -65,30 +63,30 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): Amontoavel {
         dados[j] = temp
     }
 
-	override fun extrair(): Int? {
-		var dadoRaiz: Int? = null
+	override fun extrair(): Paciente? {
+		var dadoRaiz: Paciente? = null
         if (!estaVazia()) {
 			dadoRaiz = dados[0]
 			dados[0] = dados[ponteiroFim]
 			ponteiroFim = ponteiroFim.dec()
 			ajustarAbaixo(0)
         } else {
-			println("Heap está Vazio!")
+			println("Fila de Prioridades Vazia!")
 		}
         return dadoRaiz
     }
 
-    override fun atualizar(dado: Int){
+    override fun atualizar(dado: Paciente){
         if (!estaVazia()) {
             dados[0] = dado
             ajustarAbaixo(0)
         } else {
-            print("Heap Vazia!")
+            print("Fila de Prioridades Vazia!")
         }
     }
 
-    override fun obter(): Int? {
-        var dadoRaiz: Int? = null
+    override fun obter(): Paciente? {
+        var dadoRaiz: Paciente? = null
         if (!estaVazia())
             dadoRaiz = dados[0]
 
@@ -106,7 +104,7 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): Amontoavel {
 	override fun imprimir(): String {
 		var resultado = "["
 		for (i in 0..ponteiroFim) {
-            resultado += "${dados[i]}"
+            resultado += "${dados[i].imprimir()}"
 			if (i != ponteiroFim)
 				resultado += ","
 		}
