@@ -44,11 +44,11 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         var maior = pai;
 
         if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor].prioridade < dados[filhoEsquerdo].prioridade)
+            if (dados[maior].prioridade < dados[filhoEsquerdo].prioridade)
                 maior = filhoEsquerdo
 
         if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor].prioridade < dados[filhoDireito].prioridade)
+            if (dados[maior].prioridade < dados[filhoDireito].prioridade)
                 maior = filhoDireito
 
         if (maior != pai) {
@@ -104,7 +104,7 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
 	override fun imprimir(): String {
 		var resultado = "["
 		for (i in 0..ponteiroFim) {
-            resultado += "${dados[i].imprimir()}"
+            resultado += "${dados[i]}"
 			if (i != ponteiroFim)
 				resultado += ","
 		}
