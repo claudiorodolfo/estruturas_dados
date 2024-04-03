@@ -25,9 +25,17 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
         }
     }
 
+    private fun indiceFilhoEsquerda(indicePai: Int): Int {
+        return 2 * indicePai + 1
+    }
+
+	private fun indiceFilhoDireita(indicePai: Int): Int	{
+        return (2 * indicePai + 1) + 1
+    }
+
     private fun ajustarAbaixo(pai: Int) {
-        val filhoEsquerdo = 2 * pai + 1
-        val filhoDireito = 2 * pai + 2
+        val filhoEsquerdo = indiceFilhoEsquerda(pai)
+        val filhoDireito = indiceFilhoDireita(pai)
         var maior = pai;
 
         if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array

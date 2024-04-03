@@ -11,7 +11,9 @@ public interface Amontoavel {
 	fun estaVazia(): Boolean
 	fun estaCheia(): Boolean
 
-	//private fun indicePai(filho: Int): Int
+	//private fun indiceFilhoEsquerda(indicePai: Int): Int	
+	//private fun indiceFilhoDireita(indicePai: Int): Int	
+	//private fun indicePai(indiceFilho: Int): Int
 	//private fun trocar(i: Int, j: Int)	//swap
 	//private fun ajustarAbaixo(pai: Int) 	//heapifyDown
 	//private fun ajustarAcima(indice: Int) //heapifyUp
