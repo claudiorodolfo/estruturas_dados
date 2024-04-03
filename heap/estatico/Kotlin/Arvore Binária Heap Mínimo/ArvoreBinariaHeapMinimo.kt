@@ -1,6 +1,6 @@
 class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
 
-	private var dados = IntArray(tamanho){0}
+    private var dados = IntArray(tamanho){0}
     private var ponteiroFim = -1 
 	
     override fun inserir(dado: Int) {
@@ -63,7 +63,7 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         dados[j] = temp
     }
 
-	override fun extrair(): Int? {
+    override fun extrair(): Int? {
 		var dadoRaiz: Int? = null
         if (!estaVazia()) {
 			dadoRaiz = dados[0]
@@ -89,19 +89,21 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         var dadoRaiz: Int? = null
         if (!estaVazia())
             dadoRaiz = dados[0]
+        else
+            print("Heap Vazia!")
 
         return dadoRaiz
     }
         
-	override fun estaVazia(): Boolean {
+    override fun estaVazia(): Boolean {
         return ponteiroFim == -1
     }
 
-	override fun estaCheia(): Boolean {
-		return ponteiroFim == dados.size - 1
+    override fun estaCheia(): Boolean {
+        return ponteiroFim == dados.size - 1
     }
 
-	override fun imprimir(): String {
+    override fun imprimir(): String {
 		var resultado = "["
 		for (i in 0..ponteiroFim) {
             resultado += "${dados[i]}"
