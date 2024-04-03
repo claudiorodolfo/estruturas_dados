@@ -89,6 +89,8 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         var dadoRaiz: Paciente? = null
         if (!estaVazia())
             dadoRaiz = dados[0]
+        else
+            println("Fila de Prioridades Cheia!")
 
         return dadoRaiz
     }
