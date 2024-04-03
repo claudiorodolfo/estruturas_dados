@@ -1,6 +1,6 @@
 class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
 
-	private var dados = Array<Paciente>(tamanho)
+	private var dados: Array<Paciente?> = arrayOfNulls(tamanho)
     private var ponteiroFim = -1 
 	
     override fun inserir(dado: Paciente) {
@@ -17,7 +17,7 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         var indiceAtual = indice
         while (indiceAtual != 0) {
             val indicePai = indicePai(indiceAtual)
-            if (dados[indicePai].prioridade > dados[indiceAtual].prioridade) {
+            if (dados[indicePai]!!.prioridade < dados[indiceAtual]!!.prioridade) {
                 trocar(indiceAtual, indicePai)
                 indiceAtual = indicePai
             } else {
@@ -44,11 +44,11 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         var maior = pai;
 
         if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[maior].prioridade < dados[filhoEsquerdo].prioridade)
+            if (dados[maior]!!.prioridade < dados[filhoEsquerdo]!!.prioridade)
                 maior = filhoEsquerdo
 
         if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[maior].prioridade < dados[filhoDireito].prioridade)
+            if (dados[maior]!!.prioridade < dados[filhoDireito]!!.prioridade)
                 maior = filhoDireito
 
         if (maior != pai) {
