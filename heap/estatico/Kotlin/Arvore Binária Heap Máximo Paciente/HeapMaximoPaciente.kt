@@ -63,7 +63,7 @@ class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
         dados[j] = temp
     }
 
-	override fun extrair(): Paciente? {
+    override fun extrair(): Paciente? {
         var dadoRaiz: Paciente? = null
         if (!estaVazia()) {
             dadoRaiz = dados[0]
