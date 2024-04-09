@@ -1,0 +1,1 @@
+data class Paciente(val nome: String, val idade: Int, val prioridade: Int)
