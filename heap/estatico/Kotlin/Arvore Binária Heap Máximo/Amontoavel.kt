@@ -2,10 +2,10 @@
 //Heapify = Organizar dados na forma de um Heap
 //Heapifiable = Amontoavel
 public interface Amontoavel {
-	fun inserir(dado: Int) 	//insert	C
-	fun extrair(): Int?		//extract	D
-	fun obter(): Int?		//get		R
-	fun atualizar(dado: Int)//update	U
+	fun inserir(dado: Long) 	//insert	C
+	fun extrair(): Long?		//extract	D
+	fun obter(): Long?			//get		R
+	fun atualizar(dado: Long)	//update	U
 	
 	fun imprimir(): String
 	fun estaVazia(): Boolean

@@ -1,9 +1,9 @@
 class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
 
-    private var dados = IntArray(tamanho){0}
+    private var dados = LongArray(tamanho){0}
     private var ponteiroFim = -1 
 	
-    override fun inserir(dado: Int) {
+    override fun inserir(dado: Long) {
         if (!estaCheia()) {
             ponteiroFim = ponteiroFim.inc()
             dados[ponteiroFim] = dado
@@ -63,8 +63,8 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
         dados[j] = temp
     }
 
-    override fun extrair(): Int? {
-        var dadoRaiz: Int? = null
+    override fun extrair(): Long? {
+        var dadoRaiz: Long? = null
         if (!estaVazia()) {
             dadoRaiz = dados[0]
             dados[0] = dados[ponteiroFim]
@@ -76,7 +76,7 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
         return dadoRaiz
     }
 
-    override fun atualizar(dado: Int){
+    override fun atualizar(dado: Long){
         if (!estaVazia()) {
             dados[0] = dado
             ajustarAbaixo(0)
@@ -85,8 +85,8 @@ class ArvoreBinariaHeapMaximo(private val tamanho: Int = 10): Amontoavel {
         }
     }
 
-    override fun obter(): Int? {
-        var dadoRaiz: Int? = null
+    override fun obter(): Long? {
+        var dadoRaiz: Long? = null
         if (!estaVazia())
             dadoRaiz = dados[0]
         else
