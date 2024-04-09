@@ -6,12 +6,12 @@ fun main() {
     heapPacientes.inserir(Paciente("Ana", 35, 2))
 
     var pacienteAtendido = heapPacientes.extrair()
-    println("Paciente atendido: $pacienteAtendido")   
+    println("Paciente atendido: $pacienteAtendido")  //Saída: João  
     pacienteAtendido = heapPacientes.extrair()
-    println("Paciente atendido: $pacienteAtendido")
+    println("Paciente atendido: $pacienteAtendido")  //Saída: Ana
     pacienteAtendido = heapPacientes.extrair()
-    println("Paciente atendido: $pacienteAtendido")
+    println("Paciente atendido: $pacienteAtendido")  //Saída: Maria
     pacienteAtendido = heapPacientes.extrair()
-    println("Paciente atendido: $pacienteAtendido")        
+    println("Paciente atendido: $pacienteAtendido")  //Saída: Pedro
     
 }
