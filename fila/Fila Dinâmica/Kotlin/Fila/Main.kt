@@ -1,5 +1,5 @@
 fun main() {
-    var fila = FilaDinamica(7)
+    var fila: Enfileiravel = FilaDinamica(7)
     fila.enfileirar("Instituto")
     fila.enfileirar("Federal")
     println("Topo: ${fila.frente()}")

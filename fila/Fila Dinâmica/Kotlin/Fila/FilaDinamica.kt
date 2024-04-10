@@ -9,11 +9,11 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 			var noTemp: NoDuplo? = NoDuplo(dado)
 			//noTemp?.dado = dado
 			noTemp?.anterior = ponteiroFim
-			if (!estaVazia()) {
+			if (!estaVazia())
 				ponteiroInicio?.proximo = noTemp
-			}
+
 			ponteiroFim = noTemp
-			quantidade++
+			quantidade = quantidade.inc()
 		} else {
 			println("Fila Cheia!")
 		}
@@ -24,10 +24,10 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 		if (!estaVazia()) {
 			dadoAux = ponteiroInicio?.dado
 			ponteiroInicio = ponteiroInicio?.proximo
-			quantidade--
-			if (!estaVazia()) {
+			quantidade = quantidade.dec()
+			if (!estaVazia())
 				ponteiroInicio?.anterior = null
-			}
+
 		} else {
 			println("Fila Vazia!")
 		}
@@ -36,20 +36,20 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 	
 	override fun frente(): Any? {
 		var dadoAux: Any? = null
-		if (!estaVazia()) {
+		if (!estaVazia())
 			dadoAux = ponteiroInicio?.dado
-		} else {
+		else
 			println("Fila Vazia!")
-		}
+		
 		return dadoAux
 	}
 
     override fun atualizar(dado: Any?) {
-		if (!estaVazia()) {
+		if (!estaVazia())
 			ponteiroInicio?.dado = dado 
-		} else {
+		else
 			println("Fila Vazia!")
-		}
+
 	}	
 
 	override fun estaCheia(): Boolean {
@@ -64,13 +64,12 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 		var ponteiroAuxiliar: NoDuplo? = ponteiroInicio
 		var resultado : String = "["
 		for (i in 0 until quantidade) {
-			if (i == quantidade-1)
-				resultado += "${ponteiroAuxiliar?.dado}"
-			else
-				resultado += "${ponteiroAuxiliar?.dado},\n"
+			resultado += "${ponteiroAuxiliar?.dado}"
+			if (i != quantidade-1)
+				resultado += ",\n"
 			
 			ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 		}
-		return (resultado + "]")
+		return "$resultado]"
 	}
 }
