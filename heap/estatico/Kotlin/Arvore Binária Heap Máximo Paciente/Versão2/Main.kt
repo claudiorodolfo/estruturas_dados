@@ -10,7 +10,7 @@ fun zerosEsquerda(valor: String): String {
 fun novaPrioridade(prioridade: Prioridade) : Long {
     var contador = contadores[prioridade.ordinal] //contador específico
     contador = contador.dec()
-    contadores[prioridade.ordinal] = contador   //incremento do contador específico
+    contadores[prioridade.ordinal] = contador   //decremento do contador específico
     var contadorString = contador.toString()
     contadorString = zerosEsquerda(contadorString)
     val posicao = prioridade.ordinal //0, 1 ou 2
