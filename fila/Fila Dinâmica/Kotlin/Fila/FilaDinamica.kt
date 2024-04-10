@@ -2,16 +2,18 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 
 	private var ponteiroInicio: NoDuplo? = null
 	private var ponteiroFim: NoDuplo? = null
-	private var quantidade: Int = 0
+	private var quantidade = 0
  
 	override fun enfileirar(dado: Any?) {
 		if (!estaCheia()) {
 			var noTemp: NoDuplo? = NoDuplo(dado)
 			//noTemp?.dado = dado
-			noTemp?.anterior = ponteiroFim
 			if (!estaVazia())
-				ponteiroInicio?.proximo = noTemp
+				ponteiroFim?.proximo = noTemp
+			else
+				ponteiroInicio = noTemp
 
+			noTemp?.anterior = ponteiroFim				
 			ponteiroFim = noTemp
 			quantidade = quantidade.inc()
 		} else {
@@ -27,7 +29,8 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 			quantidade = quantidade.dec()
 			if (!estaVazia())
 				ponteiroInicio?.anterior = null
-
+			else
+				ponteiroFim = null
 		} else {
 			println("Fila Vazia!")
 		}
@@ -61,12 +64,12 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
 	}
 	
 	override fun imprimir(): String {
-		var ponteiroAuxiliar: NoDuplo? = ponteiroInicio
-		var resultado : String = "["
+		var ponteiroAuxiliar = ponteiroInicio
+		var resultado = "["
 		for (i in 0 until quantidade) {
 			resultado += "${ponteiroAuxiliar?.dado}"
 			if (i != quantidade-1)
-				resultado += ",\n"
+				resultado += ","
 			
 			ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 		}

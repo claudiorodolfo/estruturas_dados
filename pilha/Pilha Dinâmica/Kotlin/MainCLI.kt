@@ -1,5 +1,5 @@
 fun main() {
-    var pilha = PilhaDinamica(7)
+    var pilha: Empilhavel = PilhaDinamica(7)
     do {
         exibirMenu()
         print("Escolha uma opcao (0-5): ")

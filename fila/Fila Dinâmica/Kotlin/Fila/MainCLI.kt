@@ -1,5 +1,5 @@
 fun main() {
-    var fila = FilaDinamica(7)
+    var fila: Enfileiravel = FilaDinamica(7)
     do {
         exibirMenu()
         print("Escolha uma opcao (0-5): ")

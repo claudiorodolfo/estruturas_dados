@@ -26,6 +26,7 @@ class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
 			quantidade = quantidade.dec()
 			if (!estaVazia())
 				ponteiroTopo?.proximo = null
+				
 		} else {
 			println("Pilha Vazia!")
 		}
@@ -59,12 +60,12 @@ class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
 	}
 	
 	override fun imprimir(): String {
-		var ponteiroAuxiliar: NoDuplo? = ponteiroTopo
-		var resultado : String = "["
+		var ponteiroAuxiliar = ponteiroTopo
+		var resultado = "["
 		for (i in 0 until quantidade) {
 			resultado += "${ponteiroAuxiliar?.dado}"
 			if (i != quantidade-1)
-				resultado += ",\n"
+				resultado += ","
 			
 			ponteiroAuxiliar = ponteiroAuxiliar?.anterior
 		}
