@@ -6,7 +6,7 @@ fun novaPrioridade(prioridade: Long) : Long {
 }
 
 fun main() {
-    var heapPacientes: HeapifiablePaciente = HeapMaximoPaciente(10)
+    var heapPacientes: HeapingPaciente = HeapMaximoPaciente(10)
     heapPacientes.inserir(Paciente("João", 30, novaPrioridade(3)))
     heapPacientes.inserir(Paciente("Maria", 25, novaPrioridade(2)))
     heapPacientes.inserir(Paciente("Pedro", 40, novaPrioridade(1)))

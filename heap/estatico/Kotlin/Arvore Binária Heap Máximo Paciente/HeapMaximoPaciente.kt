@@ -1,4 +1,4 @@
-class HeapMaximoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
+class HeapMaximoPaciente(private val tamanho: Int = 10): HeapingPaciente {
 
     private var dados: Array<Paciente?> = arrayOfNulls(tamanho)
     private var ponteiroFim = -1 

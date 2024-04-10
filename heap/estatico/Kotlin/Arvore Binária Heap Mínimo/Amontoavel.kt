@@ -1,6 +1,6 @@
 //Heap = Monte
 //Heapify = Organizar dados na forma de um Heap
-//Heapifiable = Amontoavel
+//Heaping = Amontoavel
 public interface Amontoavel {
 	fun inserir(dado: Long) 	//insert	C
 	fun extrair(): Long?		//extract	D

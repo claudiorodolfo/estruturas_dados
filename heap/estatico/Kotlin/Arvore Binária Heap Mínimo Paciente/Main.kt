@@ -1,5 +1,5 @@
 fun main() {
-    var heapPacientes: HeapifiablePaciente = HeapMinimoPaciente(10)
+    var heapPacientes: HeapingPaciente = HeapMinimoPaciente(10)
     heapPacientes.inserir(Paciente("João", 30, 1))
     heapPacientes.inserir(Paciente("Maria", 25, 3))
     heapPacientes.inserir(Paciente("Pedro", 40, 2))
