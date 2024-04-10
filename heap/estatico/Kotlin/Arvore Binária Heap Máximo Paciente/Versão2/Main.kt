@@ -14,8 +14,11 @@ fun novaPrioridade(prioridade: Prioridade) : Long {
     var contadorString = contador.toString()
     contadorString = zerosEsquerda(contadorString)
     val posicao = prioridade.ordinal //0, 1 ou 2
-    var novaPrioridade = posicao.toString() + contadorString
+    val novaPrioridade = posicao.toString() + contadorString
     return novaPrioridade.toLong()
+    //Todo este código pode ser reduzido a estas 2 linhas, mas perdemos em legibilidade
+    //contadores[prioridade.ordinal] = contadores[prioridade.ordinal] - 1
+    //return ((prioridade.ordinal).toString() + zerosEsquerda(contadores[prioridade.ordinal].toString())).toLong()
 }
 
 fun main() {

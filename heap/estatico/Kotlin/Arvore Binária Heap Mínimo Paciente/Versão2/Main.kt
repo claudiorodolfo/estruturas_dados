@@ -14,12 +14,11 @@ fun novaPrioridade(prioridade: Prioridade) : Long {
     var contadorString = contador.toString()
     contadorString = zerosEsquerda(contadorString)
     val posicao = prioridade.ordinal //0, 1 ou 2
-    var novaPrioridade = posicao.toString() + contadorString
+    val novaPrioridade = posicao.toString() + contadorString
     return novaPrioridade.toLong()
 }
 
 fun main() {
-
     var heapPacientes: HeapingPaciente = HeapMinimoPaciente(10)
     heapPacientes.inserir(Paciente("João", 30, novaPrioridade(Prioridade.ALTA)))
     heapPacientes.inserir(Paciente("Maria", 25, novaPrioridade(Prioridade.MEDIA)))
