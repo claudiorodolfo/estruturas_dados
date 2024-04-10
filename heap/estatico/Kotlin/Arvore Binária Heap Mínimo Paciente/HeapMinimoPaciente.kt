@@ -104,12 +104,12 @@ class HeapMinimoPaciente(private val tamanho: Int = 10): HeapifiablePaciente {
     }
 
     override fun imprimir(): String {
-        var resultado = "["
+        var resultado = "\n["
         for (i in 0..ponteiroFim) {
             resultado += "${dados[i]}"
             if (i != ponteiroFim)
                 resultado += ","
         }
-        return "$resultado]"
+        return "$resultado\n]"
     }
 }
