@@ -1,16 +1,29 @@
-fun novaPrioridade(prioridade: Long) : Long {
-    val tempo = System.nanoTime()
-    val prioridadeString = prioridade.toString()
-    var novaPrioridade = prioridadeString + (99999999999999L - tempo)
+enum class Prioridade { BAIXA, MEDIA, ALTA }
+
+var contadores = arrayOf(10000000000000L, 10000000000000L, 10000000000000L) //todos os contadores
+
+fun zerosEsquerda(valor: String): String {
+    val zeros = "0".repeat(13 - valor.length)
+    return zeros + valor
+}
+
+fun novaPrioridade(prioridade: Prioridade) : Long {
+    var contador = contadores[prioridade.ordinal] //contador específico
+    contador = contador.dec()
+    contadores[prioridade.ordinal] = contador   //incremento do contador específico
+    var contadorString = contador.toString()
+    contadorString = zerosEsquerda(contadorString)
+    val posicao = prioridade.ordinal //0, 1 ou 2
+    var novaPrioridade = posicao.toString() + contadorString
     return novaPrioridade.toLong()
 }
 
 fun main() {
     var heapPacientes: HeapingPaciente = HeapMaximoPaciente(10)
-    heapPacientes.inserir(Paciente("João", 30, novaPrioridade(3)))
-    heapPacientes.inserir(Paciente("Maria", 25, novaPrioridade(2)))
-    heapPacientes.inserir(Paciente("Pedro", 40, novaPrioridade(1)))
-    heapPacientes.inserir(Paciente("Ana", 35, novaPrioridade(2)))
+    heapPacientes.inserir(Paciente("João", 30, novaPrioridade(Prioridade.ALTA)))
+    heapPacientes.inserir(Paciente("Maria", 25, novaPrioridade(Prioridade.MEDIA)))
+    heapPacientes.inserir(Paciente("Pedro", 40, novaPrioridade(Prioridade.BAIXA)))
+    heapPacientes.inserir(Paciente("Ana", 35, novaPrioridade(Prioridade.MEDIA)))
     println("Todos os Pacientes: ${heapPacientes.imprimir()}")
 
     var pacienteAtendido = heapPacientes.extrair()
