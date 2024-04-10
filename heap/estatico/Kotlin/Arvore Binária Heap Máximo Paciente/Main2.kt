@@ -1,7 +1,7 @@
 fun novaPrioridade(prioridade: Long) : Long {
     val tempo = System.nanoTime()
     val prioridadeString = prioridade.toString()
-    var novaPrioridade = prioridadeString + tempo
+    var novaPrioridade = prioridadeString + (99999999999999L - tempo)
     return novaPrioridade.toLong()
 }
 
