@@ -16,9 +16,9 @@ fun main() {
     var pacienteAtendido = heapPacientes.extrair()
     println("Paciente atendido: $pacienteAtendido")  //Saída: João 
     pacienteAtendido = heapPacientes.extrair()
-    println("Paciente atendido: $pacienteAtendido")  //Saída: Ana
-    pacienteAtendido = heapPacientes.extrair()
     println("Paciente atendido: $pacienteAtendido")  //Saída: Maria
+    pacienteAtendido = heapPacientes.extrair()
+    println("Paciente atendido: $pacienteAtendido")  //Saída: Ana
     pacienteAtendido = heapPacientes.extrair()
     println("Paciente atendido: $pacienteAtendido")  //Saída: Pedro   
 }
