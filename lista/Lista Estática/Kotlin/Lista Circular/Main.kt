@@ -1,5 +1,5 @@
 fun main() {
-    var lista = ListaEstaticaCircular()
+    var lista: Listavel = ListaEstaticaCircular()
     lista.anexar("A")  
     lista.anexar("B")   
     lista.inserir(2,"C")
