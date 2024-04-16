@@ -11,8 +11,9 @@ fun main() {
 	fila.desenfileirarInicio()
 	fila.enfileirarInicio("D") 
 	println(fila.imprimirFrentePraTras()) //[D,C]
-	fila.frente() 
+	fila.frente()
 	fila.desenfileirarFim()
+	println(fila.imprimirFrentePraTras())
 	println(fila.tras()) //D    
 	fila.enfileirarInicio("e")
 	fila.atualizarInicio("E")    
@@ -24,7 +25,7 @@ fun main() {
 	fila.enfileirarInicio("H")
 	fila.desenfileirarFim()
 	fila.enfileirarFim("I")
-	println(fila.imprimirFrentePraTras()) //[H,D,F,I]
+	println(fila.imprimirTrasPraFrente()) //[I,F,D,H]
 	fila.enfileirarInicio("J")
 	fila.enfileirarFim("K")
 	fila.enfileirarFim("L")

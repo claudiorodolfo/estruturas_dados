@@ -6,14 +6,14 @@ class FilaDinamica(private val tamanho: Int = 10) : Enfileiravel {
  
 	override fun enfileirar(dado: Any?) {
 		if (!estaCheia()) {
-			var noTemp: NoDuplo? = NoDuplo(dado)
-			//noTemp?.dado = dado
+			var noTemp = NoDuplo(dado)
+			//noTemp.dado = dado
+			noTemp.anterior = ponteiroFim
 			if (!estaVazia())
 				ponteiroFim?.proximo = noTemp
 			else
 				ponteiroInicio = noTemp
-
-			noTemp?.anterior = ponteiroFim				
+				
 			ponteiroFim = noTemp
 			quantidade = quantidade.inc()
 		} else {
