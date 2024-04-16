@@ -3,7 +3,7 @@ fun main() {
     do {
         exibirMenu()
         print("Escolha uma opcao (0-7): ")
-        val opcao = readLine()?.toIntOrNull()
+        val opcao = readLine()!!.toInt()
         
         when(opcao) {
             0 -> {
@@ -12,31 +12,37 @@ fun main() {
             }
 			1 -> {
                 print("Digite a posição: ")
-                val posicao = readLine()?.toIntOrNull()			
+                val posicao = readLine()!!.toInt()
                 print("Digite o valor: ")
-                val valor = readLine()?.toIntOrNull()
-                lista.anexar(posicao, valor)			
+                val valor = readLine()
+                lista.inserir(posicao, valor)			
 			}
             2 -> {
                 print("Digite o valor: ")
-                val valor = readLine()?.toIntOrNull()
+                val valor = readLine()
                 lista.anexar(valor)
             }
             3 -> {
                 print("Digite a posição: ")
-                val posicao = readLine()?.toIntOrNull()				
+                val posicao = readLine()!!.toInt()
                 print("Deseja apagar[s/n]? ")
-                val confirmacao= readLine()
+                val confirmacao= readLine() ?: "n"
                 if (confirmacao == "s" || 
                         confirmacao == "S")
                     lista.apagar(posicao)                   
             }
-            4 -> {}
-            5 -> {}		
+            4 -> {
+                print("Digite a posição: ")
+                val posicao = readLine()!!.toInt()
+                lista.selecionar(posicao) 
+            }
+            5 -> lista.selecionarTodos()
             6 -> {
+                print("Digite a posicao: ")
+                val posicao = readLine()!!.toInt()
                 print("Digite o valor: ")
-                val valor = readLine()?.toIntOrNull()
-                lista.atualizar(valor)
+                val valor = readLine()
+                lista.atualizar(posicao, valor)
             }
             7 -> println(lista.imprimir())
             else -> {
