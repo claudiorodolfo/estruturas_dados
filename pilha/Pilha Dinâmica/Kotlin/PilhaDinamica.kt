@@ -5,12 +5,12 @@ class PilhaDinamica(private val tamanho: Int = 10) : Empilhavel {
  
 	override fun empilhar(dado: Any?) {
 		if (!estaCheia()) {
-			var noTemp: NoDuplo? = NoDuplo(dado)
-			//noTemp?.dado = dado
-			noTemp?.anterior = ponteiroTopo
+			var noTemp = NoDuplo(dado)
+			//noTemp.dado = dado
+			noTemp.anterior = ponteiroTopo
 			if (!estaVazia())
 				ponteiroTopo?.proximo = noTemp
-			
+
 			ponteiroTopo = noTemp
 			quantidade = quantidade.inc()
 		} else {
