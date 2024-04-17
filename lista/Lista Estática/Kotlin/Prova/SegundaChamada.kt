@@ -44,9 +44,10 @@ class ListaEstaticaCircular {
 
 class Questao2e3 {
 
-    var p1: Empilhavel = PilhaEstatica()
-    var p2: Empilhavel = PilhaEstaticaInvertida()
+    private var p1: Empilhavel = PilhaEstatica()
+    private var p2: Empilhavel = PilhaEstaticaInvertida()
 
+    //Questão 2
     fun isPalindrome(data: String): Boolean {
         var retorno = true
 
@@ -64,6 +65,7 @@ class Questao2e3 {
         return retorno
     }
 
+    //Questão 3
     fun decToBin(data: String): String {
         var dividendo = data.toInt()
         while (dividendo != 0) {
