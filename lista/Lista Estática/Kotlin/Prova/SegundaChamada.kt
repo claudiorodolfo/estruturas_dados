@@ -5,13 +5,12 @@ class ListaEstaticaCircular {
     private var dados: Array<Int> = arrayOf(5, 7, 2, 6, 1, 4, 3, 0, 9, 8)
 
     //Algoritmo Bubblesort
-    //Para 1 único elemento considera-se que já está ordenado
-    //É necessário um laço mais externo que a cada iteração, 
-    //faça com que o maior elemento em sua faixa de elementos, vá para 
-    //sua posição correta (último, penúltimo, antepenúltimo, etc.)
-    //Laço mais interno que compara nodos adjacentes, e troca os seus conteúdos caso
-    //estejam decrescente.
     fun sort(by: Order) {
+        //É necessário um laço mais externo que a cada iteração, 
+        //faça com que o maior elemento em sua faixa de elementos, vá para 
+        //sua posição correta (último, penúltimo, antepenúltimo, etc.)
+        //Laço mais interno que compara dados adjacentes, e troca os seus 
+        //conteúdos caso estejam decrescente.        
         if (by == Order.ASCENDING) {
             for (i in 0 until dados.size-1) {
                 for (j in 0 until dados.size-i-1) {
@@ -23,7 +22,11 @@ class ListaEstaticaCircular {
                 }
             }
         }
-
+        //É necessário um laço mais externo que a cada iteração, 
+        //faça com que o menor elemento em sua faixa de elementos, vá para 
+        //sua posição correta (último, penúltimo, antepenúltimo, etc.)
+        //Laço mais interno que compara dados adjacentes, e troca os seus 
+        //conteúdos caso estejam crescente.
         if (by == Order.DESCENDING) {
             for (i in 0 until dados.size-1) {
                 for (j in 0 until dados.size-i-1) {
