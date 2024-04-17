@@ -66,13 +66,12 @@ class Questao2e3 {
 
     fun decToBin(data: String): String {
         var dividendo = data.toInt()
-        while (dividendo > 1) {
+        while (dividendo != 0) {
             val resto = dividendo % 2
             val quociente = dividendo / 2
             dividendo = quociente
             p2.empilhar(resto)
         }
-        p2.empilhar(dividendo)
         return p2.imprimir()
     }    
 }
