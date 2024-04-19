@@ -145,7 +145,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 					else	//insercao no inicio
 						ponteiroInicio = noTemp
 
-						//todas insercoes, exceto fim
+					//todas insercoes, exceto fim
 					if (ponteiroProximo != null)
 						ponteiroProximo.anterior = noTemp
 					else	//insercao no fim
