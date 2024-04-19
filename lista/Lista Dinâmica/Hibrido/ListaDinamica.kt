@@ -1,5 +1,5 @@
 class ListaDinamica(private val tamanho: Int = 10) : Listavel {
- 
+
 	private var ponteiroInicio: NoDuplo? = null
 	private var ponteiroFim: NoDuplo? = null
 	private var quantidade = 0
@@ -30,10 +30,10 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				dadosAux[i] = ponteiroAuxiliar?.dado	
 				ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 			}
-        } else {
+		} else {
 			println("Lista Vazia!")
 		}
-        return dadosAux
+		return dadosAux
 	}
 
 	override fun selecionar(posicao: Int): Any? {
@@ -82,7 +82,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		var dadoAux: Any? = null
 		if (!estaVazia()) {
 			if (posicao >= 0 && posicao < quantidade) {
-					////////////////////////////////
+				////////////////////////////////
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
 				//que será feita alguma operação. Esse codigo é o mesmo
 				//para os metodos update, delete e select
