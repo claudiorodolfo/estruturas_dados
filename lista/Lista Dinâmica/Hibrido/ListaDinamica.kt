@@ -7,7 +7,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 	//idêntico ao enfileirar de FilaDinamica
 	override fun anexar(dado: Any?) {
 		if (!estaCheia()) {
-			var noTemp = NoDuplo(dado)
+			val noTemp = NoDuplo(dado)
 			//noTemp.dado = dado
 			noTemp.anterior = ponteiroFim				
 			if (!estaVazia())
@@ -43,7 +43,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				////////////////////////////////
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
 				//que será feita alguma operação. Esse codigo é o mesmo
-				//para os metodos update, delete e select
+				//para os metodos update, delete, select e insert
 				var ponteiroAuxiliar = ponteiroInicio
 				for (i in 0 until posicao)
 					ponteiroAuxiliar = ponteiroAuxiliar?.proximo
@@ -64,7 +64,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				////////////////////////////////
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
 				//que será feita alguma operação. Esse codigo é o mesmo
-				//para os metodos update, delete e select
+				//para os metodos update, delete, select e insert
 				var ponteiroAuxiliar = ponteiroInicio
 				for (i in 0 until posicao)
 					ponteiroAuxiliar = ponteiroAuxiliar?.proximo
@@ -85,15 +85,15 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				////////////////////////////////
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
 				//que será feita alguma operação. Esse codigo é o mesmo
-				//para os metodos update, delete e select
+				//para os metodos update, delete, select e insert
 				var ponteiroAuxiliar = ponteiroInicio
 				for (i in 0 until posicao)
 					ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 				///////////////////////////////
 				dadoAux = ponteiroAuxiliar?.dado
 
-				var ponteiroAnterior = ponteiroAuxiliar?.anterior
-				var ponteiroProximo  = ponteiroAuxiliar?.proximo
+				val ponteiroAnterior = ponteiroAuxiliar?.anterior
+				val ponteiroProximo  = ponteiroAuxiliar?.proximo
 
 				if (ponteiroAnterior != null) 
 					ponteiroAnterior.proximo = ponteiroProximo
@@ -120,37 +120,41 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 	override fun inserir(posicao: Int, dado: Any?) {
 		if (!estaCheia()) {
 			if (posicao >= 0 && posicao <= quantidade) {
-				var noTemp = NoDuplo(dado)
+				val noTemp = NoDuplo(dado)
 				//noTemp.dado = dado
+				
 				////////////////////////////////
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
-				//que serah feita alguma operacao. Lembrando que nesse metodo
-				//auxiliar ira parar no nodo subsequente ao nodo que devera 
-				//ser inserido				
-				var ponteiroAnterior: NoDuplo? = null
-				var ponteiroProximo = ponteiroInicio
-
-				for (i in 0 until posicao) {
-					ponteiroAnterior = ponteiroProximo
-					ponteiroProximo = ponteiroProximo?.proximo
-				}
-
-				if (ponteiroAnterior != null)
-					ponteiroAnterior.proximo = noTemp
-				//se o anterior é nulo é pq a insercao está sendo no inicio
-				else
+				//que será feita alguma operação. Esse codigo é o mesmo
+				//para os metodos update, delete, select e insert
+				var ponteiroAuxiliar = ponteiroInicio
+				for (i in 0 until posicao)
+					ponteiroAuxiliar = ponteiroAuxiliar?.proximo
+				///////////////////////////////
+					
+				//primeira insercao
+				if (estaVazia()) {
 					ponteiroInicio = noTemp
-				
-
-				if (ponteiroProximo != null)
-					ponteiroProximo.anterior = noTemp
-				//se o proximo é nulo é pq a insercao está sendo no fim (append)
-				else
 					ponteiroFim = noTemp
-				
-				noTemp.anterior = ponteiroAnterior
-				noTemp.proximo  = ponteiroProximo
+				} else {
+					val ponteiroProximo = ponteiroAuxiliar
+					val ponteiroAnterior = ponteiroAuxiliar?.anterior ?: ponteiroFim
+					//todas insercoes, exceto inicio
+					if (ponteiroAnterior != null)						
+						ponteiroAnterior.proximo = noTemp
+					else	//insercao no inicio
+						ponteiroInicio = noTemp
 
+						//todas insercoes, exceto fim
+					if (ponteiroProximo != null)
+						ponteiroProximo.anterior = noTemp
+					else	//insercao no fim
+						ponteiroFim = noTemp						
+			
+					noTemp.proximo = ponteiroProximo
+					noTemp.anterior = ponteiroAnterior						
+				}
+				
 				quantidade = quantidade.inc()
 			} else {
 				println("Indice Inválido!")
