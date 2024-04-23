@@ -1,4 +1,4 @@
-public class ConjuntoEspalhamentoPrincipal {
+public class MapaEspalhamentoPrincipal {
 
 	public static void main(String args[]) {
 		//elementos que serão introduzidos na ED
