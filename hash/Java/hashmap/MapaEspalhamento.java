@@ -1,12 +1,12 @@
-public class ConjuntoEspalhamento implements Espalhavel{
+public class MapaEspalhamento implements Espalhavel{
 
 	private Object[] tabelaEspalhamento;
-	//Controla quantos elementos há na estrutura Conjunto Espalhamento (HashSet)
+	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
 	private int quantidade;
 	//controla quantas listas terá a tabela de dispersão/espalhamento
 	private int tamanhoTabela;
 	
-	public ConjuntoEspalhamento(int tamanhoTabela) {
+	public MapaEspalhamento(int tamanhoTabela) {
 		quantidade = 0;
 		this.tamanhoTabela = tamanhoTabela;
 		//inicializa a tabela
