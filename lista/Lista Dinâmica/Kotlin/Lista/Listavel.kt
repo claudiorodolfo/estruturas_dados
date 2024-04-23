@@ -6,7 +6,9 @@ interface Listavel {
     fun selecionarTodos(): Array<Any?>      //R
     fun atualizar(posicao: Int, dado: Any?) //U
     fun apagar(posicao: Int): Any?          //D
-
+    fun apagarTodos(): Array<Any?>          //D
+    fun limpar()                            //D
+    
 	//fun juntar(lista1: Listavel, lista2: Listavel): Listavel
 	//fun subLista(inicio: Int, fim: Int): Listavel
     // Metodos auxiliares

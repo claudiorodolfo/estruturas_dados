@@ -78,6 +78,18 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		}
 	}
 
+	override fun limpar() {
+		ponteiroInicio = null
+		ponteiroFim = null
+		quantidade = 0
+	}
+
+	override fun apagarTodos(): Array<Any?> {
+		var dadosAux: Array<Any?> = selecionarTodos()
+		limpar()
+		return dadosAux
+	}
+
 	override fun apagar(posicao: Int): Any? {
 		var dadoAux: Any? = null
 		if (!estaVazia()) {

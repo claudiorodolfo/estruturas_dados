@@ -4,11 +4,13 @@ interface Listavel {
     fun inserir(posicao: Int, dado: Any?)   //C
     fun selecionar(posicao: Int): Any?      //R
     fun selecionarTodos(): Array<Any?>      //R
-    //fun selecionarProximo(): Any?           //R
-    //fun selecionarAnterior(): Any?          //R   
     fun atualizar(posicao: Int, dado: Any?) //U
     fun apagar(posicao: Int): Any?          //D
-
+    fun apagarTodos(): Array<Any?>          //D
+    fun limpar()                            //D
+    
+	//fun juntar(lista1: Listavel, lista2: Listavel): Listavel
+	//fun subLista(inicio: Int, fim: Int): Listavel
     // Metodos auxiliares
     fun tamanho(): Int  
     fun estaCheia(): Boolean
