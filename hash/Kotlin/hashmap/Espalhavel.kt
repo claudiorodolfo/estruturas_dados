@@ -1,21 +1,28 @@
 public interface Espalhavel {
 	//put(), armazena um par de objetos especificados
-	public void adicionar(Mapa mapa);
+	fun adicionar(mapa: Mapa)
+
 	//remove(), remove o  objeto com a chave especificada
-	public Object remover(String chave);
+	fun remover(chave: String): Any
+
 	//contains(), consulta se um determinado valor existe na tabela
 	//public boolean contemValor(Object dado);
+
 	//containsKey(), consulta se uma determinada chave existe na tabela
-	public boolean contemChave(String chave);
+	fun contemChave(chave: String): Boolean
+
 	//get(), retorna o objeto  associado a chave especificada
-	public Object buscar(String chave);
+	fun buscar(chave: String): Any
+	
 	//getAll(), retorna todos os objetos armazenados
 	//public Object[] buscarTodos();
+
 	//size(), retorna o número de elementos da estrutura
-	public int tamanho();
+	fun tamanho(): Int
 	
 	//informa se a estrutura de dados está vazia
-	boolean estaVazio();
+	fun estaVazio(): Boolean
+
 	//imprime o conteúdo da estrutura de dados
-	String imprimir();
+	fun imprimir(): String
 }
