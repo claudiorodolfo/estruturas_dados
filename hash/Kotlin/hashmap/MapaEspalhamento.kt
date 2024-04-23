@@ -1,4 +1,4 @@
-public class MapaEspalhamento implements Espalhavel{
+class MapaEspalhamento: Espalhavel{
 
 	private Object[] tabelaEspalhamento;
 	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
@@ -154,7 +154,7 @@ public class MapaEspalhamento implements Espalhavel{
 		return quantidade;
 	}
 	
-	public boolean estaVazio() {
+	public boolean estaVazia() {
 		return (quantidade == 0);
 	}
 	
