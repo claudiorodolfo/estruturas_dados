@@ -6,17 +6,20 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
 	
 	//funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
 	//baseado no primeiro caracter da chave
-	private fun funcaoEspalhamento(chave: String): Int {
-		val letraInicial = chave.lowercase()[0]
+	private fun funcaoEspalhamento(chave: Any): Int {
+		val chaveString = chave.toString()
+		val letraInicial = chaveString.lowercase()[0]
 		return letraInicial.code % tamanhoTabela
 	}
 
 	///funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
 	//baseado em todos os caracteres da chave
-	private fun funcaoEspalhamento2(chave: String): Int {
+	private fun funcaoEspalhamento2(chave: Any): Int {
+		val chaveString = chave.toString()
+
 		var total = 0
-		for (i in 0 until chave.length) {
-			val letra = chave.lowercase()[i]
+		for (i in 0 until chaveString.length) {
+			val letra = chaveString.lowercase()[i]
 			total += letra.code
 		}
 		return total % tamanhoTabela
@@ -43,7 +46,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
 		}
 	}
 	
-	override fun remover(chave: String): Any? {
+	override fun remover(chave: Any): Any? {
 		var dadoAuxiliar: Any? = null
 		if (!estaVazia()) {
 			if (contemChave(chave)) {
@@ -73,7 +76,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
 		return dadoAuxiliar
 	}
 		
-	override fun contemChave(chave: String): Boolean {
+	override fun contemChave(chave: Any): Boolean {
 		var chaveEncontrada = false
 		if (!estaVazia()) {
 			// Obtém o índice da tabela de espalhamento que a chave pertence
@@ -97,7 +100,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
 		return chaveEncontrada
 	}
 	
-	override fun buscar(chave: String): Any? {
+	override fun buscar(chave: Any): Any? {
 		var dadoAuxiliar: Any? = null
 		if (!estaVazia()) {
 			if (contemChave(chave)) {

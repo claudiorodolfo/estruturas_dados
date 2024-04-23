@@ -1,1 +1,1 @@
-data class Mapa(val chave:String, val dado: Any)
+data class Mapa(val chave: Any, val dado: Any)
