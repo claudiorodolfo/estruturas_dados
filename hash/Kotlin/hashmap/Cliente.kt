@@ -1,3 +1,1 @@
-data class Cliente (val nome: String, val idade: Int) {
-	
-}
+data class Cliente (val nome: String, val idade: Int)

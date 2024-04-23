@@ -1,24 +1,24 @@
 fun main() {
 	//elementos que serão introduzidos na ED
-	c1 = Cliente("Claudio Rodolfo", 30)
-	c2 = Cliente("Maria Isabel", 12)
-	c3 = Cliente("Antonio Carlos", 23)
-	c4 = Cliente("João Pedro", 21)
-	c5 = Cliente("Maria Eduarda", 53)
-	c6 = Cliente("Carlos Eduardo", 56)
+	val c1 = Cliente("Claudio Rodolfo", 30)
+	val c2 = Cliente("Maria Isabel", 12)
+	val c3 = Cliente("Antonio Carlos", 23)
+	val c4 = Cliente("João Pedro", 21)
+	val c5 = Cliente("Maria Eduarda", 53)
+	val c6 = Cliente("Carlos Eduardo", 56)
 		
 	//popula a Estrutura MapaEspalhamento
-	hashmap: Espalhavel = MapaEspalhamento(26)
-	hashmap.adicionar(new Mapa("clro", c1))
-	hashmap.adicionar(new Mapa("maria", c2))
-	hashmap.adicionar(new Mapa("toin", c3))
-	hashmap.adicionar(new Mapa("jao", c4))
-	hashmap.adicionar(new Mapa("carlos", c5))
+	var hashmap: Espalhavel = MapaEspalhamento(26)
+	hashmap.adicionar(Mapa("clro", c1))
+	hashmap.adicionar(Mapa("maria", c2))
+	hashmap.adicionar(Mapa("toin", c3))
+	hashmap.adicionar(Mapa("jao", c4))
+	hashmap.adicionar(Mapa("carlos", c5))
 		
 	//chave para testes
-	chave = "clro";
-	clienteTemp = (Cliente) hashmap.buscar(chave)
-	println("a idade de $chave é: ${clienteTemp.getIdade()}")
+	var chave = "clro";
+	val clienteTemp = hashmap.buscar(chave) as Cliente
+	println("a idade de $chave é: ${clienteTemp.idade}")
 		
 	//verifica se há elemento com a chave maria
 	chave = "maria"
@@ -41,5 +41,5 @@ fun main() {
 		println("contem a chave $chave")
 	else
 		println("não contem a chave $chave")		
-	}
+
 }

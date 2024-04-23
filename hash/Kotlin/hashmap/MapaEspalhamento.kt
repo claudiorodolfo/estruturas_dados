@@ -1,169 +1,142 @@
-class MapaEspalhamento: Espalhavel{
+class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 
-	private Object[] tabelaEspalhamento;
+	private var tabelaEspalhamento: Array<Any> = arrayOfNulls(tamanhoTabela)
 	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
-	private int quantidade;
-	//controla quantas listas terá a tabela de dispersão/espalhamento
-	private int tamanhoTabela;
-	
-	public MapaEspalhamento(int tamanhoTabela) {
-		quantidade = 0;
-		this.tamanhoTabela = tamanhoTabela;
-		//inicializa a tabela
-		tabelaEspalhamento = new Object[tamanhoTabela];
-		for (int i = 0; i < tabelaEspalhamento.length; i++) { 
-			//os itens da tabela poderiam ser outra ED, mas optou-se pela ED Lista
-			tabelaEspalhamento[i] = new ListaEstaticaCircular(10);
-		}
-	}
+	private var quantidade = 0
 	
 	//funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
 	//baseado no primeiro caracter da chave
-	private int funcaoEspalhamento(String chave){ 
-		char letraInicial = chave.toLowerCase().charAt(0);
-		return letraInicial % tamanhoTabela; 
+	private fun funcaoEspalhamento(chave: String): Int {
+		val letraInicial = chave.toLowerCase()[0]
+		return letraInicial.toInt() % tamanhoTabela
 	}
 
-	//outro exemplo de função de espalhamento que usa todos os caracteres da chave
-	private int funcaoEspalhamento2(String chave){
-		int total = 0;
-		for (int i = 0; i < chave.length(); i++) { 
-			char letra = chave.toLowerCase().charAt(i);
-			total += letra;
+	///funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
+	//baseado em todos os caracteres da chave
+	private fun funcaoEspalhamento2(chave: String): Int {
+		var total = 0
+		for (i in 0 until chave.length) {
+			val letra = chave.toLowerCase()[i]
+			total += letra.toInt()
 		}
-		return total % tamanhoTabela; 
-	}
-	
-	//put(), armazena um par de "chave,objeto" especificado
-	public void adicionar(Mapa mapa) {
-		int indice = funcaoEspalhamento(mapa.getChave()); 
-		Listavel listaTemporaria = (Listavel) tabelaEspalhamento[indice]; 
-		//se existe a chave atualiza o mapa, senão existir insere o mapa
-		if (contemChave(mapa.getChave())) {
-			for (int i = 0; i < listaTemporaria.getQuantidade(); i++) {
-				Mapa elementoLista = (Mapa) listaTemporaria.selecionarUm(i);
-				String chaveLista = elementoLista.getChave();
-			
-				if (chaveLista.equals(mapa.getChave())) {
-					listaTemporaria.atualizar(i, mapa);
-					break;
-				}
-			}			
-		}
-		else {
-			listaTemporaria.anexar(mapa);
-			quantidade++;
-		}
-		
-	}
-	
-	//remove(), remove o objeto associado a chave especificada
-	public Object remover(String chave) {
-		Object dadoAuxiliar = null;
-		if (!estaVazio()) {
-			if (contemChave(chave)) {
-				//obtem o indice da tabela de espalhamento que a chave pertence
-				int indice = funcaoEspalhamento(chave); 
-				//Seleciona um item da tabela (esse item é uma lista)
-				Listavel listaTemporaria = (Listavel) tabelaEspalhamento[indice];
-				//para cada elemento da lista é verificado se a chave informada é 
-				//igual a chave do referido elemento
-
-				for (int i = 0; i < listaTemporaria.getQuantidade(); i++) {
-					Mapa elementoLista = (Mapa) listaTemporaria.selecionarUm(i);
-					String chaveLista = elementoLista.getChave();
-			
-					if (chave.equals(chaveLista)) {
-						dadoAuxiliar = elementoLista.getDado();
-						listaTemporaria.apagar(i);
-						break;
-					}
-				}
-			}
-			else {
-				System.err.println("Chave não existente.");
-			}
-		}
-		else {
-				System.err.println("A estrutura de dados está vazia.");
-		}
-		return dadoAuxiliar;
+		return total % tamanhoTabela
 	}	
 	
-	//containsKey(), consulta se uma determinada chave existe na tabela
-	public boolean contemChave(String chave) {
-		boolean chaveEncontrada = false;
-		if (!estaVazio()) {
-			//obtem o indice da tabela de espalhamento que a chave pertence
-			int indice = funcaoEspalhamento(chave); 
-			//Seleciona um item da tabela (esse item é uma lista)
-			Listavel listaTemporaria = (Listavel) tabelaEspalhamento[indice];
-			//para cada elemento da lista é verificado se a chave informada é 
-			//igual a chave do referido elemento
-
-			for (int i = 0; i < listaTemporaria.getQuantidade(); i++) {
-				Mapa elementoLista = (Mapa) listaTemporaria.selecionarUm(i);
-				String chaveLista = elementoLista.getChave();
-			
-				if (chave.equals(chaveLista)) {
-					chaveEncontrada = true;
-					break;
-				}
-			}		
-		} 
-		else {
-				System.err.println("A estrutura de dados está vazia.");
-		}
-		return chaveEncontrada;
-	}		
-
-	//get(), retorna o objeto  associado a chave especificada
-	public Object buscar(String chave) {
-		Object dadoAuxiliar = null;
-		if (!estaVazio()) {
-			if (contemChave(chave)) {
-				//obtem o indice da tabela de espalhamento que a chave pertence
-				int indice = funcaoEspalhamento(chave); 
-				//Seleciona um item da tabela (esse item é uma lista)
-				Listavel listaTemporaria = (Listavel) tabelaEspalhamento[indice];
-				//para cada elemento da lista é verificado se a chave informada é 
-				//igual a chave do referido elemento
-
-				for (int i = 0; i < listaTemporaria.getQuantidade(); i++) {
-					Mapa elementoLista = (Mapa) listaTemporaria.selecionarUm(i);
-					String chaveLista = elementoLista.getChave();
-			
-					if (chave.equals(chaveLista)) {
-						dadoAuxiliar = elementoLista.getDado();
-						break;
-					}
+	override fun adicionar(mapa: Mapa) {
+		val indice = funcaoEspalhamento(mapa.chave)
+		val listaTemp = tabelaEspalhamento[indice] as Listavel
+		// Se a chave existir, atualiza o mapa; caso contrário, insere o mapa
+		if (contemChave(mapa.chave)) {
+			for (i in 0 until listaTemp.quantidade) {
+				val elementoLista = listaTemp.selecionarUm(i) as Mapa
+				val chaveLista = elementoLista.chave
+	
+				if (chaveLista == mapa.chave) {
+					listaTemp.atualizar(i, mapa)
+					break
 				}
 			}
-			else {
-				System.err.println("Chave não existente.");
-			}			
+		} else {
+			listaTemp.anexar(mapa)
+			quantidade++
 		}
-		else {
-				System.err.println("A estrutura de dados está vazia");
-		}
-		return dadoAuxiliar;
 	}
 	
-	//size(), retorna o número de elementos da estrutura
-	public int tamanho() {
-		return quantidade;
+	override fun remover(chave: String): Any? {
+		var dadoAuxiliar: Any? = null
+		if (!estaVazio()) {
+			if (contemChave(chave)) {
+				// Obtém o índice da tabela de espalhamento que a chave pertence
+				// Seleciona um item da tabela (esse item é uma lista)
+				val indice = funcaoEspalhamento(chave)				
+				val listaTemp = tabelaEspalhamento[indice] as Listavel
+				
+				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
+				for (i in 0 until listaTemp.quantidade) {
+					val elementoLista = listaTemp.selecionarUm(i) as Mapa
+					val chaveLista = elementoLista.chave
+	
+					if (chave == chaveLista) {
+						dadoAuxiliar = elementoLista.dado
+						listaTemp.apagar(i)
+						break
+					}
+				}
+			} else {
+				println("Chave não existente.")
+			}
+		} else {
+			println("A estrutura de dados está vazia.")
+		}
+		return dadoAuxiliar
+	}
+		
+	override fun contemChave(chave: String): Boolean {
+		var chaveEncontrada = false
+		if (!estaVazia()) {
+			// Obtém o índice da tabela de espalhamento que a chave pertence
+			// Seleciona um item da tabela (esse item é uma lista)
+			val indice = funcaoEspalhamento(chave)
+			val listaTemp = tabelaEspalhamento[indice] as Listavel
+			
+			// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
+			for (i in 0 until listaTemp.quantidade) {
+				val elementoLista = listaTemp.selecionarUm(i) as Mapa
+				val chaveLista = elementoLista.chave
+	
+				if (chave == chaveLista) {
+					chaveEncontrada = true
+					break
+				}
+			}        
+		} else {
+			println("A estrutura de dados está vazia.")
+		}
+		return chaveEncontrada
 	}
 	
-	public boolean estaVazia() {
-		return (quantidade == 0);
+	override fun buscar(chave: String): Any? {
+		var dadoAuxiliar: Any? = null
+		if (!estaVazia()) {
+			if (contemChave(chave)) {
+				// Obtém o índice da tabela de espalhamento que a chave pertence
+				// Seleciona um item da tabela (esse item é uma lista)
+				val indice = funcaoEspalhamento(chave)
+				val listaTemp = tabelaEspalhamento[indice] as Listavel
+				
+				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento
+				for (i in 0 until listaTemp.quantidade) {
+					val elementoLista = listaTemp.selecionarUm(i) as Mapa
+					val chaveLista = elementoLista.chave
+	
+					if (chave == chaveLista) {
+						dadoAuxiliar = elementoLista.dado
+						break
+					}
+				}
+			} else {
+				println("Chave não existente.")
+			}
+		} else {
+			println("A estrutura de dados está vazia")
+		}
+		return dadoAuxiliar
+	}	
+	
+	override fun tamanho(): Int
+		return quantidade
+	}
+	
+	override fun estaVazia(): Boolean
+		return (quantidade == 0)
 	}
 	
 	public String imprimir() {
-		String resultado = "[";
-		for (int i = 0; i < tabelaEspalhamento.length; i++) {
-			Listavel listaTemporaria = (Listavel) tabelaEspalhamento[i]; 
-			resultado += listaTemporaria.imprimir();
+		var resultado = "["
+		for (i = 0 until tabelaEspalhamento.length) {
+			val listaTemp = tabelaEspalhamento[i] as Listavel
+			resultado += listaTemp.imprimir()
 		}
-		return resultado + "]";	
+		return "$resultado]"	
 	}
 }
