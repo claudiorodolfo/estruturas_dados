@@ -7,7 +7,7 @@ fun main() {
 	c5 = Cliente("Maria Eduarda", 53)
 	c6 = Cliente("Carlos Eduardo", 56)
 		
-	//popula a Estrutura Conjunto Espalhamento
+	//popula a Estrutura MapaEspalhamento
 	hashmap: Espalhavel = MapaEspalhamento(26)
 	hashmap.adicionar(new Mapa("clro", c1))
 	hashmap.adicionar(new Mapa("maria", c2))
