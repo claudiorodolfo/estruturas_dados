@@ -171,7 +171,11 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 	override fun estaVazia(): Boolean {
 		return quantidade == 0
 	}
-	
+
+	override fun tamanho(): Int {
+		return quantidade
+	}	
+
 	override fun imprimir(): String {
 		var ponteiroAuxiliar = ponteiroInicio
 		var resultado = "["

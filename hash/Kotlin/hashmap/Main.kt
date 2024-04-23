@@ -13,8 +13,9 @@ fun main() {
 	hashmap.adicionar(Mapa("maria", c2))
 	hashmap.adicionar(Mapa("toin", c3))
 	hashmap.adicionar(Mapa("jao", c4))
-	hashmap.adicionar(Mapa("carlos", c5))
-		
+	hashmap.adicionar(Mapa("madu", c5))
+	hashmap.adicionar(Mapa("carlos", c6))
+	
 	//chave para testes
 	var chave = "clro";
 	val clienteTemp = hashmap.buscar(chave) as Cliente
@@ -40,6 +41,13 @@ fun main() {
 	if (hashmap.contemChave(chave))
 		println("contem a chave $chave")
 	else
-		println("não contem a chave $chave")		
+		println("não contem a chave $chave")
+		
+	//verifica se há elemento com a chave maria
+	chave = "maria"
+	if (hashmap.contemChave(chave))
+		println("contem a chave $chave")
+	else
+		println("nao contem a chave $chave")		
 
 }

@@ -8,8 +8,6 @@ public interface Espalhavel {
 	fun contemChave(chave: String): Boolean
 	//get(), retorna o objeto  associado a chave especificada
 	fun buscar(chave: String): Any?
-	//size(), retorna o número de elementos da estrutura
-	fun tamanho(): Int
 	
 	//contains(), consulta se um determinado valor existe na tabela
 	//fun contemValor(dado: Any): Boolean
@@ -20,4 +18,6 @@ public interface Espalhavel {
 	fun estaVazia(): Boolean
 	//imprime o conteúdo da estrutura de dados
 	fun imprimir(): String
+	//size(), retorna o número de elementos da estrutura
+	fun tamanho(): Int	
 }

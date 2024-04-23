@@ -1,14 +1,14 @@
-class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
+class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
 
-	private var tabelaEspalhamento: Array<Any> = arrayOfNulls(tamanhoTabela)
+	private var tabelaEspalhamento: Array<Any?> = arrayOfNulls(tamanhoTabela)
 	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
 	private var quantidade = 0
 	
 	//funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
 	//baseado no primeiro caracter da chave
 	private fun funcaoEspalhamento(chave: String): Int {
-		val letraInicial = chave.toLowerCase()[0]
-		return letraInicial.toInt() % tamanhoTabela
+		val letraInicial = chave.lowercase()[0]
+		return letraInicial.code % tamanhoTabela
 	}
 
 	///funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
@@ -16,8 +16,8 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 	private fun funcaoEspalhamento2(chave: String): Int {
 		var total = 0
 		for (i in 0 until chave.length) {
-			val letra = chave.toLowerCase()[i]
-			total += letra.toInt()
+			val letra = chave.lowercase()[i]
+			total += letra.code
 		}
 		return total % tamanhoTabela
 	}	
@@ -25,10 +25,11 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 	override fun adicionar(mapa: Mapa) {
 		val indice = funcaoEspalhamento(mapa.chave)
 		val listaTemp = tabelaEspalhamento[indice] as Listavel
-		// Se a chave existir, atualiza o mapa; caso contrário, insere o mapa
+		// Se a chave existir, atualiza o mapa; 
+		//caso contrário, insere o mapa
 		if (contemChave(mapa.chave)) {
-			for (i in 0 until listaTemp.quantidade) {
-				val elementoLista = listaTemp.selecionarUm(i) as Mapa
+			for (i in 0 until listaTemp.tamanho()) {
+				val elementoLista = listaTemp.selecionar(i) as Mapa
 				val chaveLista = elementoLista.chave
 	
 				if (chaveLista == mapa.chave) {
@@ -38,13 +39,13 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 			}
 		} else {
 			listaTemp.anexar(mapa)
-			quantidade++
+			quantidade = quantidade.inc()
 		}
 	}
 	
 	override fun remover(chave: String): Any? {
 		var dadoAuxiliar: Any? = null
-		if (!estaVazio()) {
+		if (!estaVazia()) {
 			if (contemChave(chave)) {
 				// Obtém o índice da tabela de espalhamento que a chave pertence
 				// Seleciona um item da tabela (esse item é uma lista)
@@ -52,13 +53,14 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 				val listaTemp = tabelaEspalhamento[indice] as Listavel
 				
 				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
-				for (i in 0 until listaTemp.quantidade) {
-					val elementoLista = listaTemp.selecionarUm(i) as Mapa
+				for (i in 0 until listaTemp.tamanho()) {
+					val elementoLista = listaTemp.selecionar(i) as Mapa
 					val chaveLista = elementoLista.chave
 	
 					if (chave == chaveLista) {
 						dadoAuxiliar = elementoLista.dado
 						listaTemp.apagar(i)
+						quantidade = quantidade.dec()
 						break
 					}
 				}
@@ -80,8 +82,8 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 			val listaTemp = tabelaEspalhamento[indice] as Listavel
 			
 			// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
-			for (i in 0 until listaTemp.quantidade) {
-				val elementoLista = listaTemp.selecionarUm(i) as Mapa
+			for (i in 0 until listaTemp.tamanho()) {
+				val elementoLista = listaTemp.selecionar(i) as Mapa
 				val chaveLista = elementoLista.chave
 	
 				if (chave == chaveLista) {
@@ -105,8 +107,8 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 				val listaTemp = tabelaEspalhamento[indice] as Listavel
 				
 				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento
-				for (i in 0 until listaTemp.quantidade) {
-					val elementoLista = listaTemp.selecionarUm(i) as Mapa
+				for (i in 0 until listaTemp.tamanho()) {
+					val elementoLista = listaTemp.selecionar(i) as Mapa
 					val chaveLista = elementoLista.chave
 	
 					if (chave == chaveLista) {
@@ -123,17 +125,17 @@ class MapaEspalhamento(val tamanhoTabela: Int = 100): Espalhavel {
 		return dadoAuxiliar
 	}	
 	
-	override fun tamanho(): Int
+	override fun tamanho(): Int {
 		return quantidade
 	}
 	
-	override fun estaVazia(): Boolean
+	override fun estaVazia(): Boolean {
 		return (quantidade == 0)
 	}
 	
-	public String imprimir() {
+	override fun imprimir(): String {
 		var resultado = "["
-		for (i = 0 until tabelaEspalhamento.length) {
+		for (i in 0 until tabelaEspalhamento.size) {
 			val listaTemp = tabelaEspalhamento[i] as Listavel
 			resultado += listaTemp.imprimir()
 		}
