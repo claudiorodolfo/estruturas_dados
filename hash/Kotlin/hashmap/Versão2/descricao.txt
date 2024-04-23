@@ -1,0 +1,18 @@
+Espalhamento (Hash)
+
+//Usados como Slots da ED Espalhamento.
+Listavel.kt
+ListaDinamica.kt
+
+//Usado como unidade elementar a ser armazenada na Lista, ou seja a lista será de Mapas. 
+//Um mapa é formado por uma chave e um objeto qualquer associado a essa chave.
+Mapa.kt
+
+//Cliente que contém nome e idade foi um dado armazenado no Mapa para teste.
+//Lembrando que o objeto pode ser de qualquer tipo de objeto, uma vez que o dado do Mapa é do tipo Object.
+Cliente.kt
+
+//Arquivos que realmente compõem a estrutura de dados Espalhamento (Hash).
+Espalhavel.kt
+MapaEspalhamento.kt
+Main.kt
