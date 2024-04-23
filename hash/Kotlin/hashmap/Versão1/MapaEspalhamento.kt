@@ -1,7 +1,7 @@
 //Clusterização, Conteinerização
 class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 
-	private var tabelaEspalhamento: Array<ListaDinamica> = Array(tamanhoTabela) { ListaDinamica() }
+	private var tabelaEspalhamento: Array<Listavel> = Array(tamanhoTabela) { ListaDinamica() }
 	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
 	private var quantidade = 0
 	
@@ -28,7 +28,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 	
 	override fun adicionar(mapa: Mapa) {
 		val indice = funcaoEspalhamento(mapa.chave)
-		val listaTemp = tabelaEspalhamento[indice] as Listavel
+		val listaTemp = tabelaEspalhamento[indice]
 		// Se a chave existir, atualiza o mapa; 
 		//caso contrário, insere o mapa
 		if (contemChave(mapa.chave)) {
@@ -54,7 +54,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 				// Obtém o índice da tabela de espalhamento que a chave pertence
 				// Seleciona um item da tabela (esse item é uma lista)
 				val indice = funcaoEspalhamento(chave)				
-				val listaTemp = tabelaEspalhamento[indice] as Listavel
+				val listaTemp = tabelaEspalhamento[indice] 
 				
 				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
 				for (i in 0 until listaTemp.tamanho()) {
@@ -83,7 +83,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 			// Obtém o índice da tabela de espalhamento que a chave pertence
 			// Seleciona um item da tabela (esse item é uma lista)
 			val indice = funcaoEspalhamento(chave)
-			val listaTemp = tabelaEspalhamento[indice] as Listavel
+			val listaTemp = tabelaEspalhamento[indice] 
 			
 			// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento	
 			for (i in 0 until listaTemp.tamanho()) {
@@ -108,7 +108,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 				// Obtém o índice da tabela de espalhamento que a chave pertence
 				// Seleciona um item da tabela (esse item é uma lista)
 				val indice = funcaoEspalhamento(chave)
-				val listaTemp = tabelaEspalhamento[indice] as Listavel
+				val listaTemp = tabelaEspalhamento[indice] 
 				
 				// Para cada elemento da lista é verificado se a chave informada é igual à chave do elemento
 				for (i in 0 until listaTemp.tamanho()) {
@@ -140,7 +140,7 @@ class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
 	override fun imprimir(): String {
 		var resultado = "["
 		for (i in 0 until tabelaEspalhamento.size) {
-			val listaTemp = tabelaEspalhamento[i] as Listavel
+			val listaTemp = tabelaEspalhamento[i] 
 			resultado += listaTemp.imprimir()
 		}
 		return "$resultado]"	
