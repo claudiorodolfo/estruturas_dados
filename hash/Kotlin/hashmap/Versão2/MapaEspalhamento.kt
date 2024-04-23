@@ -1,28 +1,19 @@
-class MapaEspalhamento(private val tamanhoTabela: Int = 100): Espalhavel {
+import java.util.UUID
 
-	private var tabelaEspalhamento: Array<Any?> = arrayOfNulls(tamanhoTabela)
+//Clusterização, Conteinerização
+class MapaEspalhamento(private val tamanhoTabela: Int = 10): Espalhavel {
+
+	private var tabelaEspalhamento: Array<ListaDinamica> = Array(tamanhoTabela) { ListaDinamica() }
+
 	//Controla quantos elementos há na estrutura Mapa Espalhamento (HashMap)
 	private var quantidade = 0
 	
 	//funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
-	//baseado no primeiro caracter da chave
+	//baseado na paridade da chave (par, impar)
 	private fun funcaoEspalhamento(chave: Any): Int {
-		val chaveString = chave.toString()
-		val letraInicial = chaveString.lowercase()[0]
-		return letraInicial.code % tamanhoTabela
-	}
-
-	///funcao que espalha os elementos "chave,valor" para cairem em listas diferentes
-	//baseado em todos os caracteres da chave
-	private fun funcaoEspalhamento2(chave: Any): Int {
-		val chaveString = chave.toString()
-
-		var total = 0
-		for (i in 0 until chaveString.length) {
-			val letra = chaveString.lowercase()[i]
-			total += letra.code
-		}
-		return total % tamanhoTabela
+		val uuid = chave as UUID
+		val ultimosBit = Math.abs(uuid.leastSignificantBits.toInt())
+		return (ultimosBit % 2)
 	}	
 	
 	override fun adicionar(mapa: Mapa) {

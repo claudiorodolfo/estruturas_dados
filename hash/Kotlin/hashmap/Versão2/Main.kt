@@ -13,7 +13,7 @@ fun main() {
 	val c6 = Cliente("Carlos Eduardo", 56)
 		
 	//popula a Estrutura MapaEspalhamento
-	var hashmap: Espalhavel = MapaEspalhamento(26)
+	var hashmap: Espalhavel = MapaEspalhamento(2)
 
 	val k1 = UUID.randomUUID()
 	hashmap.adicionar(Mapa(k1, c1))
@@ -34,30 +34,31 @@ fun main() {
 	hashmap.adicionar(Mapa(k6, c6))
 	
 	//chave para testes
-	var chave = k1;
+	var chave = k1;	//Cliente("Claudio Rodolfo", 30)
 	val clienteTemp = hashmap.buscar(chave) as Cliente
 	println("a idade de $chave é: ${clienteTemp.idade}")
 		
-	//verifica se há elemento com a chave maria
-	chave = k3
+	//verifica se há elemento com a chave k2
+	chave = k2	//Cliente("Maria Isabel", 12)
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("nao contem a chave $chave")
 
-	//verifica se há elemento com a chave jorge
-	chave = UUID.randomUUID()
+	//verifica se há elemento com uma chave qualquer
+	chave = UUID.randomUUID()	//Cliente não existente
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("nao contem a chave $chave")
 		
-	//remove o elemento referenciado pela chave maria
+	//remove o elemento referenciado pela chave k2
 	hashmap.remover(k2)
 
-	chave = k2
+	//verifica se há elemento com a chave k2
+	chave = k2	//Cliente("Maria Isabel", 12)
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("não contem a chave $chave")	
 

@@ -17,37 +17,32 @@ fun main() {
 	hashmap.adicionar(Mapa("carlos", c6))
 	
 	//chave para testes
-	var chave = "clro";
+	var chave = "clro";	//Cliente("Claudio Rodolfo", 30)
 	val clienteTemp = hashmap.buscar(chave) as Cliente
 	println("a idade de $chave é: ${clienteTemp.idade}")
 		
 	//verifica se há elemento com a chave maria
-	chave = "maria"
+	chave = "maria"	//Cliente("Maria Isabel", 12)
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("nao contem a chave $chave")
 
 	//verifica se há elemento com a chave jorge
-	chave = "jorge"
+	chave = "jorge"	//Cliente não existente
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("nao contem a chave $chave")
 		
 	//remove o elemento referenciado pela chave maria
 	hashmap.remover("maria")
-	chave = "maria"
+
+	//verifica se há elemento com a chave maria
+	chave = "maria"	//Cliente("Maria Isabel", 12)
 	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
+		println("contem a chave $chave,\nreferenciando o objeto ${hashmap.buscar(chave)}")
 	else
 		println("não contem a chave $chave")
-		
-	//verifica se há elemento com a chave maria
-	chave = "maria"
-	if (hashmap.contemChave(chave))
-		println("contem a chave $chave")
-	else
-		println("nao contem a chave $chave")		
-
+	
 }
