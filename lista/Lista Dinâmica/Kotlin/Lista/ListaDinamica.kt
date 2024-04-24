@@ -139,14 +139,15 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				//Codigo de posicionamento do ponteiro auxiliar, no nodo
 				//que será feita alguma operação. Esse codigo é o mesmo
 				//para os metodos update, delete, select e insert
-				/* 
+				/*
 				var ponteiroAuxiliar = ponteiroInicio
 				for (i in 0 until posicao)
 					ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 				///////////////////////////////
-				//val ponteiroProximo = ponteiroAuxiliar
-				//val ponteiroAnterior = ponteiroAuxiliar?.anterior ?: ponteiroFim
-
+				val ponteiroProximo = ponteiroAuxiliar
+				val ponteiroAnterior = ponteiroFim
+				if (ponteiroAuxiliar != null)
+					ponteiroAnterior = ponteiroAuxiliar.anterior
 				*/
 				var ponteiroAnterior: NoDuplo? = null
 				var ponteiroProximo = ponteiroInicio
