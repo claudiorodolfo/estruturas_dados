@@ -1,6 +1,7 @@
 Espalhamento (Hash)
 
-//Usados como Slots da ED Espalhamento.
+//Usados como Slots/Cluters/Containers da ED Espalhamento (Hash) do tipo Encadeamento Direto.
+NoDuplo.kt
 Listavel.kt
 ListaDinamica.kt
 
@@ -8,8 +9,8 @@ ListaDinamica.kt
 //Um mapa é formado por uma chave e um objeto qualquer associado a essa chave.
 Mapa.kt
 
-//Cliente que contém nome e idade foi um dado armazenado no Mapa para teste.
-//Lembrando que o objeto pode ser de qualquer tipo de objeto, uma vez que o dado do Mapa é do tipo Object.
+//Cliente que contém nome e idade. Este foi um dado armazenado no Mapa para teste.
+//Lembrando que o objeto pode ser de qualquer tipo de objeto, uma vez que o dado do Mapa é do tipo Any.
 Cliente.kt
 
 //Arquivos que realmente compõem a estrutura de dados Espalhamento (Hash).
