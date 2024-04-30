@@ -204,5 +204,5 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 			ponteiroAuxiliar = ponteiroAuxiliar?.proximo
 		}
 		return "$resultado]"
-	}	
+	}
 }
