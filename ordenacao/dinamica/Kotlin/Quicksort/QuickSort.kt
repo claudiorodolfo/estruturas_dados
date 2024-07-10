@@ -1,8 +1,14 @@
 class QuickSort(private var lista: ListaDinamica): Ordenavel {
 
-    override fun imprimir(): String {
-        return lista.imprimir()
-    }
+	override fun imprimir() {
+		println(lista.imprimir())
+	}
+
+	private fun trocar(no1: NoDuplo, no2: NoDuplo) {
+		val temp = no1.dado
+		no1.dado = no2.dado
+		no2.dado = temp
+	}
 
 	override fun ordenar() {
 		quicksort(lista.ponteiroInicio, lista.ponteiroFim)
@@ -24,20 +30,14 @@ class QuickSort(private var lista: ListaDinamica): Ordenavel {
 		while (j != fim) {
 			if (j.dado as Int <= pivoValor as Int) {
 				i = if (i == null) inicio else i.proximo
-                trocar(i!!, j)
+				trocar(i!!, j)
 			}
 			j = j.proximo!!
 		}
 	
 		i = if (i == null) inicio else i.proximo
-        trocar(i!!, fim)
+		trocar(i!!, fim)
 	
 		return i
 	}
-
-    private fun trocar(no1: NoDuplo, no2: NoDuplo) {
-        val temp = no1.dado
-        no1.dado = no2.dado
-        no2.dado = temp
-    }    
 }
