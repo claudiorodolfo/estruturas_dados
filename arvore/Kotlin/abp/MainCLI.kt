@@ -11,17 +11,17 @@ fun main() {
             0 -> println("Saindo da ABP. Ate mais!")
             1 -> {
                 print("Digite o valor : ")
-                val valor = readLine()
+                val valor = readLine()!!.toInt()
                 arvore.inserir(valor)
             }
             2 -> {
                 print("Digite o valor : ")
-                val valor = readLine()             
+                val valor = readLine()!!.toInt()            
                 arvore.apagar(valor)
             }
             3 -> {
                 print("Digite o valor : ")
-                val valor = readLine()
+                val valor = readLine()!!.toInt()
                 println(arvore.existe(valor))
             }
             4 -> {

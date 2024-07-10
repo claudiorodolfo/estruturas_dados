@@ -22,7 +22,7 @@ class ABP: Arborizavel {
             while (noAuxiliar != null) {
                 println("noAuxiliar.dado ${noAuxiliar.dado}")
                 println("dado ${dado}")
-                if ((noAuxiliar.dado) as Int > dado as Int) {
+                if ((noAuxiliar.dado as Int) > (dado as Int)) {
                     //preciso ir para a esquerda
                     if (noAuxiliar.esquerda != null) {
                         noAuxiliar = noAuxiliar.esquerda
