@@ -21,11 +21,27 @@ class QuickSort(private var lista: Listavel): Ordenavel {
 		return "$resultado]"
 	}
 
-    private fun quickSort(inferior: NoDuplo?, superior: NoDuplo?) {
-        if (inferior != null && superior != null && inferior != superior && inferior.anterior != superior) {
-            val pivo = particao(inferior, superior)
-            quickSort(inferior, pivo?.anterior)
-            quickSort(pivo?.proximo, superior)
+    private fun particao(NoInferior: NoDuplo?, NoSuperior: NoDuplo?): NoDuplo? {
+        val dadoPivo = NoSuperior?.dado ?: 0
+        var i = NoInferior
+        for (j in NoInferior?.proximo? until NoSuperior)) {
+            if (j?.dado ?: 0 < dadoPivo) {
+                i = i?.proximo
+                trocar(i!!, j!!)
+            }
+        }
+        i = i?.proximo
+        troca(i!!, NoSuperior!!)
+        return i
+    }
+
+    private fun quickSort(NoInferior: NoDuplo?, NoSuperior: NoDuplo?) {
+        if (NoInferior != null && NoSuperior != null && 
+                NoInferior != NoSuperior && 
+                NoInferior.anterior != NoSuperior) {
+            val pivo = particao(NoInferior, NoSuperior)
+            quickSort(NoInferior, pivo?.anterior)
+            quickSort(pivo?.proximo, NoSuperior)
         }
     }
 	

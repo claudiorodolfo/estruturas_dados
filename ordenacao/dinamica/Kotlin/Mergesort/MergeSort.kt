@@ -21,32 +21,32 @@ class QuickSort(private var lista: Listavel): Ordenavel {
 		return "$resultado]"
 	}
 
-    private fun merge(left: Node?, right: Node?): Node? {
-        var result: Node? = null
-        if (left == null) return right
-        if (right == null) return left
+    private fun merge(noEsquerdo: NoDuplo?, noDireito: NoDuplo?): NoDuplo? {
+        var result: NoDuplo? = null
+        if (noEsquerdo == null) return noDireito
+        if (noDireito == null) return noEsquerdo
 
-        if (left.data <= right.data) {
-            result = left
-            result.next = merge(left.next, right)
+        if (noEsquerdo.data <= noDireito.data) {
+            result = noEsquerdo
+            result.next = merge(noEsquerdo.next, noDireito)
             result.next?.prev = result
         } else {
-            result = right
-            result.next = merge(left, right.next)
+            result = noDireito
+            result.next = merge(noEsquerdo, noDireito.next)
             result.next?.prev = result
         }
         return result
     }
 	
-    private fun mergeSort(inicio: Node?): Node? {
+    private fun mergeSort(inicio: NoDuplo?): NoDuplo? {
         if (inicio == null || inicio.next == null) return inicio
-        val (left, right) = splitList(inicio)
-        val sortedLeft = mergeSort(left)
-        val sortedRight = mergeSort(right)
-        return merge(sortedLeft, sortedRight)
+        val (noEsquerdo, noDireito) = splitList(inicio)
+        val sortednoEsquerdo = mergeSort(noEsquerdo)
+        val sortednoDireito = mergeSort(noDireito)
+        return merge(sortednoEsquerdo, sortednoDireito)
     }
 	
-    private fun splitList(start: Node?): Pair<Node?, Node?> {
+    private fun splitList(start: NoDuplo?): Pair<NoDuplo?, NoDuplo?> {
         var fast = start
         var slow = start
         while (fast?.next != null && fast.next?.next != null) {
@@ -60,11 +60,11 @@ class QuickSort(private var lista: Listavel): Ordenavel {
 	
     //sort
     override fun ordenar() {
-        head = mergeSort(head)
-        var temp = head
-        while (temp?.next != null) {
-            temp = temp.next
+        head = mergeSort(lista.ponteiroInicio)
+        var temp = lista.ponteiroInicio
+        while (temp?.proximo != null) {
+            temp = temp.pfoximo
         }
-        tail = temp
+        lista.ponteiroFim = temp
     }
 }
