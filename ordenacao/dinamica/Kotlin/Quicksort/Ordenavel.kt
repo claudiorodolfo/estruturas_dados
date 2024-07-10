@@ -1,4 +1,4 @@
 interface Ordenavel {
-    fun imprimir()
+    fun imprimir(): String
     fun ordenar()
 }
