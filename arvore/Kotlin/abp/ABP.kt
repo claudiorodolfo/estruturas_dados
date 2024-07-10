@@ -71,25 +71,25 @@ class ABP: Arborizavel {
 
     private fun imprimirPreOrdemRec(raiz: NoTriplo?): String {
         var resultado = ""
-        if (raiz != null) {
+        if (raiz != null)
             resultado = "${raiz.dado} ${imprimirPreOrdemRec(raiz.esquerda)} ${imprimirPreOrdemRec(raiz.direita)}"
-        }
+
         return resultado
     }
 
     private fun imprimirEmOrdemRec(raiz: NoTriplo?): String {
         var resultado = ""     
-        if (raiz != null) {
-            resultado = "${imprimirEmOrdemRec(raiz.esquerda)} ${raiz.dado.toString()} ${imprimirEmOrdemRec(raiz.direita)}"
-        }
+        if (raiz != null)
+            resultado = "${imprimirEmOrdemRec(raiz.esquerda)} ${raiz.dado} ${imprimirEmOrdemRec(raiz.direita)}"
+        
         return resultado 
     }
 
     private fun imprimirPosOrdemRec(raiz: NoTriplo?): String {
         var resultado = ""       
-        if (raiz != null) {
-            resultado = "${imprimirPosOrdemRec(raiz.esquerda)} ${imprimirPosOrdemRec(raiz.direita)} ${raiz.dado.toString()}"
-        }
+        if (raiz != null) 
+            resultado = "${imprimirPosOrdemRec(raiz.esquerda)} ${imprimirPosOrdemRec(raiz.direita)} ${raiz.dado}"
+
         return resultado            
     }
 
