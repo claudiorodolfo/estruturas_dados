@@ -15,7 +15,8 @@ class QuickSort(private var lista: ListaDinamica): Ordenavel {
 	}	
 	
 	private fun quicksort(inicio: NoDuplo?, fim: NoDuplo?) {
-		if (inicio != null && fim != null && inicio != fim && inicio != fim.proximo) {
+		if (inicio != null && fim != null && 
+				inicio != fim && inicio != fim.proximo) {
 			val pivo = particionar(inicio, fim)
 			quicksort(inicio, pivo.anterior)
 			quicksort(pivo.proximo, fim)
@@ -23,21 +24,18 @@ class QuickSort(private var lista: ListaDinamica): Ordenavel {
 	}
 	
 	private fun particionar(inicio: NoDuplo, fim: NoDuplo): NoDuplo {
-		val pivoValor = fim.dado
-		var i = inicio.anterior
-	
-		var j = inicio
-		while (j != fim) {
-			if (j.dado as Int <= pivoValor as Int) {
-				i = if (i == null) inicio else i.proximo
-				trocar(i!!, j)
+		val pivoValor = inicio.dado
+		var i = inicio
+		var j = inicio.proximo
+
+		while (j != null && j != fim.proximo) {
+			if ((j.dado as Int) < (pivoValor as Int)) {
+				i = i.proximo ?: i			
+				trocar(i, j)
 			}
-			j = j.proximo!!
-		}
-	
-		i = if (i == null) inicio else i.proximo
-		trocar(i!!, fim)
-	
+			j = j.proximo
+		}		 		
+		trocar(i, inicio)
 		return i
 	}
 }
