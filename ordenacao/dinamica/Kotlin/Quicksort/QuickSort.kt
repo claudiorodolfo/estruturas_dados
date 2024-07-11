@@ -15,12 +15,12 @@ class QuickSort(private var lista: ListaDinamica): Ordenavel {
 	}	
 	
 	private fun quicksort(inicio: NoDuplo?, fim: NoDuplo?) {
-		if (inicio != null && fim != null && 
-				inicio != fim && inicio != fim.proximo) {
-			val pivo = particionar(inicio, fim)
-			quicksort(inicio, pivo.anterior)
-			quicksort(pivo.proximo, fim)
-		}
+		if (inicio != null && fim != null)	//lista não está vazia
+			if (inicio != fim && inicio != fim.proximo) {
+				val pivo = particionar(inicio, fim)
+				quicksort(inicio, pivo.anterior)
+				quicksort(pivo.proximo, fim)
+			}
 	}
 	
 	private fun particionar(inicio: NoDuplo, fim: NoDuplo): NoDuplo {
