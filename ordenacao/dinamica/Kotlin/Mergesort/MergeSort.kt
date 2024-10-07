@@ -28,23 +28,23 @@ class MergeSort(private var lista: ListaDinamica): Ordenavel {
 		mergesort(direita)
 	
 		// Mesclar as partes ordenadas
-		lista.ponteiroInicio = merge(esquerda.inicio, direita.inicio)
+		lista.ponteiroInicio = intercalar(esquerda.ponteiroInicio, direita.ponteiroInicio)
 	}
 
     //merge
     // Função para mesclar duas listas ordenadas
-	private fun mesclar(esq: NoDuplo?, dir: NoDuplo?): NoDuplo? {
+	private fun intercalar(esq: NoDuplo?, dir: NoDuplo?): NoDuplo? {
     	if (esq == null) return dir
     	if (dir == null) return esq
 
 	    var resultado: NoDuplo? = null
-	    if (esq.valor <= dir.valor) {
+	    if ((esq.valor as Int) <= (dir.valor as Int)) {
         	resultado = esq
-        	resultado.proximo = mesclar(esq.proximo, dir)
+        	resultado.proximo = intercalar(esq.proximo, dir)
         	resultado.proximo?.anterior = resultado
     	} else {
 	        resultado = dir
-        	resultado.proximo = mesclar(esq, dir.proximo)
+        	resultado.proximo = intercalar(esq, dir.proximo)
         	resultado.proximo?.anterior = resultado
     	}
     	return resultado
@@ -61,18 +61,18 @@ fun dividirLista(lista: ListaDinamica): Pair<ListaDinamica, ListaDinamica> {
     while (rapido != null) {
         rapido = rapido.proximo
         if (rapido != null) {
-            lento = lento!!.proximo
+            lento = lento.proximo
             rapido = rapido.proximo
         }
     }
 
     // lento é o nó do meio
     val direita = ListaDinamica()
-    direita.inicio = lento?.proximo
+    direita.ponteiroInicio = lento?.proximo
     lento?.proximo = null  // Separar a lista na metade
 
     val esquerda = ListaDinamica()
-    esquerda.inicio = inicio
+    esquerda.ponteiroInicio = inicio
 
     return Pair(esquerda, direita)
 }
