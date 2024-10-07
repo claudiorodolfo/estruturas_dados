@@ -3,9 +3,9 @@
 // Interface para o controle de reservas de hotéis
 interface ControleReservas {
     /**
-     * Cria uma nova reserva. Recebe Identificador único do cliente, Data de entrada no hotel, Data de saída do hotel e Lista de serviços adicionais solicitados. Retorna a Reserva criada.
+     * Cria uma nova reserva. Recebe Identificador único do cliente, Data de entrada no hotel, Data de saída do hotel, Lista de serviços adicionais solicitados e Status(Pendente, Confirmada, Cancelada). Retorna a Reserva criada.
      */
-    fun criaReserva(idCliente: String, dataEntrada: DateTime, dataSaida: DateTime, servicosAdicionais: List<String>): Reserva
+    fun criaReserva(idCliente: String, dataEntrada: DateTime, dataSaida: DateTime, servicosAdicionais: List<String>, status: String): Reserva
     /**
      * Adiciona uma nova reserva à lista de reservas. Recebe a reserva a ser adicionada.
      */
@@ -27,9 +27,23 @@ interface ControleReservas {
     fun atualizarReserva(idCliente: String, novaReserva: Reserva): Boolean
 
     /**
+     * Cancela a reserva de um cliente alterando seu status para "Cancelada". Recebe Identificador do cliente. Retorna true se a reserva foi cancelada com sucesso, false caso contrário.
+     */
+    fun cancelarReserva(idCliente: String): Boolean    
+    /**
      * Retorna todas as reservas atuais. Retorna uma Lista de todas as reservas registradas.
      */
     fun listarReservas(): List<Reserva>
+
+    /**
+     * Lista reservas por status (Pendente, Confirmada, Cancelada). Recebe Status desejado das reservas. Retorna uma lista de reservas com o status desejado.
+     */
+    fun listarReservasPorStatus(status: String): List<Reserva>
+
+    /**
+     * Lista as reservas de um determinado cliente com base no nome. Recebe Nome do cliente. Retorna uma lista de reservas associadas ao cliente.
+     */
+    fun listarReservasPorCliente(nomeCliente: String): List<Reserva>    
 }
 
 //Prova Tipo 2
