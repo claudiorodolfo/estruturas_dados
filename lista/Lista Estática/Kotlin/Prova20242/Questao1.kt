@@ -5,7 +5,7 @@ interface ControleReservas {
     /**
      * Cria uma nova reserva. Recebe Identificador único do cliente, Data de entrada no hotel, Data de saída do hotel e Lista de serviços adicionais solicitados. Retorna a Reserva criada.
      */
-	fun criaReserva(idCliente: String, dataEntrada: DateTime, dataSaida: DateTime, servicosAdicionais: List<String>): Reserva
+    fun criaReserva(idCliente: String, dataEntrada: DateTime, dataSaida: DateTime, servicosAdicionais: List<String>): Reserva
     /**
      * Adiciona uma nova reserva à lista de reservas. Recebe a reserva a ser adicionada.
      */
@@ -38,7 +38,7 @@ interface OrganizadorReceitas {
     /**
      * Cria uma nova receita. Recebe Nome da receita, Lista de ingredientes da receita, Instruções de preparo da receita e Categoria da receita (favorita, testada, etc.). Retorna a Receita criada.
      */
-	fun criaReceita(nome: String, ingredientes: List<String>, modoPreparo: String, categoria: Categoria): Receita
+    fun criaReceita(nome: String, ingredientes: List<String>, modoPreparo: String, categoria: Categoria): Receita
 	 
     /**
      * Adiciona uma nova receita à lista de receitas. Recebe a Receita a ser adicionada.
@@ -87,7 +87,7 @@ interface ControladorHabitos {
     /**
      * Cria um novo hábito. Recebe Nome do hábito, Breve descrição do hábito e Data em que o hábito deve ser realizado. Retorna o Hábito criado.
      */
-	fun criaHabito(nome: String, descricao: String, realizado: Boolean, data: DateTime): Habito
+    fun criaHabito(nome: String, descricao: String, realizado: Boolean, data: DateTime): Habito
 
     /**
      * Adiciona um novo hábito à lista de hábitos. Recebe o Hábito a ser adicionado.
@@ -136,7 +136,7 @@ interface CatalogoFilmesSeries {
     /**
      * Cria um novo filme ou série ao catálogo. Recebe Título do filme ou série, Tipo do conteúdo (se é "filme" ou "série"), Ano de lançamento, Avaliação e se já foi assistido. Retorna o filme ou série criada.
      */
-	fun criaFilmeSerie(titulo: String, tipo: String, ano: Int, avaliacao: Double, assistido: Boolean): FilmeSerie
+    fun criaFilmeSerie(titulo: String, tipo: String, ano: Int, avaliacao: Double, assistido: Boolean): FilmeSerie
 	
     /**
      * Adiciona um novo filme ou série ao catálogo. Recebe o Filme ou Série a ser adicionado.
