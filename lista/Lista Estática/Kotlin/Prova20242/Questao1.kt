@@ -178,11 +178,6 @@ interface CatalogoFilmesSeries {
     fun listarItens(): List<FilmeSerie>
 
     /**
-     * Lista todos os filmes ou séries assistidos(as). Retorna uma lista de filmes ou séries que já foram assistidos(as).
-     */
-    fun listarAssistidos(): List<FilmeSerie>
-
-    /**
      * Lista todos os filmes ou séries não assistidos(as). Retorna uma lista de filmes ou séries ainda não assistidos(as).
      */
     fun listarNaoAssistidos(): List<FilmeSerie>
