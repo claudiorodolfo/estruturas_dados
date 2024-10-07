@@ -75,8 +75,8 @@ class ListaEstaticaCircular {
 			} else {
 				println("Invalid Index")
 			}
-        else
-        	resultado = "[]"
+		else
+			resultado = "[]"
 
 		return resultado
 	}
@@ -96,8 +96,8 @@ class ListaEstaticaCircular {
 			} else {
 				println("Invalid Index")
 			}
-        else
-        	resultado = "[]"
+		else
+			resultado = "[]"
 
 		return resultado	
 	} 
