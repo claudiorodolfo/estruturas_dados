@@ -43,7 +43,7 @@ class ListaEstaticaCircular {
 				var ponteiroAux = retroceder(ponteiroInicio)
 				for (i in 0 ..< posicao) {
 					var anterior = ponteiroAux
-                    var proximo = avancar(anterior)
+					var proximo = avancar(anterior)
 
 					dados[anterior] = dados[proximo]
 					ponteiroAux = avancar(ponteiroAux)
@@ -69,7 +69,7 @@ class ListaEstaticaCircular {
 				val ponteiroAux = ponteiroInicio
 				for (i in 0 .. posicao) {
 					resultado += "${dados[(ponteiroAux+i) % dados.size]}"
-                    if (i != posicao) resultado += ", "		
+					if (i != posicao) resultado += ", "		
 				}
 				resultado += "]"
 			} else {
@@ -90,7 +90,7 @@ class ListaEstaticaCircular {
 				val ponteiroAux = logicaPraFisica(posicao)
 				for (i in 0 .. (quantidade-posicao-1)) {
 					resultado += "${dados[(ponteiroAux+i) % dados.size]}"
-                    if (i != quantidade-posicao-1) resultado += ", "	
+					if (i != quantidade-posicao-1) resultado += ", "	
 				}
 				resultado += "]"
 			} else {
