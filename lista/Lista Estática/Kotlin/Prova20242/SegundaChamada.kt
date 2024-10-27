@@ -42,13 +42,11 @@ fun decToHex(data: String): String {
 }
 
 //Questão 3
-fun reverse(): Array<Int> {
-	for (i in 0 until quantidade/2) {
-		val indiceInicio = (ponteiroInicio+i)%dados.size
-		val indiceFim = ((ponteiroFim+dados.size)-i)%dados.size
-		//realiza a troca dos elementos
-		val temp = dados[indiceInicio]
-		dados[indiceInicio] = dados[indiceFim]
-		dados[indiceFim] = temp
+fun reverse(): Array<Any?> {
+	val arrayInvertido: Array<Any?> = ArrayOfNulls(quantidade)
+	for (i in 0 until quantidade) {
+		val dado = dados[(ponteiroInicio+i)%dados.size]
+		arrayInvertido[quantidade-1-i] = dado
 	}
+	return arrayInvertido
 }
