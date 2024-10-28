@@ -24,7 +24,7 @@ fun occurrences(data: Any?): Array<Int> {
 //Questão 2
 fun decToHex(data: String): String {
 	var dividendo = data.toInt()
-	//coloca os restos da divisões sucessivas por 16, numa pilha
+	//coloca os restos da divisões sucessivas por 16, na pilha
 	while (dividendo != 0) {
 		val resto = dividendo % 16
 		val quociente = dividendo / 16

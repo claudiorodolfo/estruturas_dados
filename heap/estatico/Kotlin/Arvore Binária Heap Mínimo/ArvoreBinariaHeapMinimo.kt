@@ -14,15 +14,74 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
     }
 
     private fun ajustarAcima(indice: Int) {
-        var indiceAtual = indice
-        while (indiceAtual != 0) {
-            val indicePai = indicePai(indiceAtual)
-            if (dados[indicePai] > dados[indiceAtual]) {
-                trocar(indiceAtual, indicePai)
-                indiceAtual = indicePai
+        var indiceFilho = indice
+        while (indiceFilho != 0) {
+            val indicePai = indicePai(indiceFilho)
+            if (dados[indicePai] > dados[indiceFilho]) {
+                trocar(indiceFilho, indicePai)	// Troca o elemento com seu pai se for menor
+                indiceFilho = indicePai		//O pai passa a ser o novo filho, para continuar ajustando acima
             } else {
                 break
             }
+        }
+    }
+    
+    private fun ajustarAcimaRec(indice: Int) {
+        var indiceFilho = indice
+        // Caso base: o elemento está na raiz, então não precisa ajustar
+        if (indiceFilho == 0) return  
+    
+        val indicePai = indicePai(indiceFilho)
+        if (dados[indicePai] > dados[indiceFilho]) {
+            trocar(indiceFilho, indicePai)	// Troca o elemento com seu pai se for menor
+            ajustarAcimaRec(indicePai)			// Chama recursivamente para continuar ajustando acima
+        }
+    }
+    
+    private fun ajustarAbaixo(indice: Int) {
+        var pai = indice
+    
+        while (pai <= ponteiroFim) {
+            val filhoEsquerdo = indiceFilhoEsquerda(pai)
+            val filhoDireito = indiceFilhoDireita(pai)
+            var menor = pai  // Assume que o pai é o menor inicialmente
+    
+            if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
+                if (dados[filhoEsquerdo] < dados[menor])
+                    menor = filhoEsquerdo
+    
+            if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
+                if (dados[filhoDireito] < dados[menor])
+                    menor = filhoDireito
+    
+            // O menor não é o pai. Realiza a troca e continua ajustando para baixo
+            if (menor != pai) {
+                trocar(pai, menor)
+                pai = menor
+            } else {
+                break // Se o menor é o pai, significa que o heap está ajustado
+            }
+        }
+    }
+      
+    private fun ajustarAbaixoRec(indice: Int) {
+        val pai = indice
+        val filhoEsquerdo = indiceFilhoEsquerda(pai)
+        val filhoDireito = indiceFilhoDireita(pai)
+        var menor = pai;	// Assume que o pai é o menor inicialmente
+    
+        if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
+            if (dados[menor] > dados[filhoEsquerdo])	//filho menor que o pai
+                menor = filhoEsquerdo
+    
+        if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
+            if (dados[menor] > dados[filhoDireito])		//filho menor que o pai
+                menor = filhoDireito
+                
+        // O menor não é o pai. Realiza a troca e continua ajustando para baixo
+        if (menor != pai) {
+            trocar(pai, menor)
+            ajustarAbaixoRec(menor)
         }
     }
 
@@ -36,25 +95,6 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
 
 	private fun indiceFilhoDireita(indicePai: Int): Int	{
         return (2 * indicePai + 1) + 1
-    }
-
-    private fun ajustarAbaixo(pai: Int) {
-        val filhoEsquerdo = indiceFilhoEsquerda(pai)
-        val filhoDireito = indiceFilhoDireita(pai)
-        var menor = pai;
-
-        if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor] > dados[filhoEsquerdo])
-                menor = filhoEsquerdo
-
-        if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array
-            if (dados[menor] > dados[filhoDireito])
-                menor = filhoDireito
-
-        if (menor != pai) {
-            trocar(pai, menor)
-            ajustarAbaixo(menor)
-        }
     }
 	
     private fun trocar(i: Int, j: Int) {
