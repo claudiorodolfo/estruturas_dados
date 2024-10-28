@@ -46,12 +46,12 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
             val filhoDireito = indiceFilhoDireita(pai)
             var menor = pai  // Assume que o pai é o menor inicialmente
     
-            if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
-                if (dados[filhoEsquerdo] < dados[menor])
+            if (filhoEsquerdo <= ponteiroFim)  // está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
+                if (dados[filhoEsquerdo] < dados[menor])  //filho menor que o pai?
                     menor = filhoEsquerdo
     
-            if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
-                if (dados[filhoDireito] < dados[menor])
+            if (filhoDireito <= ponteiroFim)  // está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
+                if (dados[filhoDireito] < dados[menor])  // filho menor que o pai?
                     menor = filhoDireito
     
             // O menor não é o pai. Realiza a troca e continua ajustando para baixo
@@ -70,15 +70,15 @@ class ArvoreBinariaHeapMinimo(private val tamanho: Int = 10): Amontoavel {
         val filhoDireito = indiceFilhoDireita(pai)
         var menor = pai;    // Assume que o pai é o menor inicialmente
     
-        if (filhoEsquerdo <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
-            if (dados[menor] > dados[filhoEsquerdo])    //filho menor que o pai
+        if (filhoEsquerdo <= ponteiroFim)  // está dentro dos valores válidos do array (ou seja, o nó pai tem filho esquerdo)?
+            if (dados[menor] > dados[filhoEsquerdo])  // filho menor que o pai?
                 menor = filhoEsquerdo
     
-        if (filhoDireito <= ponteiroFim) //está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
-            if (dados[menor] > dados[filhoDireito])        //filho menor que o pai
+        if (filhoDireito <= ponteiroFim)  // está dentro dos valores válidos do array (ou seja, o nó pai tem filho direito)?
+            if (dados[menor] > dados[filhoDireito])  // filho menor que o pai?
                 menor = filhoDireito
                 
-        // O menor não é o pai. Realiza a troca e continua ajustando para baixo
+        // O menor não é o pai? Realiza a troca e continua ajustando para baixo
         if (menor != pai) {
             trocar(pai, menor)
             ajustarAbaixoRec(menor)
