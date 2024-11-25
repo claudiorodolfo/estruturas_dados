@@ -6,7 +6,7 @@ fun main() {
 	println(fila.frente()) //A	
 	fila.enfileirarInicio("B")
 	fila.desenfileirarFim()
-    fila.enfileirarFim("c")
+	fila.enfileirarFim("c")
 	fila.atualizarFim("C")
 	fila.desenfileirarInicio()
 	fila.enfileirarInicio("D") 
