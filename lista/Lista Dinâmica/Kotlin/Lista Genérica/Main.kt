@@ -1,5 +1,5 @@
 fun main() {
-    var lista: Listavel = ListaDinamica()
+    var lista: Listavel<String> = ListaDinamica()
     lista.anexar("A")  
     lista.anexar("B")   
     lista.inserir(2,"C")

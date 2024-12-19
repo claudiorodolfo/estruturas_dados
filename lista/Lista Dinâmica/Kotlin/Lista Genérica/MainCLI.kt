@@ -1,5 +1,5 @@
 fun main() {
-    var lista: Listavel = ListaDinamica()
+    var lista: Listavel<String> = ListaDinamica()
     do {
         exibirMenu()
         print("Escolha uma opcao (0-7): ")

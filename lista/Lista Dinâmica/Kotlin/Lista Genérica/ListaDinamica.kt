@@ -1,11 +1,11 @@
-class ListaDinamica(private val tamanho: Int = 10) : Listavel {
+class ListaDinamica<T>(private val tamanho: Int = 10) : Listavel<T> {
 
-	private var ponteiroInicio: NoDuplo? = null
-	private var ponteiroFim: NoDuplo? = null
+	private var ponteiroInicio: NoDuplo<T>? = null
+	private var ponteiroFim: NoDuplo<T>? = null
 	private var quantidade = 0
 
 	//idêntico ao enfileirar de FilaDinamica
-	override fun anexar(dado: Any?) {
+	override fun anexar(dado: T?) {
 		if (!estaCheia()) {
 			val noTemp = NoDuplo(dado)
 			//noTemp.dado = dado
@@ -22,7 +22,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		}
 	}
 
-	override fun selecionarTodos(): Array<Any?> {        
+	override fun selecionarTodos(): Array<T?> {        
 		var dadosAux: Array<Any?> = arrayOfNulls(quantidade)
 		if (!estaVazia()) {
 			var ponteiroAuxiliar = ponteiroInicio
@@ -33,11 +33,11 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		} else {
 			println("Lista Vazia!")
 		}
-		return dadosAux
+		return dadosAux as Array<T?>
 	}
 
-	override fun selecionar(posicao: Int): Any? {
-		var dadoAux: Any? = null
+	override fun selecionar(posicao: Int): T? {
+		var dadoAux: T? = null
 		if (!estaVazia()) {
 			if (posicao >= 0 && posicao < quantidade) {
 				////////////////////////////////
@@ -58,7 +58,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		return dadoAux
 	}
 
-	override fun atualizar (posicao: Int, dado: Any?) {
+	override fun atualizar (posicao: Int, dado: T?) {
 		if (!estaVazia()) {
 			if (posicao >= 0 && posicao < quantidade) {
 				////////////////////////////////
@@ -84,14 +84,14 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		quantidade = 0
 	}
 
-	override fun apagarTodos(): Array<Any?> {
-		var dadosAux: Array<Any?> = selecionarTodos()
+	override fun apagarTodos(): Array<T?> {
+		var dadosAux: Array<T?> = selecionarTodos()
 		limpar()
 		return dadosAux
 	}
 
-	override fun apagar(posicao: Int): Any? {
-		var dadoAux: Any? = null
+	override fun apagar(posicao: Int): T? {
+		var dadoAux: T? = null
 		if (!estaVazia()) {
 			if (posicao >= 0 && posicao < quantidade) {
 				////////////////////////////////
@@ -129,7 +129,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 		return dadoAux
 	}
 
-	override fun inserir(posicao: Int, dado: Any?) {
+	override fun inserir(posicao: Int, dado: T?) {
 		if (!estaCheia()) {
 			if (posicao >= 0 && posicao <= quantidade) {
 				val noTemp = NoDuplo(dado)
@@ -149,7 +149,7 @@ class ListaDinamica(private val tamanho: Int = 10) : Listavel {
 				if (ponteiroAuxiliar != null)
 					ponteiroAnterior = ponteiroAuxiliar.anterior
 				*/
-				var ponteiroAnterior: NoDuplo? = null
+				var ponteiroAnterior: NoDuplo<T>? = null
 				var ponteiroProximo = ponteiroInicio
 
 				for (i in 0 until posicao) {

@@ -1,4 +1,4 @@
-data class NoDuplo (var dado: Any? = null) {
-	var anterior: NoDuplo? = null
-	var proximo: NoDuplo? = null
+data class NoDuplo<T> (var dado: T? = null) {
+	var anterior: NoDuplo<T>? = null
+	var proximo: NoDuplo<T>? = null
 }
