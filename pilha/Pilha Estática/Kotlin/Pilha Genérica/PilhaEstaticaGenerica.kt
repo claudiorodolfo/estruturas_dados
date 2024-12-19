@@ -30,7 +30,14 @@ class PilhaEstaticaGenerica<T> : Empilhavel<T> {
         return dadoTopo
     }
 
-    override fun topo(): T? {
+	override fun atualizar(dado: T?) {
+		if (!estaVazia())
+			dados[ponteiroTopo] = dado
+		else
+			println("Pilha Vazia!")
+	}
+
+    override fun espiar(): T? {
         var dadoTopo: T? = null
         if (!estaVazia()) {
             dadoTopo = dados[ponteiroTopo] as T
