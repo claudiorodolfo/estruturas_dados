@@ -1,9 +1,9 @@
 fun main() {
-    var pilha: Empilhavel<Int> = PilhaDinamica(7)
+    var pilha: Empilhavel<String> = PilhaDinamica(7)
     do {
         exibirMenu()
         print("Escolha uma opcao (0-5): ")
-        val opcao = readLine()?.toIntOrNull()
+        val opcao = readLine()!!.toInt()
         
         when(opcao) {
             0 -> {
@@ -12,7 +12,7 @@ fun main() {
             }
             1 -> {
                 print("Digite o valor: ")
-                val valor = readLine()?.toIntOrNull()
+                val valor = readLine()
                 pilha.empilhar(valor)
             }
             2 -> {
@@ -25,7 +25,7 @@ fun main() {
             3 -> println("Topo: ${pilha.espiar()}")
             4 -> {
                 print("Digite o valor: ")
-                val valor = readLine()?.toIntOrNull()
+                val valor = readLine()
                 pilha.atualizar(valor)
             }
             5 -> println(pilha.imprimir())
