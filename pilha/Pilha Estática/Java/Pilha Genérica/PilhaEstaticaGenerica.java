@@ -23,6 +23,15 @@ public class PilhaEstaticaGenerica<T> implements Empilhavel<T> {
 		}
 	}
 
+	@Override	
+	public void atualizar(T dado) {
+		if(!estaVazia()) {
+			dados[ponteiroTopo] = dado;
+		} else {
+			System.err.println("Pilha Vazia!");
+		}
+	}
+	
 	@Override
 	public T desempilhar() {
 		T dadoTopo = null;
@@ -36,7 +45,7 @@ public class PilhaEstaticaGenerica<T> implements Empilhavel<T> {
 	}
 
 	@Override	
-	public T topo() {
+	public T espiar() {
 		T dadoTopo = null;
 		if(!estaVazia()) {
 			dadoTopo = dados[ponteiroTopo]; 

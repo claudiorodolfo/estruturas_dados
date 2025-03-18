@@ -1,7 +1,9 @@
 public interface Enfileiravel {
 	void enfileirar(Object elemento);
 	Object desenfileirar();
-	Object espiar();
+	Object frente();
+	Object atualizarInicio();
+	Object atualizarFim();	
 	
 	boolean estaCheia();
 	boolean estaVazia();

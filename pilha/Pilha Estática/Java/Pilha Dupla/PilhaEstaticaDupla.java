@@ -23,6 +23,15 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			System.err.println("Pilha1 Cheia!");
 		}
 	}
+
+	@Override
+	public void atualizar1(Object dado) {
+		if(!estaVazia1()) {
+			dados[ponteiroTopo1] = dado;
+		} else {
+			System.err.println("Pilha1 Vazia!");
+		}
+	}
 	
 	@Override
 	public Object desempilhar1() {
@@ -37,7 +46,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	}
 	
 	@Override
-	public Object topo1() {
+	public Object espiar1() {
 		Object dadoTopo = null;
 		if(!estaVazia1()) {
 			dadoTopo = dados[ponteiroTopo1]; 
@@ -80,6 +89,15 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			System.out.println("Pilha2 Cheia!");
 		}
 	}
+
+	@Override
+	public void atualizar2(Object dado) {
+		if(!estaVazia2()) {
+			dados[ponteiroTopo2] = dado;
+		} else {
+			System.out.println("Pilha2 Vazia!");
+		}
+	}
 	
 	@Override
 	public Object desempilhar2() {
@@ -94,7 +112,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	}
 	
 	@Override
-	public Object topo2() {
+	public Object espiar2() {
 		Object dadoTopo = null;
 		if(!estaVazia2()) {
 			dadoTopo = dados[ponteiroTopo2]; 

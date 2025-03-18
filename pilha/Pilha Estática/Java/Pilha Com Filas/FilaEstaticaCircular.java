@@ -31,6 +31,24 @@ public class FilaEstaticaCircular implements Enfileiravel {
 			System.err.println("Fila Cheia!");
 		}
 	}
+
+	@Override	
+	public void atualizarFim(Object dado){
+		if (!estaVazia()) {
+			dados[ponteiroFim] = dado;
+		} else {
+			System.err.println("Fila Vazia!");
+		}
+	}
+
+	@Override	
+	public void atualizarInicio(Object dado){
+		if (!estaVazia()) {		
+			dados[ponteiroInicio] = dado;
+		} else {
+			System.err.println("Fila Vazia!");
+		}
+	}
 	
 	@Override	
 	public Object desenfileirar(){
@@ -51,7 +69,7 @@ public class FilaEstaticaCircular implements Enfileiravel {
 	}
 	
 	@Override	
-	public Object espiar(){
+	public Object frente(){
 		Object dadoInicio = null;
 		if (!estaVazia()) {
 			dadoInicio = dados[ponteiroInicio];

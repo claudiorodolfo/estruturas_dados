@@ -24,6 +24,15 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 	}
 
 	@Override
+	public void atualizar(Object dado) {
+		if(!estaVazia()) {
+			dados[ponteiroTopo] = dado;
+		} else {
+			System.err.println("Pilha Vazia!");
+		}
+	}
+	
+	@Override
 	public Object desempilhar() {
 		Object dadoTopo = null;
 		if(!estaVazia()) {
@@ -36,7 +45,7 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 	}
 	
 	@Override
-	public Object topo() {
+	public Object espiar() {
 		Object dadoTopo = null;
 		if(!estaVazia()) {
 			dadoTopo = dados[ponteiroTopo]; 

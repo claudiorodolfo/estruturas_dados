@@ -29,6 +29,15 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 			System.err.println("Pilha Cheia!");
 		}			
 	}
+
+	@Override
+	public void atualizar(Object dado) {
+		if (!estaVazia()) {	
+			f1.atualizarInicio(dado);
+		} else {
+			System.err.println("Pilha Vazia!");
+		}			
+	}
 	
 	@Override	
 	public Object desempilhar() {
@@ -42,10 +51,10 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 	}
 	
 	@Override	
-	public Object topo() {
+	public Object espiar() {
 		Object dadoAux = null;
 		if (!estaVazia()) {		
-			return f1.espiar();	
+			return f1.frente();	
 		} else {
 			System.err.println("Pilha Vazia!");
 		}
