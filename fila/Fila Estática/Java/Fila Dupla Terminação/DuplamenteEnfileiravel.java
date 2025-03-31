@@ -1,18 +1,30 @@
 public interface DuplamenteEnfileiravel {
+	//NOVO
 	void enfileirarInicio(Object dado);
-	//enfileirar no final (funciona como o enfileirar de Enfileiravel)
+	//funciona como o enfileirar de Enfileiravel
 	void enfileirarFim(Object dado);
-	//desenfileirar no inicio (funciona como o desenfileirar de Enfileiravel)
+	
+	//funciona como o desenfileirar de Enfileiravel
 	Object desenfileirarInicio();
+	//NOVO
 	Object desenfileirarFim();
-	//espiar no inicio (funciona como o espiar de Enfileiravel)
-	Object espiarInicio();
-	//espiar no final
-	Object espiarFim();
-	//estaCheio (funciona como o estaCheia de Enfileiravel)
+	
+	//frente (funciona como o frente de Enfileiravel)
+	Object frente();
+	//NOVO
+	Object tras();
+
+	//funciona como o atualizarInicio de Enfileiravel
+	void atualizarInicio(Object dado);
+	//funciona como o atualizarFim de Enfileiravel
+	void atualizarFim(Object dado);
+	
+	//funciona como o estaCheia de Enfileiravel
 	boolean estaCheia();
-	//estaVazio (funciona como o estaVazia de Enfileiravel)
+	//funciona como o estaVazia de Enfileiravel
 	boolean estaVazia();
-	//paraTexto (funciona como o imprimir de Enfileiravel)
-	String imprimir();
+	//funciona como o imprimir de Enfileiravel
+	String imprimirDeFrentePraTras();
+	//NOVO
+	String imprimirDeTrasPraFrente();
 }

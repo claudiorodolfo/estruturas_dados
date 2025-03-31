@@ -11,50 +11,59 @@ public class PilhaEstatica implements Empilhavel {
 	public PilhaEstatica() {
 		this(10);
 	}
-
+	
 	@Override
-	public void empilhar(Object elemento) {
+	public void empilhar(Object dado) {
 		if(!estaCheia()) {
 			ponteiroTopo++;
-			dados[ponteiroTopo] = elemento;
+			dados[ponteiroTopo] = dado;
 		} else {
 			System.err.println("Pilha Cheia!");
+		}
+	}
+
+	@Override
+	public void atualizar(Object dado) {
+		if(!estaVazia()) {
+			dados[ponteiroTopo] = dado;
+		} else {
+			System.err.println("Pilha Vazia!");
 		}
 	}
 	
 	@Override	
 	public Object desempilhar() {
-		Object elementoTopo = null;
+		Object dadoTopo = null;
 		if(!estaVazia()) {
-			elementoTopo = dados[ponteiroTopo]; 
+			dadoTopo = dados[ponteiroTopo]; 
 			ponteiroTopo--;
 		} else {
 			System.err.println("Pilha Vazia!");
 		}
-		return elementoTopo;
+		return dadoTopo;
 	}
 	
 	@Override	
-	public Object topo() {
-		Object elementoTopo = null;
+	public Object espiar() {
+		Object dadoTopo = null;
 		if(!estaVazia()) {
-			elementoTopo = dados[ponteiroTopo]; 
+			dadoTopo = dados[ponteiroTopo]; 
 		} else {
 			System.err.println("Pilha Vazia!");
 		}
-		return elementoTopo;	
+		return dadoTopo;	
 	}
-	
-	@Override	
+		
+	@Override
 	public boolean estaCheia() {
-		return (ponteiroTopo == dados.length-1);
+		return (ponteiroTopo == dados.length - 1);
 	}
-	
-	@Override	
-	public boolean estaVazia(){
+		
+	@Override
+	public boolean estaVazia() {
 		return (ponteiroTopo == -1);
 	}
-	
+		
 	@Override
 	public String imprimir() {
 		String resultado = "[";

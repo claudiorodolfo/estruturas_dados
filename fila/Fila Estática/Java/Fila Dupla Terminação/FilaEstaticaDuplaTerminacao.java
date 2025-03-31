@@ -19,89 +19,78 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 	//funciona como o enfileirar de FilaEstaticaCircular
 	@Override
 	public void enfileirarFim(Object dado) {
-		if (!estaCheia()) {
-			ponteiroFim++;
-
-			if (ponteiroFim == dados.length) {
-				ponteiroFim = 0;
-			}
-			quantidade++;
-	
+		if (!estaCheia()){
+			ponteiroFim = avancar(ponteiroFim);
 			dados[ponteiroFim] = dado;
+			//não deixar ponteiroInicio esquecido, caso a estrutura esteja na 1ª inserção
+			if (estaVazia())
+				ponteiroInicio = ponteiroFim;
+			
+			quantidade++;
 		} else {
-			System.err.println("Fila Cheia!");
-		}			
+			System.err.println("Queue is full!");
+		}	
 	}
 	
 	//funciona como o desenfileirar de FilaEstaticaCircular
 	@Override	
 	public Object desenfileirarInicio() {
-		Object dadoInicio = null;	
-		if (!estaVazia()) {
+		Object dadoInicio = null;
+		if (!estaVazia()){
 			dadoInicio = dados[ponteiroInicio];
-			ponteiroInicio++;	
-
-			if (ponteiroInicio == dados.length) {
-				ponteiroInicio = 0;
-			}
+			ponteiroInicio = avancar(ponteiroInicio);			
 			quantidade--;
-					
 		} else {
-			System.err.println("Fila Vazia!");
+			System.err.println("Queue is empty!");
 		}
 		return dadoInicio;			
 	}
 	
-	//funciona como o espiar de FilaEstaticaCircular
+	//funciona como o frente de FilaEstaticaCircular
 	@Override
-	public Object espiarInicio() {
+	public Object frente() {
 		Object dadoInicio = null;
-		if (!estaVazia()) {
+		if (!estaVazia())
 			dadoInicio = dados[ponteiroInicio];
-		} else {
+		else
 			System.err.println("Fila Vazia!");		
-		}
+
 		return dadoInicio;
 	}
 	
+	//NOVO
 	@Override
 	public void enfileirarInicio(Object dado) {
-		if (!estaCheia()) {
-			ponteiroInicio--;
-			if (ponteiroInicio == -1) {
-				ponteiroInicio = dados.length - 1;
-			}
+		if (!estaCheia()){
+			ponteiroInicio = retroceder(ponteiroInicio);
 			dados[ponteiroInicio] = dado;
 			//não deixar ponteiroFim esquecido, caso a estrutura esteja na 1ª inserção
-			if (estaVazia()) {
+			if (estaVazia())
 				ponteiroFim = ponteiroInicio;
-			}
+			
 			quantidade++;
 		} else {
-			System.err.println("Fila Cheia!");
+			System.err.println("Queue is full!");
 		}
 	}
-		
+	
+	//NOVO	
 	@Override
 	public Object desenfileirarFim() {
-		Object dadoFim = null;	
-		if (!estaVazia()) {
+		Object dadoFim = null;
+		if (!estaVazia()){
 			dadoFim = dados[ponteiroFim];
-			ponteiroFim--;
-
-			if (ponteiroFim == -1) {
-				ponteiroFim = dados.length - 1;
-			}
+			ponteiroFim = retroceder(ponteiroFim);
 			quantidade--;
-
 		} else {
-			System.err.println("Fila Vazia!");
+			System.err.println("Queue is empty!");
 		}
-		return dadoFim;		
+		return dadoFim;			
 	}
-			
+	
+	//NOVO	
 	@Override
-	public Object espiarFim() {
+	public Object tras() {
 		Object dadoFim = null;	
 		if (!estaVazia()) {
 			dadoFim = dados[ponteiroFim];
@@ -111,6 +100,26 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		return dadoFim;
 	}
 
+	//funciona como o atualizarInicio de FilaEstaticaCircular
+	@Override
+	public void atualizarInicio(Object dado) {
+		if (!estaVazia()){
+			dados[ponteiroInicio] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
+	}	
+
+	//funciona como o atualizarFim de FilaEstaticaCircular
+	@Override
+	public void atualizarFim(Object dado) {
+  		if (!estaVazia()){
+			dados[ponteiroFim] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
+	}
+	
 	//funciona como o estaCheia de FilaEstaticaCircular	
 	@Override
 	public boolean estaCheia() {
@@ -125,15 +134,41 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 	
 	//funciona como o imprimir de FilaEstaticaCircular
 	@Override
-	public String imprimir() {
-		String resultado = "[";
-		for (int i = 0, ponteiroAux = ponteiroInicio; i < quantidade; i++, ponteiroAux++) {
-			if (i == quantidade - 1) {
-				resultado += dados[ponteiroAux % dados.length];
-			} else {
-				resultado += dados[ponteiroAux % dados.length] + ",";		
-			}
+	public String imprimirDeFrentePraTras() {
+		String retorno = "[";
+		int ponteiroAux = ponteiroInicio;
+		for (int i = 0; i < quantidade; i++) {			
+			if (i == quantidade - 1) 
+				retorno += dados[ponteiroAux];
+			else
+				retorno += dados[ponteiroAux] + ",";
+			
+			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return resultado + "]";		
+		return retorno + "]";		
 	}
+
+	//NOVO
+	@Override
+	public String imprimirDeTrasPraFrente() {
+		String retorno = "[";
+		int ponteiroAux = ponteiroFim;
+		for (int i = 0; i < quantidade; i++) {			
+			if (i == quantidade - 1) 
+				retorno += dados[ponteiroAux];
+			else
+				retorno += dados[ponteiroAux] + ",";
+			
+			ponteiroAux = retroceder(ponteiroAux); 
+		}
+		return retorno + "]";		
+	}
+	
+	private int avancar(int ponteiro) {
+		return (ponteiro+1)%dados.length;
+	}
+	
+	private int retroceder(int ponteiro) {
+		return ((ponteiro-1)+dados.length)%dados.length;
+	}	
 }

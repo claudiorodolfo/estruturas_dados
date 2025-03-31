@@ -60,7 +60,7 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 		}
 		return dadoAux;			
 	}
-		
+	
 	@Override
 	public boolean estaCheia() {
 		return f1.estaCheia();

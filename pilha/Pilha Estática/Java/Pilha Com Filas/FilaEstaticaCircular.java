@@ -1,7 +1,7 @@
 public class FilaEstaticaCircular implements Enfileiravel {
 
-	private int ponteiroInicio;
-	private int ponteiroFim;
+	private int ponteiroInicio;	//cabeca = head
+	private int ponteiroFim;	//cauda  = tail
 	private int quantidade;
 	private Object[] dados;
 	
@@ -18,65 +18,59 @@ public class FilaEstaticaCircular implements Enfileiravel {
 
 	@Override	
 	public void enfileirar(Object dado){
-		if (!estaCheia()) {
-			ponteiroFim++;			
-			//patch para que a fila funcione de forma circular
-			if (ponteiroFim == dados.length) {
-				ponteiroFim = 0;
-			}
-			quantidade++;
-			//fim do patch
-			dados[ponteiroFim] = dado;			
-		} else {
-			System.err.println("Fila Cheia!");
-		}
-	}
-
-	@Override	
-	public void atualizarFim(Object dado){
-		if (!estaVazia()) {
+		if (!estaCheia()){
+			ponteiroFim = avancar(ponteiroFim);
 			dados[ponteiroFim] = dado;
+			//não deixar ponteiroInicio esquecido, caso a estrutura esteja na 1ª inserção
+			if (estaVazia())
+				ponteiroInicio = ponteiroFim;
+			
+			quantidade++;
 		} else {
-			System.err.println("Fila Vazia!");
-		}
-	}
-
-	@Override	
-	public void atualizarInicio(Object dado){
-		if (!estaVazia()) {		
-			dados[ponteiroInicio] = dado;
-		} else {
-			System.err.println("Fila Vazia!");
+			System.err.println("Queue is full!");
 		}
 	}
 	
 	@Override	
 	public Object desenfileirar(){
-		Object dadoInicio = null;	
-		if (!estaVazia()) {
-			dadoInicio = dados[ponteiroInicio];			
-			ponteiroInicio++;
-			//patch para que a fila funcione de forma circular
-			if (ponteiroInicio == dados.length) {
-				ponteiroInicio = 0;
-			}
+		Object dadoInicio = null;
+		if (!estaVazia()){
+			dadoInicio = dados[ponteiroInicio];
+			ponteiroInicio = avancar(ponteiroInicio);
 			quantidade--;
-			//fim do patch			
 		} else {
-			System.err.println("Fila Vazia!");
+			System.err.println("Queue is empty!");
 		}
-		return dadoInicio;
+		return dadoInicio;	
 	}
 	
 	@Override	
-	public Object frente(){
+	public Object frente() {
 		Object dadoInicio = null;
-		if (!estaVazia()) {
+		if (!estaVazia())
 			dadoInicio = dados[ponteiroInicio];
-		} else {
+		else
 			System.err.println("Fila Vazia!");		
-		}
+
 		return dadoInicio;
+	}
+
+	@Override
+	public void atualizarInicio(Object dado) {
+		if (!estaVazia()){
+			dados[ponteiroInicio] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
+	}	
+	
+	@Override
+	public void atualizarFim(Object dado) {
+  		if (!estaVazia()){
+			dados[ponteiroFim] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
 	}
 	
 	@Override	
@@ -91,17 +85,20 @@ public class FilaEstaticaCircular implements Enfileiravel {
 	
 	@Override
 	public String imprimir(){
-		String resultado = "[";
-		for (int i = 0, ponteiroAux = ponteiroInicio; i < quantidade; i++, ponteiroAux++) {
-			//if (ponteiroAux == dados.length) {
-			//	ponteiroAux = 0;
-			//}
-			if (i == quantidade - 1) {
-				resultado += dados[ponteiroAux % dados.length];
-			} else {
-				resultado += dados[ponteiroAux % dados.length] + ",";		
-			}
+		String retorno = "[";
+		int ponteiroAux = ponteiroInicio;
+		for (int i = 0; i < quantidade; i++) {			
+			if (i == quantidade - 1) 
+				retorno += dados[ponteiroAux];
+			else
+				retorno += dados[ponteiroAux] + ",";
+			
+			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return resultado + "]";		
+		return retorno + "]";	
 	}
+	
+	private int avancar(int ponteiro) {
+		return (ponteiro+1)%dados.length;
+	}	
 }

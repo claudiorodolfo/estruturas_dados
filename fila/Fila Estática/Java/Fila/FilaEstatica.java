@@ -1,7 +1,7 @@
 public class FilaEstatica implements Enfileiravel {
 	//variaveis de instância/globais
-	private int ponteiroInicio;
-	private int ponteiroFim;
+	private int ponteiroInicio;	//cabeca = head
+	private int ponteiroFim;	//cauda  = tail
 	private Object[] dados;
 
 	//construtores
@@ -39,7 +39,7 @@ public class FilaEstatica implements Enfileiravel {
 	}
 	
 	@Override	
-	public Object espiar(){
+	public Object frente(){
 		Object dadoInicio = null;
 		if (!estaVazia()) {
 			dadoInicio = dados[ponteiroInicio];
@@ -47,6 +47,24 @@ public class FilaEstatica implements Enfileiravel {
 			System.err.println("Fila Vazia!");		
 		}
 		return dadoInicio;
+	}
+
+	@Override
+	public void atualizarInicio(Object dado) {
+		if (!estaVazia()){
+			dados[ponteiroInicio] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
+	}	
+	
+	@Override
+	public void atualizarFim(Object dado) {
+  		if (!estaVazia()){
+			dados[ponteiroFim] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
 	}
 	
 	//métodos auxiliares	
@@ -64,12 +82,10 @@ public class FilaEstatica implements Enfileiravel {
 	public String imprimir(){
 		String resultado = "[";
 		for (int i = ponteiroInicio; i <= ponteiroFim; i++) {
-			//resultado += dados[i]+ " ";
-			if (i == ponteiroFim) {
+			if (i == ponteiroFim)
 				resultado += dados[i];
-			} else {
+			else
 				resultado += dados[i] + ",";
-			}
 		}
 		return resultado + "]";		
 	}

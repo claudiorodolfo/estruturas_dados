@@ -40,12 +40,20 @@ public class FilaEstaticaComPilhas implements Enfileiravel {
 		}
 		return dadoInicio;
 	}
+
+	@Override
+	public void atualizarInicio(Object dado) {
+	}
+
+	@Override
+	public void atualizarFim(Object dado) {
+	}
 	
 	@Override	
-	public Object espiar() {
+	public Object frente() {
 		Object dadoInicio = null;
 		if (!estaVazia()) {
-			dadoInicio = p1.topo();
+			dadoInicio = p1.espiar();
 		} else {
 			System.err.println("Fila Vazia!");		
 		}

@@ -1,4 +1,4 @@
-public class FilaEstaticaCircularGenerica<T> implements Enfileiravel<T> {
+public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> {
 
 	private int ponteiroInicio;
 	private int ponteiroFim;
@@ -19,47 +19,59 @@ public class FilaEstaticaCircularGenerica<T> implements Enfileiravel<T> {
 
 	@Override	
 	public void enfileirar(T dado){
-		if (!estaCheia()) {
-			ponteiroFim++;			
-			//patch para que a fila funcione de forma circular
-			if (ponteiroFim == dados.length) {
-				ponteiroFim = 0;
-			}
+		if (!estaCheia()){
+			ponteiroFim = avancar(ponteiroFim);
+			dados[ponteiroFim] = dado;
+			//não deixar ponteiroInicio esquecido, caso a estrutura esteja na 1ª inserção
+			if (estaVazia())
+				ponteiroInicio = ponteiroFim;
+			
 			quantidade++;
-			//fim do patch
-			dados[ponteiroFim] = dado;			
 		} else {
-			System.err.println("Fila Cheia!");
+			System.err.println("Queue is full!");
 		}
 	}
 	
 	@Override	
 	public T desenfileirar(){
-		T dadoInicio = null;	
-		if (!estaVazia()) {
-			dadoInicio = dados[ponteiroInicio];			
-			ponteiroInicio++;
-			//patch para que a fila funcione de forma circular
-			if (ponteiroInicio == dados.length) {
-				ponteiroInicio = 0;
-			}
+		T dadoInicio = null;
+		if (!estaVazia()){
+			dadoInicio = dados[ponteiroInicio];
+			ponteiroInicio = avancar(ponteiroInicio);
 			quantidade--;
-			//fim do patch			
 		} else {
-			System.err.println("Fila Vazia!");
+			System.err.println("Queue is empty!");
 		}
-		return dadoInicio;
+		return dadoInicio;	
 	}
 	
 	@Override	
-	public T espiar() {
+	public T frente() {
 		T dadoInicio = null;
-		if (!estaVazia()) {
+		if (!estaVazia())
 			dadoInicio = dados[ponteiroInicio];
-		} else {
+		else
 			System.err.println("Fila Vazia!");		
-		}
+
 		return dadoInicio;
+	}
+
+	@Override
+	public void atualizarInicio(T dado) {
+		if (!estaVazia()){
+			dados[ponteiroInicio] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
+	}	
+	
+	@Override
+	public void atualizarFim(T dado) {
+  		if (!estaVazia()){
+			dados[ponteiroFim] = dado;
+		} else {
+			System.err.println("Queue is empty!");
+		}
 	}
 	
 	@Override	
@@ -74,17 +86,20 @@ public class FilaEstaticaCircularGenerica<T> implements Enfileiravel<T> {
 	
 	@Override
 	public String imprimir(){
-		String resultado = "[";
-		for (int i = 0, ponteiroAux = ponteiroInicio; i < quantidade; i++, ponteiroAux++) {
-			//if (ponteiroAux == dados.length) {
-			//	ponteiroAux = 0;
-			//}
-			if (i == quantidade - 1) {
-				resultado += dados[ponteiroAux % dados.length];
-			} else {
-				resultado += dados[ponteiroAux % dados.length] + ",";		
-			}
+		String retorno = "[";
+		int ponteiroAux = ponteiroInicio;
+		for (int i = 0; i < quantidade; i++) {			
+			if (i == quantidade - 1) 
+				retorno += dados[ponteiroAux];
+			else
+				retorno += dados[ponteiroAux] + ",";
+			
+			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return resultado + "]";		
+		return retorno + "]";		
 	}
+	
+	private int avancar(int ponteiro) {
+		return (ponteiro+1)%dados.length;
+	}	
 }
