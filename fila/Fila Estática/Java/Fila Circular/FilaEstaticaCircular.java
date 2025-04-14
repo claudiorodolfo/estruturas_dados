@@ -84,14 +84,13 @@ public class FilaEstaticaCircular implements Enfileiravel {
 		String retorno = "[";
 		int ponteiroAux = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {			
-			if (i == quantidade - 1) 
-				retorno += dados[ponteiroAux];
-			else
-				retorno += dados[ponteiroAux] + ",";
-			
+			retorno += dados[ponteiroAux];
+			if (i != quantidade - 1) 
+				retorno += ",";
+							
 			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return retorno + "]";	
+		return retorno + "]";
 	}
 	
 	private int avancar(int ponteiro) {

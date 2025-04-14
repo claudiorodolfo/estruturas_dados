@@ -130,10 +130,9 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		String retorno = "[";
 		int ponteiroAux = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {			
-			if (i == quantidade - 1) 
-				retorno += dados[ponteiroAux];
-			else
-				retorno += dados[ponteiroAux] + ",";
+			retorno += dados[ponteiroAux];
+			if (i != quantidade - 1) 
+				retorno += ",";
 			
 			ponteiroAux = avancar(ponteiroAux); 
 		}
@@ -146,11 +145,10 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		String retorno = "[";
 		int ponteiroAux = ponteiroFim;
 		for (int i = 0; i < quantidade; i++) {			
-			if (i == quantidade - 1) 
-				retorno += dados[ponteiroAux];
-			else
-				retorno += dados[ponteiroAux] + ",";
-			
+			retorno += dados[ponteiroAux];
+			if (i != quantidade - 1) 
+				retorno += ",";
+
 			ponteiroAux = retroceder(ponteiroAux); 
 		}
 		return retorno + "]";		
