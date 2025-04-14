@@ -21,10 +21,6 @@ public class FilaEstaticaCircular implements Enfileiravel {
 		if (!estaCheia()){
 			ponteiroFim = avancar(ponteiroFim);
 			dados[ponteiroFim] = dado;
-			//não deixar ponteiroInicio esquecido, caso a estrutura esteja na 1ª inserção
-			if (estaVazia())
-				ponteiroInicio = ponteiroFim;
-			
 			quantidade++;
 		} else {
 			System.err.println("Queue is full!");

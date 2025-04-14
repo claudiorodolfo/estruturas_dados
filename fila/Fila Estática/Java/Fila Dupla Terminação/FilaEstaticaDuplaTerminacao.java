@@ -21,11 +21,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 	public void enfileirarFim(Object dado) {
 		if (!estaCheia()){
 			ponteiroFim = avancar(ponteiroFim);
-			dados[ponteiroFim] = dado;
-			//não deixar ponteiroInicio esquecido, caso a estrutura esteja na 1ª inserção
-			if (estaVazia())
-				ponteiroInicio = ponteiroFim;
-			
+			dados[ponteiroFim] = dado;			
 			quantidade++;
 		} else {
 			System.err.println("Queue is full!");
@@ -64,10 +60,6 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		if (!estaCheia()){
 			ponteiroInicio = retroceder(ponteiroInicio);
 			dados[ponteiroInicio] = dado;
-			//não deixar ponteiroFim esquecido, caso a estrutura esteja na 1ª inserção
-			if (estaVazia())
-				ponteiroFim = ponteiroInicio;
-			
 			quantidade++;
 		} else {
 			System.err.println("Queue is full!");
