@@ -1,4 +1,5 @@
 public interface Ordenavel {
 	void ordenar();
-	String imprimir();
+	void ordenarCrescente();
+	void ordenarDecrescente();
 }

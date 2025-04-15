@@ -2,18 +2,36 @@ import java.util.Random;
 
 public class SelectionsortEstaticoPrincipal {
 
+	private Integer dados[] = new Integer[20];
+	
     public static void main(String[] args){
-        Random gerador = new Random();
-        Integer numeros[] = new Integer[20];
-		// Preenchendo o vetor com números aleatórios
-        for (int i = 0; i < numeros.length; i++) {
-			//numeros aleatórios entre [10..200] incluindo-os
-            numeros[i] = gerador.nextInt(190) + 10;
-		}
+		SelectionsortEstaticoPrincipal principal = new SelectionsortEstaticoPrincipal();
 		
-		Ordenavel sort = new SelectionsortEstatico(numeros);
-		System.out.println(sort.imprimir());
+		principal.preencheDadosAleatorios();     
+		
+		Ordenavel sort = new SelectionsortEstatico(principal.dados);
+		System.out.println(principal.imprimir());
 		sort.ordenar();
-		System.out.println(sort.imprimir());
+		System.out.println(principal.imprimir());
+	}	
+	
+	public void preencheDadosAleatorios() {
+	     Random gerador = new Random();
+        
+		// Preenchendo o vetor com números aleatórios
+        for (int i = 0; i < dados.length; i++) {
+			//numeros aleatórios no intervalo: [10, 200[
+            dados[i] = gerador.nextInt(190) + 10;
+		}
+	}
+	
+	public String imprimir() {
+		String resultado = "";
+		for (int i = 0; i < dados.length; i++) {
+			resultado += dados[i];
+			if (i != dados.length - 1)
+				resultado += ",";				
+		}
+		return "[" + resultado + "]";
 	}	
 }
