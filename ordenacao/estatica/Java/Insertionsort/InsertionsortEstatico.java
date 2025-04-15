@@ -6,6 +6,20 @@ public class InsertionsortEstatico implements Ordenavel {
 		this.dados = dados;
 	}
 	
+	/*
+	@Override
+	public void ordenar() {		
+		for (int i = 1; i < dados.length; i++) {
+			for (int j = i-1; j >= 0; j--) {
+				if((Integer)dados[j+1] < (Integer)dados[j])
+					troca(j, j+1);
+				else
+					break;
+			}
+		}
+	}
+	*/
+	
 	@Override
 	public void ordenar() {
         for (int i = 1; i < dados.length; i++) {
@@ -23,16 +37,14 @@ public class InsertionsortEstatico implements Ordenavel {
 		dados[b] = aux;	
 	}
 
-	@Override	
+	@Override
 	public String imprimir() {
-		String resultado = "[";
+		String resultado = "";
 		for (int i = 0; i < dados.length; i++) {
-			if (i == dados.length - 1) {
-				resultado += dados[i];
-			} else {
-				resultado += dados[i] + ",";				
-			}
+			resultado += dados[i];
+			if (i != dados.length - 1)
+				resultado += ",";				
 		}
-		return resultado + "]";
+		return "[" + resultado + "]";
 	}
 }

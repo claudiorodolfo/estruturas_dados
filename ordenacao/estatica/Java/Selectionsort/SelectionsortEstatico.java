@@ -27,14 +27,12 @@ public class SelectionsortEstatico implements Ordenavel {
 	
 	@Override
 	public String imprimir() {
-		String resultado = "[";
+		String resultado = "";
 		for (int i = 0; i < dados.length; i++) {
-			if (i == dados.length - 1) {
-				resultado += dados[i];
-			} else {
-				resultado += dados[i] + ",";				
-			}
+			resultado += dados[i];
+			if (i != dados.length - 1)
+				resultado += ",";				
 		}
-		return resultado + "]";
+		return "[" + resultado + "]";
 	}
 }
