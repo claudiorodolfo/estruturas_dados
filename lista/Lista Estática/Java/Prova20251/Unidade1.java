@@ -98,7 +98,7 @@ da posição Prim, devemos avançar o índice Prim para a próxima
 posição, usando a indexação circular: Prim = (Prim + 1) % N;
 
 c) Incorreta. Mesmo que Prim=Ins realmente indique corretamente 
-quando a fila está vazia, podemos concluir errôneamenteque que a 
+quando a fila está vazia, podemos concluir erroneamente que a 
 fila está vazia, quando na verdade ela estiver cheia, porque as 
 condições são equivalentes, gerando assim ambiguidade.
 
