@@ -10,7 +10,7 @@ public interface ControleReservasAereas {
             LocalDate dataVoo, LocalTime horarioVoo, ClassePassagem classePassagem);
 
     /**
-     * Adiciona uma nova reserva à lista. recebe uma Reserva 
+     * Adiciona uma nova reserva à lista. Recebe uma Reserva 
      * contendo os dados da passagem e retorna true se a reserva 
      * foi adicionada com sucesso; false se a lista estiver cheia.
      */
@@ -78,10 +78,10 @@ public class Questao2 {
     }
     
     public static void main(String[] args) {
-        Questao3 q3 = new Questao3();
-        System.out.println(q3.decToBin("10"));
-        System.out.println(q3.decToBin("255"));
-        System.out.println(q3.decToBin("35"));
+        Questao2 q2 = new Questao2();
+        System.out.println(q2.decToBin("10"));
+        System.out.println(q2.decToBin("255"));
+        System.out.println(q2.decToBin("35"));
     }
 }
 
@@ -117,8 +117,8 @@ public class Questao4 {
                 if ((by == Order.ASCENDING && data[i] > data[i + 1]) ||
                         (by == Order.DESCENDING && data[i] < data[i + 1])) {
                     val temp = dados[i];
-                    dados[i] = dados[j];
-                    dados[j] = temp;
+                    dados[i] = dados[i+1];
+                    dados[i+1] = temp;
                 } 
             }
         }
