@@ -1,5 +1,5 @@
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert.*;
 
 public class PilhaDinamicaTest {
 
@@ -7,14 +7,15 @@ public class PilhaDinamicaTest {
   public void testEmpilhar() {
     Empilhavel pilha = new PilhaDinamica(5);
     pilha.empilhar("Instituto");
-    assertEquals("Instituto", pilha.espiar());
+    String conteudo = (String) pilha.espiar();
+    assertEquals("Instituto", conteudo);
   }
 
   @Test
   public void testDesempilhar() {
     Empilhavel pilha = new PilhaDinamica(5);
     pilha.empilhar("Instituto");
-    String conteudo = pilha.desempilhar();
+    String conteudo = (String) pilha.desempilhar();
     assertEquals("Instituto", conteudo);
   }
 
@@ -23,7 +24,8 @@ public class PilhaDinamicaTest {
     Empilhavel pilha = new PilhaDinamica(5);
     pilha.empilhar("Instituto");
     pilha.empilhar("Federal");
-    assertEquals("Federal", pilha.espiar());
+    String conteudo = (String) pilha.espiar(); 
+    assertEquals("Federal", conteudo);
   }
 
   @Test
@@ -32,7 +34,8 @@ public class PilhaDinamicaTest {
     pilha.empilhar("Instituto");
     pilha.empilhar("Federal");
     pilha.atualizar("Municipal");
-    assertEquals("Municipal", pilha.espiar());
+    String conteudo = (String) pilha.espiar();
+    assertEquals("Municipal", conteudo);
   }
 
   @Test
