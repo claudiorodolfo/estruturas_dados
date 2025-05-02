@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class PilhaDinamicaGenericaMainCLI {
   public static void main(String[] args) {
     Empilhavel<String> pilha = new PilhaDinamica(7);
     Scanner scanner = new Scanner(System.in);
