@@ -1,7 +1,8 @@
 public interface Empilhavel<T> {
 	void empilhar(T dado);
 	T desempilhar();
-	T topo();
+	T espiar();
+	void atualizar(T dado);
 	
 	boolean estaCheia();
 	boolean estaVazia();
