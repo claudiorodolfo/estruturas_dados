@@ -4,12 +4,12 @@ public class PilhaDinamicaGenericaPrincipal {
 		pilha.empilhar("Instituto");
 		pilha.atualizar("Universidade");
 		pilha.empilhar("Federal");
-		System.out.println("Espiar:" + pilha.topo());		//Federal	
+		System.out.println("Espiar:" + pilha.espiar());		//Federal	
 		pilha.empilhar("de");
 		pilha.empilhar("Educação");
 		pilha.empilhar("Ciência");
 		pilha.empilhar("e");	//Pilha Cheia!	
-		System.out.println("Espiar:" + pilha.topo());	//Ciência	
+		System.out.println("Espiar:" + pilha.espiar());	//Ciência	
 		String conteudo = pilha.desempilhar();
 		pilha.desempilhar();
 		pilha.empilhar("Tecnologia");
