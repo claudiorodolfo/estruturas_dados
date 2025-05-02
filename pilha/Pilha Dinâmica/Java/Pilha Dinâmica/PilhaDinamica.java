@@ -1,18 +1,44 @@
+import java.util.NoSuchElementException;
+
+/**
+ * Esta classe implementa uma pilha, é uma estrutura de 
+ * dados que segue o princípio LIFO (Last In, First Out).
+ * 
+ * @author Oliveira, C. R. S.
+ * @version 1.1
+ * @since 2025-05-01
+ */
 public class PilhaDinamica implements Empilhavel {
 	private int tamanho;
 	private int quantidade;
 	private NoDuplo ponteiroTopo;
-	
+
+	/**
+ 	* Construtor que recebe um tamanho máximo.
+ 	* @param tamanho, indica o tamanho máximo que a pilha pode ter
+	* @return uma pilha dinâmica que aceita até tamanho elementos
+ 	*/	
 	public PilhaDinamica(int tamanho) {
 		this.tamanho = tamanho;
 		quantidade = 0;
 		ponteiroTopo = null;
 	}
 
+	/**
+ 	* Construtor vazio.
+ 	* 
+	* @return uma pilha dinâmica que aceita até 10 elementos
+ 	*/	
 	public PilhaDinamica() {
 		this(10);
 	}
 
+	/**
+ 	* Empilha um elemento na pilha.
+ 	* 
+ 	* @param dado, o dado a ser empilhado
+ 	* @throws NoSuchElementException se a pilha estiver cheia
+ 	*/
 	@Override
 	public void empilhar(Object dado) {
 		if (!estaCheia()) {
@@ -25,10 +51,16 @@ public class PilhaDinamica implements Empilhavel {
 			ponteiroTopo = noTemporario;
 			quantidade++;
 		} else {
-			System.err.println("Pilha Cheia!");
+			throw new NoSuchElementException("Pilha Cheia!");
 		}
 	}
-	
+
+	/**
+ 	* Desempilha o topo da pilha.
+ 	* 
+	* @return retorna o elemento desempilhado
+ 	* @throws NoSuchElementException se a pilha estiver vazia
+ 	*/	
 	@Override
 	public Object desempilhar() {
 		Object dadoTopo = null;
@@ -40,40 +72,75 @@ public class PilhaDinamica implements Empilhavel {
 				ponteiroTopo.setProximo(null);
 			}
 		} else {
-			System.err.println("Pilha Vazia!");
+			throw new NoSuchElementException("Pilha Vazia!");
 		}
 		return dadoTopo;
 	}
 	
+	/**
+ 	* Espia o topo da pilha.
+ 	* 
+	* @return retorna o elemento do topo
+ 	* @throws NoSuchElementException se a pilha estiver vazia
+ 	*/
 	@Override
-	public Object topo() {
+	public Object espiar() {
 		Object dadoTopo = null;
 		if (!estaVazia()) {
 			dadoTopo = ponteiroTopo.getDado();
 		} else {
-			System.err.println("Pilha Vazia!");
+			throw new NoSuchElementException("Pilha Vazia!");
 		}
 		return dadoTopo;
 	}
-	
+
+	/**
+ 	* Atualiza o topo da pilha.
+ 	* 
+	* @param novoDado, elemento a substituir o elemento do topo
+ 	* @throws NoSuchElementException se a pilha estiver vazia
+ 	*/	
+	@Override
+	public void atualizar(Object novoDado) {
+		if (!estaVazia()) {
+			ponteiroTopo.setDado(novoDado);
+		} else {
+			throw new NoSuchElementException("Pilha Vazia!");
+		}
+	}
+
+	/**
+ 	* Verifica se a pilha está vazia.
+ 	* 
+	* @return true se a pilha estiver vazia, false caso contrário
+ 	*/		
 	@Override
 	public boolean estaVazia() {
 		return (quantidade == 0);
 	}
-	
+
+	/**
+ 	* Verifica se a pilha está cheia.
+ 	* 
+	* @return true se a pilha estiver cheia, false caso contrário
+ 	*/		
 	@Override
 	public boolean estaCheia() {
 		return (quantidade == tamanho);
 	}
-	
+
+	/**
+ 	* Texto referente aos elementos da pilha para serem impressos.
+ 	* 
+	* @return um texto com os elementos separados por ",", delimitados por colchetes
+ 	*/		
 	@Override
 	public String imprimir() {
 		NoDuplo ponteiroAuxiliar = ponteiroTopo;
 		String resultado = "[";
 		for (int i = quantidade - 1; i >= 0; i--) {
-			if (i == 0) {
-				resultado += ponteiroAuxiliar.getDado();
-			} else {
+			resultado += ponteiroAuxiliar.getDado();
+			if (i != 0) {
 				resultado += ponteiroAuxiliar.getDado() + ",";
 			}
 			ponteiroAuxiliar = ponteiroAuxiliar.getAnterior();
