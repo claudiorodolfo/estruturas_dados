@@ -27,6 +27,15 @@ public class PilhaDinamicaGenericaTest {
   }
 
   @Test
+  public void testAtualizar() {
+    Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
+    pilha.empilhar("Instituto");
+    pilha.empilhar("Federal");
+    pilha.atualizar("Municipal");
+    assertEquals("Municipal", pilha.espiar());
+  }
+
+  @Test
   public void testImprimir() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
     pilha.empilhar("Instituto");
@@ -50,4 +59,17 @@ public class PilhaDinamicaGenericaTest {
       // esperado
     }
   }
+
+  @Test
+  public void testPilhaVazia() {
+    Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(2);
+    pilha.empilhar("Instituto");
+    pilha.desempilhar();
+    try {
+      pilha.desempilhar();
+      fail("Pilha deveria estar vazia");
+    } catch (Exception e) {
+      // esperado
+    }
+  }   
 }
