@@ -1,3 +1,10 @@
+//Executar todos os comandos dentro da pasta "Pilha Dinâmica"
+//compilar fonte: javac src/Empilhavel.java -d bin
+//ou
+//compilar fonte: javac src/*.java -d bin
+
+//executar fonte: java -cp .;bin PilhaDinamicaMainCLI
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

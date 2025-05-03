@@ -15,8 +15,8 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	
 	/**
  	* Construtor que recebe um tamanho máximo.
- 	* @param tamanho, indica o tamanho máximo que a pilha pode ter
-	* @return uma pilha dinâmica que aceita até tamanho elementos
+	*
+ 	* @param tamanho indica o tamanho máximo que a pilha pode ter
  	*/		
 	public PilhaDinamicaGenerica(int tamanho) {
 		this.tamanho = tamanho;
@@ -27,7 +27,6 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	/**
  	* Construtor vazio.
  	* 
-	* @return uma pilha dinâmica que aceita até 10 elementos
  	*/	
 	public PilhaDinamicaGenerica() {
 		this(10);
@@ -36,7 +35,7 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	/**
  	* Empilha um elemento na pilha.
  	* 
- 	* @param dado, o dado a ser empilhado
+ 	* @param dado é o dado a ser empilhado
  	* @throws NoSuchElementException se a pilha estiver cheia
  	*/
 	@Override
@@ -92,7 +91,7 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	/**
  	* Atualiza o topo da pilha.
  	* 
-	* @param novoDado, elemento a substituir o elemento do topo
+	* @param novoDado é o elemento a substituir o elemento do topo
  	* @throws NoSuchElementException se a pilha estiver vazia
  	*/
 	@Override
@@ -135,7 +134,7 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 		for (int i = quantidade - 1; i >= 0; i--) {
 			resultado += ponteiroAuxiliar.getDado();
 			if (i != 0) {
-				resultado += ponteiroAuxiliar.getDado() + ",";
+				resultado += ",";
 			}
 			ponteiroAuxiliar = ponteiroAuxiliar.getAnterior();
 		}

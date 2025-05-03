@@ -1,8 +1,8 @@
 import java.util.NoSuchElementException;
 
 /**
- * Esta classe implementa uma pilha, é uma estrutura de 
- * dados que segue o princípio LIFO (Last In, First Out).
+ * Esta classe implementa uma pilha dinâmica, 
+ * que segue o princípio LIFO (Last In, First Out).
  * 
  * @author Oliveira, C. R. S.
  * @version 1.1
@@ -15,8 +15,8 @@ public class PilhaDinamica implements Empilhavel {
 
 	/**
  	* Construtor que recebe um tamanho máximo.
+	*
  	* @param tamanho, indica o tamanho máximo que a pilha pode ter
-	* @return uma pilha dinâmica que aceita até tamanho elementos
  	*/	
 	public PilhaDinamica(int tamanho) {
 		this.tamanho = tamanho;
@@ -27,7 +27,6 @@ public class PilhaDinamica implements Empilhavel {
 	/**
  	* Construtor vazio.
  	* 
-	* @return uma pilha dinâmica que aceita até 10 elementos
  	*/	
 	public PilhaDinamica() {
 		this(10);
@@ -141,7 +140,7 @@ public class PilhaDinamica implements Empilhavel {
 		for (int i = quantidade - 1; i >= 0; i--) {
 			resultado += ponteiroAuxiliar.getDado();
 			if (i != 0) {
-				resultado += ponteiroAuxiliar.getDado() + ",";
+				resultado += ",";
 			}
 			ponteiroAuxiliar = ponteiroAuxiliar.getAnterior();
 		}
