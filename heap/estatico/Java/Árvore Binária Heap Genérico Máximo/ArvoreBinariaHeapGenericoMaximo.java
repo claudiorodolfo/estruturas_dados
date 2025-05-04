@@ -1,28 +1,57 @@
+import java.util.NoSuchElementException;
+
+/**
+ * Esta classe implementa uma binary heap, usada em fila de prioridades
+ * 
+ * @author Oliveira, C. R. S.
+ * @version 1.1
+ * @since 2025-05-02
+ */
 public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
     private T[] dados;
     private int ponteiroFim;
 
+    /**
+ 	* Construtor que recebe um tamanho máximo.
+	*
+ 	* @param tamanho, indica o tamanho máximo que a pilha pode ter
+ 	*/
 	@SuppressWarnings("unchecked")    
     public ArvoreBinariaHeapGenericoMaximo(int tamanho) {
 		dados = (T[]) new Object[tamanho];
         ponteiroFim = -1;
     }
 
+	/**
+ 	* Construtor vazio. Cria heap com 10 elementos por padrão.
+ 	* 
+ 	*/
     public ArvoreBinariaHeapGenericoMaximo() {
 		this(10);
     }
 
+    /**
+ 	* Insere um elemento na heap.
+ 	* 
+ 	* @param dado o valor a ser inserido
+ 	* @throws NoSuchElementException se a heap estiver cheia
+ 	*/
 	@Override
     public void inserir(T dado) {
-        if (!estaCheia()) {
-			ponteiroFim++;
-			dados[ponteiroFim] = dado;
-			ajustarAcima(ponteiroFim);
-        } else {
-			System.err.println("Heap is full!");
-		}
+        if (estaCheia()) {
+            throw new NoSuchElementException("Heap está Cheia!"); 
+        } 
+		ponteiroFim++;
+		dados[ponteiroFim] = dado;
+		ajustarAcima(ponteiroFim);
     }
 
+    /**
+ 	* Ajusta o heap para que o pai seja maior que os filhos, subindo na árvore.
+    * Ajuste do índice passado, até a raiz (se necessário).
+ 	* 
+ 	* @param indice é o índice do filho
+ 	*/    
     private void ajustarAcima(int indice) {
         while (indice > 0) {
             if ((Integer) dados[indice] > (Integer) dados[indicePai(indice)]) {
@@ -34,9 +63,15 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
         }
     }
 
+    /**
+ 	* Ajusta o heap para que o pai seja maior que os filhos, descendo na árvore.
+    * Ajuste do índice passado, até a base do heap (se necessário).
+ 	* 
+ 	* @param indice é o índice do pai
+ 	*/   
     private void ajustarAbaixo(int pai) {    
-        int filhoEsquerdo = 2 * pai + 1;
-        int filhoDireito = 2 * pai + 2;
+        int filhoEsquerdo = indiceFilhoEsquerdo(pai);
+        int filhoDireito = indiceFilhoDireito(pai);
         int maior = pai;    
         if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
             if ((Integer) dados[filhoEsquerdo] > (Integer) dados[maior]) {
@@ -56,59 +91,112 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
         }
     }
 	
+    /**
+ 	* Troca os valores de dois elementos.
+ 	* 
+ 	* @param i é o indice do primeiro elemento
+ 	* @param j é o indice do segundo elemento   
+ 	*/
     private void trocar(int i, int j) {
         T temp = dados[i];
         dados[i] = dados[j];
         dados[j] = temp;
     }
 
+    /**
+ 	* Retorna o índice do pai de um determinado elemento.
+ 	* 
+ 	* @param filho o indice do filho do elemento desejado
+ 	* @return o indice do pai do elemento informado   
+ 	*/    
     private int indicePai(int filho) {
         return (int)((filho-1) / 2);
     }
 
+    /**
+ 	* Retorna o índice do filho esquerdo de um determinado elemento.
+ 	* 
+ 	* @param filho o indice do filho do elemento desejado
+ 	* @return o indice do filho esquerdo do elemento informado   
+ 	*/    
+     private int indiceFilhoEsquerdo(int pai) {
+        return 2 * pai + 1;
+    }
+
+    /**
+ 	* Retorna o índice do filho direito de um determinado elemento.
+ 	* 
+ 	* @param filho o indice do filho do elemento desejado
+ 	* @return o indice do filho direito do elemento informado   
+ 	*/      
+     private int indiceFilhoDireito(int pai) {
+        return 2 * pai + 2;
+    }
+
+    /**
+ 	* Extrai a raiz da árvore heap. Colocando o último elemento no lugar
+ 	* 
+ 	* @return o elemento raiz   
+ 	*/ 
 	@Override
     public T extrair() {
-		T dadoRaiz = null;
-        if (!estaVazia()) {
-			dadoRaiz = dados[0];
-			dados[0] = dados[ponteiroFim];
-			ponteiroFim--;
-			ajustarAbaixo(0);
-        } else {
-			System.err.println("Heap is Empty!");
-		}
+        if (estaVazia()) {
+            throw new NoSuchElementException("Heap está Vazia!"); 
+        }
+		T dadoRaiz = dados[0];
+		dados[0] = dados[ponteiroFim];
+		ponteiroFim--;
+		ajustarAbaixo(0);
         return dadoRaiz;
     }
 
+    /**
+ 	* retorna a raiz da heap.
+ 	* 
+ 	* @return o conteúdo da raiz
+ 	* @throws NoSuchElementException se a heap estiver vazia
+ 	*/
     @Override
     public T obterRaiz() {
-        T raizAux = null;
-        if (!estaVazia()) {
-            raizAux = dados[0];
-        } else {
-			System.err.println("Heap is Empty!");
-		}        
-        return raizAux;
+        if (estaVazia()) {
+            throw new NoSuchElementException("Heap está Vazia!");
+		}  
+        T dadoRaiz = dados[0];      
+        return dadoRaiz;
     }
 
+	/**
+ 	* Verifica se a pilha está vazia.
+ 	* 
+	* @return true se a heap estiver vazia, false caso contrário
+ 	*/
 	@Override
     public boolean estaVazia() {
         return (ponteiroFim == -1);
     }
 
+    /**
+ 	* Verifica se a heap está cheia.
+ 	* 
+	* @return true se a heap estiver cheia, false caso contrário
+ 	*/
 	@Override
     public boolean estaCheia() {
         return (ponteiroFim == dados.length-1);
     }
 
+	/**
+ 	* Texto referente aos elementos da heap para serem impressos.
+ 	* 
+	* @return um texto com os elementos separados por ",", delimitados por colchetes
+ 	*/	
 	@Override	
     public String imprimir() {
 		String resultado = "[";
         for (int i = 0; i <= ponteiroFim; i++) {
+            resultado += dados[i];
 			if (i == ponteiroFim) {
-				resultado += dados[i];
-			} else {
-			    resultado += dados[i] + ",";
+			    resultado += ",";
 			}
         }
 		return resultado += "]";
