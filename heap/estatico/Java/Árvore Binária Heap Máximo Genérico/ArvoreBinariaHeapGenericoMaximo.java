@@ -50,7 +50,7 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
  	* Ajusta o heap para que o pai seja maior que os filhos, subindo na árvore.
     * Ajuste do índice passado, até a raiz (se necessário).
  	* 
- 	* @param indice é o índice do filho
+ 	* @param indice é o índice do nó corrente, do qual, a partir dele, deseja-se ajustar a árvore.
  	*/    
     private void ajustarAcima(int indice) {
         while (indice > 0) {
@@ -67,19 +67,19 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
  	* Ajusta o heap para que o pai seja maior que os filhos, descendo na árvore.
     * Ajuste do índice passado, até a base do heap (se necessário).
  	* 
- 	* @param indice é o índice do pai
+ 	* @param indice é o índice do nó corrente, do qual, a partir dele, deseja-se ajustar a árvore.
  	*/   
     private void ajustarAbaixo(int pai) {    
         int filhoEsquerdo = indiceFilhoEsquerdo(pai);
         int filhoDireito = indiceFilhoDireito(pai);
         int maior = pai;    
-        if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
+        if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array?
             if ((Integer) dados[filhoEsquerdo] > (Integer) dados[maior]) {
                 maior = filhoEsquerdo;
             }
         }
 
-        if (filhoDireito <= ponteiroFim) {  //está dentro dos valores válidos do array
+        if (filhoDireito <= ponteiroFim) {  //está dentro dos valores válidos do array?
             if ((Integer) dados[filhoDireito] > (Integer) dados[maior]) {
                 maior = filhoDireito;
             }
@@ -107,7 +107,7 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
  	* Retorna o índice do pai de um determinado elemento.
  	* 
  	* @param filho o indice do filho do elemento desejado
- 	* @return o indice do pai do elemento informado   
+ 	* @return o indice pai, do índice do elemento informado   
  	*/    
     private int indicePai(int filho) {
         return (int)((filho-1) / 2);
@@ -117,9 +117,9 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
  	* Retorna o índice do filho esquerdo de um determinado elemento.
  	* 
  	* @param filho o indice do filho do elemento desejado
- 	* @return o indice do filho esquerdo do elemento informado   
+ 	* @return o indice do filho esquerdo, do índice do elemento informado
  	*/    
-     private int indiceFilhoEsquerdo(int pai) {
+    private int indiceFilhoEsquerdo(int pai) {
         return 2 * pai + 1;
     }
 
@@ -127,9 +127,9 @@ public class ArvoreBinariaHeapGenericoMaximo<T> implements Amontoavel<T> {
  	* Retorna o índice do filho direito de um determinado elemento.
  	* 
  	* @param filho o indice do filho do elemento desejado
- 	* @return o indice do filho direito do elemento informado   
+ 	* @return o indice do filho direito, do índice do elemento informado   
  	*/      
-     private int indiceFilhoDireito(int pai) {
+    private int indiceFilhoDireito(int pai) {
         return 2 * pai + 2;
     }
 

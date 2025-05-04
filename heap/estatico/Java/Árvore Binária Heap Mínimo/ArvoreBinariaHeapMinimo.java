@@ -34,8 +34,8 @@ public class ArvoreBinariaHeapMinimo implements Amontoavel {
     }
 
     private void ajustarAbaixo(int pai) {
-        int filhoEsquerdo = 2 * pai + 1;
-        int filhoDireito = 2 * pai + 2;
+        int filhoEsquerdo = indiceFilhoEsquerdo(pai);
+        int filhoDireito = indiceFilhoDireito(pai);
         int menor = pai;
 
         if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
@@ -62,6 +62,14 @@ public class ArvoreBinariaHeapMinimo implements Amontoavel {
         dados[j] = temp;
     }
 
+    private int indiceFilhoDireito(int pai) {
+        return 2 * pai + 2;
+    }
+  
+    private int indiceFilhoEsquerdo(int pai) {
+        return 2 * pai + 1;
+    }
+        
     private int indicePai(int filho) {
         return (int) (filho / 2);
     }
