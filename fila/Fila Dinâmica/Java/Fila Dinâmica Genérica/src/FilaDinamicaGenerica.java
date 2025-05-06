@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class FilaDinamicaGenerica<T> implements Enfileiravel<T> {
 
 	private int quantidade;
@@ -18,48 +20,43 @@ public class FilaDinamicaGenerica<T> implements Enfileiravel<T> {
 
 	@Override
 	public void enfileirar(T dado){
-		if(!estaCheia()) {
-			NoDuplo<T> noTemporario = new NoDuplo<>();
-			noTemporario.setDado(dado);
-			if (!estaVazia()) {
-				ponteiroFim.setProximo(noTemporario);
-			} else  {
-				ponteiroInicio = noTemporario;
-			}
-			noTemporario.setAnterior(ponteiroFim);
-			ponteiroFim = noTemporario;
-			quantidade++;
-		} else {
-			System.out.println("Fila Cheia!");
+		if(estaCheia()) {
+			throw new NoSuchElementException("Fila Cheia!");
 		}
+		NoDuplo<T> noTemporario = new NoDuplo<>();
+		noTemporario.setDado(dado);
+		if (!estaVazia()) {
+			ponteiroFim.setProximo(noTemporario);
+		} else  {
+			ponteiroInicio = noTemporario;
+		}
+		noTemporario.setAnterior(ponteiroFim);
+		ponteiroFim = noTemporario;
+		quantidade++;
 	}
 
 	@Override
 	public T desenfileirar(){
-		T dadoInicio = null;
-		if(!estaVazia()) {
-			dadoInicio = ponteiroInicio.getDado();
-			ponteiroInicio = ponteiroInicio.getProximo();
-			quantidade--;
-			if (!estaVazia()) {
-				ponteiroInicio.setAnterior(null);
-			} else {
-				ponteiroFim = null;
-			}
+		if(estaVazia()) {
+			throw new NoSuchElementException("Fila Vazia!");			
+		}
+		T dadoInicio = ponteiroInicio.getDado();
+		ponteiroInicio = ponteiroInicio.getProximo();
+		quantidade--;
+		if (!estaVazia()) {
+			ponteiroInicio.setAnterior(null);
 		} else {
-			System.out.println("Fila Vazia!");			
+			ponteiroFim = null;
 		}
 		return dadoInicio;		
 	}
 
 	@Override
 	public T espiar(){
-		T dadoInicio = null;
-		if(!estaVazia()) {
-			dadoInicio = ponteiroInicio.getDado();
-		} else {
-			System.out.println("Fila Vazia!");			
+		if(estaVazia()) {
+			throw new NoSuchElementException("Fila Vazia!");			
 		}
+		T dadoInicio = ponteiroInicio.getDado();
 		return dadoInicio;
 	}
 
@@ -78,10 +75,9 @@ public class FilaDinamicaGenerica<T> implements Enfileiravel<T> {
 		String resultado = "[";
 		NoDuplo<T> noAuxiliar = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {
-			if (i == quantidade-1) {
-				resultado += noAuxiliar.getDado();
-			} else {
-				resultado += noAuxiliar.getDado() + ",";
+			resultado += noAuxiliar.getDado();
+			if (i != quantidade-1) {
+				resultado +=  ",";
 			}
 			noAuxiliar = noAuxiliar.getProximo();
 		}
