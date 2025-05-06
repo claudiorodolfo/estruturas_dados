@@ -2,3 +2,4 @@
 *.class
 *.jar
 *.bak
+*.DS_Store
