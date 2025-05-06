@@ -52,7 +52,15 @@ public class FilaDinamicaGenerica<T> implements Enfileiravel<T> {
 	}
 
 	@Override
-	public T espiar(){
+	public void atualizar(T novoDado){
+		if(estaVazia()) {
+			throw new NoSuchElementException("Fila Vazia!");			
+		}
+		ponteiroInicio.setDado(novoDado);
+	}
+
+	@Override
+	public T frente(){
 		if(estaVazia()) {
 			throw new NoSuchElementException("Fila Vazia!");			
 		}
