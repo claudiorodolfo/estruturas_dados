@@ -13,15 +13,17 @@ public class PilhaDinamicaGenericaTest {
   public void testEmpilhar() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
     pilha.empilhar("Instituto");
-    assertEquals("Instituto", pilha.espiar());
+    pilha.empilhar("Federal");  
+    assertEquals("Federal", pilha.espiar());
   }
 
   @Test
   public void testDesempilhar() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
     pilha.empilhar("Instituto");
+    pilha.empilhar("Federal");
     String conteudo = pilha.desempilhar();
-    assertEquals("Instituto", conteudo);
+    assertEquals("Federal", conteudo);
   }
 
   @Test
