@@ -131,5 +131,53 @@ public class FilaDinamicaGenericaTest {
     } catch (NoSuchElementException e) {
         assertEquals("Fila Vazia!", e.getMessage());
 	  }
-  }  
+  }
+  
+	@Test
+	public void testOperacaoNaoSuportadaEnfileirarInicio() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
+    try {
+      fila.enfileirarInicio();
+		  //Se chegou aqui, a exceção não foi lançada!
+      fail("Deveria ter lançado uma exceção!");
+    } catch (NoSuchElementException e) {
+      assertEquals("Operação não suportada!", e.getMessage());
+	  }
+	}
+
+	@Test
+	public void testOperacaoNaoSuportadaDesenfileirarFim() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
+    try {
+      fila.desenfileirarFim();
+		  //Se chegou aqui, a exceção não foi lançada!
+      fail("Deveria ter lançado uma exceção!");
+    } catch (NoSuchElementException e) {
+      assertEquals("Operação não suportada!", e.getMessage());
+	  }
+	}
+
+	@Test
+	public void testOperacaoNaoSuportadaTras() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
+    try {
+      fila.tras();
+		  //Se chegou aqui, a exceção não foi lançada!
+      fail("Deveria ter lançado uma exceção!");
+    } catch (NoSuchElementException e) {
+      assertEquals("Operação não suportada!", e.getMessage());
+	  }
+	}
+
+	@Test
+	public void testOperacaoNaoSuportadaImprimirDeTrasPraFrente() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
+    try {
+      fila.imprimirDeTrasPraFrente();
+		  //Se chegou aqui, a exceção não foi lançada!
+      fail("Deveria ter lançado uma exceção!");
+    } catch (NoSuchElementException e) {
+      assertEquals("Operação não suportada!", e.getMessage());
+	  }
+	}
 }
