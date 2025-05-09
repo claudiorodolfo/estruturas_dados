@@ -1,8 +1,8 @@
 //Executar todos os comandos dentro da pasta "Pilha Dinâmica Genérica"
 //compilar fonte: javac src/*.java -d bin
 
-//compilar teste: javac -cp .;bin;lib/junit-4.10.jar -d test test/PilhaDinamicaGenericaTest.java
-//executar teste: java -cp .;bin;test;lib/junit-4.10.jar org.junit.runner.JUnitCore PilhaDinamicaGenericaTest
+//compilar teste: javac -cp .;bin;lib/junit-4.13.2.jar -d test test/PilhaDinamicaGenericaTest.java
+//executar teste: java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore PilhaDinamicaGenericaTest
 import java.util.NoSuchElementException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,15 +13,17 @@ public class PilhaDinamicaGenericaTest {
   public void testEmpilhar() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
     pilha.empilhar("Instituto");
-    assertEquals("Instituto", pilha.espiar());
+    pilha.empilhar("Federal");  
+    assertEquals("Federal", pilha.espiar());
   }
 
   @Test
   public void testDesempilhar() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
     pilha.empilhar("Instituto");
+    pilha.empilhar("Federal");
     String conteudo = pilha.desempilhar();
-    assertEquals("Instituto", conteudo);
+    assertEquals("Federal", conteudo);
   }
 
   @Test
