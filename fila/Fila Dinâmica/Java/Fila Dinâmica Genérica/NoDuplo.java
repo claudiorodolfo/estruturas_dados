@@ -3,6 +3,7 @@ public class NoDuplo<T> {
 	private T dado;
 	private NoDuplo<T> proximo;
 	
+	
 	public T getDado() {
 		return dado;
 	}
