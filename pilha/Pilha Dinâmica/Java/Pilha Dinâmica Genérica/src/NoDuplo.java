@@ -3,6 +3,13 @@ public class NoDuplo<T> {
 	private T dado;
 	private NoDuplo<T> proximo;
 	
+	public NoDuplo() {
+	}
+
+	public NoDuplo(T dado) {
+		this.dado = dado;
+	}
+		
 	public T getDado() {
 		return dado;
 	}
