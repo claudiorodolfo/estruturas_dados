@@ -2,3 +2,5 @@
 *.class
 *.jar
 *.bak
+# Para arquivos de documentação
+/doc
