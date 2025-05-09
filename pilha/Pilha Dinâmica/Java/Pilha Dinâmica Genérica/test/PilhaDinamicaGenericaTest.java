@@ -102,7 +102,7 @@ public class PilhaDinamicaGenericaTest {
     pilha.empilhar("Instituto");
     pilha.desempilhar();
     try {
-        pilha.atualizar("Federal"); // deve lançar exceção
+        pilha.atualizar("Universidade"); // deve lançar exceção
 		//Se chegou aqui, a exceção não foi lançada!
         fail("Deveria ter acontecido um underflow!");
     } catch (NoSuchElementException e) {
