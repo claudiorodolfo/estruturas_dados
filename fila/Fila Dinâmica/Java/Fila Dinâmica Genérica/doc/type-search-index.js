@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Enfileiravel"},{"p":"<Unnamed>","l":"FilaDinamicaGenerica"},{"p":"<Unnamed>","l":"FilaDinamicaGenericaMainCLI"},{"p":"<Unnamed>","l":"NoDuplo"}];updateSearchResults();
