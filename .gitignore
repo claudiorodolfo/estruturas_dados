@@ -1,6 +1,10 @@
 # Para arquivos compilados
+.DS_Store
 *.class
 *.jar
 *.bak
 # Para arquivos de documentação
-/doc
+.vscode/
+doc/
+build/
+bin/
