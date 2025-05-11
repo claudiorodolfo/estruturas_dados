@@ -10,6 +10,22 @@ import static org.junit.Assert.*;
 public class FilaDinamicaGenericaTest {
 
   @Test
+  public void testConstrutorPadrao() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>();
+    // Deve permitir 10 elementos
+    for (int i = 0; i < 10; i++) {
+        fila.enfileirarFim("Elemento" + i);
+    }
+    assertTrue(fila.estaCheia());
+    try {
+        fila.enfileirarFim("Extra");
+        fail("Deveria ter lançado exceção de fila cheia!");
+    } catch (NoSuchElementException e) {
+        assertEquals("Fila Cheia!", e.getMessage());
+    }
+  }
+
+  @Test
   public void testEnfileirar() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
     fila.enfileirarFim("Instituto");
@@ -62,6 +78,32 @@ public class FilaDinamicaGenericaTest {
     assertTrue(resultado.contains("Instituto"));
     assertTrue(resultado.contains("Federal"));
     assertTrue(resultado.contains("de"));
+  }
+
+  @Test
+  public void testImprimirDeFrentePraTrasVazia() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
+    assertEquals("[]", fila.imprimirDeFrentePraTras());
+  }
+
+  Test
+  public void testEstaCheia() {
+      Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
+      assertFalse(fila.estaCheia());
+      fila.enfileirarFim("Primeiro");
+      assertFalse(fila.estaCheia());
+      fila.enfileirarFim("Segundo");
+      assertTrue(fila.estaCheia());
+  }
+  
+  @Test
+  public void testEstaVazia() {
+      Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
+      assertTrue(fila.estaVazia());
+      fila.enfileirarFim("Primeiro");
+      assertFalse(fila.estaVazia());
+      fila.desenfileirarInicio();
+      assertTrue(fila.estaVazia());
   }
 
   @Test
@@ -140,7 +182,7 @@ public class FilaDinamicaGenericaTest {
       fila.enfileirarInicio();
 		  //Se chegou aqui, a exceção não foi lançada!
       fail("Deveria ter lançado uma exceção!");
-    } catch (NoSuchElementException e) {
+    } catch (UnsupportedOperationException e) {
       assertEquals("Operação não suportada!", e.getMessage());
 	  }
 	}
@@ -152,7 +194,7 @@ public class FilaDinamicaGenericaTest {
       fila.desenfileirarFim();
 		  //Se chegou aqui, a exceção não foi lançada!
       fail("Deveria ter lançado uma exceção!");
-    } catch (NoSuchElementException e) {
+    } catch (UnsupportedOperationException e) {
       assertEquals("Operação não suportada!", e.getMessage());
 	  }
 	}
@@ -164,7 +206,7 @@ public class FilaDinamicaGenericaTest {
       fila.tras();
 		  //Se chegou aqui, a exceção não foi lançada!
       fail("Deveria ter lançado uma exceção!");
-    } catch (NoSuchElementException e) {
+    } catch (UnsupportedOperationException e) {
       assertEquals("Operação não suportada!", e.getMessage());
 	  }
 	}
@@ -176,7 +218,7 @@ public class FilaDinamicaGenericaTest {
       fila.imprimirDeTrasPraFrente();
 		  //Se chegou aqui, a exceção não foi lançada!
       fail("Deveria ter lançado uma exceção!");
-    } catch (NoSuchElementException e) {
+    } catch (UnsupportedOperationException e) {
       assertEquals("Operação não suportada!", e.getMessage());
 	  }
 	}
