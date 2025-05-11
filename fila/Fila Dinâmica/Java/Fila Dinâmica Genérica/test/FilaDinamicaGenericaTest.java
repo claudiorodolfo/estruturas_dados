@@ -9,11 +9,41 @@ import static org.junit.Assert.*;
 
 public class FilaDinamicaGenericaTest {
 
+
+  @Test
+  public void testFilaComDiferentesTipos() {
+    Enfileiravel<Integer> filaInt = new FilaDinamicaGenerica<>(2);
+    filaInt.enfileirarFim(1);
+    filaInt.enfileirarFim(2);
+    assertEquals(Integer.valueOf(1), filaInt.frente());
+    
+    Enfileiravel<Double> filaDouble = new FilaDinamicaGenerica<>(2);
+    filaDouble.enfileirarFim(1.5);
+    filaDouble.enfileirarFim(2.5);
+    assertEquals(Double.valueOf(1.5), filaDouble.frente());
+  }
+
   @Test
   public void testConstrutorPadrao() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>();
     // Deve permitir 10 elementos
     for (int i = 0; i < 10; i++) {
+        fila.enfileirarFim("Elemento" + i);
+    }
+    assertTrue(fila.estaCheia());
+    try {
+        fila.enfileirarFim("Extra");
+        fail("Deveria ter lançado exceção de fila cheia!");
+    } catch (NoSuchElementException e) {
+        assertEquals("Fila Cheia!", e.getMessage());
+    }
+  }
+
+  @Test
+  public void testConstrutorComTamanhoPersonalizado() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
+    // Deve permitir 5 elementos
+    for (int i = 0; i < 5; i++) {
         fila.enfileirarFim("Elemento" + i);
     }
     assertTrue(fila.estaCheia());
@@ -43,6 +73,17 @@ public class FilaDinamicaGenericaTest {
   }
 
   @Test
+  public void testDesenfileirarMultiplosElementos() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
+    fila.enfileirarFim("A");
+    fila.enfileirarFim("B");
+    fila.enfileirarFim("C");
+    assertEquals("A", fila.desenfileirarInicio());
+    assertEquals("B", fila.desenfileirarInicio());
+    assertEquals("C", fila.frente());
+  }
+
+  @Test
   public void testFrente() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
     fila.enfileirarFim("Instituto");
@@ -60,12 +101,37 @@ public class FilaDinamicaGenericaTest {
   }
 
   @Test
+  public void testAtualizarInicioComMultiplosElementos() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
+    fila.enfileirarFim("Primeiro");
+    fila.enfileirarFim("Segundo");
+    fila.enfileirarFim("Terceiro");
+    fila.atualizarInicio("Novo");
+    assertEquals("Novo", fila.frente());
+    fila.desenfileirarInicio();
+    assertEquals("Segundo", fila.frente());
+  }
+
+  @Test
   public void testAtualizarFim() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
     fila.enfileirarFim("Instituto");
     fila.enfileirarFim("Federal");
     fila.atualizarFim("Municipal");
     assertEquals("Instituto", fila.frente());
+  }
+
+  @Test
+  public void testAtualizarFimComMultiplosElementos() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
+    fila.enfileirarFim("Primeiro");
+    fila.enfileirarFim("Segundo");
+    fila.enfileirarFim("Terceiro");
+    fila.atualizarFim("Novo");
+    assertEquals("Primeiro", fila.frente());
+    fila.desenfileirarInicio();
+    fila.desenfileirarInicio();
+    assertEquals("Novo", fila.frente());
   }
 
   @Test
@@ -81,9 +147,18 @@ public class FilaDinamicaGenericaTest {
   }
 
   @Test
-  public void testImprimirDeFrentePraTrasVazia() {
+  public void testImprimirDeFrentePraTrasVaziaFormatacaoVazia() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
     assertEquals("[]", fila.imprimirDeFrentePraTras());
+  }
+  
+  @Test
+  public void testImprimirDeFrentePraTrasFormatacao() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
+    fila.enfileirarFim("A");
+    fila.enfileirarFim("B");
+    fila.enfileirarFim("C");
+    assertEquals("[A,B,C]", fila.imprimirDeFrentePraTras());
   }
 
   Test
@@ -222,4 +297,20 @@ public class FilaDinamicaGenericaTest {
       assertEquals("Operação não suportada!", e.getMessage());
 	  }
 	}
+
+  @Test
+  public void testLimpezaFila() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
+    fila.enfileirarFim("A");
+    fila.enfileirarFim("B");
+    fila.desenfileirarInicio();
+    fila.desenfileirarInicio();
+    assertTrue(fila.estaVazia());
+    try {
+        fila.frente();
+        fail("Deveria ter lançado exceção de fila vazia!");
+    } catch (NoSuchElementException e) {
+        assertEquals("Fila Vazia!", e.getMessage());
+    }
+  }
 }
