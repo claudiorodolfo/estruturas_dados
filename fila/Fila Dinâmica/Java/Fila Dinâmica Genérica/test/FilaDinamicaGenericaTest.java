@@ -140,7 +140,7 @@ public class FilaDinamicaGenericaTest {
     fila.enfileirarFim("Instituto");
     fila.enfileirarFim("Federal");
     fila.enfileirarFim("de");
-    String resultado = fila.imprimirDeTrasPraFrente();
+    String resultado = fila.imprimirDeFrentePraTras();
     assertTrue(resultado.contains("Instituto"));
     assertTrue(resultado.contains("Federal"));
     assertTrue(resultado.contains("de"));
@@ -161,7 +161,7 @@ public class FilaDinamicaGenericaTest {
     assertEquals("[A,B,C]", fila.imprimirDeFrentePraTras());
   }
 
-  Test
+  @Test
   public void testEstaCheia() {
       Enfileiravel<String> fila = new FilaDinamicaGenerica<>(2);
       assertFalse(fila.estaCheia());
@@ -254,7 +254,7 @@ public class FilaDinamicaGenericaTest {
 	public void testOperacaoNaoSuportadaEnfileirarInicio() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
     try {
-      fila.enfileirarInicio();
+      fila.enfileirarInicio("Instituto");
 		  //Se chegou aqui, a exceção não foi lançada!
       fail("Deveria ter lançado uma exceção!");
     } catch (UnsupportedOperationException e) {
