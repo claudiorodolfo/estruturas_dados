@@ -56,19 +56,27 @@ public class PilhaDinamicaGenericaTest {
 
     @Test
     public void testEmpilhar() {
-        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
+        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(1);
         pilha.empilhar("Instituto");
-        pilha.empilhar("Federal");  
-        assertEquals("Federal", pilha.espiar());
+        assertEquals("Instituto", pilha.espiar());
+    }
+
+    @Test
+    public void testEmpilharMultiplosElementos() {
+        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(3);
+        pilha.empilhar("A");
+        pilha.empilhar("B");
+        pilha.empilhar("C");
+        assertEquals("C", pilha.espiar());
+        assertEquals("[C,B,A]", pilha.imprimir());
     }
 
     @Test
     public void testDesempilhar() {
-        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
+        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(1);
         pilha.empilhar("Instituto");
-        pilha.empilhar("Federal");
         String conteudo = pilha.desempilhar();
-        assertEquals("Federal", conteudo);
+        assertEquals("Instituto", conteudo);
     }
 
     @Test
@@ -92,9 +100,8 @@ public class PilhaDinamicaGenericaTest {
 
     @Test
     public void testAtualizar() {
-        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(5);
+        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(1);
         pilha.empilhar("Instituto");
-        pilha.empilhar("Federal");
         pilha.atualizar("Universidade");
         assertEquals("Universidade", pilha.espiar());
     }
@@ -125,7 +132,7 @@ public class PilhaDinamicaGenericaTest {
 
     @Test
     public void testImprimirVaziaFormatacaoVazia() {
-        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(2);
+        Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(1);
         assertEquals("[]", pilha.imprimir());
     }
     

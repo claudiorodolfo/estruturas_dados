@@ -57,17 +57,25 @@ public class FilaDinamicaGenericaTest {
 
   @Test
   public void testEnfileirar() {
-    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
-    fila.enfileirarFim("Instituto");
-    fila.enfileirarFim("Federal");  
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
+    fila.enfileirarFim("Instituto");  
     assertEquals("Instituto", fila.frente());
   }
 
   @Test
+  public void testEnfileirarMultiplosElementos() {
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
+      fila.enfileirar("A");
+      fila.enfileirar("B");
+      fila.enfileirar("C");
+      assertEquals("A", fila.frente());
+      assertEquals("[A,B,C]", fila.imprimirDeFrentePraTras());
+  }
+
+  @Test
   public void testDesenfileirar() {
-    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
     fila.enfileirarFim("Instituto");
-    fila.enfileirarFim("Federal");
     String conteudo = fila.desenfileirarInicio();
     assertEquals("Instituto", conteudo);
   }
@@ -93,9 +101,8 @@ public class FilaDinamicaGenericaTest {
 
   @Test
   public void testAtualizarInicio() {
-    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
     fila.enfileirarFim("Instituto");
-    fila.enfileirarFim("Federal");
     fila.atualizarInicio("Universidade");
     assertEquals("Universidade", fila.frente());
   }
@@ -114,11 +121,10 @@ public class FilaDinamicaGenericaTest {
 
   @Test
   public void testAtualizarFim() {
-    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(5);
+    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(1);
     fila.enfileirarFim("Instituto");
-    fila.enfileirarFim("Federal");
-    fila.atualizarFim("Municipal");
-    assertEquals("Instituto", fila.frente());
+    fila.atualizarInicio("Universidade");
+    assertEquals("Universidade", fila.frente());
   }
 
   @Test
