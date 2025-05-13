@@ -30,7 +30,7 @@
  * 
  * @author Oliveira, C. R. S.
  * @version 1.1
- * @since 2025-05-09
+ * @since 2025-05-13
  */
 public interface Enfileiravel<T> {
 	void enfileirarInicio(T dado);
