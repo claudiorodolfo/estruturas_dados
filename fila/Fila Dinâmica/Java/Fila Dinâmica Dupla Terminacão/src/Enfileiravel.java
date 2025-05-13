@@ -9,17 +9,17 @@
 //compilar todos os códigos-fonte: 
 //javac src/*.java -d bin
 //executar o programa: 
-//java -cp .;bin FilaDinamicaGenericaMainCLI
+//java -cp .;bin FilaDinamicaDuplaTerminacaoGenericaMainCLI
 
 //Para os testes unitários com junit:
 //compilar classe de teste: 
-//javac -cp .;bin;lib/junit-4.13.2.jar -d test test/FilaDinamicaGenericaTest.java
+//javac -cp .;bin;lib/junit-4.13.2.jar -d test test/FilaDinamicaDuplaTerminacaoGenericaTest.java
 //executar testes: 
-//java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore FilaDinamicaGenericaTest
+//java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore FilaDinamicaDuplaTerminacaoGenericaTest
 
 //Gerar binário
 //Gerar .jar
-//jar cvfe build/Main.jar FilaDinamicaGenericaMainCLI -C bin .
+//jar cvfe build/Main.jar FilaDinamicaDuplaTerminacaoGenericaMainCLI -C bin .
 //Executar .jar
 //java -jar build/Main.jar
 
