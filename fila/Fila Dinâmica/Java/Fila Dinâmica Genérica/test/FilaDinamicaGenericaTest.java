@@ -65,9 +65,9 @@ public class FilaDinamicaGenericaTest {
   @Test
   public void testEnfileirarMultiplosElementos() {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(3);
-      fila.enfileirar("A");
-      fila.enfileirar("B");
-      fila.enfileirar("C");
+      fila.enfileirarFim("A");
+      fila.enfileirarFim("B");
+      fila.enfileirarFim("C");
       assertEquals("A", fila.frente());
       assertEquals("[A,B,C]", fila.imprimirDeFrentePraTras());
   }
