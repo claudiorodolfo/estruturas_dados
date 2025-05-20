@@ -1,11 +1,6 @@
-//Executar todos os comandos dentro da pasta "Fila Dinâmica Genérica"
-//compilar fonte: javac src/*.java -d bin
-
-//compilar teste: javac -cp .;bin;lib/junit-4.13.2.jar -d test test/FilaDinamicaGenericaTest.java
-//executar teste: java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore FilaDinamicaGenericaTest
-import java.util.NoSuchElementException;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
 
 public class FilaDinamicaGenericaTest {
 

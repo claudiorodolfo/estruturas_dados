@@ -1,15 +1,17 @@
-//Executar todos os comandos dentro da pasta "Fila Dinâmica Genérica"
-//compilar fonte: javac src/Enfileiravel.java -d bin
-//ou
-//compilar fonte: javac src/*.java -d bin
-
-//executar fonte: java -cp .;bin FilaDinamicaGenericaMainCLI
-
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Classe que demonstra o uso da fila dinâmica genérica através de uma interface de linha de comando.
+ * Esta classe implementa um menu interativo que permite ao usuário testar todas as operações
+ * disponíveis na fila dinâmica.
+ *
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.0
+ */
 public class FilaDinamicaGenericaMainCLI {
+
   public static void main(String[] args) {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(7);
     Scanner scanner = new Scanner(System.in);
