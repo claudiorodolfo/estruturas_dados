@@ -1,9 +1,3 @@
-//Executar todos os comandos dentro da pasta "Fila Dinâmica Genérica"
-//compilar fonte: javac src/Enfileiravel.java -d bin
-//ou
-//compilar fonte: javac src/*.java -d bin
-
-//executar fonte: java -cp .;bin FilaDinamicaDuplaTerminacaoGenericaMainCLI
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;

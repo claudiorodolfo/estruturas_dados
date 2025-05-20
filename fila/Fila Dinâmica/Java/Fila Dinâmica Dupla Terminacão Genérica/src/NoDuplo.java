@@ -1,15 +1,15 @@
 /**
  * Classe que representa um nó duplamente encadeado.
  * Esta classe é utilizada para implementar estruturas de dados
- * que necessitam de nós com referências para o elemento anterior e próximo.
+ * que necessitam de nós com referências para o próximo e anterior.
  *
  * @param <T> o tipo do dado armazenado no nó
- * @author mac
- * @version 1.0
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.1
  */
 public class NoDuplo<T> {
 	
-	/** Dado armazenado no nó */
+	/** O dado armazenado no nó */
 	private T dado;
 	
 	/** Referência para o nó anterior */
@@ -17,36 +17,23 @@ public class NoDuplo<T> {
 	
 	/** Referência para o próximo nó */
 	private NoDuplo<T> proximo;
-	
-	/**
-	 * Construtor padrão que inicializa um nó vazio.
-	 */
+
 	public NoDuplo() {
-		this.dado = null;
-		this.anterior = null;
-		this.proximo = null;
 	}
-	
-	/**
-	 * Construtor que inicializa um nó com um dado específico.
-	 *
-	 * @param dado o dado a ser armazenado no nó
-	 */
+
 	public NoDuplo(T dado) {
 		this.dado = dado;
-		this.anterior = null;
-		this.proximo = null;
 	}
-	
+
 	/**
 	 * Retorna o dado armazenado no nó.
 	 *
-	 * @return o dado armazenado
+	 * @return o dado do nó
 	 */
 	public T getDado() {
 		return dado;
 	}
-	
+
 	/**
 	 * Define o dado a ser armazenado no nó.
 	 *
@@ -55,7 +42,7 @@ public class NoDuplo<T> {
 	public void setDado(T dado) {
 		this.dado = dado;
 	}
-	
+
 	/**
 	 * Retorna a referência para o nó anterior.
 	 *
@@ -64,7 +51,7 @@ public class NoDuplo<T> {
 	public NoDuplo<T> getAnterior() {
 		return anterior;
 	}
-	
+
 	/**
 	 * Define a referência para o nó anterior.
 	 *
@@ -73,7 +60,7 @@ public class NoDuplo<T> {
 	public void setAnterior(NoDuplo<T> anterior) {
 		this.anterior = anterior;
 	}
-	
+
 	/**
 	 * Retorna a referência para o próximo nó.
 	 *
@@ -82,7 +69,7 @@ public class NoDuplo<T> {
 	public NoDuplo<T> getProximo() {
 		return proximo;
 	}
-	
+
 	/**
 	 * Define a referência para o próximo nó.
 	 *

@@ -1,13 +1,13 @@
 import java.util.NoSuchElementException;
 
 /**
- * Interface que define as operações básicas de uma fila dupla terminacão genérica.
+ * Interface que define as operações básicas de uma fila genérica.
  * Esta interface define os métodos que devem ser implementados
- * por qualquer classe que represente uma estrutura de dados do tipo fila dupla terminacão.
+ * por qualquer classe que represente uma estrutura de dados do tipo fila.
  *
  * @param <T> o tipo dos elementos armazenados na fila
- * @author mac
- * @version 1.0
+ * @author Cláudio Rodolfo Sousa de Oliviera
+ * @version 1.1
  */
 public interface Enfileiravel<T> {
 	
