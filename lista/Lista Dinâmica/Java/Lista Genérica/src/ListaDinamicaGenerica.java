@@ -129,11 +129,10 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] selecionarTodos() {
-		T[] dadosTemporario = (T[]) new Object[quantidade];
-		if (!estaVazia()) {
+		if (estaVazia()) {
 			throw new UnderflowException("Lista Vazia!");
 		}
-
+		T[] dadosTemporario = (T[]) new Object[quantidade];
 		NoDuplo<T> ponteiroAuxiliar = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {
 			dadosTemporario[i] = ponteiroAuxiliar.getDado();
