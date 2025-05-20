@@ -1,27 +1,50 @@
+/**
+ * Implementação de uma lista dinâmica duplamente encadeada genérica.
+ * Esta classe implementa uma lista que pode armazenar elementos de qualquer tipo,
+ * utilizando uma estrutura de nós duplamente encadeados.
+ *
+ * @param <T> o tipo dos elementos armazenados na lista
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.1
+ */
 public class ListaDinamicaGenerica<T> implements Listavel<T> {
 
+	/** Quantidade atual de elementos na lista */
 	private int quantidade;
+	
+	/** Tamanho máximo da lista */
 	private int tamanho;
+	
+	/** Ponteiro para o primeiro nó da lista */
 	private NoDuplo<T> ponteiroInicio;
+	
+	/** Ponteiro para o último nó da lista */
 	private NoDuplo<T> ponteiroFim;
 
+	/**
+	 * Construtor padrão que cria uma lista com capacidade para 10 elementos.
+	 */
 	public ListaDinamicaGenerica() {
 		this(10);
 	}
 
+	/**
+	 * Construtor que cria uma lista com capacidade personalizada.
+	 *
+	 * @param tamanho a capacidade máxima da lista
+	 */
 	public ListaDinamicaGenerica(int tamanho) {
 		ponteiroInicio = null;
 		ponteiroFim = null;
 		quantidade = 0;
 		this.tamanho = tamanho;
-
 	}
 
 	/**
-	 * Adiciona um dado ao fim da lista.
-	 * 
-	 * @param dado: o dado a ser inserido na lista.
-	 * @throws OverflowException: Caso a lista esteja cheia.
+	 * Adiciona um elemento ao final da lista.
+	 *
+	 * @param dado o elemento a ser adicionado
+	 * @throws OverflowException se a lista estiver cheia
 	 */
 	@Override
 	public void anexar(T dado) {
@@ -38,16 +61,15 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 		noTemporario.setAnterior(ponteiroFim);
 		ponteiroFim = noTemporario;
 		quantidade++;
-
 	}
 
 	/**
-	 * Insere um dado numa posicao específica da lista.
-	 * 
-	 * @param posicao: posição que o dado será inserido.
-	 * @param dado:    dado a ser inserido na lista.
-	 * @throws OverflowException:         Caso a lista esteja cheia.
-	 * @throws IndexOutOfBoundsException: Caso o indice seja invalido.
+	 * Insere um elemento em uma posição específica da lista.
+	 *
+	 * @param posicao a posição onde o elemento será inserido
+	 * @param dado o elemento a ser inserido
+	 * @throws OverflowException se a lista estiver cheia
+	 * @throws IndexOutOfBoundsException se a posição for inválida
 	 */
 	@Override
 	public void inserir(int posicao, T dado) {
@@ -93,12 +115,12 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Seleciona o dado que está numa posicao logica informada.
-	 * 
-	 * @param posicao: uma posição de um objeto da lista.
-	 * @return: o objeto da posição indicada.
-	 * @throws UnderflowException:        Caso a lista esteja vazia.
-	 * @throws IndexOutOfBoundsException: Caso o índice seja inválido.
+	 * Retorna o elemento em uma posição específica da lista.
+	 *
+	 * @param posicao a posição do elemento desejado
+	 * @return o elemento na posição especificada
+	 * @throws UnderflowException se a lista estiver vazia
+	 * @throws IndexOutOfBoundsException se a posição for inválida
 	 */
 	@Override
 	public T selecionar(int posicao) {
@@ -121,10 +143,10 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Seleciona todos os dado da ED.
-	 * 
-	 * @return: Retorna todos os objetos da Lista.
-	 * @throws UnderflowException: Caso a lista esteja vazia.
+	 * Retorna um array contendo todos os elementos da lista.
+	 *
+	 * @return array com todos os elementos da lista
+	 * @throws UnderflowException se a lista estiver vazia
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -142,12 +164,12 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Atualiza o dado de uma posicao logica informada por um novo.
-	 * 
-	 * @param posicao:  posição que o dado será atualizado.
-	 * @param novoDado: novo dado a ser inserido na lista.
-	 * @throws UnderflowException:        Caso a lista esteja vazia.
-	 * @throws IndexOutOfBoundsException: Caso o índice seja inválido.
+	 * Atualiza o elemento em uma posição específica da lista.
+	 *
+	 * @param posicao a posição do elemento a ser atualizado
+	 * @param novoDado o novo elemento
+	 * @throws UnderflowException se a lista estiver vazia
+	 * @throws IndexOutOfBoundsException se a posição for inválida
 	 */
 	@Override
 	public void atualizar(int posicao, T novoDado) {
@@ -166,12 +188,12 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Apaga o dado de uma posicao logica informada.
-	 * 
-	 * @param posicao: posição que o dado será apagado.
-	 * @return: dado apagado.
-	 * @throws UnderflowException:        Caso a lista esteja vazia.
-	 * @throws IndexOutOfBoundsException: Caso o índice seja inválido.
+	 * Remove o elemento em uma posição específica da lista.
+	 *
+	 * @param posicao a posição do elemento a ser removido
+	 * @return o elemento removido
+	 * @throws UnderflowException se a lista estiver vazia
+	 * @throws IndexOutOfBoundsException se a posição for inválida
 	 */
 	@Override
 	public T apagar(int posicao) {
@@ -208,9 +230,9 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Informa se a lista está cheia.
-	 * 
-	 * @return: true se a lista está cheia, false caso contrário.
+	 * Verifica se a lista está cheia.
+	 *
+	 * @return true se a lista estiver cheia, false caso contrário
 	 */
 	@Override
 	public boolean estaCheia() {
@@ -218,9 +240,9 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Informa se a lista está vazia.
-	 * 
-	 * @return: true se a lista está vazia, false caso contrário.
+	 * Verifica se a lista está vazia.
+	 *
+	 * @return true se a lista estiver vazia, false caso contrário
 	 */
 	@Override
 	public boolean estaVazia() {
@@ -228,10 +250,10 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	}
 
 	/**
-	 * Imprime o conteúdo da lista.
-	 * 
-	 * @return: string com todos os dados da lista separados por "," e delimitados
-	 *          por ´[´ e ´]´.
+	 * Retorna uma representação em string da lista.
+	 * Os elementos são separados por vírgula e delimitados por colchetes.
+	 *
+	 * @return string representando a lista
 	 */
 	@Override
 	public String imprimir() {

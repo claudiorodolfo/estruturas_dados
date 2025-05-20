@@ -9,8 +9,6 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import src.Enfileiravel;
-
 public class FilaDinamicaGenericaMainCLI {
   public static void main(String[] args) {
     Enfileiravel<String> fila = new FilaDinamicaGenerica<>(7);

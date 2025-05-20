@@ -5,10 +5,18 @@
 
 //executar fonte: java -cp .;bin PilhaDinamicaGenericaMainCLI
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
+/**
+ * Classe principal que demonstra o uso da Pilha Dinâmica Genérica através de uma interface de linha de comando.
+ * Esta classe implementa um menu interativo que permite ao usuário testar todas as operações
+ * disponíveis na implementação da pilha.
+ *
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.1
+ */
 public class PilhaDinamicaGenericaMainCLI {
   public static void main(String[] args) {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(7);
