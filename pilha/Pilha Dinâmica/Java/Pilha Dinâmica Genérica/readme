@@ -20,4 +20,4 @@
 //Executar .jar
 //java -jar build/Main.jar
 
-//PS: para sistemas tipo Linux trocar ; ou : na separação dos itens do classpath
+//PS: para sistemas tipo Linux trocar ; por : na separação dos itens do classpath
