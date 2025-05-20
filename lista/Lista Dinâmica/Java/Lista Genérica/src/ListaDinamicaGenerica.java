@@ -49,7 +49,7 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 	@Override
 	public void anexar(T dado) {
 		if (estaCheia()) {
-			throw new OverflowException("Fila Cheia!");
+			throw new OverflowException("Lista Cheia!");
 		}
 		NoDuplo<T> noTemporario = new NoDuplo<>();
 		noTemporario.setDado(dado);
