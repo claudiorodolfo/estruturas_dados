@@ -81,11 +81,7 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 		}
 		NoDuplo<T> noTemporario = new NoDuplo<>();
 		noTemporario.setDado(dado);
-		////////////////////////////////
-		// Codigo de posicionamento do ponteiro auxiliar, no nodo
-		// que serah feita alguma operacao. Lembrando que nesse metodo
-		// auxiliar ira parar no nodo subsequente ao nodo que devera
-		// ser inserido
+
 		NoDuplo<T> ponteiroAnterior = null;
 		NoDuplo<T> ponteiroProximo = ponteiroInicio;
 
@@ -130,15 +126,11 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 		if (!(posicao >= 0 && posicao < quantidade)) {
 			throw new IndexOutOfBoundsException("Indice Invalido!");
 		}
-		////////////////////////////////
-		// Codigo de posicionamento do ponteiro auxiliar, no nodo
-		// que será feita alguma operação. Esse codigo é o mesmo
-		// para os metodos update, delete e select
+
 		NoDuplo<T> ponteiroAuxiliar = ponteiroInicio;
 		for (int i = 0; i < posicao; i++) {
 			ponteiroAuxiliar = ponteiroAuxiliar.getProximo();
 		}
-		///////////////////////////////
 		return ponteiroAuxiliar.getDado();
 	}
 
