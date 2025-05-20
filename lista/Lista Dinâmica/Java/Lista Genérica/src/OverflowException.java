@@ -1,4 +1,4 @@
-public class OverflowException extends Exception {
+public class OverflowException extends RuntimeException {
 
 	public OverflowException(String mensagem) {
         super(mensagem);
