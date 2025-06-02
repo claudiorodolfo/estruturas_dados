@@ -1,10 +1,10 @@
 public interface Listavel<T> {
 	
 	//anexa(insere ao final da lista) a lista o novo dado fornecido
-	void anexar(T dado) throws OverflowException;
+	void anexar(T dado);
 	
 	//insere o novo dado fornecido na lista, numa posicao logica informada 
-	void inserir(int posicao, T dado) throws OverflowException;
+	void inserir(int posicao, T dado);
 	
 	//retorna o elemento que está numa posicao logica informada
 	T selecionar(int posicao);
@@ -17,7 +17,7 @@ public interface Listavel<T> {
 	void atualizar(int posicao, T novoDado);
 	
 	//remove o elemento de uma posicao logica informada
-	T apagar(int posicao)throws UnderflowException;
+	T apagar(int posicao);
 	
 	//métodos auxiliares
 	boolean estaCheia();
