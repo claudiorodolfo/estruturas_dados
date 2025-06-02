@@ -1,11 +1,11 @@
 class PilhaEstaticaGenerica<T> : Empilhavel<T> {
 
     private var ponteiroTopo: Int
-    private var dados: Array<Any?>
+    private var dados: MutableList<T?>
 
     constructor(tamanho: Int) {
         ponteiroTopo = -1
-        dados = arrayOfNulls(tamanho)
+        dados = MutableList(tamanho){null}
     }
 
     constructor() : this(10)
@@ -22,7 +22,7 @@ class PilhaEstaticaGenerica<T> : Empilhavel<T> {
     override fun desempilhar(): T? {
         var dadoTopo: T? = null
         if (!estaVazia()) {
-            dadoTopo = dados[ponteiroTopo] as T
+            dadoTopo = dados[ponteiroTopo]
             ponteiroTopo--
         } else {
             println("Pilha Vazia!")
@@ -40,7 +40,7 @@ class PilhaEstaticaGenerica<T> : Empilhavel<T> {
     override fun espiar(): T? {
         var dadoTopo: T? = null
         if (!estaVazia()) {
-            dadoTopo = dados[ponteiroTopo] as T
+            dadoTopo = dados[ponteiroTopo]
         } else {
             println("Pilha Vazia!")
         }
