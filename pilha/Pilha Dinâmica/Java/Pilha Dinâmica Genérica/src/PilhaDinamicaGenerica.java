@@ -1,43 +1,49 @@
 import java.util.NoSuchElementException;
 
 /**
- * Esta classe implementa uma pilha, é uma estrutura de 
- * dados que segue o princípio LIFO (Last In, First Out).
- * 
- * @author Oliveira, C. R. S.
+ * Implementação de uma pilha dinâmica duplamente encadeada genérica.
+ * Esta classe implementa uma pilha que pode armazenar elementos de qualquer tipo,
+ * utilizando uma estrutura de nós duplamente encadeados.
+ *
+ * @param <T> o tipo dos elementos armazenados na pilha
+ * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.1
- * @since 2025-05-01
  */
 public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
-	private int tamanho;
+
+	/** Quantidade atual de elementos na pilha */
 	private int quantidade;
-	private NoDuplo<T> ponteiroTopo;
 	
-	/**
- 	* Construtor que recebe um tamanho máximo.
-	*
- 	* @param tamanho indica o tamanho máximo que a pilha pode ter
- 	*/		
-	public PilhaDinamicaGenerica(int tamanho) {
-		this.tamanho = tamanho;
-		quantidade = 0;
-		ponteiroTopo = null;
-	}
+	/** Tamanho máximo da pilha */
+	private int tamanho;
+	
+	/** Ponteiro para o topo da pilha */
+	private NoDuplo<T> ponteiroTopo;
 
 	/**
- 	* Construtor vazio.
- 	* 
- 	*/	
+	 * Construtor padrão que cria uma pilha com capacidade para 10 elementos.
+	 */
 	public PilhaDinamicaGenerica() {
 		this(10);
 	}
 
 	/**
- 	* Empilha um elemento na pilha.
- 	* 
- 	* @param dado é o dado a ser empilhado
- 	* @throws NoSuchElementException se a pilha estiver cheia
- 	*/
+	 * Construtor que cria uma pilha com capacidade personalizada.
+	 *
+	 * @param tamanho a capacidade máxima da pilha
+	 */
+	public PilhaDinamicaGenerica(int tamanho) {
+		ponteiroTopo = null;
+		quantidade = 0;
+		this.tamanho = tamanho;
+	}
+
+	/**
+	 * Adiciona um elemento ao topo da pilha.
+	 *
+	 * @param dado o elemento a ser adicionado
+	 * @throws NoSuchElementException se a pilha estiver cheia
+	 */
 	@Override
 	public void empilhar(T dado) {
 		if (estaCheia()) {
@@ -54,11 +60,11 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	}
 	
 	/**
- 	* Desempilha o topo da pilha.
- 	* 
-	* @return retorna o elemento desempilhado
- 	* @throws NoSuchElementException se a pilha estiver vazia
- 	*/
+	 * Remove e retorna o elemento do topo da pilha.
+	 *
+	 * @return o elemento removido do topo
+	 * @throws NoSuchElementException se a pilha estiver vazia
+	 */
 	@Override
 	public T desempilhar() {
 		if (estaVazia()) {
@@ -74,26 +80,26 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	}
 
 	/**
- 	* Espia o topo da pilha.
- 	* 
-	* @return retorna o elemento do topo
- 	* @throws NoSuchElementException se a pilha estiver vazia
- 	*/
+	 * Retorna o elemento do topo da pilha sem removê-lo.
+	 *
+	 * @return o elemento do topo
+	 * @throws NoSuchElementException se a pilha estiver vazia
+	 */
 	@Override
 	public T espiar() {
 		if (estaVazia()) {
 			throw new NoSuchElementException("Pilha Vazia!");
 		}
-		T dadoTopo = ponteiroTopo.getDado();
-		return dadoTopo;
+		return ponteiroTopo.getDado();
 	}
 
 	/**
- 	* Atualiza o topo da pilha.
- 	* 
-	* @param novoDado é o elemento a substituir o elemento do topo
- 	* @throws NoSuchElementException se a pilha estiver vazia
- 	*/
+	 * Retorna um array contendo todos os elementos da pilha.
+	 * O elemento do topo será o último elemento do array.
+	 *
+	 * @return array com todos os elementos da pilha
+	 * @throws NoSuchElementException se a pilha estiver vazia
+	 */
 	@Override
 	public void atualizar(T novoDado) {
 		if (estaVazia()) {
@@ -103,37 +109,39 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	}
 
 	/**
- 	* Verifica se a pilha está vazia.
- 	* 
-	* @return true se a pilha estiver vazia, false caso contrário
- 	*/	
-	@Override
-	public boolean estaVazia() {
-		return (quantidade == 0);
-	}
-	
-	/**
- 	* Verifica se a pilha está cheia.
- 	* 
-	* @return true se a pilha estiver cheia, false caso contrário
- 	*/	
+	 * Verifica se a pilha está cheia.
+	 *
+	 * @return true se a pilha estiver cheia, false caso contrário
+	 */
 	@Override
 	public boolean estaCheia() {
 		return (quantidade == tamanho);
 	}
 
 	/**
- 	* Texto referente aos elementos da pilha para serem impressos.
- 	* 
-	* @return um texto com os elementos separados por ",", delimitados por colchetes
- 	*/	
+	 * Verifica se a pilha está vazia.
+	 *
+	 * @return true se a pilha estiver vazia, false caso contrário
+	 */
+	@Override
+	public boolean estaVazia() {
+		return (quantidade == 0);
+	}
+
+	/**
+	 * Retorna uma representação em string da pilha.
+	 * Os elementos são separados por vírgula e delimitados por colchetes.
+	 * O elemento do topo será o último elemento na string.
+	 *
+	 * @return string representando a pilha
+	 */
 	@Override
 	public String imprimir() {
-		NoDuplo<T> ponteiroAuxiliar = ponteiroTopo;
 		String resultado = "[";
-		for (int i = quantidade - 1; i >= 0; i--) {
+		NoDuplo<T> ponteiroAuxiliar = ponteiroTopo;
+		for (int i = 0; i < quantidade; i++) {
 			resultado += ponteiroAuxiliar.getDado();
-			if (i != 0) {
+			if (i != quantidade - 1) {
 				resultado += ",";
 			}
 			ponteiroAuxiliar = ponteiroAuxiliar.getAnterior();

@@ -1,19 +1,11 @@
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/**
- * Classe que demonstra o uso da fila dinâmica genérica através de uma interface de linha de comando.
- * Esta classe implementa um menu interativo que permite ao usuário testar todas as operações
- * disponíveis na fila dinâmica.
- *
- * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- */
-public class FilaDinamicaGenericaMainCLI {
-
+public class FilaDinamicaDuplaTerminacaoGenericaMainCLI {
   public static void main(String[] args) {
-    Enfileiravel<String> fila = new FilaDinamicaGenerica<>(7);
+    Enfileiravel<String> fila = new FilaDinamicaDuplaTerminacaoGenerica<>(7);
     Scanner scanner = new Scanner(System.in);
     int opcao;
 
@@ -32,12 +24,21 @@ public class FilaDinamicaGenericaMainCLI {
             System.out.print("Digite o valor: ");
             String valor = scanner.nextLine();
             try {
-              fila.enfileirarFim(valor);
+              fila.enfileirarInicio(valor);
             } catch (NoSuchElementException e) {
               System.err.println(e.getMessage());
             }
             break;
           case 2:
+            System.out.print("Digite o valor: ");
+            valor = scanner.nextLine();
+            try {
+              fila.enfileirarFim(valor);
+            } catch (NoSuchElementException e) {
+              System.err.println(e.getMessage());
+            }
+            break;
+          case 3:
             System.out.print("Deseja desenfileirar[s/n]? ");
             String confirmacao = scanner.nextLine().trim().toLowerCase();
             if (confirmacao.equals("s")) {
@@ -48,33 +49,54 @@ public class FilaDinamicaGenericaMainCLI {
               }
             }
             break;
-          case 3:
+          case 4:
+            System.out.print("Deseja desenfileirar[s/n]? ");
+            confirmacao = scanner.nextLine().trim().toLowerCase();
+            if (confirmacao.equals("s")) {
+              try {
+                fila.desenfileirarFim();
+              } catch (NoSuchElementException e) {
+                System.err.println(e.getMessage());
+              }
+            }
+            break;
+          case 5:
             try {
               System.out.println("Frente: " + fila.frente());
             } catch (NoSuchElementException e) {
               System.err.println(e.getMessage());
             }
             break;
-          case 4:
-            System.out.print("Digite o valor: ");
-            String novoValorInicio = scanner.nextLine();
+            case 6:
             try {
-              fila.atualizarInicio(novoValorInicio);
+              System.out.println("Fundo: " + fila.tras());
             } catch (NoSuchElementException e) {
               System.err.println(e.getMessage());
             }
             break;
-          case 5:
+          case 7:
             System.out.print("Digite o valor: ");
-            String novoValorFim = scanner.nextLine();
+            String novoValor = scanner.nextLine();
             try {
-              fila.atualizarFim(novoValorFim);
+              fila.atualizarInicio(novoValor);
             } catch (NoSuchElementException e) {
               System.err.println(e.getMessage());
             }
             break;
-          case 6:
+            case 8:
+            System.out.print("Digite o valor: ");
+            novoValor = scanner.nextLine();
+            try {
+              fila.atualizarFim(novoValor);
+            } catch (NoSuchElementException e) {
+              System.err.println(e.getMessage());
+            }
+            break;
+          case 9:
             System.out.println(fila.imprimirDeFrentePraTras());
+            break;
+            case 10:
+            System.out.println(fila.imprimirDeTrasPraFrente());
             break;
           default:
             System.out.println("Opção inválida. Tente novamente.");
@@ -90,14 +112,17 @@ public class FilaDinamicaGenericaMainCLI {
   }
 
   public static void exibirMenu() {
-    System.out.println("=== FILA DINÂMICA GENÉRICA CLI ===");
+    System.out.println("=== FILA DUPLA DINÂMICA GENÉRICA CLI ===");
     System.out.println("0. SAIR");
-    System.out.println("1. Enfileirar");
-    System.out.println("2. Desenfileirar");
-    System.out.println("3. Frente");
-    System.out.println("4. Atualizar no Inicio");
-    System.out.println("5. Atualizar no Fim");
-    System.out.println("6. Imprimir");
-
+    System.out.println("1. Enfileirar no Inicio");
+    System.out.println("2. Enfileirar no Fim");
+    System.out.println("3. Desenfileirar do Inicio");
+    System.out.println("4. Desenfileirar do Fim");
+    System.out.println("5. Frente da Fila");
+    System.out.println("6. Fundo da Fila");
+    System.out.println("7. Atualizar no Inicio");
+    System.out.println("8. Atualizar no Fim");
+    System.out.println("9. Imprimir de Frente para Tras");
+    System.out.println("10. Imprimir de Tras para Frente");
   }
 }
