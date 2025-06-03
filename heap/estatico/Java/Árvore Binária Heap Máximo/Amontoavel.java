@@ -2,9 +2,9 @@
 //Heapify = Organizar dados na forma de um Heap
 //Heapifiable = Amontoavel
 public interface Amontoavel {
-	void inserir(Object dado);	// C
-	Object obterRaiz();			// R
-	Object extrair();			// D
+	void inserir(Long dado);	// C
+	Long obterRaiz();			// R
+	Long extrair();			// D
 
 	//auxiliares
 	String imprimir();

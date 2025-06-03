@@ -55,10 +55,10 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
 		noTemporario.setDado(dado);
 		if (!estaVazia()) {
 			ponteiroFim.setProximo(noTemporario);
+			noTemporario.setAnterior(ponteiroFim);
 		} else {
 			ponteiroInicio = noTemporario;
 		}
-		noTemporario.setAnterior(ponteiroFim);
 		ponteiroFim = noTemporario;
 		quantidade++;
 	}
