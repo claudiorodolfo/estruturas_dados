@@ -93,7 +93,7 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
     @Override
     public Long extrair() {
         if (estaVazia()) {
-            throw new OverflowException("Heap Vazia!");
+            throw new UnderflowException("Heap Vazia!");
         }
 		Long dadoRaiz = dados[0];
 		dados[0] = dados[ponteiroFim];
@@ -119,6 +119,38 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      * @param pai índice do elemento pai a ser ajustado
      */
     private void ajustarAbaixoIterativo(int pai) {
+        boolean ajustado = false;
+
+        while (!ajustado) {
+            int filhoEsquerdo = indiceFilhoEsquerdo(pai);
+            int filhoDireito = indiceFilhoDireito(pai);
+            int maior = pai;
+    
+        //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
+        if (filhoEsquerdo <= ponteiroFim) { 
+            if ( dados[filhoEsquerdo] > dados[maior]) {
+                maior = filhoEsquerdo;
+            }
+        }
+
+        //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
+        if (filhoDireito <= ponteiroFim) {  
+            if (dados[filhoDireito] > dados[maior]) {
+                maior = filhoDireito;
+            }
+        }
+    
+            // Se o maior não for o pai, troca e continua descendo
+            if (maior != pai) {
+                trocar(pai, maior);
+                pai = maior; // desce para a posição onde o maior estava
+            } else {
+                ajustado = true; // heap está ajustado, sai do loop
+            }
+        }
+        
+        
+
         int filhoEsquerdo = indiceFilhoEsquerdo(pai);
         int filhoDireito = indiceFilhoDireito(pai);
         int maior = pai;
@@ -150,13 +182,16 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
         int filhoEsquerdo = indiceFilhoEsquerdo(pai);
         int filhoDireito = indiceFilhoDireito(pai);
         int maior = pai;    
-        if (filhoEsquerdo <= ponteiroFim) { //está dentro dos valores válidos do array
+
+        //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
+        if (filhoEsquerdo <= ponteiroFim) { 
             if ( dados[filhoEsquerdo] > dados[maior]) {
                 maior = filhoEsquerdo;
             }
         }
 
-        if (filhoDireito <= ponteiroFim) {  //está dentro dos valores válidos do array
+        //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
+        if (filhoDireito <= ponteiroFim) {  
             if (dados[filhoDireito] > dados[maior]) {
                 maior = filhoDireito;
             }
