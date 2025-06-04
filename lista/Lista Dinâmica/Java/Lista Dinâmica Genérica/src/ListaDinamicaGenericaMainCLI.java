@@ -5,8 +5,9 @@ import java.util.Scanner;
  * Esta classe implementa um menu interativo que permite ao usuário testar todas as operações
  * disponíveis na lista dinâmica.
  *
- * @author mac
+ * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
+ * @since 2025-06-04
  */
 public class ListaDinamicaGenericaMainCLI {
 

@@ -1,16 +1,36 @@
 import java.util.NoSuchElementException;
 
+/**
+ * Implementação de uma árvore binária heap máximo.
+ * Esta classe implementa uma estrutura de dados heap usando um array para armazenar os elementos.
+ * Em um heap máximo, o elemento pai é sempre maior ou igual aos seus filhos.
+ * 
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.0
+ * @since 2025-06-04
+ */
 public class ArvoreBinariaHeapMaximo implements Amontoavel {
+    /** Array que armazena os elementos do heap */
     private Long[] dados;
+    
+    /** Índice do último elemento inserido no heap */
     private int ponteiroFim;
 
-    public ArvoreBinariaHeapMaximo(int tamanho) {
-		dados = new Long[tamanho];
-        ponteiroFim = -1;
+    /**
+     * Construtor padrão que inicializa o heap com tamanho 10.
+     */
+    public ArvoreBinariaHeapMaximo() {
+        this(10);
     }
 
-    public ArvoreBinariaHeapMaximo() {
-		this(10);
+    /**
+     * Construtor que inicializa o heap com o tamanho especificado.
+     * 
+     * @param tamanho o tamanho inicial do heap
+     */
+    public ArvoreBinariaHeapMaximo(int tamanho) {
+        dados = new Long[tamanho];
+        ponteiroFim = -1;
     }
 
     @Override
@@ -31,35 +51,46 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
 		ajustarAcima(ponteiroFim);
     }
 
+
+
+    /**
+     * Ajusta a estrutura do heap para cima após uma inserção.
+     * 
+     * @param indice índice do elemento a ser ajustado
+     */
     private void ajustarAcima(int indice) {
         ajustarAcimaIterativo(indice);
         //ajustarAcimaRecursivo(indice);        
     }
+
+    /**
+     * Implementação iterativa do ajuste para cima.
+     * 
+     * @param indice índice do elemento a ser ajustado
+     */
     private void ajustarAcimaIterativo(int indice) {
-        while (indice > 0) {
-            if (dados[indice] > dados[indicePai(indice)]) {
-                trocar(indice, indicePai(indice));
-                indice = indicePai(indice);
-            } else {
-                break;
-            }
+        int pai = indicePai(indice);
+        while (indice > 0 && dados[indice] > dados[pai]) {
+            trocar(indice, pai);
+            indice = pai;
+            pai = indicePai(indice);
         }
     }
 
+    /**
+     * Implementação recursiva do ajuste para cima.
+     * 
+     * @param indice índice do elemento a ser ajustado
+     */
     private void ajustarAcimaRecursivo(int indice) {
+        int pai = indicePai(indice);
+        if (indice > 0 && dados[indice] > dados[pai]) {
+            trocar(indice, pai);
+            ajustarAcimaRecursivo(pai);
+        }
     }
-    
-    private void trocar(int i, int j) {
-        Long temp = dados[i];
-        dados[i] = dados[j];
-        dados[j] = temp;
-    }
-	
-    private int indicePai(int filho) {
-        return (int)((filho-1) / 2);
-    }
-	
-	@Override
+
+    @Override
     public Long extrair() {
         if (estaVazia()) {
             throw new OverflowException("Heap Vazia!");
@@ -72,15 +103,50 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
         return dadoRaiz;
     }
 	
-    private void ajustarAbaixo(int pai) { 
-        //ajustarAbaixoIterativo(pai);
-        ajustarAbaixoRecursivo(pai);
+    /**
+     * Ajusta a estrutura do heap para baixo após uma remoção.
+     * 
+     * @param pai índice do elemento pai a ser ajustado
+     */
+    private void ajustarAbaixo(int pai) {
+        ajustarAbaixoIterativo(pai);
+        //ajustarAbaixoRecursivo(pai);
     }
 
-    private void ajustarAbaixoIterativo(int pai) { 
+    /**
+     * Implementação iterativa do ajuste para baixo.
+     * 
+     * @param pai índice do elemento pai a ser ajustado
+     */
+    private void ajustarAbaixoIterativo(int pai) {
+        int filhoEsquerdo = indiceFilhoEsquerdo(pai);
+        int filhoDireito = indiceFilhoDireito(pai);
+        int maior = pai;
+
+        if (filhoEsquerdo <= ponteiroFim) {
+            if (dados[filhoEsquerdo] > dados[maior]) {
+                maior = filhoEsquerdo;
+            }
+        }
+
+        if (filhoDireito <= ponteiroFim) {
+            if (dados[filhoDireito] > dados[maior]) {
+                maior = filhoDireito;
+            }
+        }
+
+        if (maior != pai) {
+            trocar(pai, maior);
+            ajustarAbaixoIterativo(maior);
+        }
     }
 
-    private void ajustarAbaixoRecursivo(int pai) {    
+    /**
+     * Implementação recursiva do ajuste para baixo.
+     * 
+     * @param pai índice do elemento pai a ser ajustado
+     */
+    private void ajustarAbaixoRecursivo(int pai) {
         int filhoEsquerdo = indiceFilhoEsquerdo(pai);
         int filhoDireito = indiceFilhoDireito(pai);
         int maior = pai;    
@@ -101,25 +167,74 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
             ajustarAbaixoRecursivo(maior);
         }
     }
-   
-    private int indiceFilhoDireito(int pai) {
-        return (2 * pai + 1) + 1;
+    
+    /**
+     * Troca dois elementos de posição no array.
+     * 
+     * @param i índice do primeiro elemento
+     * @param j índice do segundo elemento
+     */
+    private void trocar(int i, int j) {
+        Long temp = dados[i];
+        dados[i] = dados[j];
+        dados[j] = temp;
     }
-  
+
+    /**
+     * Calcula o índice do pai de um elemento.
+     * 
+     * @param filho índice do elemento filho
+     * @return índice do elemento pai
+     */
+    private int indicePai(int filho) {
+        return (filho - 1) / 2;
+    }
+    /**
+     * Calcula o índice do filho esquerdo de um elemento.
+     * 
+     * @param pai índice do elemento pai
+     * @return índice do filho esquerdo
+     */
     private int indiceFilhoEsquerdo(int pai) {
         return 2 * pai + 1;
     }
 
+    /**
+     * Calcula o índice do filho direito de um elemento.
+     * 
+     * @param pai índice do elemento pai
+     * @return índice do filho direito
+     */
+    private int indiceFilhoDireito(int pai) {
+        return (2 * pai + 1) + 1;
+    }
+
+	/**
+	 * Verifica se a heap está vazia.
+	 *
+	 * @return true se a heap estiver vazia, false caso contrário
+	 */
 	@Override
     public boolean estaVazia() {
         return (ponteiroFim == -1);
     }
 
+	/**
+	 * Verifica se a heap está cheia.
+	 *
+	 * @return true se a heap estiver cheia, false caso contrário
+	 */
 	@Override
     public boolean estaCheia() {
         return (ponteiroFim == dados.length-1);
     }
 
+	/**
+	 * Retorna uma representação em string da estrutura de dados heap.
+	 * Os elementos são separados por vírgula e delimitados por colchetes.
+	 *
+	 * @return string representando a estrutura de dados heap
+	 */
 	@Override	
     public String imprimir() {
 		String resultado = "[";

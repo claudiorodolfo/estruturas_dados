@@ -6,6 +6,7 @@
  * @param <T> o tipo do dado armazenado no nó
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.1
+ * @since 2025-06-04
  */
 public class NoDuplo<T> {
 	

@@ -16,6 +16,7 @@ import java.util.NoSuchElementException;
  *
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.1
+ * @since 2025-06-04
  */
 public class PilhaDinamicaGenericaMainCLI {
   public static void main(String[] args) {

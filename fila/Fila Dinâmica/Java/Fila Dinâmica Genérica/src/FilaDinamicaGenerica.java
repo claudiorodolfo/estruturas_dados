@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
  * @param <T> o tipo dos elementos armazenados na fila
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.1
+ * @since 2025-06-04
  */
 public class FilaDinamicaGenerica<T> implements Enfileiravel<T> {
 
