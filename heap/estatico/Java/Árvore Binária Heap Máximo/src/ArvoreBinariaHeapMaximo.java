@@ -9,9 +9,9 @@ import java.util.NoSuchElementException;
  * @version 1.0
  * @since 2025-06-04
  */
-public class ArvoreBinariaHeapMaximo implements Amontoavel {
+public class ArvoreBinariaHeapMaximo<T> implements Amontoavel<T> {
     /** Array que armazena os elementos do heap */
-    private Long[] dados;
+    private T[] dados;
     
     /** Índice do último elemento inserido no heap */
     private int ponteiroFim;
@@ -29,12 +29,12 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      * @param tamanho o tamanho inicial do heap
      */
     public ArvoreBinariaHeapMaximo(int tamanho) {
-        dados = new Long[tamanho];
+        dados = (T[]) new Object[tamanho];
         ponteiroFim = -1;
     }
 
     @Override
-    public Long obterRaiz() {
+    public T obterRaiz() {
         if (estaVazia()) {
             throw new NoSuchElementException("Elemento não encontrado!");
         }       
@@ -42,7 +42,7 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
     }
 	
 	@Override
-    public void inserir(Long dado) {
+    public void inserir(T dado) {
         if (estaCheia()) {
             throw new OverflowException("Heap Cheia!");
         }
@@ -70,7 +70,7 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      */
     private void ajustarAcimaIterativo(int indice) {
         int pai = indicePai(indice);
-        while (indice > 0 && dados[indice] > dados[pai]) {
+        while (indice > 0 && (Long) dados[indice] > (Long) dados[pai]) {
             trocar(indice, pai);
             indice = pai;
             pai = indicePai(indice);
@@ -84,18 +84,18 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      */
     private void ajustarAcimaRecursivo(int indice) {
         int pai = indicePai(indice);
-        if (indice > 0 && dados[indice] > dados[pai]) {
+        if (indice > 0 && (Long) dados[indice] > (Long) dados[pai]) {
             trocar(indice, pai);
             ajustarAcimaRecursivo(pai);
         }
     }
 
     @Override
-    public Long extrair() {
+    public T extrair() {
         if (estaVazia()) {
             throw new UnderflowException("Heap Vazia!");
         }
-		Long dadoRaiz = dados[0];
+		T dadoRaiz = dados[0];
 		dados[0] = dados[ponteiroFim];
 		ponteiroFim--;
 		ajustarAbaixo(0);
@@ -128,14 +128,14 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
     
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoEsquerdo <= ponteiroFim) { 
-            if ( dados[filhoEsquerdo] > dados[maior]) {
+            if ((Long)dados[filhoEsquerdo] > (Long) dados[maior]) {
                 maior = filhoEsquerdo;
             }
         }
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoDireito <= ponteiroFim) {  
-            if (dados[filhoDireito] > dados[maior]) {
+            if ((Long)dados[filhoDireito] > (Long)dados[maior]) {
                 maior = filhoDireito;
             }
         }
@@ -162,14 +162,14 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoEsquerdo <= ponteiroFim) { 
-            if ( dados[filhoEsquerdo] > dados[maior]) {
+            if ((Long)dados[filhoEsquerdo] > (Long)dados[maior]) {
                 maior = filhoEsquerdo;
             }
         }
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoDireito <= ponteiroFim) {  
-            if (dados[filhoDireito] > dados[maior]) {
+            if ((Long)dados[filhoDireito] > (Long)dados[maior]) {
                 maior = filhoDireito;
             }
         }
@@ -187,7 +187,7 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      * @param j índice do segundo elemento
      */
     private void trocar(int i, int j) {
-        Long temp = dados[i];
+        T temp = dados[i];
         dados[i] = dados[j];
         dados[j] = temp;
     }

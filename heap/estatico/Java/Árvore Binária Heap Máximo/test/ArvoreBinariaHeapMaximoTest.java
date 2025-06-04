@@ -19,12 +19,12 @@ import static org.junit.Assert.*;
  */
 public class ArvoreBinariaHeapMaximoTest {
    
-    private Amontoavel heap;
+    private Amontoavel<Long> heap;
 
     @Before
     public void setUp() {
         // Este método será executado antes de cada @Test
-        heap = new ArvoreBinariaHeapMaximo(5);
+        heap = new ArvoreBinariaHeapMaximo<>(5);
     }
 
     /**

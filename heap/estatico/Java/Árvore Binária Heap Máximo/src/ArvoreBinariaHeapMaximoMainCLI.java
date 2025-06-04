@@ -16,7 +16,7 @@ public class ArvoreBinariaHeapMaximoMainCLI {
     private static Scanner scanner;
     
     /** Heap que será manipulada */
-    private static Amontoavel heap;
+    private static Amontoavel<Long> heap;
     
     /**
      * Método principal que inicia o programa.
@@ -25,7 +25,7 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      */
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        heap = new ArvoreBinariaHeapMaximo(10);
+        heap = new ArvoreBinariaHeapMaximo<>(10);
         executar();
     }
     

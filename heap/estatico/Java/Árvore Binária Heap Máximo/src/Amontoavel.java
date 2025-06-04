@@ -6,27 +6,27 @@
  * @version 1.0
  * @since 2025-06-04
  */
-public interface Amontoavel {
+public interface Amontoavel<T> {
 	/**
 	 * Insere um novo elemento no heap.
 	 * 
 	 * @param dado o elemento a ser inserido
 	 */
-	void inserir(Long dado);	// C
+	void inserir(T dado);	// C
 
 	/**
 	 * Extrai e remove o elemento raiz do heap.
 	 * 
 	 * @return o elemento raiz removido
 	 */
-	Long extrair();				// D
+	T extrair();				// D
 
 	/**
 	 * Obtém o elemento raiz do heap sem removê-lo.
 	 * 
 	 * @return o elemento raiz
 	 */
-	Long obterRaiz();			// R
+	T obterRaiz();			// R
 
 	//auxiliares
 	/**
