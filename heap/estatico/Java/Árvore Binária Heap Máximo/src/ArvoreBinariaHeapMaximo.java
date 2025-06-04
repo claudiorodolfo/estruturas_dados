@@ -109,8 +109,8 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
      * @param pai índice do elemento pai a ser ajustado
      */
     private void ajustarAbaixo(int pai) {
-        ajustarAbaixoIterativo(pai);
-        //ajustarAbaixoRecursivo(pai);
+        // ajustarAbaixoIterativo(pai);
+        ajustarAbaixoRecursivo(pai);
     }
 
     /**
@@ -147,29 +147,6 @@ public class ArvoreBinariaHeapMaximo implements Amontoavel {
             } else {
                 ajustado = true; // heap está ajustado, sai do loop
             }
-        }
-        
-        
-
-        int filhoEsquerdo = indiceFilhoEsquerdo(pai);
-        int filhoDireito = indiceFilhoDireito(pai);
-        int maior = pai;
-
-        if (filhoEsquerdo <= ponteiroFim) {
-            if (dados[filhoEsquerdo] > dados[maior]) {
-                maior = filhoEsquerdo;
-            }
-        }
-
-        if (filhoDireito <= ponteiroFim) {
-            if (dados[filhoDireito] > dados[maior]) {
-                maior = filhoDireito;
-            }
-        }
-
-        if (maior != pai) {
-            trocar(pai, maior);
-            ajustarAbaixoIterativo(maior);
         }
     }
 

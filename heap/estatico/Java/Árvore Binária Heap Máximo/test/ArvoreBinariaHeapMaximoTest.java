@@ -89,7 +89,7 @@ public class ArvoreBinariaHeapMaximoTest {
      */
     @Test(expected = OverflowException.class)
     public void testHeapCheia() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             heap.inserir(Long.valueOf(i));
         }
     }

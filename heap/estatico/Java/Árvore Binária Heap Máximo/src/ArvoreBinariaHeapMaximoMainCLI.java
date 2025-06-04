@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 /**
  * Classe que implementa uma interface de linha de comando (CLI) para manipular
