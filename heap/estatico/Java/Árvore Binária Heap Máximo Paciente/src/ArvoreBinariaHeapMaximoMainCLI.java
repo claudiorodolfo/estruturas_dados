@@ -16,7 +16,7 @@ public class ArvoreBinariaHeapMaximoMainCLI {
     private static Scanner scanner;
     
     /** Heap que será manipulada */
-    private static Amontoavel<Long> heap;
+    private static Amontoavel<Paciente> heap;
     
     /**
      * Método principal que inicia o programa.
@@ -105,11 +105,16 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      * Solicita ao usuário o elemento a ser inserido.
      */
     private static void inserir() {
-        System.out.print("Digite o elemento a ser inserido: ");
-        Long elemento = scanner.nextLong();
+        System.out.print("Digite o nome do paciente: ");
+        String nome = scanner.next();
+        System.out.print("Digite a idade do paciente: ");
+        int idade = scanner.nextInt();
+        System.out.print("Digite a prioridade do paciente: ");
+        long prioridade = scanner.nextLong();
+        Paciente p = new Paciente(nome, idade, prioridade);
         try {
-            heap.inserir(elemento);
-            System.out.println("Elemento inserido com sucesso!");
+            heap.inserir(p);
+            System.out.println("Paciente inserido com sucesso!");
         } catch (OverflowException e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -121,8 +126,8 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      */
     private static void extrair() {
         try {
-            Long elemento = heap.extrair();
-            System.out.println("Elemento extraído: " + elemento);
+            Paciente p = heap.extrair();
+            System.out.println("Paciente: " + p);
         } catch (UnderflowException e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -134,8 +139,8 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      */
     private static void obterRaiz() {
         try {
-            Long elemento = heap.obterRaiz();
-            System.out.println("Elemento raiz: " + elemento);
+            Paciente p = heap.obterRaiz();
+            System.out.println("Paciente raiz: " + p);
         } catch (NoSuchElementException e) {
             System.out.println("Erro: " + e.getMessage());
         }

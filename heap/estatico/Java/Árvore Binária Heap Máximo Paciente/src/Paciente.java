@@ -2,19 +2,13 @@ public class Paciente implements Priorizavel {
     private String nome;
     private int idade;
     private long prioridade;
+    private long prioridadeInterna;
 
     public Paciente(String nome, int idade, long prioridade) {
         this.nome = nome;
         this.idade = idade;
         this.prioridade = prioridade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public int getIdade() {
-        return idade;
+        this.prioridadeInterna = prioridade * 1000000000000L + System.currentTimeMillis();
     }
 
     @Override
@@ -27,32 +21,28 @@ public class Paciente implements Priorizavel {
         this.prioridade = prioridade;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public long getPrioridadeOriginal() {
+        return prioridade;
+    }
+
     @Override
     public String toString() {
-        StringBuilder resultado = new StringBuilder();
-        resultado.append("\n{\n");
-        resultado.append("\t\"nome\": \"").append(nome).append("\",\n");
-        resultado.append("\t\"idade\": \"").append(idade).append("\",\n");
-        resultado.append("\t\"prioridade\": \"").append(prioridadeOriginal()).append("\"\n");
-        resultado.append("\t\"prioridadeCalculada\": \"").append(prioridade).append("\"");
-        resultado.append("\n}");
-        return resultado.toString();
+        return String.format("""
+            {
+                "nome": "%s",
+                "idade": %d,
+                "prioridade": %d,
+                "prioridadeCalculada": %d
+            }
+            """, nome, idade, prioridade, prioridadeInterna);
     }
-
-    private int prioridadeOriginal() {
-        String prioridadeString = Long.toString(prioridade);
-        int tamanhoString = prioridadeString.length();
-        int corte = tamanhoString - 14;
-
-        if (corte <= 0) {
-            return 0;
-        }
-
-        String digitosIniciais = prioridadeString.substring(0, corte);
-        try {
-            return Integer.parseInt(digitosIniciais);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
+    
 }
