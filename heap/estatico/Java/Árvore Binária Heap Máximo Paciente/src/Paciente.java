@@ -12,14 +12,6 @@ public class Paciente implements Priorizavel {
         this.prioridadeInterna = prioridade * 1_000_000_000_000L + inversoTimestamp;
     }
 
-    public long getPrioridade() {
-        return prioridade;
-    }
-
-    public void setPrioridade(long prioridade) {
-        this.prioridade = prioridade;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -29,7 +21,7 @@ public class Paciente implements Priorizavel {
     }
 
     @Override
-    public long getPrioridadeInterna() {
+    public long getPrioridade() {
         return prioridadeInterna;
     }
 

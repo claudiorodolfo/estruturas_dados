@@ -73,7 +73,7 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
     private void ajustarAcimaIterativo(int indice) {
         int pai = indicePai(indice);
         
-        while (indice > 0 && (dados[indice]).getPrioridadeInterna() > (dados[pai]).getPrioridadeInterna()) {
+        while (indice > 0 && (dados[indice]).getPrioridade() > (dados[pai]).getPrioridade()) {
             trocar(indice, pai);
             indice = pai;
             pai = indicePai(indice);
@@ -87,7 +87,7 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
      */
     private void ajustarAcimaRecursivo(int indice) {
         int pai = indicePai(indice);
-        if (indice > 0 && (dados[indice]).getPrioridadeInterna() > (dados[pai]).getPrioridadeInterna()) {
+        if (indice > 0 && (dados[indice]).getPrioridade() > (dados[pai]).getPrioridade()) {
             trocar(indice, pai);
             ajustarAcimaRecursivo(pai);
         }
@@ -131,14 +131,14 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
     
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoEsquerdo <= ponteiroFim) { 
-            if ((dados[filhoEsquerdo]).getPrioridadeInterna() > (dados[maior]).getPrioridadeInterna()) {
+            if ((dados[filhoEsquerdo]).getPrioridade() > (dados[maior]).getPrioridade()) {
                 maior = filhoEsquerdo;
             }
         }
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoDireito <= ponteiroFim) {  
-            if ((dados[filhoDireito]).getPrioridadeInterna() > (dados[maior]).getPrioridadeInterna()) {
+            if ((dados[filhoDireito]).getPrioridade() > (dados[maior]).getPrioridade()) {
                 maior = filhoDireito;
             }
         }
@@ -165,14 +165,14 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoEsquerdo <= ponteiroFim) { 
-            if (((Priorizavel) dados[filhoEsquerdo]).getPrioridadeInterna() > ((Priorizavel) dados[maior]).getPrioridadeInterna()) {
+            if (((Priorizavel) dados[filhoEsquerdo]).getPrioridade() > ((Priorizavel) dados[maior]).getPrioridade()) {
                 maior = filhoEsquerdo;
             }
         }
 
         //está dentro dos indices válidos do array, no intervalo [0, ponteiroFim]
         if (filhoDireito <= ponteiroFim) {  
-            if (((Priorizavel) dados[filhoDireito]).getPrioridadeInterna() > ((Priorizavel) dados[maior]).getPrioridadeInterna()) {
+            if (((Priorizavel) dados[filhoDireito]).getPrioridade() > ((Priorizavel) dados[maior]).getPrioridade()) {
                 maior = filhoDireito;
             }
         }

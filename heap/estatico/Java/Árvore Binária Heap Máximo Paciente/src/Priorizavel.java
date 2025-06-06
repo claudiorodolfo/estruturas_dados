@@ -1,3 +1,3 @@
 public interface Priorizavel {
-    public long getPrioridadeInterna();
+    public long getPrioridade();
 }
