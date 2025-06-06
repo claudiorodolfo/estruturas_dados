@@ -35,14 +35,7 @@ public class Paciente implements Priorizavel {
 
     @Override
     public String toString() {
-        return String.format("""
-            {
-                "nome": "%s",
-                "idade": %d,
-                "prioridade": %d,
-                "prioridadeCalculada": %d
-            }
-            """, nome, idade, prioridade, prioridadeInterna);
+        return String.format("Paciente{nome='%s', idade=%d, prioridade=%d}", nome, idade, prioridade);
     }
     
 }

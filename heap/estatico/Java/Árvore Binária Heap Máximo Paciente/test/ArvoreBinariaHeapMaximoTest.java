@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
  * Classe de testes para a implementação de Árvore Binária Heap Máximo com Pacientes.
  * Esta classe contém testes unitários para verificar o funcionamento
  * correto de todas as operações do heap com objetos do tipo Paciente.
+ * Em um heap máximo, pacientes com maior número de prioridade têm precedência.
  * 
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
 public class ArvoreBinariaHeapMaximoTest {
     
     private Amontoavel<Paciente> heap;
-    private Paciente p1, p2, p3, p4, p5;
+    private Paciente pJoao, pMaria, pPedro, pAna, pLucas;
     
     @Before
     public void setUp() {
@@ -23,51 +24,50 @@ public class ArvoreBinariaHeapMaximoTest {
         heap = new ArvoreBinariaHeapMaximo<>(5);
         
         // Criando pacientes com diferentes prioridades
-        p1 = new Paciente("João", 30, 1);  // Prioridade 1 (mais alta)
-        p2 = new Paciente("Maria", 25, 2); // Prioridade 2
-        p3 = new Paciente("Pedro", 40, 3); // Prioridade 3
-        p4 = new Paciente("Ana", 35, 4);   // Prioridade 4
-        p5 = new Paciente("Lucas", 28, 5); // Prioridade 5 (mais baixa)
+        pJoao = new Paciente("João", 30, 1);
+        pMaria = new Paciente("Maria", 25, 2);
+        pPedro = new Paciente("Pedro", 40, 2);
+        pAna = new Paciente("Ana", 35, 3);
+        pLucas = new Paciente("Lucas", 28, 3);
     }
     
     /**
      * Testa a inserção de pacientes no heap.
      * Verifica se os pacientes são inseridos corretamente e se a propriedade
-     * de heap máximo é mantida baseada na prioridade.
+     * de heap máximo é mantida baseada na prioridade (maior número = maior prioridade).
      */
     @Test
     public void testInserir() {
-        heap.inserir(p3);
-        heap.inserir(p1);
-        heap.inserir(p4);
-        heap.inserir(p2);
-        
-        assertEquals("[Paciente{nome='João', idade=30, prioridade=1}, " +
-                    "Paciente{nome='Maria', idade=25, prioridade=2}, " +
-                    "Paciente{nome='Pedro', idade=40, prioridade=3}, " +
-                    "Paciente{nome='Ana', idade=35, prioridade=4}]", 
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        heap.inserir(pMaria);        
+        assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
+                    "Paciente{nome='Maria', idade=25, prioridade=2}," +
+                    "Paciente{nome='Pedro', idade=40, prioridade=2}," +
+                    "Paciente{nome='Joao', idade=30, prioridade=1}]", 
                     heap.imprimir());
     }
-    
-    /**
+
+   /**
      * Testa a extração do paciente com maior prioridade do heap.
      * Verifica se o paciente correto é extraído e se a propriedade
      * de heap máximo é mantida após a extração.
      */
     @Test
     public void testExtrair() {
-        heap.inserir(p3);
-        heap.inserir(p1);
-        heap.inserir(p4);
-        heap.inserir(p2);
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        heap.inserir(pMaria); 
         
-        assertEquals(p1, heap.extrair());
-        assertEquals("[Paciente{nome='Maria', idade=25, prioridade=2}, " +
-                    "Paciente{nome='Pedro', idade=40, prioridade=3}, " +
-                    "Paciente{nome='Ana', idade=35, prioridade=4}]", 
+        assertEquals(pLucas, heap.extrair());
+        assertEquals("[Paciente{nome='Pedro', idade=40, prioridade=2}," +
+                    "Paciente{nome='Maria', idade=25, prioridade=2}," +             
+                    "Paciente{nome='Joao', idade=30, prioridade=1}]",
                     heap.imprimir());
     }
-    
+
     /**
      * Testa a obtenção do paciente com maior prioridade sem removê-lo.
      * Verifica se o paciente correto é retornado e se o heap
@@ -75,17 +75,17 @@ public class ArvoreBinariaHeapMaximoTest {
      */
     @Test
     public void testObterRaiz() {
-        heap.inserir(p3);
-        heap.inserir(p1);
-        heap.inserir(p4);
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
         
-        assertEquals(p1, heap.obterRaiz());
-        assertEquals("[Paciente{nome='João', idade=30, prioridade=1}, " +
-                    "Paciente{nome='Pedro', idade=40, prioridade=3}, " +
-                    "Paciente{nome='Ana', idade=35, prioridade=4}]", 
+        assertEquals(pLucas, heap.obterRaiz()); 
+        assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
+                    "Paciente{nome='João', idade=30, prioridade=1}," +
+                    "Paciente{nome='Pedro', idade=40, prioridade=2}]",           
                     heap.imprimir());
     }
-    
+
     /**
      * Testa o comportamento do heap quando está vazio.
      * Verifica se as operações lançam as exceções apropriadas.
@@ -94,21 +94,21 @@ public class ArvoreBinariaHeapMaximoTest {
     public void testHeapVazia() {
         heap.extrair();
     }
-    
+
     /**
      * Testa o comportamento do heap quando está cheio.
      * Verifica se a inserção lança a exceção apropriada.
      */
     @Test(expected = OverflowException.class)
     public void testHeapCheia() {
-        heap.inserir(p1);
-        heap.inserir(p2);
-        heap.inserir(p3);
-        heap.inserir(p4);
-        heap.inserir(p5);
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        heap.inserir(pMaria);  
+        heap.inserir(pAna);  
         heap.inserir(new Paciente("Extra", 20, 6)); // Deve lançar exceção
     }
-    
+
     /**
      * Testa a verificação de heap vazio.
      * Verifica se o método estaVazia() retorna o valor correto.
@@ -116,7 +116,7 @@ public class ArvoreBinariaHeapMaximoTest {
     @Test
     public void testEstaVazia() {
         assertTrue(heap.estaVazia());
-        heap.inserir(p1);
+        heap.inserir(pJoao);
         assertFalse(heap.estaVazia());
     }
     
@@ -127,14 +127,14 @@ public class ArvoreBinariaHeapMaximoTest {
     @Test
     public void testEstaCheia() {
         assertFalse(heap.estaCheia());
-        heap.inserir(p1);
-        heap.inserir(p2);
-        heap.inserir(p3);
-        heap.inserir(p4);
-        heap.inserir(p5);
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        heap.inserir(pMaria);  
+        heap.inserir(pAna);  
         assertTrue(heap.estaCheia());
     }
-    
+
     /**
      * Testa a impressão do heap.
      * Verifica se a representação em string está correta.
@@ -142,32 +142,32 @@ public class ArvoreBinariaHeapMaximoTest {
     @Test
     public void testImprimir() {
         assertEquals("[]", heap.imprimir());
-        heap.inserir(p1);
-        heap.inserir(p2);
-        heap.inserir(p3);
-        assertEquals("[Paciente{nome='João', idade=30, prioridade=1}, " +
-                    "Paciente{nome='Maria', idade=25, prioridade=2}, " +
-                    "Paciente{nome='Pedro', idade=40, prioridade=3}]", 
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
+                    "Paciente{nome='João', idade=30, prioridade=1}," +
+                    "Paciente{nome='Pedro', idade=40, prioridade=2}]",           
                     heap.imprimir());
     }
     
     /**
      * Testa a manutenção da propriedade de heap máximo após múltiplas operações.
      * Verifica se o heap mantém a propriedade após inserções e extrações,
-     * priorizando pacientes com menor número de prioridade.
+     * priorizando pacientes com maior número de prioridade.
      */
     @Test
     public void testPropriedadeHeapMaximo() {
-        heap.inserir(p3);
-        heap.inserir(p1);
-        heap.inserir(p4);
-        heap.inserir(p2);
-        heap.inserir(p5);
+        heap.inserir(pJoao);
+        heap.inserir(pPedro);
+        heap.inserir(pLucas);
+        heap.inserir(pMaria);  
+        heap.inserir(pAna);  
         
-        assertEquals(p1, heap.extrair()); // Prioridade 1
-        assertEquals(p2, heap.extrair()); // Prioridade 2
-        assertEquals(p3, heap.extrair()); // Prioridade 3
-        assertEquals(p4, heap.extrair()); // Prioridade 4
-        assertEquals(p5, heap.extrair()); // Prioridade 5
+        assertEquals(pLucas, heap.extrair()); // Prioridade (mais alta)
+        assertEquals(pAna, heap.extrair());
+        assertEquals(pPedro, heap.extrair());
+        assertEquals(pMaria, heap.extrair());
+        assertEquals(pJoao, heap.extrair()); // Prioridade (mais baixa)
     }
 }
