@@ -25,7 +25,7 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      */
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        heap = new ArvoreBinariaHeapMaximo<>(10);
+        heap = new ArvoreBinariaHeapMaximo<>(Paciente.class, 10);
         executar();
     }
     

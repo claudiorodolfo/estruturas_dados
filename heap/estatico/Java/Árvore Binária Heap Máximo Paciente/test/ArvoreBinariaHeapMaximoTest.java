@@ -21,10 +21,10 @@ public class ArvoreBinariaHeapMaximoTest {
     @Before
     public void setUp() {
         // Este método será executado antes de cada @Test
-        heap = new ArvoreBinariaHeapMaximo<>(5);
+        heap = new ArvoreBinariaHeapMaximo<>(Paciente.class, 5);
         
         // Criando pacientes com diferentes prioridades
-        pJoao = new Paciente("João", 30, 1);
+        pJoao = new Paciente("Joao", 30, 1);
         pMaria = new Paciente("Maria", 25, 2);
         pPedro = new Paciente("Pedro", 40, 2);
         pAna = new Paciente("Ana", 35, 3);
@@ -81,7 +81,7 @@ public class ArvoreBinariaHeapMaximoTest {
         
         assertEquals(pLucas, heap.obterRaiz()); 
         assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
-                    "Paciente{nome='João', idade=30, prioridade=1}," +
+                    "Paciente{nome='Joao', idade=30, prioridade=1}," +
                     "Paciente{nome='Pedro', idade=40, prioridade=2}]",           
                     heap.imprimir());
     }
@@ -146,7 +146,7 @@ public class ArvoreBinariaHeapMaximoTest {
         heap.inserir(pPedro);
         heap.inserir(pLucas);
         assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
-                    "Paciente{nome='João', idade=30, prioridade=1}," +
+                    "Paciente{nome='Joao', idade=30, prioridade=1}," +
                     "Paciente{nome='Pedro', idade=40, prioridade=2}]",           
                     heap.imprimir());
     }

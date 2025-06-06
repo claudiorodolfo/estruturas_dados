@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import java.lang.reflect.Array;
 
 /**
  * Implementação de uma árvore binária heap máximo.
@@ -19,8 +20,8 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
     /**
      * Construtor padrão que inicializa o heap com tamanho 10.
      */
-    public ArvoreBinariaHeapMaximo() {
-        this(10);
+    public ArvoreBinariaHeapMaximo(Class<T> classe) {
+        this(classe, 10);
     }
 
     /**
@@ -28,8 +29,9 @@ public class ArvoreBinariaHeapMaximo<T extends Priorizavel> implements Amontoave
      * 
      * @param tamanho o tamanho inicial do heap
      */
-    public ArvoreBinariaHeapMaximo(int tamanho) {
-        dados = (T[]) new Object[tamanho];
+    public ArvoreBinariaHeapMaximo(Class<T> classe, int tamanho) {
+        // Cria um array do tipo T de forma segura
+        dados = (T[]) Array.newInstance(classe, tamanho);
         ponteiroFim = -1;
     }
 
