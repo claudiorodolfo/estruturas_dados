@@ -25,10 +25,11 @@ public class ArvoreBinariaHeapMaximoTest {
         
         // Criando pacientes com diferentes prioridades
         pJoao = new Paciente("Joao", 30, 1);
-        pMaria = new Paciente("Maria", 25, 2);
         pPedro = new Paciente("Pedro", 40, 2);
-        pAna = new Paciente("Ana", 35, 3);
         pLucas = new Paciente("Lucas", 28, 3);
+        pMaria = new Paciente("Maria", 25, 2);
+        pAna = new Paciente("Ana", 35, 3);
+
     }
     
     /**
@@ -60,7 +61,7 @@ public class ArvoreBinariaHeapMaximoTest {
         heap.inserir(pPedro);
         heap.inserir(pLucas);
         heap.inserir(pMaria); 
-        
+
         assertEquals(pLucas, heap.extrair());
         assertEquals("[Paciente{nome='Pedro', idade=40, prioridade=2}," +
                     "Paciente{nome='Maria', idade=25, prioridade=2}," +             
@@ -78,7 +79,7 @@ public class ArvoreBinariaHeapMaximoTest {
         heap.inserir(pJoao);
         heap.inserir(pPedro);
         heap.inserir(pLucas);
-        
+ 
         assertEquals(pLucas, heap.obterRaiz()); 
         assertEquals("[Paciente{nome='Lucas', idade=28, prioridade=3}," +
                     "Paciente{nome='Joao', idade=30, prioridade=1}," +

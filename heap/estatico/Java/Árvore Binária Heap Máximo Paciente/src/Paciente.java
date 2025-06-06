@@ -8,15 +8,14 @@ public class Paciente implements Priorizavel {
         this.nome = nome;
         this.idade = idade;
         this.prioridade = prioridade;
-        this.prioridadeInterna = prioridade * 1000000000000L + System.currentTimeMillis();
+        long inversoTimestamp = 1_000_000_000_000L - System.nanoTime();
+        this.prioridadeInterna = prioridade * 1_000_000_000_000L + inversoTimestamp;
     }
 
-    @Override
     public long getPrioridade() {
         return prioridade;
     }
 
-    @Override
     public void setPrioridade(long prioridade) {
         this.prioridade = prioridade;
     }
@@ -29,13 +28,14 @@ public class Paciente implements Priorizavel {
         return idade;
     }
 
-    public long getPrioridadeOriginal() {
-        return prioridade;
+    @Override
+    public long getPrioridadeInterna() {
+        return prioridadeInterna;
     }
 
     @Override
     public String toString() {
         return String.format("Paciente{nome='%s', idade=%d, prioridade=%d}", nome, idade, prioridade);
+        //return String.format("Paciente{nome='%s', idade=%d, prioridade=%d, prioridadeInterna=%d}", nome, idade, prioridade, prioridadeInterna);
     }
-    
 }
