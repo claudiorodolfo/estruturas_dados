@@ -104,12 +104,12 @@ public class OperacoesConjunto {
         int[] lista1 = {1, 2, 3, 4};
         int[] lista2 = {3, 4, 5, 6};
 
-        OperacoesListas ol = new OperacoesListas();
+        OperacoesConjunto oc = new OperacoesConjunto();
         System.out.println("Diferença: ");
-        System.out.println(java.util.Arrays.toString(ol.difference(lista1, lista2)));
+        System.out.println(java.util.Arrays.toString(oc.difference(lista1, lista2)));
         System.out.println("União: ");
-        System.out.println(java.util.Arrays.toString(ol.union(lista1, lista2)));
+        System.out.println(java.util.Arrays.toString(oc.union(lista1, lista2)));
         System.out.println("Interseção: ");
-        System.out.println(java.util.Arrays.toString(ol.intersection(lista1, lista2)));
+        System.out.println(java.util.Arrays.toString(oc.intersection(lista1, lista2)));
     }
 }
