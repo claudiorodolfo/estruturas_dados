@@ -53,51 +53,53 @@ public class OperacoesConjunto {
     }
 
     // Diferença: elementos de 'a' que não estão em 'b'
-    public int[] difference(int[] a, int[] b) {
-        int[] temp = new int[a.length];
+    public int[] difference(int[] listaA, int[] listaB) {
+        int[] resultado = new int[listaA.length];
         int cont = 0;
 
-        for (int i = 0; i < a.length; i++) {
-            if (!contem(b, a[i], b.length) && !contem(temp, a[i], cont)) {
-                temp[cont++] = a[i];
+        for (int i = 0; i < listaA.length; i++) {
+            if (!contem(listaB, listaA[i], b.length) && 
+                    !contem(resultado, listaA[i], cont)) {
+                resultado[cont++] = listaA[i];
             }
         }
-
-        return copiarArray(temp, cont);
+        
+        return copiarArray(resultado, cont);
     }
 
     // União: todos os elementos de 'a' e 'b', sem duplicatas
-    public int[] union(int[] a, int[] b) {
-        int[] temp = new int[a.length + b.length];
+    public int[] union(int[] listaA, int[] listaB) {
+        int[] resultado = new int[listaA.length + listaB.length];
         int cont = 0;
 
-        for (int i = 0; i < a.length; i++) {
-            if (!contem(temp, a[i], cont)) {
-                temp[cont++] = a[i];
+        for (int i = 0; i < listaA.length; i++) {
+            if (!contem(resultado, listaA[i], cont)) {
+                resultado[cont++] = listaA[i];
             }
         }
 
-        for (int i = 0; i < b.length; i++) {
-            if (!contem(temp, b[i], cont)) {
-                temp[cont++] = b[i];
+        for (int i = 0; i < listaB.length; i++) {
+            if (!contem(resultado, listaB[i], cont)) {
+                resultado[cont++] = listaB[i];
             }
         }
 
-        return copiarArray(temp, cont);
+        return copiarArray(resultado, cont);
     }
 
     // Interseção: elementos comuns entre 'a' e 'b'
-    public int[] intersection(int[] a, int[] b) {
-        int[] temp = new int[Math.min(a.length, b.length)];
+    public int[] intersection(int[] listaA, int[] listaB) {
+        int[] resultado = new int[Math.min(listaA.length, listaB.length)];
         int cont = 0;
 
-        for (int i = 0; i < a.length; i++) {
-            if (contem(b, a[i], b.length) && !contem(temp, a[i], cont)) {
-                temp[cont++] = a[i];
+        for (int i = 0; i < listaA.length; i++) {
+            if (contem(listaB, listaA[i], listaB.length) && 
+                    !contem(resultado, listaA[i], cont)) {
+                resultado[cont++] = listaA[i];
             }
         }
 
-        return copiarArray(temp, cont);
+        return copiarArray(resultado, cont);
     }
 
     public static void main(String[] args) {
