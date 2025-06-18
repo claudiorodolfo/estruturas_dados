@@ -58,12 +58,12 @@ public class OperacoesConjunto {
         int cont = 0;
 
         for (int i = 0; i < listaA.length; i++) {
-            if (!contem(listaB, listaA[i], b.length) && 
-                    !contem(resultado, listaA[i], cont)) {
+            if (!contem(resultado, listaA[i], cont) && 
+                    !contem(listaB, listaA[i], listaB.length)) {
                 resultado[cont++] = listaA[i];
             }
         }
-        
+
         return copiarArray(resultado, cont);
     }
 
@@ -93,8 +93,8 @@ public class OperacoesConjunto {
         int cont = 0;
 
         for (int i = 0; i < listaA.length; i++) {
-            if (contem(listaB, listaA[i], listaB.length) && 
-                    !contem(resultado, listaA[i], cont)) {
+            if (!contem(resultado, listaA[i], cont) && 
+                    contem(listaB, listaA[i], listaB.length)) {
                 resultado[cont++] = listaA[i];
             }
         }

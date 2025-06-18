@@ -22,9 +22,9 @@ public class OperacoesConjunto<T> {
 		T[] elementosB = listaB.selecionarTodos();
 
 		for (T a : elementosA) {
-			if (!contem(elementosB, a)) {
+			if (!contem(resultado, a) && 
+					!contem(elementosB, a))
 				resultado.anexar(a);
-			}
 		}
 
 		return resultado.selecionarTodos();
@@ -39,13 +39,13 @@ public class OperacoesConjunto<T> {
 		T[] elementosB = listaB.selecionarTodos();
 
 		for (T a : elementosA) {
-			resultado.anexar(a);
+			if (!contem(resultado, a))
+				resultado.anexar(a);
 		}
 
 		for (T b : elementosB) {
-			if (!contem(elementosA, b))  {
+			if (!contem(resultado, b))
 				resultado.anexar(b);
-			}
 		}
 
 		return resultado.selecionarTodos();
@@ -59,9 +59,9 @@ public class OperacoesConjunto<T> {
 		T[] elementosB = listaB.selecionarTodos();
 
 		for (T a : elementosA) {
-			if (contem(elementosB, a)) {
+			if (!contem(resultado, a) &&
+					contem(elementosB, a))
 				resultado.anexar(a);
-			}
 		}
 
 		return resultado.selecionarTodos();
