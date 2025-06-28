@@ -1,3 +1,4 @@
+package prova;
 //Pra rodar
 //cd "estruturas_dados\arvore\"
 //javac SegundaChamada.java
