@@ -1,15 +1,10 @@
-//Pra rodar
-//cd "estruturas_dados\arvore\"
-//javac abp/*.java
-//java abp/ABPPrincipalCLI
-
 import java.util.Scanner;
 
 /**
  * Classe principal para execução da ABP via linha de comando.
  * Permite inserir, remover, buscar e imprimir elementos da árvore binária de pesquisa.
  */
-public class ABPPrincipalCLI {
+public class ABPMainCLI {
     /**
      * Método principal. Executa o menu de operações da árvore.
      * @param args Argumentos da linha de comando (não utilizados).

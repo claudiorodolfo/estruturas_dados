@@ -46,7 +46,6 @@ public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
             NoTriplo<T> noAuxiliar = raiz;
             while (true) {
                 int comparacao = dado.compareTo(noAuxiliar.getDado());
-
                 if (comparacao <= 0) {
                     //PRECISO IR PARA A ESQUERDA
                     //mas não tem esquerda para ir, então insiro o dado aq
@@ -60,7 +59,7 @@ public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
                 } else {
                     //PRECISO IR PARA A DIREITA
                     //mas não tem direita para ir, então insiro o dado aq
-                    if (noAuxiliar.getDireita() != null) {
+                    if (noAuxiliar.getDireita() == null) {
                         noAuxiliar.setDireita(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;

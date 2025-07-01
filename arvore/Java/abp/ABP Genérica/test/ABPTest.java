@@ -77,7 +77,7 @@ public class ABPTest {
         abp.inserir(3);
         abp.inserir(5);
         abp.inserir(7);
-        String esperado = "[1,2,3,4,5,6,7]";
+        String esperado = "[4,2,1,3,6,5,7]";
         assertEquals(esperado, abp.imprimirPreOrdem());
     }
 
@@ -103,7 +103,7 @@ public class ABPTest {
         abp.inserir(3);
         abp.inserir(5);
         abp.inserir(7);
-        String esperado = "[1,2,3,4,5,6,7]";
+        String esperado = "[1,3,2,5,7,6,4]";
         assertEquals(esperado, abp.imprimirPosOrdem());
     }
 } 

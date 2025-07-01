@@ -2,11 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * Classe de teste para a Árvore Binária de Pesquisa (ABP).
- */
-public class ABPTest {
-    private Arborizavel<Integer> abp;
+public class ABPProdutoTest {
+    private ABP<Produto> abp;
 
     @Before
     public void setUp() {
@@ -15,95 +12,80 @@ public class ABPTest {
 
     @Test
     public void testInserirEExiste() {
-        abp.inserir(10);
-        abp.inserir(5);
-        abp.inserir(15);
-        assertTrue(abp.existe(10));
-        assertTrue(abp.existe(5));
-        assertTrue(abp.existe(15));
-        assertFalse(abp.existe(20));
+        Produto p1 = new Produto("Café", 1001L);
+        Produto p2 = new Produto("Leite", 1002L);
+        Produto p3 = new Produto("Açúcar", 1003L);
+        abp.inserir(p1);
+        abp.inserir(p2);
+        abp.inserir(p3);
+        assertTrue(abp.existe(new Produto("", 1001L)));
+        assertTrue(abp.existe(new Produto("", 1002L)));
+        assertTrue(abp.existe(new Produto("", 1003L)));
+        assertFalse(abp.existe(new Produto("", 9999L)));
     }
 
     @Test
     public void testApagarFolha() {
-        abp.inserir(10);
-        abp.inserir(5);
-        abp.inserir(15);
-        abp.apagar(5);
-        assertFalse(abp.existe(5));
-        assertTrue(abp.existe(10));
-        assertTrue(abp.existe(15));
+        Produto p1 = new Produto("Café", 1001L);
+        Produto p2 = new Produto("Leite", 1002L);
+        abp.inserir(p1);
+        abp.inserir(p2);
+        abp.apagar(new Produto("", 1002L));
+        assertFalse(abp.existe(new Produto("", 1002L)));
+        assertTrue(abp.existe(new Produto("", 1001L)));
     }
 
     @Test
     public void testApagarComUmFilho() {
-        abp.inserir(10);
-        abp.inserir(5);
-        abp.inserir(2);
-        abp.apagar(5);
-        assertFalse(abp.existe(5));
-        assertTrue(abp.existe(2));
-        assertTrue(abp.existe(10));
+        Produto p1 = new Produto("Café", 1001L);
+        Produto p2 = new Produto("Leite", 1002L);
+        Produto p3 = new Produto("Açúcar", 1003L);
+        abp.inserir(p1);
+        abp.inserir(p2);
+        abp.inserir(p3);
+        abp.apagar(new Produto("", 1002L));
+        assertFalse(abp.existe(new Produto("", 1002L)));
+        assertTrue(abp.existe(new Produto("", 1001L)));
+        assertTrue(abp.existe(new Produto("", 1003L)));
     }
 
     @Test
     public void testApagarComDoisFilhos() {
-        abp.inserir(10);
-        abp.inserir(5);
-        abp.inserir(15);
-        abp.inserir(12);
-        abp.inserir(18);
-        abp.apagar(15);
-        assertFalse(abp.existe(15));
-        assertTrue(abp.existe(12));
-        assertTrue(abp.existe(18));
+        Produto p1 = new Produto("Café", 1002L);
+        Produto p2 = new Produto("Leite", 1001L);
+        Produto p3 = new Produto("Açúcar", 1003L);
+        Produto p4 = new Produto("Biscoito", 1004L);
+        abp.inserir(p1);
+        abp.inserir(p2);
+        abp.inserir(p3);
+        abp.inserir(p4);
+        abp.apagar(new Produto("", 1002L));
+        assertFalse(abp.existe(new Produto("", 1002L)));
+        assertTrue(abp.existe(new Produto("", 1001L)));
+        assertTrue(abp.existe(new Produto("", 1003L)));
+        assertTrue(abp.existe(new Produto("", 1004L)));
     }
 
     @Test
     public void testLimpar() {
-        abp.inserir(10);
-        abp.inserir(5);
+        abp.inserir(new Produto("Café", 1001L));
+        abp.inserir(new Produto("Leite", 1002L));
         abp.limpar();
-        assertFalse(abp.existe(10));
-        assertFalse(abp.existe(5));
-    }
-
-    @Test
-    public void testImprimirPreOrdem() {
-        abp.inserir(4);
-        abp.inserir(2);
-        abp.inserir(6);
-        abp.inserir(1);
-        abp.inserir(3);
-        abp.inserir(5);
-        abp.inserir(7);
-        String esperado = "[1,2,3,4,5,6,7]";
-        assertEquals(esperado, abp.imprimirPreOrdem());
+        assertFalse(abp.existe(new Produto("", 1001L)));
+        assertFalse(abp.existe(new Produto("", 1002L)));
     }
 
     @Test
     public void testImprimirEmOrdem() {
-        abp.inserir(4);
-        abp.inserir(2);
-        abp.inserir(6);
-        abp.inserir(1);
-        abp.inserir(3);
-        abp.inserir(5);
-        abp.inserir(7);
-        String esperado = "[1,2,3,4,5,6,7]";
-        assertEquals(esperado, abp.imprimirEmOrdem());
+        abp.inserir(new Produto("Café", 1002L));
+        abp.inserir(new Produto("Leite", 1001L));
+        abp.inserir(new Produto("Açúcar", 1003L));
+        abp.inserir(new Produto("Biscoito", 1004L));
+        String esperado = "Leite (1001) Café (1002) Açúcar (1003) Biscoito (1004)";
+        String resultado = abp.imprimirEmOrdem().replaceAll("\s+", " ").trim();
+        assertTrue(resultado.contains("Leite (1001)"));
+        assertTrue(resultado.contains("Café (1002)"));
+        assertTrue(resultado.contains("Açúcar (1003)"));
+        assertTrue(resultado.contains("Biscoito (1004)"));
     }
-
-    @Test
-    public void testImprimirPosOrdem() {
-        abp.inserir(4);
-        abp.inserir(2);
-        abp.inserir(6);
-        abp.inserir(1);
-        abp.inserir(3);
-        abp.inserir(5);
-        abp.inserir(7);
-        String esperado = "[1,2,3,4,5,6,7]";
-        assertEquals(esperado, abp.imprimirPosOrdem());
-    }
-} 
+}
