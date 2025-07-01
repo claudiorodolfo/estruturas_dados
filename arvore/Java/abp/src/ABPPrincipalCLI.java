@@ -2,7 +2,6 @@
 //cd "estruturas_dados\arvore\"
 //javac abp/*.java
 //java abp/ABPPrincipalCLI
-package abp;
 
 import java.util.Scanner;
 

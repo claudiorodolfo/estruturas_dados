@@ -1,5 +1,3 @@
-package abp;
-
 /**
  * Representa um nó de árvore binária com ponteiros para o genitor, esquerda e direita.
  * 

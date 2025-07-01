@@ -1,5 +1,3 @@
-package abp;
-
 /**
  * Interface que define operações básicas para árvores binárias.
  * 

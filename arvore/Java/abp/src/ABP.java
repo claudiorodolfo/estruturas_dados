@@ -1,11 +1,9 @@
-package abp;
-
 /**
  * Implementação de uma Árvore Binária de Pesquisa (ABP).
  * 
  * @param <T> Tipo dos dados armazenados na árvore.
  */
-public class ABP<T> implements Arborizavel<T> {
+public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
 
@@ -41,31 +39,34 @@ public class ABP<T> implements Arborizavel<T> {
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
         novoNo.setDado(dado);
+
         if (raiz == null) {
             raiz = novoNo;
         } else {
             NoTriplo<T> noAuxiliar = raiz;
-            while (noAuxiliar != null) {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado()) {
-                    //preciso ir para a esquerda
-                    if (noAuxiliar.getEsquerda() != null) {
-                        noAuxiliar = noAuxiliar.getEsquerda();
-                    } else {
-                        //insiro o dado aq
+            while (true) {
+                int comparacao = dado.compareTo(noAuxiliar.getDado());
+
+                if (comparacao <= 0) {
+                    //PRECISO IR PARA A ESQUERDA
+                    //mas não tem esquerda para ir, então insiro o dado aq
+                    if (noAuxiliar.getEsquerda() == null) {
                         noAuxiliar.setEsquerda(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;
                     }
+                    //tem esquerda para ir, então vou para esquerda
+                    noAuxiliar = noAuxiliar.getEsquerda();
                 } else {
-                    //preciso ir para a direita
+                    //PRECISO IR PARA A DIREITA
+                    //mas não tem direita para ir, então insiro o dado aq
                     if (noAuxiliar.getDireita() != null) {
-                        noAuxiliar = noAuxiliar.getDireita();
-                    } else {
-                        //insiro o dado q
                         noAuxiliar.setDireita(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;
                     }
+                    //tem direita para ir, então vou para direita
+                    noAuxiliar = noAuxiliar.getDireita();
                 }
             }
         }
@@ -98,21 +99,6 @@ public class ABP<T> implements Arborizavel<T> {
         return dado;
     }    
 
-    private NoTriplo<T> buscar(T dado) {
-        NoTriplo<T> noAuxiliar = raiz;
-        while (noAuxiliar != null) {
-            if (dado.equals(noAuxiliar.getDado())) {
-                return noAuxiliar;
-            } else {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado())
-                    noAuxiliar = noAuxiliar.getEsquerda();
-                else
-                    noAuxiliar = noAuxiliar.getDireita();
-            }
-        }
-        return null;
-    }
-
     private void apagarNoFolha(NoTriplo<T> nodo) {
         NoTriplo<T> pai = nodo.getGenitor();
         if (pai == null) {
@@ -124,14 +110,12 @@ public class ABP<T> implements Arborizavel<T> {
             else
                 //nodo é filho da direita        
                 pai.setDireita(null);
-
-            nodo.setGenitor(null);
         }
     }
 
     private void apagarComUmFilho(NoTriplo<T> nodo) {
         NoTriplo<T> avo = nodo.getGenitor();
-        NoTriplo<T> neto = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
+        NoTriplo<T> neto = ((nodo.getEsquerda() != null) ? nodo.getEsquerda() : nodo.getDireita());        
         if (avo == null) {
             raiz = neto;
             raiz.setGenitor(null);
@@ -147,37 +131,35 @@ public class ABP<T> implements Arborizavel<T> {
 
     private void apagarComDoisFilhos(NoTriplo<T> nodo) {
         //sucessor pode ser o menor a direita ou o maior a esquerda
-        NoTriplo<T> sucessor = encontraMenorDireita(nodo);
+        NoTriplo<T> noSucessor = encontraMenorDireita(nodo);
         //NoTriplo<T> sucessor = encontraMaiorEsquerda(nodo);
         
-        //troca conteúdo do nó com o menor nó a direita
-        T temp = nodo.getDado();
-        nodo.setDado(sucessor.getDado());
-        sucessor.setDado(temp);
+        //copia o conteúdo do sucessor para o nodo
+        nodo.setDado(noSucessor.getDado());
 
-        // Remove o menor a direita (que agora contém o dado original)
-        if (sucessor.getEsquerda() == null && 
-        sucessor.getDireita() == null) {
-            apagarNoFolha(sucessor);
+        // Remove o dado duplicado a direita
+        if (noSucessor.getEsquerda() == null && 
+        noSucessor.getDireita() == null) {
+            apagarNoFolha(noSucessor);
         } else {
-            apagarComUmFilho(sucessor);
+            apagarComUmFilho(noSucessor);
         }
     } 
 
     private NoTriplo<T> encontraMenorDireita(NoTriplo<T> nodo) {
-        NoTriplo<T> sucessor = nodo.getDireita();
-        while (sucessor.getEsquerda() != null)
-            sucessor = sucessor.getEsquerda();
+        NoTriplo<T> noAuxiliar = nodo.getDireita();
+        while (noAuxiliar.getEsquerda() != null)
+            noAuxiliar = noAuxiliar.getEsquerda();
 
-        return sucessor;
+        return noAuxiliar;
     }  
 
     private NoTriplo<T> encontraMaiorEsquerda(NoTriplo<T> nodo) {
-        NoTriplo<T> sucessor = nodo.getEsquerda();
-        while (sucessor.getDireita() != null)
-            sucessor = sucessor.getDireita();
+        NoTriplo<T> noAuxiliar = nodo.getEsquerda();
+        while (noAuxiliar.getDireita() != null)
+            noAuxiliar = noAuxiliar.getDireita();
 
-        return sucessor;
+        return noAuxiliar;
     } 
 
     /**
@@ -187,20 +169,19 @@ public class ABP<T> implements Arborizavel<T> {
      */
     @Override
     public boolean existe(T dado) {
-        boolean retorno = false;
+        return buscar(dado) != null;
+    }
+
+    private NoTriplo<T> buscar(T dado) {
         NoTriplo<T> noAuxiliar = raiz;
         while (noAuxiliar != null) {
-            if (dado.equals(noAuxiliar.getDado())) {
-                retorno = true;
-                break;
-            } else {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado())
-                    noAuxiliar = noAuxiliar.getEsquerda();
-                else
-                    noAuxiliar = noAuxiliar.getDireita();
-            }
+            int comparacao = dado.compareTo(noAuxiliar.getDado());
+            if (comparacao == 0) 
+                return noAuxiliar;
+
+                noAuxiliar = ((comparacao <= 0) ? noAuxiliar.getEsquerda() : noAuxiliar.getDireita());
         }
-        return retorno;
+        return null;
     }
 
     /**
@@ -230,34 +211,25 @@ public class ABP<T> implements Arborizavel<T> {
         return formataSaida(imprimirPosOrdemRec(raiz));
     }
 
-    private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";
-        if (raiz != null) {
-            resultado = raiz.getDado() + " " + 
-                imprimirPreOrdemRec(raiz.getEsquerda()) +  " " +
-                imprimirPreOrdemRec(raiz.getDireita());
-        }
-        return resultado;
+    private String imprimirPreOrdemRec(NoTriplo<T> raizAtual) {
+        if (raizAtual == null) return "";   //caso base
+        return raizAtual.getDado() + " " + 
+                imprimirPreOrdemRec(raizAtual.getEsquerda()) +  " " +
+                imprimirPreOrdemRec(raizAtual.getDireita());
     }
 
-    private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirEmOrdemRec(raiz.getEsquerda()) + " " + 
-            raiz.getDado() + " " +
-            imprimirEmOrdemRec(raiz.getDireita());
-        }
-        return resultado;       
+    private String imprimirEmOrdemRec(NoTriplo<T> raizAtual) {
+        if (raizAtual == null) return "";   //caso base
+        return imprimirEmOrdemRec(raizAtual.getEsquerda()) + " " + 
+                raizAtual.getDado() + " " +
+                imprimirEmOrdemRec(raizAtual.getDireita());    
     }
 
-    private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
-        String resultado = "";        
-        if (raiz != null) {
-            resultado = imprimirPosOrdemRec(raiz.getEsquerda()) + " " +
-                imprimirPosOrdemRec(raiz.getDireita()) +  " " +
-                raiz.getDado();
-        }
-        return resultado;            
+    private String imprimirPosOrdemRec(NoTriplo<T> raizAtual) {
+        if (raizAtual == null) return "";   //caso base
+        return imprimirPosOrdemRec(raizAtual.getEsquerda()) + " " +
+                imprimirPosOrdemRec(raizAtual.getDireita()) +  " " +
+                raizAtual.getDado();           
     }
 
     private String formataSaida(String msg) {
