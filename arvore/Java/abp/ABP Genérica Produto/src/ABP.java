@@ -60,7 +60,7 @@ public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
                 } else {
                     //PRECISO IR PARA A DIREITA
                     //mas não tem direita para ir, então insiro o dado aq
-                    if (noAuxiliar.getDireita() != null) {
+                    if (noAuxiliar.getDireita() == null) {
                         noAuxiliar.setDireita(novoNo);
                         novoNo.setGenitor(noAuxiliar);
                         break;
