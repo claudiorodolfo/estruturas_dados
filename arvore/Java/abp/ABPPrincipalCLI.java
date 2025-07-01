@@ -6,7 +6,15 @@ package abp;
 
 import java.util.Scanner;
 
+/**
+ * Classe principal para execução da ABP via linha de comando.
+ * Permite inserir, remover, buscar e imprimir elementos da árvore binária de pesquisa.
+ */
 public class ABPPrincipalCLI {
+    /**
+     * Método principal. Executa o menu de operações da árvore.
+     * @param args Argumentos da linha de comando (não utilizados).
+     */
     public static void main(String args[]) {
         //Testar entrada nesta ordem: 4 2 6 1 3 5 7
         //Pre Ordem: [4,2,1,3,6,5,7] 
@@ -71,6 +79,9 @@ public class ABPPrincipalCLI {
         scanner.close();
     }
 
+    /**
+     * Exibe o menu principal de opções.
+     */
     private static void exibirMenu() {
         System.out.println("=== Arvore Binaria de Pesquisa ===");
         System.out.println("0. SAIR");
@@ -82,6 +93,9 @@ public class ABPPrincipalCLI {
         System.out.print("Escolha uma opcao (0-5): ");
     }   
 
+    /**
+     * Exibe o menu de opções de impressão.
+     */
     private static void exibirMenuImprimir() {
         System.out.println("1. Imprimir Pre-Ordem");
         System.out.println("2. Imprimir Em-Ordem");

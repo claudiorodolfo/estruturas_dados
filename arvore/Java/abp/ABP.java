@@ -1,24 +1,42 @@
 package abp;
 
+/**
+ * Implementação de uma Árvore Binária de Pesquisa (ABP).
+ * 
+ * @param <T> Tipo dos dados armazenados na árvore.
+ */
 public class ABP<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
 
+    /**
+     * Cria uma árvore binária de pesquisa vazia.
+     */
     public ABP() {
         raiz = null;
     }
 
+    /**
+     * Retorna o nó raiz da árvore.
+     * @return Nó raiz.
+     */
     @Override    
     public NoTriplo<T> getRaiz() {
         return raiz;
     }
 
+    /**
+     * Remove todos os elementos da árvore.
+     */
     @Override
     public void limpar() {
         raiz = null;
     }
 
-    //inserir
+    /**
+     * Insere um novo elemento na árvore.
+     * @param dado Elemento a ser inserido.
+     */
     @Override
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
@@ -53,7 +71,11 @@ public class ABP<T> implements Arborizavel<T> {
         }
     }
 
-    //apagar
+    /**
+     * Remove um elemento da árvore.
+     * @param dado Elemento a ser removido.
+     * @return Elemento removido, ou null se não encontrado.
+     */
     @Override
     public T apagar(T dado) {
         NoTriplo<T> noAuxiliar = buscar(dado);
@@ -158,7 +180,11 @@ public class ABP<T> implements Arborizavel<T> {
         return sucessor;
     } 
 
-    //existe
+    /**
+     * Verifica se um elemento existe na árvore.
+     * @param dado Elemento a ser buscado.
+     * @return true se o elemento existe, false caso contrário.
+     */
     @Override
     public boolean existe(T dado) {
         boolean retorno = false;
@@ -177,17 +203,28 @@ public class ABP<T> implements Arborizavel<T> {
         return retorno;
     }
 
-    //imprimir
+    /**
+     * Retorna uma String com os elementos em pré-ordem.
+     * @return Elementos em pré-ordem.
+     */
     @Override
     public String imprimirPreOrdem() {
         return formataSaida(imprimirPreOrdemRec(raiz));
     }
 
+    /**
+     * Retorna uma String com os elementos em ordem.
+     * @return Elementos em ordem.
+     */
     @Override
     public String imprimirEmOrdem() {
         return formataSaida(imprimirEmOrdemRec(raiz));
     }
 
+    /**
+     * Retorna uma String com os elementos em pós-ordem.
+     * @return Elementos em pós-ordem.
+     */
     @Override
     public String imprimirPosOrdem() {
         return formataSaida(imprimirPosOrdemRec(raiz));
