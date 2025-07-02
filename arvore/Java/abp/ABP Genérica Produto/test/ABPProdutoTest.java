@@ -18,10 +18,10 @@ public class ABPProdutoTest {
         abp.inserir(p1);
         abp.inserir(p2);
         abp.inserir(p3);
-        assertTrue(abp.existe(new Produto("", 10010L)));
-        assertTrue(abp.existe(new Produto("", 10005L)));
-        assertTrue(abp.existe(new Produto("", 10015L)));
-        assertFalse(abp.existe(new Produto("", 10020L)));
+        assertTrue(abp.existe(new Produto( 10010L)));
+        assertTrue(abp.existe(new Produto( 10005L)));
+        assertTrue(abp.existe(new Produto( 10015L)));
+        assertFalse(abp.existe(new Produto( 10020L)));
     }
 
     @Test
@@ -32,10 +32,10 @@ public class ABPProdutoTest {
         abp.inserir(p1);
         abp.inserir(p2);
         abp.inserir(p3);
-        abp.apagar(new Produto("", 10005L));
-        assertFalse(abp.existe(new Produto("", 10005L)));
-        assertTrue(abp.existe(new Produto("", 10010L)));
-        assertTrue(abp.existe(new Produto("", 10015L)));
+        abp.apagar(new Produto( 10005L));
+        assertFalse(abp.existe(new Produto( 10005L)));
+        assertTrue(abp.existe(new Produto( 10010L)));
+        assertTrue(abp.existe(new Produto( 10015L)));
     }
 
     @Test
@@ -46,10 +46,10 @@ public class ABPProdutoTest {
         abp.inserir(p1);
         abp.inserir(p2);
         abp.inserir(p3);
-        abp.apagar(new Produto("", 10005L));
-        assertFalse(abp.existe(new Produto("", 10005L)));
-        assertTrue(abp.existe(new Produto("", 10002L)));
-        assertTrue(abp.existe(new Produto("", 10010L)));
+        abp.apagar(new Produto( 10005L));
+        assertFalse(abp.existe(new Produto( 10005L)));
+        assertTrue(abp.existe(new Produto( 10002L)));
+        assertTrue(abp.existe(new Produto( 10010L)));
     }
 
     @Test
@@ -64,10 +64,10 @@ public class ABPProdutoTest {
         abp.inserir(p3);
         abp.inserir(p4);
         abp.inserir(p5);
-        abp.apagar(new Produto("", 10015L));
-        assertFalse(abp.existe(new Produto("", 10015L)));
-        assertTrue(abp.existe(new Produto("", 10012L)));
-        assertTrue(abp.existe(new Produto("", 10018L)));
+        abp.apagar(new Produto( 10015L));
+        assertFalse(abp.existe(new Produto( 10015L)));
+        assertTrue(abp.existe(new Produto( 10012L)));
+        assertTrue(abp.existe(new Produto( 10018L)));
     }
 
     @Test
@@ -75,8 +75,8 @@ public class ABPProdutoTest {
         abp.inserir(new Produto("Café", 10010L));
         abp.inserir(new Produto("Leite", 10005L));
         abp.limpar();
-        assertFalse(abp.existe(new Produto("", 10010L)));
-        assertFalse(abp.existe(new Produto("", 10005L)));
+        assertFalse(abp.existe(new Produto( 10010L)));
+        assertFalse(abp.existe(new Produto( 10005L)));
     }
 
     @Test

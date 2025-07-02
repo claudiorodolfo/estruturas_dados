@@ -10,7 +10,7 @@
 
 //Para os testes unitários com junit:
 //compilar classe de teste: 
-//javac -cp .;bin;lib/junit-4.13.2.jar -d test test/ABPProdutoPTest.java
+//javac -cp .;bin;lib/junit-4.13.2.jar -d test test/ABPProdutoTest.java
 //executar testes: 
 //java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore ABPProdutoTest
 
