@@ -2,6 +2,10 @@
  * Representa um nó de árvore binária com ponteiros para o genitor, esquerda e direita.
  * 
  * @param <T> Tipo do dado armazenado no nó.
+ * 
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.0
+ * @since July 1, 2025
  */
 public class NoTriplo<T> {
 

@@ -2,8 +2,9 @@
  * Representa um produto com nome e código de barras.
  * Esta classe implementa Comparable para permitir ordenação por código de barras.
  * 
- * @author Sistema de Gerenciamento de Produtos
+ * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
+ * @since July 1, 2025
  */
 public class Produto implements Comparable<Produto> {
     /**

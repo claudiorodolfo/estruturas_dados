@@ -2,6 +2,10 @@
  * Implementação de uma Árvore Binária de Pesquisa (ABP).
  * 
  * @param <T> Tipo dos dados armazenados na árvore.
+ * 
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.0
+ * @since July 1, 2025
  */
 public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
 
