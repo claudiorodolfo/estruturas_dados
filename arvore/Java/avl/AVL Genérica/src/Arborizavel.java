@@ -1,5 +1,3 @@
-package avl;
-
 public interface Arborizavel<T> {
 
     NoTriplo<T> getRaiz();

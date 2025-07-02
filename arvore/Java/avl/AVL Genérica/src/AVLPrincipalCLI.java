@@ -1,9 +1,3 @@
-//Pra rodar
-//cd "estruturas_dados\arvore\"
-//javac avl/*.java
-//java avl/AVLPrincipalCLI
-package avl;
-
 import java.util.Scanner;
 
 public class AVLPrincipalCLI {

@@ -4,8 +4,6 @@ package prova;
 //javac Prova.java
 //java Prova
 import java.util.Scanner;
-import avl.*;
-import abp.*;
 
 public class Prova {
 					

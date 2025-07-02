@@ -3,8 +3,6 @@ package prova;
 //cd "estruturas_dados\arvore\"
 //javac SegundaChamada.java
 //java SegundaChamada
-import avl.*;
-import abp.*;
 
 public class SegundaChamada {
 					

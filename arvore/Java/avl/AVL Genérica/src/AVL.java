@@ -1,5 +1,3 @@
-package avl;
-
 public class AVL<T> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
