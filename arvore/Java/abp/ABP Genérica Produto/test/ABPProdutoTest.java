@@ -2,6 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * Classe de teste para a Árvore Binária de Pesquisa (ABP) que armazena Produtos.
+ */
 public class ABPProdutoTest {
     private ABP<Produto> abp;
 
