@@ -22,8 +22,12 @@ public class Produto implements Comparable<Produto> {
      * O nome será null.
      * 
      * @param codigoBarras Código de barras do produto
+     * @throws IllegalArgumentException se codigoBarras for negativo ou zero
      */
     public Produto(long codigoBarras) {
+        if (codigoBarras <= 0) {
+            throw new IllegalArgumentException("Código de barras deve ser positivo.");
+        }
         this.codigoBarras = codigoBarras;
     }
 
@@ -32,8 +36,15 @@ public class Produto implements Comparable<Produto> {
      * 
      * @param nome Nome do produto
      * @param codigoBarras Código de barras do produto
+     * @throws IllegalArgumentException se nome for nulo/vazio ou codigoBarras for negativo ou zero
      */
     public Produto(String nome, long codigoBarras) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do produto não pode ser nulo ou vazio.");
+        }
+        if (codigoBarras <= 0) {
+            throw new IllegalArgumentException("Código de barras deve ser positivo.");
+        }
         this.nome = nome;
         this.codigoBarras = codigoBarras;
     }

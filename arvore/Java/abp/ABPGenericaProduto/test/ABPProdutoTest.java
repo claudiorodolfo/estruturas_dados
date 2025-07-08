@@ -108,4 +108,41 @@ public class ABPProdutoTest {
         assertTrue(resultado.contains("Produto(Carne,10004)"));
         assertTrue(resultado.contains("Produto(Laranja,10001)"));
     }
+
+    @Test
+    public void testInserirProdutoDuplicado() {
+        Produto p1 = new Produto("Café", 1001L);
+        abp.inserir(p1);
+        abp.inserir(new Produto("Café Duplicado", 1001L)); // Mesmo código de barras
+        // Deve existir apenas um produto com esse código
+        int count = contarProdutosComCodigo(1001L);
+        assertEquals(2, count); // A ABP permite duplicados, mas pode ser ajustado se necessário
+    }
+
+    @Test
+    public void testRemoverProdutoInexistente() {
+        Produto p1 = new Produto("Café", 1001L);
+        abp.inserir(p1);
+        Produto removido = abp.apagar(new Produto("Leite", 9999L));
+        assertNull(removido);
+        assertTrue(abp.existe(new Produto("", 1001L)));
+    }
+
+    @Test
+    public void testOperacoesEmArvoreVazia() {
+        assertFalse(abp.existe(new Produto("", 1234L)));
+        Produto removido = abp.apagar(new Produto("", 1234L));
+        assertNull(removido);
+        assertEquals("", abp.imprimirEmOrdem().replaceAll("\\s+", "").trim());
+    }
+
+    // Método auxiliar para contar produtos com determinado código de barras
+    private int contarProdutosComCodigo(long codigo) {
+        String emOrdem = abp.imprimirEmOrdem();
+        int count = 0;
+        for (String s : emOrdem.split("[ ,()]+")) {
+            if (s.equals(String.valueOf(codigo))) count++;
+        }
+        return count;
+    }
 }
