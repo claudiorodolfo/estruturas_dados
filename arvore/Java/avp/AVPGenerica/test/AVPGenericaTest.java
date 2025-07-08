@@ -10,16 +10,16 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since July 1, 2025
  */
-public class RBTGenericaTest {
-    private RBT<String> rbtString;
-    private RBT<Integer> rbtInt;
-    private RBT<Double> rbtDouble;
+public class AVPGenericaTest {
+    private AVP<String> avpString;
+    private AVP<Integer> avpInt;
+    private AVP<Double> avpDouble;
 
     @Before
     public void setUp() {
-        rbtString = new RBT<>();
-        rbtInt = new RBT<>();
-        rbtDouble = new RBT<>();
+        avpString = new AVP<>();
+        avpInt = new AVP<>();
+        avpDouble = new AVP<>();
     }
 
     @Test

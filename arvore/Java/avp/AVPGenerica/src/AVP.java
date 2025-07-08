@@ -1,5 +1,5 @@
 /**
- * Implementação de uma Árvore Vermelho e Preto (Red-Black Tree).
+ * Implementação de uma Árvore Vermelho e Preto (AVP) genérica.
  * Mantém as propriedades da árvore vermelho e preto durante inserção e remoção.
  * 
  * @param <T> Tipo dos dados armazenados na árvore.
@@ -7,7 +7,7 @@
  * @version 1.0
  * @since July 1, 2025
  */
-public class RBT<T extends Comparable<T>> implements Arborizavel<T> {
+public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
     private static final boolean VERMELHO = true;

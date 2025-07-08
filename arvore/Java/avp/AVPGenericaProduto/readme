@@ -1,19 +1,19 @@
-# Árvore Vermelho e Preto de Produtos
+# Árvore Vermelho e Preto de Produtos (AVP)
 
-Este projeto implementa uma Árvore Vermelho e Preto (Red-Black Tree) para gerenciamento de produtos, mantendo as propriedades da árvore balanceada automaticamente.
+Este projeto implementa uma Árvore Vermelho e Preto (AVP) para gerenciamento de produtos, mantendo as propriedades da árvore balanceada automaticamente.
 
 ## Estrutura do Projeto
 
 ```
-RBTGenericaProduto/
+AVPGenericaProduto/
 ├── src/                    # Código-fonte
-│   ├── RBT.java           # Implementação da árvore vermelho e preto
+│   ├── AVP.java           # Implementação da árvore vermelho e preto
 │   ├── NoTriplo.java      # Nó da árvore com campo de cor
 │   ├── Arborizavel.java   # Interface para árvores
 │   ├── Produto.java       # Classe de produto com validação
-│   └── RBTProdutoMainCLI.java # Interface de linha de comando
+│   └── AVPProdutoMainCLI.java # Interface de linha de comando
 ├── test/                   # Testes automatizados
-│   └── RBTProdutoTest.java # Testes JUnit para RBT de produtos
+│   └── AVPProdutoTest.java # Testes JUnit para AVP de produtos
 ├── lib/                    # Bibliotecas
 ├── bin/                    # Arquivos compilados
 ├── build/                  # Arquivos de build
@@ -24,13 +24,13 @@ RBTGenericaProduto/
 ## Funcionalidades
 
 ### Operações Principais
-- **Inserção**: Insere produtos mantendo as propriedades RBT
+- **Inserção**: Insere produtos mantendo as propriedades AVP
 - **Busca**: Localiza produtos por código de barras
 - **Remoção**: Remove produtos mantendo o balanceamento
 - **Impressão**: Exibe produtos em pré-ordem, em ordem e pós-ordem
 - **Limpeza**: Remove todos os produtos da árvore
 
-### Características da RBT
+### Características da AVP
 - **Balanceamento Automático**: Mantém as propriedades da árvore vermelho e preto
 - **Rotações**: Implementa rotações simples e duplas
 - **Recoloração**: Ajusta cores dos nós para manter propriedades
@@ -47,19 +47,19 @@ RBTGenericaProduto/
 
 ### Compilar o Projeto
 ```bash
-cd arvore/Java/rbt/RBTGenericaProduto
+cd arvore/Java/avp/AVPGenericaProduto
 javac -cp "lib/*" -d bin src/*.java
 ```
 
 ### Executar o CLI
 ```bash
-java -cp bin RBTProdutoMainCLI
+java -cp bin AVPProdutoMainCLI
 ```
 
 ### Executar os Testes
 ```bash
 javac -cp "lib/*" -d bin src/*.java test/*.java
-java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest
+java -cp "bin:lib/*" org.junit.runner.JUnitCore AVPProdutoTest
 ```
 
 ## Exemplos de Uso
@@ -117,23 +117,23 @@ Café (1001) Leite (1002) Açúcar (1003)
 - Operações em árvore vazia
 - Inserção de produtos duplicados
 - Balanceamento da árvore vermelho e preto
-- Verificação das propriedades RBT
+- Verificação das propriedades AVP
 - Impressão em diferentes ordens
 - Limpeza da árvore
 
 ### Executar Testes Específicos
 ```bash
 # Teste de inserção
-java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testInserirEExiste
+java -cp "bin:lib/*" org.junit.runner.JUnitCore AVPProdutoTest#testInserirEExiste
 
 # Teste de balanceamento
-java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testBalanceamentoRBT
+java -cp "bin:lib/*" org.junit.runner.JUnitCore AVPProdutoTest#testBalanceamentoAVP
 
-# Teste de propriedades RBT
-java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testPropriedadesRBT
+# Teste de propriedades AVP
+java -cp "bin:lib/*" org.junit.runner.JUnitCore AVPProdutoTest#testPropriedadesAVP
 ```
 
-## Vantagens da RBT
+## Vantagens da AVP
 
 1. **Performance Garantida**: Todas as operações são O(log n)
 2. **Menos Rotações**: Comparada à AVL, faz menos rotações
@@ -142,7 +142,7 @@ java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testPropriedadesR
 
 ## Comparação com Outras Árvores
 
-| Característica | RBT | AVL | ABP |
+| Característica | AVP | AVL | ABP |
 |----------------|-----|-----|-----|
 | Balanceamento | Automático | Automático | Manual |
 | Rotações | Menos | Mais | Nenhuma |

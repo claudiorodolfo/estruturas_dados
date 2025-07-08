@@ -8,10 +8,10 @@ import java.util.Scanner;
  * @version 1.0
  * @since July 1, 2025
  */
-public class RBTGenericaMainCLI {
+public class AVPGenericaMainCLI {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RBT<String> rbt = new RBT<>();
+        AVP<String> avp = new AVP<>();
         int opcao;
         do {
             exibirMenu();
@@ -25,7 +25,7 @@ public class RBTGenericaMainCLI {
                             System.out.println("Erro: Elemento não pode ser vazio.");
                             break;
                         }
-                        rbt.inserir(elemento);
+                        avp.inserir(elemento);
                         System.out.println("Elemento inserido: " + elemento);
                         break;
                     case 2:
@@ -35,7 +35,7 @@ public class RBTGenericaMainCLI {
                             System.out.println("Erro: Elemento não pode ser vazio.");
                             break;
                         }
-                        if (rbt.existe(busca)) {
+                        if (avp.existe(busca)) {
                             System.out.println("Elemento encontrado: " + busca);
                         } else {
                             System.out.println("Elemento não encontrado.");
@@ -48,7 +48,7 @@ public class RBTGenericaMainCLI {
                             System.out.println("Erro: Elemento não pode ser vazio.");
                             break;
                         }
-                        String removido = rbt.apagar(remover);
+                        String removido = avp.apagar(remover);
                         if (removido != null) {
                             System.out.println("Elemento removido: " + removido);
                         } else {
@@ -57,18 +57,18 @@ public class RBTGenericaMainCLI {
                         break;
                     case 4:
                         System.out.println("Elementos em ordem:");
-                        System.out.println(rbt.imprimirEmOrdem());
+                        System.out.println(avp.imprimirEmOrdem());
                         break;
                     case 5:
                         System.out.println("Elementos em pré-ordem:");
-                        System.out.println(rbt.imprimirPreOrdem());
+                        System.out.println(avp.imprimirPreOrdem());
                         break;
                     case 6:
                         System.out.println("Elementos em pós-ordem:");
-                        System.out.println(rbt.imprimirPosOrdem());
+                        System.out.println(avp.imprimirPosOrdem());
                         break;
                     case 7:
-                        rbt.limpar();
+                        avp.limpar();
                         System.out.println("Árvore vermelho e preto genérica limpa!");
                         break;
                     case 8:
@@ -112,29 +112,29 @@ public class RBTGenericaMainCLI {
      */
     private static void testarComInteiros() {
         System.out.println("\n=== Teste com Inteiros ===");
-        RBT<Integer> rbtInt = new RBT<>();
+        AVP<Integer> avpInt = new AVP<>();
         
         // Inserir alguns inteiros
-        rbtInt.inserir(50);
-        rbtInt.inserir(30);
-        rbtInt.inserir(70);
-        rbtInt.inserir(20);
-        rbtInt.inserir(40);
-        rbtInt.inserir(60);
-        rbtInt.inserir(80);
+        avpInt.inserir(50);
+        avpInt.inserir(30);
+        avpInt.inserir(70);
+        avpInt.inserir(20);
+        avpInt.inserir(40);
+        avpInt.inserir(60);
+        avpInt.inserir(80);
         
-        System.out.println("Elementos em ordem: " + rbtInt.imprimirEmOrdem());
-        System.out.println("Elementos em pré-ordem: " + rbtInt.imprimirPreOrdem());
-        System.out.println("Elementos em pós-ordem: " + rbtInt.imprimirPosOrdem());
+        System.out.println("Elementos em ordem: " + avpInt.imprimirEmOrdem());
+        System.out.println("Elementos em pré-ordem: " + avpInt.imprimirPreOrdem());
+        System.out.println("Elementos em pós-ordem: " + avpInt.imprimirPosOrdem());
         
         // Testar busca
-        System.out.println("Existe 30? " + rbtInt.existe(30));
-        System.out.println("Existe 90? " + rbtInt.existe(90));
+        System.out.println("Existe 30? " + avpInt.existe(30));
+        System.out.println("Existe 90? " + avpInt.existe(90));
         
         // Testar remoção
-        Integer removido = rbtInt.apagar(30);
+        Integer removido = avpInt.apagar(30);
         System.out.println("Removido: " + removido);
-        System.out.println("Após remoção: " + rbtInt.imprimirEmOrdem());
+        System.out.println("Após remoção: " + avpInt.imprimirEmOrdem());
     }
 
     /**
@@ -142,27 +142,27 @@ public class RBTGenericaMainCLI {
      */
     private static void testarComDecimais() {
         System.out.println("\n=== Teste com Decimais ===");
-        RBT<Double> rbtDouble = new RBT<>();
+        AVP<Double> avpDouble = new AVP<>();
         
         // Inserir alguns decimais
-        rbtDouble.inserir(3.14);
-        rbtDouble.inserir(2.71);
-        rbtDouble.inserir(1.41);
-        rbtDouble.inserir(2.23);
-        rbtDouble.inserir(1.73);
+        avpDouble.inserir(3.14);
+        avpDouble.inserir(2.71);
+        avpDouble.inserir(1.41);
+        avpDouble.inserir(2.23);
+        avpDouble.inserir(1.73);
         
-        System.out.println("Elementos em ordem: " + rbtDouble.imprimirEmOrdem());
-        System.out.println("Elementos em pré-ordem: " + rbtDouble.imprimirPreOrdem());
-        System.out.println("Elementos em pós-ordem: " + rbtDouble.imprimirPosOrdem());
+        System.out.println("Elementos em ordem: " + avpDouble.imprimirEmOrdem());
+        System.out.println("Elementos em pré-ordem: " + avpDouble.imprimirPreOrdem());
+        System.out.println("Elementos em pós-ordem: " + avpDouble.imprimirPosOrdem());
         
         // Testar busca
-        System.out.println("Existe 3.14? " + rbtDouble.existe(3.14));
-        System.out.println("Existe 2.5? " + rbtDouble.existe(2.5));
+        System.out.println("Existe 3.14? " + avpDouble.existe(3.14));
+        System.out.println("Existe 2.5? " + avpDouble.existe(2.5));
         
         // Testar remoção
-        Double removido = rbtDouble.apagar(2.71);
+        Double removido = avpDouble.apagar(2.71);
         System.out.println("Removido: " + removido);
-        System.out.println("Após remoção: " + rbtDouble.imprimirEmOrdem());
+        System.out.println("Após remoção: " + avpDouble.imprimirEmOrdem());
     }
 
     /**

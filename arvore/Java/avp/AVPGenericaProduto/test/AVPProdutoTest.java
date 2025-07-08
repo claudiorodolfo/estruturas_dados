@@ -10,12 +10,12 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since July 1, 2025
  */
-public class RBTProdutoTest {
-    private RBT<Produto> rbt;
+public class AVPProdutoTest {
+    private AVP<Produto> avp;
 
     @Before
     public void setUp() {
-        rbt = new RBT<>();
+        avp = new AVP<>();
     }
 
     @Test
@@ -23,13 +23,13 @@ public class RBTProdutoTest {
         Produto p1 = new Produto("Café", 1001L);
         Produto p2 = new Produto("Leite", 1002L);
         Produto p3 = new Produto("Açúcar", 1003L);
-        rbt.inserir(p1);
-        rbt.inserir(p2);
-        rbt.inserir(p3);
-        assertTrue(rbt.existe(new Produto("", 1001L)));
-        assertTrue(rbt.existe(new Produto("", 1002L)));
-        assertTrue(rbt.existe(new Produto("", 1003L)));
-        assertFalse(rbt.existe(new Produto("", 9999L)));
+        avp.inserir(p1);
+        avp.inserir(p2);
+        avp.inserir(p3);
+        assertTrue(avp.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto("", 1002L)));
+        assertTrue(avp.existe(new Produto("", 1003L)));
+        assertFalse(avp.existe(new Produto("", 9999L)));
     }
 
     @Test

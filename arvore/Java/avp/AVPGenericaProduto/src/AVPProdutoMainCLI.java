@@ -8,10 +8,10 @@ import java.util.Scanner;
  * @version 1.0
  * @since July 1, 2025
  */
-public class RBTProdutoMainCLI {
+public class AVPProdutoMainCLI {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RBT<Produto> rbt = new RBT<>();
+        AVP<Produto> avp = new AVP<>();
         int opcao;
         do {
             exibirMenu();
@@ -23,13 +23,13 @@ public class RBTProdutoMainCLI {
                         String nome = scanner.nextLine();
                         long codigo = lerLong(scanner, "Código de barras: ");
                         Produto p = new Produto(nome, codigo);
-                        rbt.inserir(p);
+                        avp.inserir(p);
                         System.out.println("Produto inserido: " + p);
                         break;
                     case 2:
                         long codigoBusca = lerLong(scanner, "Código de barras do produto a buscar: ");
                         Produto busca = new Produto("Produto temporário", codigoBusca);
-                        Produto encontrado = buscarProduto(rbt, busca);
+                        Produto encontrado = buscarProduto(avp, busca);
                         if (encontrado != null) {
                             System.out.println("Produto encontrado: " + encontrado);
                         } else {
@@ -39,7 +39,7 @@ public class RBTProdutoMainCLI {
                     case 3:
                         long codigoRemover = lerLong(scanner, "Código de barras do produto a remover: ");
                         Produto remover = new Produto("Produto temporário", codigoRemover);
-                        Produto removido = rbt.apagar(remover);
+                        Produto removido = avp.apagar(remover);
                         if (removido != null) {
                             System.out.println("Produto removido: " + removido);
                         } else {
@@ -48,18 +48,18 @@ public class RBTProdutoMainCLI {
                         break;
                     case 4:
                         System.out.println("Produtos em ordem:");
-                        System.out.println(rbt.imprimirEmOrdem());
+                        System.out.println(avp.imprimirEmOrdem());
                         break;
                     case 5:
                         System.out.println("Produtos em pré-ordem:");
-                        System.out.println(rbt.imprimirPreOrdem());
+                        System.out.println(avp.imprimirPreOrdem());
                         break;
                     case 6:
                         System.out.println("Produtos em pós-ordem:");
-                        System.out.println(rbt.imprimirPosOrdem());
+                        System.out.println(avp.imprimirPosOrdem());
                         break;
                     case 7:
-                        rbt.limpar();
+                        avp.limpar();
                         System.out.println("Árvore vermelho e preto de produtos limpa!");
                         break;
                     case 0:
@@ -95,12 +95,12 @@ public class RBTProdutoMainCLI {
     /**
      * Busca o produto real na árvore, retornando o objeto completo se encontrado.
      * 
-     * @param rbt Árvore vermelho e preto de produtos
+     * @param avp Árvore vermelho e preto de produtos
      * @param busca Produto com código de barras para buscar
      * @return Produto encontrado ou null se não encontrado
      */
-    private static Produto buscarProduto(RBT<Produto> rbt, Produto busca) {
-        NoTriplo<Produto> no = rbt.getRaiz();
+    private static Produto buscarProduto(AVP<Produto> avp, Produto busca) {
+        NoTriplo<Produto> no = avp.getRaiz();
         while (no != null) {
             int cmp = busca.compareTo(no.getDado());
             if (cmp == 0) return no.getDado();
