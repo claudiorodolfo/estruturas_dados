@@ -1,0 +1,156 @@
+# Árvore Vermelho e Preto de Produtos
+
+Este projeto implementa uma Árvore Vermelho e Preto (Red-Black Tree) para gerenciamento de produtos, mantendo as propriedades da árvore balanceada automaticamente.
+
+## Estrutura do Projeto
+
+```
+RBTGenericaProduto/
+├── src/                    # Código-fonte
+│   ├── RBT.java           # Implementação da árvore vermelho e preto
+│   ├── NoTriplo.java      # Nó da árvore com campo de cor
+│   ├── Arborizavel.java   # Interface para árvores
+│   ├── Produto.java       # Classe de produto com validação
+│   └── RBTProdutoMainCLI.java # Interface de linha de comando
+├── test/                   # Testes automatizados
+│   └── RBTProdutoTest.java # Testes JUnit para RBT de produtos
+├── lib/                    # Bibliotecas
+├── bin/                    # Arquivos compilados
+├── build/                  # Arquivos de build
+├── doc/                    # Documentação gerada
+└── readme                  # Este arquivo
+```
+
+## Funcionalidades
+
+### Operações Principais
+- **Inserção**: Insere produtos mantendo as propriedades RBT
+- **Busca**: Localiza produtos por código de barras
+- **Remoção**: Remove produtos mantendo o balanceamento
+- **Impressão**: Exibe produtos em pré-ordem, em ordem e pós-ordem
+- **Limpeza**: Remove todos os produtos da árvore
+
+### Características da RBT
+- **Balanceamento Automático**: Mantém as propriedades da árvore vermelho e preto
+- **Rotações**: Implementa rotações simples e duplas
+- **Recoloração**: Ajusta cores dos nós para manter propriedades
+- **Performance**: Operações O(log n) garantidas
+
+## Propriedades da Árvore Vermelho e Preto
+
+1. **Raiz Preta**: A raiz é sempre preta
+2. **Folhas Pretas**: Todas as folhas (null) são consideradas pretas
+3. **Nós Vermelhos**: Nós vermelhos não podem ter filhos vermelhos
+4. **Caminhos Negros**: Todos os caminhos da raiz às folhas têm o mesmo número de nós pretos
+
+## Compilação e Execução
+
+### Compilar o Projeto
+```bash
+cd arvore/Java/rbt/RBTGenericaProduto
+javac -cp "lib/*" -d bin src/*.java
+```
+
+### Executar o CLI
+```bash
+java -cp bin RBTProdutoMainCLI
+```
+
+### Executar os Testes
+```bash
+javac -cp "lib/*" -d bin src/*.java test/*.java
+java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest
+```
+
+## Exemplos de Uso
+
+### 1. Inserir Produtos
+```
+==== Árvore Vermelho e Preto de Produtos ====
+1. Inserir produto
+2. Buscar produto
+3. Remover produto
+4. Imprimir produtos em ordem
+5. Imprimir produtos em pré-ordem
+6. Imprimir produtos em pós-ordem
+7. Limpar árvore
+0. Sair
+
+Escolha uma opção: 1
+Nome do produto: Café
+Código de barras: 1001
+Produto inserido: Produto(Café,1001)
+```
+
+### 2. Buscar Produto
+```
+Escolha uma opção: 2
+Código de barras do produto a buscar: 1001
+Produto encontrado: Produto(Café,1001)
+```
+
+### 3. Imprimir em Ordem
+```
+Escolha uma opção: 4
+Produtos em ordem:
+Café (1001) Leite (1002) Açúcar (1003)
+```
+
+## Validações Implementadas
+
+### Classe Produto
+- **Nome**: Não pode ser nulo ou vazio
+- **Código de Barras**: Deve ser positivo
+- **Equals/HashCode**: Baseados no código de barras
+- **Comparable**: Ordenação por código de barras
+
+### Tratamento de Erros
+- **Entradas Inválidas**: Validação de números e strings
+- **Produtos Inexistentes**: Mensagens claras para busca/remoção
+- **Exceções**: Captura e exibe erros de forma amigável
+
+## Testes Implementados
+
+### Casos de Teste
+- Inserção e busca de produtos
+- Remoção de folhas, nós com um filho e dois filhos
+- Operações em árvore vazia
+- Inserção de produtos duplicados
+- Balanceamento da árvore vermelho e preto
+- Verificação das propriedades RBT
+- Impressão em diferentes ordens
+- Limpeza da árvore
+
+### Executar Testes Específicos
+```bash
+# Teste de inserção
+java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testInserirEExiste
+
+# Teste de balanceamento
+java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testBalanceamentoRBT
+
+# Teste de propriedades RBT
+java -cp "bin:lib/*" org.junit.runner.JUnitCore RBTProdutoTest#testPropriedadesRBT
+```
+
+## Vantagens da RBT
+
+1. **Performance Garantida**: Todas as operações são O(log n)
+2. **Menos Rotações**: Comparada à AVL, faz menos rotações
+3. **Eficiência**: Balanceamento eficiente com recoloração
+4. **Simplicidade**: Algoritmos bem definidos e testados
+
+## Comparação com Outras Árvores
+
+| Característica | RBT | AVL | ABP |
+|----------------|-----|-----|-----|
+| Balanceamento | Automático | Automático | Manual |
+| Rotações | Menos | Mais | Nenhuma |
+| Altura | ≤ 2log(n+1) | ≤ 1.44log(n+2) | O(n) |
+| Complexidade | O(log n) | O(log n) | O(n) |
+
+## Autores
+
+- **Cláudio Rodolfo Sousa de Oliveira**
+- **Versão**: 1.0
+- **Data**: July 1, 2025 
