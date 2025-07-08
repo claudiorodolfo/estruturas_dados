@@ -10,13 +10,11 @@
 public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
-    private static final boolean VERMELHO = true;
-    private static final boolean PRETO = false;
 
     /**
      * Cria uma árvore vermelho e preto vazia.
      */
-    public RBT() {
+    public AVP() {
         raiz = null;
     }
 
@@ -45,11 +43,11 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
         novoNo.setDado(dado);
-        novoNo.setVermelho(VERMELHO); // Novos nós são sempre vermelhos
+        novoNo.setCor(Cor.VERMELHO); // Novos nós são sempre vermelhos
 
         if (raiz == null) {
             raiz = novoNo;
-            raiz.setVermelho(PRETO); // Raiz sempre preta
+            raiz.setCor(Cor.PRETO); // Raiz sempre preta
         } else {
             inserirRecursivo(raiz, novoNo);
             balancearAposInserir(novoNo);
@@ -80,14 +78,14 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Balanceia a árvore após inserção para manter as propriedades RBT.
+     * Balanceia a árvore após inserção para manter as propriedades AVP.
      */
     private void balancearAposInserir(NoTriplo<T> no) {
         NoTriplo<T> pai = no.getGenitor();
         
         // Caso 1: Nó é a raiz
         if (pai == null) {
-            no.setVermelho(PRETO);
+            no.setCor(Cor.PRETO);
             return;
         }
 
@@ -102,9 +100,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
         if (tio != null && tio.isVermelho()) {
             // Caso 3a: Tio é vermelho
-            pai.setVermelho(PRETO);
-            tio.setVermelho(PRETO);
-            avo.setVermelho(VERMELHO);
+            pai.setCor(Cor.PRETO);
+            tio.setCor(Cor.PRETO);
+            avo.setCor(Cor.VERMELHO);
             balancearAposInserir(avo);
         } else {
             // Caso 3b: Tio é preto ou null
@@ -127,8 +125,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
                 rotacaoEsquerda(avo);
             }
             
-            pai.setVermelho(PRETO);
-            avo.setVermelho(VERMELHO);
+            pai.setCor(Cor.PRETO);
+            avo.setCor(Cor.VERMELHO);
         }
     }
 
@@ -209,7 +207,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
             // Nó tem um filho
             if (no.getGenitor() == null) {
                 raiz = filho;
-                filho.setVermelho(PRETO);
+                filho.setCor(Cor.PRETO);
             } else {
                 if (no == no.getGenitor().getEsquerda()) {
                     no.getGenitor().setEsquerda(filho);
@@ -252,8 +250,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
             NoTriplo<T> irmao = noEsquerda ? pai.getDireita() : pai.getEsquerda();
 
             if (irmao != null && irmao.isVermelho()) {
-                irmao.setVermelho(PRETO);
-                pai.setVermelho(VERMELHO);
+                irmao.setCor(Cor.PRETO);
+                pai.setCor(Cor.VERMELHO);
                 if (noEsquerda) {
                     rotacaoEsquerda(pai);
                 } else {
@@ -267,38 +265,38 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
                 (irmao.getDireita() == null || irmao.getDireita().isPreto())) {
                 
                 if (irmao != null) {
-                    irmao.setVermelho(VERMELHO);
+                    irmao.setCor(Cor.VERMELHO);
                 }
                 no = pai;
             } else {
                 if (noEsquerda) {
                     if (irmao.getDireita() == null || irmao.getDireita().isPreto()) {
                         if (irmao.getEsquerda() != null) {
-                            irmao.getEsquerda().setVermelho(PRETO);
+                            irmao.getEsquerda().setCor(Cor.PRETO);
                         }
-                        irmao.setVermelho(VERMELHO);
+                        irmao.setCor(Cor.VERMELHO);
                         rotacaoDireita(irmao);
                         irmao = pai.getDireita();
                     }
                     if (irmao.getDireita() != null) {
-                        irmao.getDireita().setVermelho(PRETO);
+                        irmao.getDireita().setCor(Cor.PRETO);
                     }
                 } else {
                     if (irmao.getEsquerda() == null || irmao.getEsquerda().isPreto()) {
                         if (irmao.getDireita() != null) {
-                            irmao.getDireita().setVermelho(PRETO);
+                            irmao.getDireita().setCor(Cor.PRETO);
                         }
-                        irmao.setVermelho(VERMELHO);
+                        irmao.setCor(Cor.VERMELHO);
                         rotacaoEsquerda(irmao);
                         irmao = pai.getEsquerda();
                     }
                     if (irmao.getEsquerda() != null) {
-                        irmao.getEsquerda().setVermelho(PRETO);
+                        irmao.getEsquerda().setCor(Cor.PRETO);
                     }
                 }
                 
-                irmao.setVermelho(pai.isVermelho());
-                pai.setVermelho(PRETO);
+                irmao.setCor(pai.isVermelho() ? Cor.VERMELHO : Cor.PRETO);
+                pai.setCor(Cor.PRETO);
                 if (noEsquerda) {
                     rotacaoEsquerda(pai);
                 } else {
@@ -307,7 +305,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
                 no = raiz;
             }
         }
-        no.setVermelho(PRETO);
+        no.setCor(Cor.PRETO);
     }
 
     /**

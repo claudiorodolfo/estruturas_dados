@@ -2,6 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import src.AVP;
+import src.Produto;
+import src.NoTriplo;
+
 /**
  * Classe de teste para a Árvore Vermelho e Preto de Produtos.
  * Testa inserção, busca, remoção, balanceamento e casos de borda.
@@ -36,11 +40,11 @@ public class AVPProdutoTest {
     public void testApagarFolha() {
         Produto p1 = new Produto("Café", 1001L);
         Produto p2 = new Produto("Leite", 1002L);
-        rbt.inserir(p1);
-        rbt.inserir(p2);
-        rbt.apagar(new Produto("", 1002L));
-        assertFalse(rbt.existe(new Produto("", 1002L)));
-        assertTrue(rbt.existe(new Produto("", 1001L)));
+        avp.inserir(p1);
+        avp.inserir(p2);
+        avp.apagar(new Produto("", 1002L));
+        assertFalse(avp.existe(new Produto("", 1002L)));
+        assertTrue(avp.existe(new Produto("", 1001L)));
     }
 
     @Test
@@ -48,13 +52,13 @@ public class AVPProdutoTest {
         Produto p1 = new Produto("Café", 1001L);
         Produto p2 = new Produto("Leite", 1002L);
         Produto p3 = new Produto("Açúcar", 1003L);
-        rbt.inserir(p1);
-        rbt.inserir(p2);
-        rbt.inserir(p3);
-        rbt.apagar(new Produto("", 1002L));
-        assertFalse(rbt.existe(new Produto("", 1002L)));
-        assertTrue(rbt.existe(new Produto("", 1001L)));
-        assertTrue(rbt.existe(new Produto("", 1003L)));
+        avp.inserir(p1);
+        avp.inserir(p2);
+        avp.inserir(p3);
+        avp.apagar(new Produto("", 1002L));
+        assertFalse(avp.existe(new Produto("", 1002L)));
+        assertTrue(avp.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto("", 1003L)));
     }
 
     @Test
@@ -63,33 +67,33 @@ public class AVPProdutoTest {
         Produto p2 = new Produto("Leite", 1001L);
         Produto p3 = new Produto("Açúcar", 1003L);
         Produto p4 = new Produto("Biscoito", 1004L);
-        rbt.inserir(p1);
-        rbt.inserir(p2);
-        rbt.inserir(p3);
-        rbt.inserir(p4);
-        rbt.apagar(new Produto("", 1002L));
-        assertFalse(rbt.existe(new Produto("", 1002L)));
-        assertTrue(rbt.existe(new Produto("", 1001L)));
-        assertTrue(rbt.existe(new Produto("", 1003L)));
-        assertTrue(rbt.existe(new Produto("", 1004L)));
+        avp.inserir(p1);
+        avp.inserir(p2);
+        avp.inserir(p3);
+        avp.inserir(p4);
+        avp.apagar(new Produto("", 1002L));
+        assertFalse(avp.existe(new Produto("", 1002L)));
+        assertTrue(avp.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto("", 1003L)));
+        assertTrue(avp.existe(new Produto("", 1004L)));
     }
 
     @Test
     public void testLimpar() {
-        rbt.inserir(new Produto("Café", 1001L));
-        rbt.inserir(new Produto("Leite", 1002L));
-        rbt.limpar();
-        assertFalse(rbt.existe(new Produto("", 1001L)));
-        assertFalse(rbt.existe(new Produto("", 1002L)));
+        avp.inserir(new Produto("Café", 1001L));
+        avp.inserir(new Produto("Leite", 1002L));
+        avp.limpar();
+        assertFalse(avp.existe(new Produto("", 1001L)));
+        assertFalse(avp.existe(new Produto("", 1002L)));
     }
 
     @Test
     public void testImprimirEmOrdem() {
-        rbt.inserir(new Produto("Café", 1002L));
-        rbt.inserir(new Produto("Leite", 1001L));
-        rbt.inserir(new Produto("Açúcar", 1003L));
-        rbt.inserir(new Produto("Biscoito", 1004L));
-        String resultado = rbt.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
+        avp.inserir(new Produto("Café", 1002L));
+        avp.inserir(new Produto("Leite", 1001L));
+        avp.inserir(new Produto("Açúcar", 1003L));
+        avp.inserir(new Produto("Biscoito", 1004L));
+        String resultado = avp.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("Leite (1001)"));
         assertTrue(resultado.contains("Café (1002)"));
         assertTrue(resultado.contains("Açúcar (1003)"));
@@ -99,57 +103,57 @@ public class AVPProdutoTest {
     @Test
     public void testInserirProdutoDuplicado() {
         Produto p1 = new Produto("Café", 1001L);
-        rbt.inserir(p1);
-        rbt.inserir(new Produto("Café Duplicado", 1001L)); // Mesmo código de barras
+        avp.inserir(p1);
+        avp.inserir(new Produto("Café Duplicado", 1001L)); // Mesmo código de barras
         // Deve existir apenas um produto com esse código
         int count = contarProdutosComCodigo(1001L);
-        assertEquals(2, count); // A RBT permite duplicados, mas pode ser ajustado se necessário
+        assertEquals(2, count); // A AVP permite duplicados, mas pode ser ajustado se necessário
     }
 
     @Test
     public void testRemoverProdutoInexistente() {
         Produto p1 = new Produto("Café", 1001L);
-        rbt.inserir(p1);
-        Produto removido = rbt.apagar(new Produto("Leite", 9999L));
+        avp.inserir(p1);
+        Produto removido = avp.apagar(new Produto("Leite", 9999L));
         assertNull(removido);
-        assertTrue(rbt.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto("", 1001L)));
     }
 
     @Test
     public void testOperacoesEmArvoreVazia() {
-        assertFalse(rbt.existe(new Produto("", 1234L)));
-        Produto removido = rbt.apagar(new Produto("", 1234L));
+        assertFalse(avp.existe(new Produto("", 1234L)));
+        Produto removido = avp.apagar(new Produto("", 1234L));
         assertNull(removido);
-        assertEquals("", rbt.imprimirEmOrdem().replaceAll("\\s+", "").trim());
+        assertEquals("", avp.imprimirEmOrdem().replaceAll("\\s+", "").trim());
     }
 
     @Test
-    public void testBalanceamentoRBT() {
+    public void testBalanceamentoAVP() {
         // Inserir produtos em ordem que force rotações e recolorações
-        rbt.inserir(new Produto("A", 1001L));
-        rbt.inserir(new Produto("B", 1002L));
-        rbt.inserir(new Produto("C", 1003L));
-        rbt.inserir(new Produto("D", 1004L));
-        rbt.inserir(new Produto("E", 1005L));
-        rbt.inserir(new Produto("F", 1006L));
-        rbt.inserir(new Produto("G", 1007L));
+        avp.inserir(new Produto("A", 1001L));
+        avp.inserir(new Produto("B", 1002L));
+        avp.inserir(new Produto("C", 1003L));
+        avp.inserir(new Produto("D", 1004L));
+        avp.inserir(new Produto("E", 1005L));
+        avp.inserir(new Produto("F", 1006L));
+        avp.inserir(new Produto("G", 1007L));
         
         // Verificar se todos os produtos ainda existem após balanceamento
-        assertTrue(rbt.existe(new Produto("", 1001L)));
-        assertTrue(rbt.existe(new Produto("", 1002L)));
-        assertTrue(rbt.existe(new Produto("", 1003L)));
-        assertTrue(rbt.existe(new Produto("", 1004L)));
-        assertTrue(rbt.existe(new Produto("", 1005L)));
-        assertTrue(rbt.existe(new Produto("", 1006L)));
-        assertTrue(rbt.existe(new Produto("", 1007L)));
+        assertTrue(avp.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto("", 1002L)));
+        assertTrue(avp.existe(new Produto("", 1003L)));
+        assertTrue(avp.existe(new Produto("", 1004L)));
+        assertTrue(avp.existe(new Produto("", 1005L)));
+        assertTrue(avp.existe(new Produto("", 1006L)));
+        assertTrue(avp.existe(new Produto("", 1007L)));
     }
 
     @Test
     public void testImprimirPreOrdem() {
-        rbt.inserir(new Produto("Café", 1002L));
-        rbt.inserir(new Produto("Leite", 1001L));
-        rbt.inserir(new Produto("Açúcar", 1003L));
-        String resultado = rbt.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
+        avp.inserir(new Produto("Café", 1002L));
+        avp.inserir(new Produto("Leite", 1001L));
+        avp.inserir(new Produto("Açúcar", 1003L));
+        String resultado = avp.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("Café (1002)"));
         assertTrue(resultado.contains("Leite (1001)"));
         assertTrue(resultado.contains("Açúcar (1003)"));
@@ -157,35 +161,35 @@ public class AVPProdutoTest {
 
     @Test
     public void testImprimirPosOrdem() {
-        rbt.inserir(new Produto("Café", 1002L));
-        rbt.inserir(new Produto("Leite", 1001L));
-        rbt.inserir(new Produto("Açúcar", 1003L));
-        String resultado = rbt.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
+        avp.inserir(new Produto("Café", 1002L));
+        avp.inserir(new Produto("Leite", 1001L));
+        avp.inserir(new Produto("Açúcar", 1003L));
+        String resultado = avp.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("Café (1002)"));
         assertTrue(resultado.contains("Leite (1001)"));
         assertTrue(resultado.contains("Açúcar (1003)"));
     }
 
     @Test
-    public void testPropriedadesRBT() {
+    public void testPropriedadesAVP() {
         // Testar propriedades básicas da árvore vermelho e preto
-        rbt.inserir(new Produto("A", 1001L));
-        rbt.inserir(new Produto("B", 1002L));
-        rbt.inserir(new Produto("C", 1003L));
+        avp.inserir(new Produto("A", 1001L));
+        avp.inserir(new Produto("B", 1002L));
+        avp.inserir(new Produto("C", 1003L));
         
         // Verificar se a raiz é preta
-        NoTriplo<Produto> raiz = rbt.getRaiz();
+        NoTriplo<Produto> raiz = avp.getRaiz();
         assertNotNull(raiz);
         assertFalse(raiz.isVermelho()); // Raiz deve ser preta
         
         // Verificar se não há nós vermelhos consecutivos
-        verificarPropriedadesRBT(raiz);
+        verificarPropriedadesAVP(raiz);
     }
 
     /**
      * Verifica as propriedades da árvore vermelho e preto.
      */
-    private void verificarPropriedadesRBT(NoTriplo<Produto> no) {
+    private void verificarPropriedadesAVP(NoTriplo<Produto> no) {
         if (no == null) return;
         
         // Verificar se não há nós vermelhos consecutivos
@@ -198,17 +202,22 @@ public class AVPProdutoTest {
             }
         }
         
-        // Verificar propriedades recursivamente
-        verificarPropriedadesRBT(no.getEsquerda());
-        verificarPropriedadesRBT(no.getDireita());
+        // Verificar recursivamente os filhos
+        verificarPropriedadesAVP(no.getEsquerda());
+        verificarPropriedadesAVP(no.getDireita());
     }
 
-    // Método auxiliar para contar produtos com determinado código de barras
+    /**
+     * Conta quantos produtos existem com o código especificado.
+     */
     private int contarProdutosComCodigo(long codigo) {
-        String emOrdem = rbt.imprimirEmOrdem();
+        String emOrdem = avp.imprimirEmOrdem();
         int count = 0;
-        for (String s : emOrdem.split("[ ,()]+")) {
-            if (s.equals(String.valueOf(codigo))) count++;
+        String codigoStr = "(" + codigo + ")";
+        int index = 0;
+        while ((index = emOrdem.indexOf(codigoStr, index)) != -1) {
+            count++;
+            index += codigoStr.length();
         }
         return count;
     }

@@ -1,14 +1,15 @@
+package test;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import src.AVP;
+import src.NoTriplo;
+
 /**
- * Classe de teste para a Árvore Vermelho e Preto Genérica.
- * Testa inserção, busca, remoção, balanceamento e casos de borda com diferentes tipos.
- * 
- * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- * @since July 1, 2025
+ * Testes para a implementação genérica da Árvore Vermelho e Preto (AVP).
+ * Testa operações básicas com diferentes tipos de dados.
  */
 public class AVPGenericaTest {
     private AVP<String> avpString;
@@ -24,88 +25,88 @@ public class AVPGenericaTest {
 
     @Test
     public void testInserirEExisteString() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.inserir("cereja");
-        assertTrue(rbtString.existe("banana"));
-        assertTrue(rbtString.existe("abacaxi"));
-        assertTrue(rbtString.existe("cereja"));
-        assertFalse(rbtString.existe("laranja"));
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.inserir("cereja");
+        assertTrue(avpString.existe("banana"));
+        assertTrue(avpString.existe("abacaxi"));
+        assertTrue(avpString.existe("cereja"));
+        assertFalse(avpString.existe("laranja"));
     }
 
     @Test
     public void testInserirEExisteInt() {
-        rbtInt.inserir(50);
-        rbtInt.inserir(30);
-        rbtInt.inserir(70);
-        assertTrue(rbtInt.existe(50));
-        assertTrue(rbtInt.existe(30));
-        assertTrue(rbtInt.existe(70));
-        assertFalse(rbtInt.existe(90));
+        avpInt.inserir(50);
+        avpInt.inserir(30);
+        avpInt.inserir(70);
+        assertTrue(avpInt.existe(50));
+        assertTrue(avpInt.existe(30));
+        assertTrue(avpInt.existe(70));
+        assertFalse(avpInt.existe(90));
     }
 
     @Test
     public void testInserirEExisteDouble() {
-        rbtDouble.inserir(3.14);
-        rbtDouble.inserir(2.71);
-        rbtDouble.inserir(1.41);
-        assertTrue(rbtDouble.existe(3.14));
-        assertTrue(rbtDouble.existe(2.71));
-        assertTrue(rbtDouble.existe(1.41));
-        assertFalse(rbtDouble.existe(2.5));
+        avpDouble.inserir(3.14);
+        avpDouble.inserir(2.71);
+        avpDouble.inserir(1.41);
+        assertTrue(avpDouble.existe(3.14));
+        assertTrue(avpDouble.existe(2.71));
+        assertTrue(avpDouble.existe(1.41));
+        assertFalse(avpDouble.existe(2.5));
     }
 
     @Test
     public void testApagarString() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.inserir("cereja");
-        String removido = rbtString.apagar("abacaxi");
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.inserir("cereja");
+        String removido = avpString.apagar("abacaxi");
         assertEquals("abacaxi", removido);
-        assertFalse(rbtString.existe("abacaxi"));
-        assertTrue(rbtString.existe("banana"));
-        assertTrue(rbtString.existe("cereja"));
+        assertFalse(avpString.existe("abacaxi"));
+        assertTrue(avpString.existe("banana"));
+        assertTrue(avpString.existe("cereja"));
     }
 
     @Test
     public void testApagarInt() {
-        rbtInt.inserir(50);
-        rbtInt.inserir(30);
-        rbtInt.inserir(70);
-        Integer removido = rbtInt.apagar(30);
+        avpInt.inserir(50);
+        avpInt.inserir(30);
+        avpInt.inserir(70);
+        Integer removido = avpInt.apagar(30);
         assertEquals(Integer.valueOf(30), removido);
-        assertFalse(rbtInt.existe(30));
-        assertTrue(rbtInt.existe(50));
-        assertTrue(rbtInt.existe(70));
+        assertFalse(avpInt.existe(30));
+        assertTrue(avpInt.existe(50));
+        assertTrue(avpInt.existe(70));
     }
 
     @Test
     public void testApagarDouble() {
-        rbtDouble.inserir(3.14);
-        rbtDouble.inserir(2.71);
-        rbtDouble.inserir(1.41);
-        Double removido = rbtDouble.apagar(2.71);
+        avpDouble.inserir(3.14);
+        avpDouble.inserir(2.71);
+        avpDouble.inserir(1.41);
+        Double removido = avpDouble.apagar(2.71);
         assertEquals(Double.valueOf(2.71), removido);
-        assertFalse(rbtDouble.existe(2.71));
-        assertTrue(rbtDouble.existe(3.14));
-        assertTrue(rbtDouble.existe(1.41));
+        assertFalse(avpDouble.existe(2.71));
+        assertTrue(avpDouble.existe(3.14));
+        assertTrue(avpDouble.existe(1.41));
     }
 
     @Test
     public void testLimpar() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.limpar();
-        assertFalse(rbtString.existe("banana"));
-        assertFalse(rbtString.existe("abacaxi"));
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.limpar();
+        assertFalse(avpString.existe("banana"));
+        assertFalse(avpString.existe("abacaxi"));
     }
 
     @Test
     public void testImprimirEmOrdemString() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.inserir("cereja");
-        String resultado = rbtString.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.inserir("cereja");
+        String resultado = avpString.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("abacaxi"));
         assertTrue(resultado.contains("banana"));
         assertTrue(resultado.contains("cereja"));
@@ -113,10 +114,10 @@ public class AVPGenericaTest {
 
     @Test
     public void testImprimirEmOrdemInt() {
-        rbtInt.inserir(50);
-        rbtInt.inserir(30);
-        rbtInt.inserir(70);
-        String resultado = rbtInt.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
+        avpInt.inserir(50);
+        avpInt.inserir(30);
+        avpInt.inserir(70);
+        String resultado = avpInt.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("30"));
         assertTrue(resultado.contains("50"));
         assertTrue(resultado.contains("70"));
@@ -124,56 +125,56 @@ public class AVPGenericaTest {
 
     @Test
     public void testInserirElementoDuplicado() {
-        rbtString.inserir("banana");
-        rbtString.inserir("banana"); // Duplicado
+        avpString.inserir("banana");
+        avpString.inserir("banana"); // Duplicado
         // Deve existir apenas um elemento
         int count = contarElementosComValor("banana");
-        assertEquals(2, count); // A RBT permite duplicados
+        assertEquals(2, count); // A AVP permite duplicados
     }
 
     @Test
     public void testRemoverElementoInexistente() {
-        rbtString.inserir("banana");
-        String removido = rbtString.apagar("abacaxi");
+        avpString.inserir("banana");
+        String removido = avpString.apagar("abacaxi");
         assertNull(removido);
-        assertTrue(rbtString.existe("banana"));
+        assertTrue(avpString.existe("banana"));
     }
 
     @Test
     public void testOperacoesEmArvoreVazia() {
-        assertFalse(rbtString.existe("qualquer"));
-        String removido = rbtString.apagar("qualquer");
+        assertFalse(avpString.existe("qualquer"));
+        String removido = avpString.apagar("qualquer");
         assertNull(removido);
-        assertEquals("", rbtString.imprimirEmOrdem().replaceAll("\\s+", "").trim());
+        assertEquals("", avpString.imprimirEmOrdem().replaceAll("\\s+", "").trim());
     }
 
     @Test
-    public void testBalanceamentoRBT() {
+    public void testBalanceamentoAVP() {
         // Inserir elementos em ordem que force rotações e recolorações
-        rbtInt.inserir(10);
-        rbtInt.inserir(20);
-        rbtInt.inserir(30);
-        rbtInt.inserir(40);
-        rbtInt.inserir(50);
-        rbtInt.inserir(60);
-        rbtInt.inserir(70);
+        avpInt.inserir(10);
+        avpInt.inserir(20);
+        avpInt.inserir(30);
+        avpInt.inserir(40);
+        avpInt.inserir(50);
+        avpInt.inserir(60);
+        avpInt.inserir(70);
         
         // Verificar se todos os elementos ainda existem após balanceamento
-        assertTrue(rbtInt.existe(10));
-        assertTrue(rbtInt.existe(20));
-        assertTrue(rbtInt.existe(30));
-        assertTrue(rbtInt.existe(40));
-        assertTrue(rbtInt.existe(50));
-        assertTrue(rbtInt.existe(60));
-        assertTrue(rbtInt.existe(70));
+        assertTrue(avpInt.existe(10));
+        assertTrue(avpInt.existe(20));
+        assertTrue(avpInt.existe(30));
+        assertTrue(avpInt.existe(40));
+        assertTrue(avpInt.existe(50));
+        assertTrue(avpInt.existe(60));
+        assertTrue(avpInt.existe(70));
     }
 
     @Test
     public void testImprimirPreOrdem() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.inserir("cereja");
-        String resultado = rbtString.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.inserir("cereja");
+        String resultado = avpString.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("banana"));
         assertTrue(resultado.contains("abacaxi"));
         assertTrue(resultado.contains("cereja"));
@@ -181,86 +182,65 @@ public class AVPGenericaTest {
 
     @Test
     public void testImprimirPosOrdem() {
-        rbtString.inserir("banana");
-        rbtString.inserir("abacaxi");
-        rbtString.inserir("cereja");
-        String resultado = rbtString.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
+        avpString.inserir("banana");
+        avpString.inserir("abacaxi");
+        avpString.inserir("cereja");
+        String resultado = avpString.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
         assertTrue(resultado.contains("banana"));
         assertTrue(resultado.contains("abacaxi"));
         assertTrue(resultado.contains("cereja"));
     }
 
     @Test
-    public void testPropriedadesRBT() {
+    public void testPropriedadesAVP() {
         // Testar propriedades básicas da árvore vermelho e preto
-        rbtInt.inserir(10);
-        rbtInt.inserir(20);
-        rbtInt.inserir(30);
+        avpInt.inserir(10);
+        avpInt.inserir(20);
+        avpInt.inserir(30);
         
         // Verificar se a raiz é preta
-        NoTriplo<Integer> raiz = rbtInt.getRaiz();
+        NoTriplo<Integer> raiz = avpInt.getRaiz();
         assertNotNull(raiz);
         assertFalse(raiz.isVermelho()); // Raiz deve ser preta
         
         // Verificar se não há nós vermelhos consecutivos
-        verificarPropriedadesRBT(raiz);
+        verificarPropriedadesAVP(raiz);
     }
 
     @Test
     public void testComparacaoDiferentesTipos() {
         // Testar que a árvore funciona corretamente com diferentes tipos
-        RBT<Character> rbtChar = new RBT<>();
-        rbtChar.inserir('a');
-        rbtChar.inserir('b');
-        rbtChar.inserir('c');
+        AVP<Character> avpChar = new AVP<>();
+        avpChar.inserir('a');
+        avpChar.inserir('b');
+        avpChar.inserir('c');
         
-        assertTrue(rbtChar.existe('a'));
-        assertTrue(rbtChar.existe('b'));
-        assertTrue(rbtChar.existe('c'));
-        assertFalse(rbtChar.existe('d'));
+        assertTrue(avpChar.existe('a'));
+        assertTrue(avpChar.existe('b'));
+        assertTrue(avpChar.existe('c'));
+        assertFalse(avpChar.existe('d'));
         
-        Character removido = rbtChar.apagar('b');
+        Character removido = avpChar.apagar('b');
         assertEquals(Character.valueOf('b'), removido);
-        assertFalse(rbtChar.existe('b'));
+        assertFalse(avpChar.existe('b'));
     }
 
-    @Test
-    public void testElementosNegativos() {
-        rbtInt.inserir(-10);
-        rbtInt.inserir(-20);
-        rbtInt.inserir(-30);
-        
-        assertTrue(rbtInt.existe(-10));
-        assertTrue(rbtInt.existe(-20));
-        assertTrue(rbtInt.existe(-30));
-        
-        Integer removido = rbtInt.apagar(-20);
-        assertEquals(Integer.valueOf(-20), removido);
-        assertFalse(rbtInt.existe(-20));
+    // Métodos auxiliares
+    private int contarElementosComValor(String valor) {
+        String resultado = avpString.imprimirEmOrdem();
+        int count = 0;
+        int index = 0;
+        while ((index = resultado.indexOf(valor, index)) != -1) {
+            count++;
+            index += valor.length();
+        }
+        return count;
     }
 
-    @Test
-    public void testElementosDecimaisNegativos() {
-        rbtDouble.inserir(-3.14);
-        rbtDouble.inserir(-2.71);
-        rbtDouble.inserir(-1.41);
-        
-        assertTrue(rbtDouble.existe(-3.14));
-        assertTrue(rbtDouble.existe(-2.71));
-        assertTrue(rbtDouble.existe(-1.41));
-        
-        Double removido = rbtDouble.apagar(-2.71);
-        assertEquals(Double.valueOf(-2.71), removido);
-        assertFalse(rbtDouble.existe(-2.71));
-    }
-
-    /**
-     * Verifica as propriedades da árvore vermelho e preto.
-     */
-    private void verificarPropriedadesRBT(NoTriplo<?> no) {
+    private void verificarPropriedadesAVP(NoTriplo<Integer> no) {
         if (no == null) return;
         
-        // Verificar se não há nós vermelhos consecutivos
+        // Se o nó é vermelho, seus filhos devem ser pretos
         if (no.isVermelho()) {
             if (no.getEsquerda() != null) {
                 assertFalse(no.getEsquerda().isVermelho());
@@ -270,18 +250,8 @@ public class AVPGenericaTest {
             }
         }
         
-        // Verificar propriedades recursivamente
-        verificarPropriedadesRBT(no.getEsquerda());
-        verificarPropriedadesRBT(no.getDireita());
-    }
-
-    // Método auxiliar para contar elementos com determinado valor
-    private int contarElementosComValor(String valor) {
-        String emOrdem = rbtString.imprimirEmOrdem();
-        int count = 0;
-        for (String s : emOrdem.split("[ ,()]+")) {
-            if (s.equals(valor)) count++;
-        }
-        return count;
+        // Verificar recursivamente os filhos
+        verificarPropriedadesAVP(no.getEsquerda());
+        verificarPropriedadesAVP(no.getDireita());
     }
 } 

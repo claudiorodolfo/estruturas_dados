@@ -30,15 +30,15 @@ public class NoTriplo<T> {
     private NoTriplo<T> direita;
 
     /**
-     * Cor do nó (true = vermelho, false = preto).
+     * Cor do nó (VERMELHO ou PRETO).
      */
-    private boolean vermelho;
+    private Cor cor;
 
     /**
      * Construtor padrão. Cria um nó vermelho.
      */
     public NoTriplo() {
-        this.vermelho = true; // Novos nós são sempre vermelhos
+        this.cor = Cor.VERMELHO; // Novos nós são sempre vermelhos
     }
 
     /**
@@ -106,19 +106,27 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Verifica se o nó é vermelho.
-     * @return true se o nó é vermelho, false se é preto.
+     * Retorna a cor do nó.
+     * @return Cor do nó (VERMELHO ou PRETO).
      */
-    public boolean isVermelho() {
-        return vermelho;
+    public Cor getCor() {
+        return cor;
     }
 
     /**
      * Define a cor do nó.
-     * @param vermelho true para vermelho, false para preto.
+     * @param cor Nova cor do nó.
      */
-    public void setVermelho(boolean vermelho) {
-        this.vermelho = vermelho;
+    public void setCor(Cor cor) {
+        this.cor = cor;
+    }
+
+    /**
+     * Verifica se o nó é vermelho.
+     * @return true se o nó é vermelho, false se é preto.
+     */
+    public boolean isVermelho() {
+        return cor == Cor.VERMELHO;
     }
 
     /**
@@ -126,7 +134,7 @@ public class NoTriplo<T> {
      * @return true se o nó é preto, false se é vermelho.
      */
     public boolean isPreto() {
-        return !vermelho;
+        return cor == Cor.PRETO;
     }
 
     /**
@@ -135,6 +143,6 @@ public class NoTriplo<T> {
      */
     @Override
     public String toString() {
-        return dado + "(" + (vermelho ? "V" : "P") + ")";
+        return dado + "(" + (cor == Cor.VERMELHO ? "V" : "P") + ")";
     }
 } 
