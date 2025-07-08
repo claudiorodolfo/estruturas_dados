@@ -1,0 +1,119 @@
+# Árvore B Genérica
+
+## Descrição
+
+Implementação de uma Árvore B genérica em Java. A Árvore B é uma estrutura de dados em árvore que mantém os dados ordenados e permite inserção, exclusão e busca em tempo logarítmico.
+
+## Características
+
+- **Genérica**: Funciona com qualquer tipo que implemente `Comparable<T>`
+- **Balanceada**: Mantém a árvore sempre balanceada
+- **Eficiente**: Operações em tempo logarítmico
+- **Flexível**: Ordem configurável (padrão: 3)
+
+## Estrutura de Arquivos
+
+```
+ArvoreBGenerica/
+├── src/
+│   ├── Arborizavel.java          # Interface para estruturas em árvore
+│   ├── NoArvoreB.java            # Classe que representa um nó da árvore B
+│   ├── ArvoreB.java              # Implementação principal da árvore B
+│   └── ArvoreBGenericaMainCLI.java # Interface de linha de comando
+├── test/
+│   └── ArvoreBGenericaTest.java  # Testes JUnit
+├── bin/                           # Arquivos compilados
+├── doc/                           # Documentação
+└── lib/                           # Bibliotecas
+```
+
+## Compilação
+
+```bash
+# Compilar todos os arquivos fonte
+javac -cp . src/*.java
+
+# Compilar os testes (requer JUnit)
+javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar src/*.java test/*.java
+```
+
+## Execução
+
+```bash
+# Executar a interface CLI
+java -cp . src.ArvoreBGenericaMainCLI
+
+# Executar os testes
+java -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore test.ArvoreBGenericaTest
+```
+
+## Funcionalidades
+
+### Operações Básicas
+
+1. **Inserção**: Adiciona elementos mantendo a ordem
+2. **Busca**: Verifica se um elemento existe na árvore
+3. **Remoção**: Remove elementos com rebalanceamento automático
+4. **Limpeza**: Remove todos os elementos da árvore
+
+### Percursos
+
+1. **Em Ordem**: Elementos ordenados (esquerda, raiz, direita)
+2. **Pré-Ordem**: Raiz primeiro (raiz, esquerda, direita)
+3. **Pós-Ordem**: Raiz por último (esquerda, direita, raiz)
+
+## Propriedades da Árvore B
+
+1. **Todos os nós folha estão no mesmo nível**
+2. **Cada nó contém entre `ordem-1` e `2*ordem-1` chaves**
+3. **Cada nó interno tem entre `ordem` e `2*ordem` filhos**
+4. **As chaves em cada nó estão ordenadas**
+
+## Exemplo de Uso
+
+```java
+// Criar uma árvore B com ordem 3
+ArvoreB<String> arvore = new ArvoreB<>();
+
+// Inserir elementos
+arvore.inserir("banana");
+arvore.inserir("abacaxi");
+arvore.inserir("cereja");
+
+// Verificar se existe
+if (arvore.existe("banana")) {
+    System.out.println("Banana encontrada!");
+}
+
+// Remover elemento
+String removido = arvore.apagar("abacaxi");
+
+// Imprimir em ordem
+System.out.println(arvore.imprimirEmOrdem());
+```
+
+## Vantagens
+
+- **Eficiência**: Todas as operações em O(log n)
+- **Balanceamento**: Árvore sempre balanceada
+- **Flexibilidade**: Ordem configurável
+- **Robustez**: Tratamento de erros e validações
+
+## Casos de Uso
+
+- Sistemas de banco de dados
+- Sistemas de arquivos
+- Indexação de dados
+- Estruturas de dados persistentes
+
+## Autor
+
+Cláudio Rodolfo Sousa de Oliveira
+
+## Versão
+
+1.0
+
+## Data
+
+July 1, 2025 
