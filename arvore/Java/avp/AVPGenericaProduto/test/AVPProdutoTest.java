@@ -2,10 +2,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import src.AVP;
-import src.Produto;
-import src.NoTriplo;
-
 /**
  * Classe de teste para a Árvore Vermelho e Preto de Produtos.
  * Testa inserção, busca, remoção, balanceamento e casos de borda.

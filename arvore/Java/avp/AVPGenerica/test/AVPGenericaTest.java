@@ -1,11 +1,7 @@
-package test;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import src.AVP;
-import src.NoTriplo;
 
 /**
  * Testes para a implementação genérica da Árvore Vermelho e Preto (AVP).
