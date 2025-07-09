@@ -26,10 +26,10 @@ public class AVLProdutoTest {
         avl.inserir(p1);
         avl.inserir(p2);
         avl.inserir(p3);
-        assertTrue(avl.existe(new Produto("", 1001L)));
-        assertTrue(avl.existe(new Produto("", 1002L)));
-        assertTrue(avl.existe(new Produto("", 1003L)));
-        assertFalse(avl.existe(new Produto("", 9999L)));
+        assertTrue(avl.existe(new Produto("Café", 1001L)));
+        assertTrue(avl.existe(new Produto("Leite", 1002L)));
+        assertTrue(avl.existe(new Produto("Açúcar", 1003L)));
+        assertFalse(avl.existe(new Produto("Inexistente", 9999L)));
     }
 
     @Test
@@ -38,9 +38,9 @@ public class AVLProdutoTest {
         Produto p2 = new Produto("Leite", 1002L);
         avl.inserir(p1);
         avl.inserir(p2);
-        avl.apagar(new Produto("", 1002L));
-        assertFalse(avl.existe(new Produto("", 1002L)));
-        assertTrue(avl.existe(new Produto("", 1001L)));
+        avl.apagar(new Produto("Leite", 1002L));
+        assertFalse(avl.existe(new Produto("Leite", 1002L)));
+        assertTrue(avl.existe(new Produto("Café", 1001L)));
     }
 
     @Test
@@ -51,10 +51,10 @@ public class AVLProdutoTest {
         avl.inserir(p1);
         avl.inserir(p2);
         avl.inserir(p3);
-        avl.apagar(new Produto("", 1002L));
-        assertFalse(avl.existe(new Produto("", 1002L)));
-        assertTrue(avl.existe(new Produto("", 1001L)));
-        assertTrue(avl.existe(new Produto("", 1003L)));
+        avl.apagar(new Produto("Teste", 1002L));
+        assertFalse(avl.existe(new Produto("Teste", 1002L)));
+        assertTrue(avl.existe(new Produto("Teste", 1001L)));
+        assertTrue(avl.existe(new Produto("Teste", 1003L)));
     }
 
     @Test
@@ -67,11 +67,11 @@ public class AVLProdutoTest {
         avl.inserir(p2);
         avl.inserir(p3);
         avl.inserir(p4);
-        avl.apagar(new Produto("", 1002L));
-        assertFalse(avl.existe(new Produto("", 1002L)));
-        assertTrue(avl.existe(new Produto("", 1001L)));
-        assertTrue(avl.existe(new Produto("", 1003L)));
-        assertTrue(avl.existe(new Produto("", 1004L)));
+        avl.apagar(new Produto("Teste", 1002L));
+        assertFalse(avl.existe(new Produto("Teste", 1002L)));
+        assertTrue(avl.existe(new Produto("Teste", 1001L)));
+        assertTrue(avl.existe(new Produto("Teste", 1003L)));
+        assertTrue(avl.existe(new Produto("Teste", 1004L)));
     }
 
     @Test
@@ -79,8 +79,8 @@ public class AVLProdutoTest {
         avl.inserir(new Produto("Café", 1001L));
         avl.inserir(new Produto("Leite", 1002L));
         avl.limpar();
-        assertFalse(avl.existe(new Produto("", 1001L)));
-        assertFalse(avl.existe(new Produto("", 1002L)));
+        assertFalse(avl.existe(new Produto("Teste", 1001L)));
+        assertFalse(avl.existe(new Produto("Teste", 1002L)));
     }
 
     @Test
@@ -112,13 +112,13 @@ public class AVLProdutoTest {
         avl.inserir(p1);
         Produto removido = avl.apagar(new Produto("Leite", 9999L));
         assertNull(removido);
-        assertTrue(avl.existe(new Produto("", 1001L)));
+        assertTrue(avl.existe(new Produto("Teste", 1001L)));
     }
 
     @Test
     public void testOperacoesEmArvoreVazia() {
-        assertFalse(avl.existe(new Produto("", 1234L)));
-        Produto removido = avl.apagar(new Produto("", 1234L));
+        assertFalse(avl.existe(new Produto("Teste", 1234L)));
+        Produto removido = avl.apagar(new Produto("Teste", 1234L));
         assertNull(removido);
         assertEquals("", avl.imprimirEmOrdem().replaceAll("\\s+", "").trim());
     }
@@ -133,11 +133,11 @@ public class AVLProdutoTest {
         avl.inserir(new Produto("E", 1005L));
         
         // Verificar se todos os produtos ainda existem após balanceamento
-        assertTrue(avl.existe(new Produto("", 1001L)));
-        assertTrue(avl.existe(new Produto("", 1002L)));
-        assertTrue(avl.existe(new Produto("", 1003L)));
-        assertTrue(avl.existe(new Produto("", 1004L)));
-        assertTrue(avl.existe(new Produto("", 1005L)));
+        assertTrue(avl.existe(new Produto("Teste", 1001L)));
+        assertTrue(avl.existe(new Produto("Teste", 1002L)));
+        assertTrue(avl.existe(new Produto("Teste", 1003L)));
+        assertTrue(avl.existe(new Produto("Teste", 1004L)));
+        assertTrue(avl.existe(new Produto("Teste", 1005L)));
     }
 
     @Test
