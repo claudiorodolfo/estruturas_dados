@@ -46,7 +46,7 @@ AVLGenerica/
 
 ## Pré-requisitos
 
-- Java 11 ou superior
+- Java 21 ou superior
 - Maven 3.6 ou superior
 
 ## Como Usar
