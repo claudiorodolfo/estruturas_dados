@@ -125,15 +125,15 @@ public class ABPProdutoTest {
         abp.inserir(p1);
         Produto removido = abp.apagar(new Produto("Leite", 9999L));
         assertNull(removido);
-        assertTrue(abp.existe(new Produto("", 1001L)));
+        assertTrue(abp.existe(new Produto("Café", 1001L)));
     }
 
     @Test
     public void testOperacoesEmArvoreVazia() {
-        assertFalse(abp.existe(new Produto("", 1234L)));
-        Produto removido = abp.apagar(new Produto("", 1234L));
+        assertFalse(abp.existe(new Produto("Teste", 1234L)));
+        Produto removido = abp.apagar(new Produto("Teste", 1234L));
         assertNull(removido);
-        assertEquals("", abp.imprimirEmOrdem().replaceAll("\\s+", "").trim());
+        assertEquals("[]", abp.imprimirEmOrdem().replaceAll("\\s+", "").trim());
     }
 
     // Método auxiliar para contar produtos com determinado código de barras
