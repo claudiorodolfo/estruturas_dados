@@ -89,11 +89,11 @@ public class AVLProdutoTest {
         avl.inserir(new Produto("Leite", 1001L));
         avl.inserir(new Produto("Açúcar", 1003L));
         avl.inserir(new Produto("Biscoito", 1004L));
-        String resultado = avl.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
-        assertTrue(resultado.contains("Biscoito (1004)"));
+        String resultado = avl.imprimirEmOrdem();
+        assertTrue(resultado.contains("Produto(Leite,1001)"));
+        assertTrue(resultado.contains("Produto(Café,1002)"));
+        assertTrue(resultado.contains("Produto(Açúcar,1003)"));
+        assertTrue(resultado.contains("Produto(Biscoito,1004)"));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AVLProdutoTest {
         assertFalse(avl.existe(new Produto("Teste", 1234L)));
         Produto removido = avl.apagar(new Produto("Teste", 1234L));
         assertNull(removido);
-        assertEquals("", avl.imprimirEmOrdem().replaceAll("\\s+", "").trim());
+        assertEquals("[]", avl.imprimirEmOrdem());
     }
 
     @Test
@@ -145,10 +145,10 @@ public class AVLProdutoTest {
         avl.inserir(new Produto("Café", 1002L));
         avl.inserir(new Produto("Leite", 1001L));
         avl.inserir(new Produto("Açúcar", 1003L));
-        String resultado = avl.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
+        String resultado = avl.imprimirPreOrdem();
+        assertTrue(resultado.contains("Produto(Café,1002)"));
+        assertTrue(resultado.contains("Produto(Leite,1001)"));
+        assertTrue(resultado.contains("Produto(Açúcar,1003)"));
     }
 
     @Test
@@ -156,10 +156,10 @@ public class AVLProdutoTest {
         avl.inserir(new Produto("Café", 1002L));
         avl.inserir(new Produto("Leite", 1001L));
         avl.inserir(new Produto("Açúcar", 1003L));
-        String resultado = avl.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
+        String resultado = avl.imprimirPosOrdem();
+        assertTrue(resultado.contains("Produto(Café,1002)"));
+        assertTrue(resultado.contains("Produto(Leite,1001)"));
+        assertTrue(resultado.contains("Produto(Açúcar,1003)"));
     }
 
     // Método auxiliar para contar produtos com determinado código de barras

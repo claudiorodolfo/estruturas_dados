@@ -80,6 +80,19 @@ public class Produto implements Comparable<Produto> {
         return this.codigoBarras.compareTo(outro.codigoBarras);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Produto other = (Produto) obj;
+        return this.codigoBarras.equals(other.codigoBarras);
+    }
+
+    @Override
+    public int hashCode() {
+        return codigoBarras.hashCode();
+    }
+
     /**
      * Retorna uma representação em string do produto.
      * 

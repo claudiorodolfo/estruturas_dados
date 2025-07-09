@@ -207,6 +207,9 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         if (noAuxiliar == null)   
             return null;
 
+        // Guardar referência ao pai antes da remoção
+        NoTriplo<T> pai = noAuxiliar.getGenitor();
+
         // Caso 1: Nó sem filhos
         if (noAuxiliar.getEsquerda() == null &&
                 noAuxiliar.getDireita() == null)
@@ -219,8 +222,10 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         else
             apagarComDoisFilhos(noAuxiliar);
 
-        //rebalancear arvore
-        rebalancear(dado, noAuxiliar);        
+        //rebalancear arvore a partir do pai do nó removido
+        if (pai != null) {
+            rebalancear(dado, pai);
+        }
         
         return dado;
     }    
