@@ -41,6 +41,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public void inserir(T dado) {
+        if (buscar(dado) != null) {
+            return; // Não insere duplicados
+        }
         NoTriplo<T> novoNo = new NoTriplo<>();
         novoNo.setDado(dado);
         novoNo.setCor(Cor.VERMELHO); // Novos nós são sempre vermelhos
@@ -201,8 +204,17 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
      * Remove um nó da árvore.
      */
     private void removerNo(NoTriplo<T> no) {
+        if (no.getEsquerda() != null && no.getDireita() != null) {
+            // Nó com dois filhos: encontrar sucessor, copiar valor e remover sucessor
+            NoTriplo<T> sucessor = no.getDireita();
+            while (sucessor.getEsquerda() != null) {
+                sucessor = sucessor.getEsquerda();
+            }
+            no.setDado(sucessor.getDado());
+            removerNo(sucessor);
+            return;
+        }
         NoTriplo<T> filho = (no.getEsquerda() != null) ? no.getEsquerda() : no.getDireita();
-        
         if (filho != null) {
             // Nó tem um filho
             if (no.getGenitor() == null) {
@@ -215,7 +227,6 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
                     no.getGenitor().setDireita(filho);
                 }
                 filho.setGenitor(no.getGenitor());
-                
                 if (no.isPreto()) {
                     balancearAposRemover(filho);
                 }
@@ -228,7 +239,6 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
                 if (no.isPreto()) {
                     balancearAposRemover(no);
                 }
-                
                 if (no.getGenitor() != null) {
                     if (no == no.getGenitor().getEsquerda()) {
                         no.getGenitor().setEsquerda(null);

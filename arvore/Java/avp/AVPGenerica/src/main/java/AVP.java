@@ -201,43 +201,65 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
      * Remove um nó da árvore.
      */
     private void removerNo(NoTriplo<T> no) {
-        NoTriplo<T> filho = (no.getEsquerda() != null) ? no.getEsquerda() : no.getDireita();
+        NoTriplo<T> noParaRemover = no;
+        
+        // Se o nó tem dois filhos, encontre o sucessor
+        if (no.getEsquerda() != null && no.getDireita() != null) {
+            NoTriplo<T> sucessor = encontrarSucessor(no);
+            no.setDado(sucessor.getDado());
+            noParaRemover = sucessor;
+        }
+        
+        // Agora noParaRemover tem no máximo um filho
+        NoTriplo<T> filho = (noParaRemover.getEsquerda() != null) ? 
+                            noParaRemover.getEsquerda() : noParaRemover.getDireita();
         
         if (filho != null) {
             // Nó tem um filho
-            if (no.getGenitor() == null) {
+            if (noParaRemover.getGenitor() == null) {
                 raiz = filho;
                 filho.setCor(Cor.PRETO);
             } else {
-                if (no == no.getGenitor().getEsquerda()) {
-                    no.getGenitor().setEsquerda(filho);
+                if (noParaRemover == noParaRemover.getGenitor().getEsquerda()) {
+                    noParaRemover.getGenitor().setEsquerda(filho);
                 } else {
-                    no.getGenitor().setDireita(filho);
+                    noParaRemover.getGenitor().setDireita(filho);
                 }
-                filho.setGenitor(no.getGenitor());
+                filho.setGenitor(noParaRemover.getGenitor());
                 
-                if (no.isPreto()) {
+                if (noParaRemover.isPreto()) {
                     balancearAposRemover(filho);
                 }
             }
         } else {
             // Nó é folha
-            if (no.getGenitor() == null) {
+            if (noParaRemover.getGenitor() == null) {
                 raiz = null;
             } else {
-                if (no.isPreto()) {
-                    balancearAposRemover(no);
+                if (noParaRemover.isPreto()) {
+                    balancearAposRemover(noParaRemover);
                 }
                 
-                if (no.getGenitor() != null) {
-                    if (no == no.getGenitor().getEsquerda()) {
-                        no.getGenitor().setEsquerda(null);
+                if (noParaRemover.getGenitor() != null) {
+                    if (noParaRemover == noParaRemover.getGenitor().getEsquerda()) {
+                        noParaRemover.getGenitor().setEsquerda(null);
                     } else {
-                        no.getGenitor().setDireita(null);
+                        noParaRemover.getGenitor().setDireita(null);
                     }
                 }
             }
         }
+    }
+    
+    /**
+     * Encontra o sucessor de um nó (menor elemento da subárvore direita).
+     */
+    private NoTriplo<T> encontrarSucessor(NoTriplo<T> no) {
+        NoTriplo<T> atual = no.getDireita();
+        while (atual.getEsquerda() != null) {
+            atual = atual.getEsquerda();
+        }
+        return atual;
     }
 
     /**

@@ -3,12 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de teste para a Árvore Vermelho e Preto de Produtos.
- * Testa inserção, busca, remoção, balanceamento e casos de borda.
- * 
- * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- * @since July 1, 2025
+ * Classe de teste para a Árvore Vermelho-Preto com Produtos.
  */
 public class AVPProdutoTest {
     private AVP<Produto> avp;
@@ -26,10 +21,10 @@ public class AVPProdutoTest {
         avp.inserir(p1);
         avp.inserir(p2);
         avp.inserir(p3);
-        assertTrue(avp.existe(new Produto("", 1001L)));
-        assertTrue(avp.existe(new Produto("", 1002L)));
-        assertTrue(avp.existe(new Produto("", 1003L)));
-        assertFalse(avp.existe(new Produto("", 9999L)));
+        assertTrue(avp.existe(new Produto(1001L)));
+        assertTrue(avp.existe(new Produto(1002L)));
+        assertTrue(avp.existe(new Produto(1003L)));
+        assertFalse(avp.existe(new Produto(9999L)));
     }
 
     @Test
@@ -38,9 +33,9 @@ public class AVPProdutoTest {
         Produto p2 = new Produto("Leite", 1002L);
         avp.inserir(p1);
         avp.inserir(p2);
-        avp.apagar(new Produto("", 1002L));
-        assertFalse(avp.existe(new Produto("", 1002L)));
-        assertTrue(avp.existe(new Produto("", 1001L)));
+        avp.apagar(new Produto(1002L));
+        assertFalse(avp.existe(new Produto(1002L)));
+        assertTrue(avp.existe(new Produto(1001L)));
     }
 
     @Test
@@ -51,10 +46,10 @@ public class AVPProdutoTest {
         avp.inserir(p1);
         avp.inserir(p2);
         avp.inserir(p3);
-        avp.apagar(new Produto("", 1002L));
-        assertFalse(avp.existe(new Produto("", 1002L)));
-        assertTrue(avp.existe(new Produto("", 1001L)));
-        assertTrue(avp.existe(new Produto("", 1003L)));
+        avp.apagar(new Produto(1002L));
+        assertFalse(avp.existe(new Produto(1002L)));
+        assertTrue(avp.existe(new Produto(1001L)));
+        assertTrue(avp.existe(new Produto(1003L)));
     }
 
     @Test
@@ -67,11 +62,11 @@ public class AVPProdutoTest {
         avp.inserir(p2);
         avp.inserir(p3);
         avp.inserir(p4);
-        avp.apagar(new Produto("", 1002L));
-        assertFalse(avp.existe(new Produto("", 1002L)));
-        assertTrue(avp.existe(new Produto("", 1001L)));
-        assertTrue(avp.existe(new Produto("", 1003L)));
-        assertTrue(avp.existe(new Produto("", 1004L)));
+        avp.apagar(new Produto(1002L));
+        assertFalse(avp.existe(new Produto(1002L)));
+        assertTrue(avp.existe(new Produto(1001L)));
+        assertTrue(avp.existe(new Produto(1003L)));
+        assertTrue(avp.existe(new Produto(1004L)));
     }
 
     @Test
@@ -79,8 +74,8 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("Café", 1001L));
         avp.inserir(new Produto("Leite", 1002L));
         avp.limpar();
-        assertFalse(avp.existe(new Produto("", 1001L)));
-        assertFalse(avp.existe(new Produto("", 1002L)));
+        assertFalse(avp.existe(new Produto(1001L)));
+        assertFalse(avp.existe(new Produto(1002L)));
     }
 
     @Test
@@ -90,10 +85,10 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("Açúcar", 1003L));
         avp.inserir(new Produto("Biscoito", 1004L));
         String resultado = avp.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
-        assertTrue(resultado.contains("Biscoito (1004)"));
+        assertTrue(resultado.contains("Leite"));
+        assertTrue(resultado.contains("Café"));
+        assertTrue(resultado.contains("Açúcar"));
+        assertTrue(resultado.contains("Biscoito"));
     }
 
     @Test
@@ -103,7 +98,7 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("Café Duplicado", 1001L)); // Mesmo código de barras
         // Deve existir apenas um produto com esse código
         int count = contarProdutosComCodigo(1001L);
-        assertEquals(2, count); // A AVP permite duplicados, mas pode ser ajustado se necessário
+        assertEquals(1, count); // A AVP NÃO permite duplicados
     }
 
     @Test
@@ -112,13 +107,13 @@ public class AVPProdutoTest {
         avp.inserir(p1);
         Produto removido = avp.apagar(new Produto("Leite", 9999L));
         assertNull(removido);
-        assertTrue(avp.existe(new Produto("", 1001L)));
+        assertTrue(avp.existe(new Produto(1001L)));
     }
 
     @Test
     public void testOperacoesEmArvoreVazia() {
-        assertFalse(avp.existe(new Produto("", 1234L)));
-        Produto removido = avp.apagar(new Produto("", 1234L));
+        assertFalse(avp.existe(new Produto(1234L)));
+        Produto removido = avp.apagar(new Produto(1234L));
         assertNull(removido);
         assertEquals("", avp.imprimirEmOrdem().replaceAll("\\s+", "").trim());
     }
@@ -135,13 +130,13 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("G", 1007L));
         
         // Verificar se todos os produtos ainda existem após balanceamento
-        assertTrue(avp.existe(new Produto("", 1001L)));
-        assertTrue(avp.existe(new Produto("", 1002L)));
-        assertTrue(avp.existe(new Produto("", 1003L)));
-        assertTrue(avp.existe(new Produto("", 1004L)));
-        assertTrue(avp.existe(new Produto("", 1005L)));
-        assertTrue(avp.existe(new Produto("", 1006L)));
-        assertTrue(avp.existe(new Produto("", 1007L)));
+        assertTrue(avp.existe(new Produto(1001L)));
+        assertTrue(avp.existe(new Produto(1002L)));
+        assertTrue(avp.existe(new Produto(1003L)));
+        assertTrue(avp.existe(new Produto(1004L)));
+        assertTrue(avp.existe(new Produto(1005L)));
+        assertTrue(avp.existe(new Produto(1006L)));
+        assertTrue(avp.existe(new Produto(1007L)));
     }
 
     @Test
@@ -150,9 +145,9 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("Leite", 1001L));
         avp.inserir(new Produto("Açúcar", 1003L));
         String resultado = avp.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
+        assertTrue(resultado.contains("Café"));
+        assertTrue(resultado.contains("Leite"));
+        assertTrue(resultado.contains("Açúcar"));
     }
 
     @Test
@@ -161,9 +156,9 @@ public class AVPProdutoTest {
         avp.inserir(new Produto("Leite", 1001L));
         avp.inserir(new Produto("Açúcar", 1003L));
         String resultado = avp.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
+        assertTrue(resultado.contains("Café"));
+        assertTrue(resultado.contains("Leite"));
+        assertTrue(resultado.contains("Açúcar"));
     }
 
     @Test
@@ -209,7 +204,7 @@ public class AVPProdutoTest {
     private int contarProdutosComCodigo(long codigo) {
         String emOrdem = avp.imprimirEmOrdem();
         int count = 0;
-        String codigoStr = "(" + codigo + ")";
+        String codigoStr = "," + codigo + ")";
         int index = 0;
         while ((index = emOrdem.indexOf(codigoStr, index)) != -1) {
             count++;
