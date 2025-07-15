@@ -1,3 +1,5 @@
+package arvoreb;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +113,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * Verifica se o nó está cheio.
      * @return true se está cheio, false caso contrário.
      */
-    public boolean estaCheia() {
+    public boolean isCheio() {
         return chaves.size() == 2 * ordem - 1;
     }
     
