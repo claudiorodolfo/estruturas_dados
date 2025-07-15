@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: arvoreb.ArvoreBGenericaTest
 -------------------------------------------------------------------------------
-Tests run: 19, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.303 s <<< FAILURE! -- in arvoreb.ArvoreBGenericaTest
-arvoreb.ArvoreBGenericaTest.testInserirElementoDuplicado -- Time elapsed: 0.019 s <<< FAILURE!
+Tests run: 19, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.957 s <<< FAILURE! -- in arvoreb.ArvoreBGenericaTest
+arvoreb.ArvoreBGenericaTest.testInserirElementoDuplicado -- Time elapsed: 0.161 s <<< FAILURE!
 java.lang.AssertionError: expected:<1> but was:<2>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -37,7 +37,7 @@ java.lang.AssertionError: expected:<1> but was:<2>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-arvoreb.ArvoreBGenericaTest.testBalanceamentoArvoreB -- Time elapsed: 0.003 s <<< ERROR!
+arvoreb.ArvoreBGenericaTest.testBalanceamentoArvoreB -- Time elapsed: 0.042 s <<< ERROR!
 java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
 	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
 	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
