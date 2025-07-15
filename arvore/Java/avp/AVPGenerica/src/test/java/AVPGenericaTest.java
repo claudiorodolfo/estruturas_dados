@@ -224,7 +224,7 @@ public class AVPGenericaTest {
         // Verificar se a raiz é preta
         NoTriplo<Integer> raiz = avpInt.getRaiz();
         assertNotNull(raiz);
-        assertFalse(raiz.isVermelho()); // Raiz deve ser preta
+        assertTrue(raiz.isPreto()); // Raiz deve ser preta
         
         // Verificar se não há nós vermelhos consecutivos
         verificarPropriedadesAVP(raiz);
