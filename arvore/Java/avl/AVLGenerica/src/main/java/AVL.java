@@ -1,4 +1,4 @@
-public class AVL<T> implements Arborizavel<T> {
+public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
 
@@ -119,33 +119,27 @@ public class AVL<T> implements Arborizavel<T> {
 
     //rebalancear a árvore após inserção ou remoção
     private void rebalancear(T dado, NoTriplo<T> noAuxiliar) {
-        //NoTriplo<T> referencia = noAuxiliar;
         while (noAuxiliar != null) {
-
             atualizaAltura(noAuxiliar);
             int desnivel = balanceamento(noAuxiliar);
-             
             // Caso 1: Rotação à direita
-            if (desnivel > 1 && (Integer) dado < (Integer) noAuxiliar.getEsquerda().getDado()) {
+            if (desnivel > 1 && dado.compareTo(noAuxiliar.getEsquerda().getDado()) < 0) {
                 noAuxiliar = rotacaoDireita(noAuxiliar);
             }
             // Caso 2: Rotação à esquerda
-            else if (desnivel < -1 && (Integer) dado > (Integer) noAuxiliar.getDireita().getDado()) {
+            else if (desnivel < -1 && dado.compareTo(noAuxiliar.getDireita().getDado()) > 0) {
                 noAuxiliar = rotacaoEsquerda(noAuxiliar);
             }
             // Caso 3: Rotação dupla a direita
-            //Rotação à esquerda-direita
-            else if (desnivel > 1 && (Integer) dado > (Integer) noAuxiliar.getEsquerda().getDado()) {
+            else if (desnivel > 1 && dado.compareTo(noAuxiliar.getEsquerda().getDado()) > 0) {
                 noAuxiliar.setEsquerda(rotacaoEsquerda(noAuxiliar.getEsquerda()));
                 noAuxiliar = rotacaoDireita(noAuxiliar);
             }
             // Caso 4: Rotação dupla a esquerda
-            //Rotação à direita-esquerda
-            else if (desnivel < -1 && (Integer) dado < (Integer) noAuxiliar.getDireita().getDado()) {
+            else if (desnivel < -1 && dado.compareTo(noAuxiliar.getDireita().getDado()) < 0) {
                 noAuxiliar.setDireita(rotacaoDireita(noAuxiliar.getDireita()));
                 noAuxiliar = rotacaoEsquerda(noAuxiliar);
             }
-
             if (noAuxiliar.getGenitor() != null) {
                 if (noAuxiliar.equals(noAuxiliar.getGenitor().getEsquerda())) {
                     noAuxiliar.getGenitor().setEsquerda(noAuxiliar);
@@ -155,10 +149,8 @@ public class AVL<T> implements Arborizavel<T> {
             } else {
                 raiz = noAuxiliar;
             }
-
             noAuxiliar = noAuxiliar.getGenitor();
-
-        }            
+        }
     }
     //fim métodos AVL
 
@@ -172,7 +164,7 @@ public class AVL<T> implements Arborizavel<T> {
         } else {
             NoTriplo<T> noAuxiliar = raiz;
             while (noAuxiliar != null) {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado()) {
+                if (dado.compareTo(noAuxiliar.getDado()) < 0) {
                     //preciso ir para a esquerda
                     if (noAuxiliar.getEsquerda() != null) {
                         noAuxiliar = noAuxiliar.getEsquerda();
@@ -207,6 +199,7 @@ public class AVL<T> implements Arborizavel<T> {
         if (noAuxiliar == null)   
             return null;
 
+        NoTriplo<T> pai = noAuxiliar.getGenitor();
         // Caso 1: Nó sem filhos
         if (noAuxiliar.getEsquerda() == null &&
                 noAuxiliar.getDireita() == null)
@@ -220,7 +213,9 @@ public class AVL<T> implements Arborizavel<T> {
             apagarComDoisFilhos(noAuxiliar);
 
         //rebalancear arvore
-        rebalancear(dado, noAuxiliar);        
+        if (pai != null) {
+            rebalancear(dado, pai);
+        }
         
         return dado;
     }    
@@ -231,7 +226,7 @@ public class AVL<T> implements Arborizavel<T> {
             if (dado.equals(noAuxiliar.getDado())) {
                 return noAuxiliar;
             } else {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado())
+                if (dado.compareTo(noAuxiliar.getDado()) < 0)
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();
@@ -317,7 +312,7 @@ public class AVL<T> implements Arborizavel<T> {
                 retorno = true;
                 break;
             } else {
-                if ((Integer) dado < (Integer) noAuxiliar.getDado())
+                if (dado.compareTo(noAuxiliar.getDado()) < 0)
                     noAuxiliar = noAuxiliar.getEsquerda();
                 else
                     noAuxiliar = noAuxiliar.getDireita();

@@ -146,7 +146,7 @@ public class AVLTest {
     private int contarOcorrencias(int valor) {
         String emOrdem = avl.imprimirEmOrdem();
         int count = 0;
-        for (String s : emOrdem.split("[ ,()\[\]]+")) {
+        for (String s : emOrdem.split("[ ,()\\[\\]]+")) {
             if (s.equals(String.valueOf(valor))) count++;
         }
         return count;
