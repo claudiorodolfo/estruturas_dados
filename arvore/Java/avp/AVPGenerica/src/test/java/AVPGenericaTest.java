@@ -248,6 +248,109 @@ public class AVPGenericaTest {
         assertFalse(avpChar.existe('b'));
     }
 
+    @Test
+    public void testInsercaoMassaEBuscaInt() {
+        int total = 1000;
+        for (int i = 1; i <= total; i++) {
+            avpInt.inserir(i);
+        }
+        for (int i = 1; i <= total; i++) {
+            assertTrue("Elemento " + i + " deveria existir", avpInt.existe(i));
+        }
+        assertFalse(avpInt.existe(total + 1));
+    }
+
+    @Test
+    public void testRemocaoMassaInt() {
+        int total = 500;
+        for (int i = 1; i <= total; i++) {
+            avpInt.inserir(i);
+        }
+        for (int i = 1; i <= total; i += 2) {
+            avpInt.apagar(i);
+        }
+        for (int i = 1; i <= total; i++) {
+            if (i % 2 == 0) {
+                assertTrue(avpInt.existe(i));
+            } else {
+                assertFalse(avpInt.existe(i));
+            }
+        }
+    }
+
+    @Test
+    public void testInsercaoDuplicadosMassaInt() {
+        int total = 200;
+        for (int i = 1; i <= total; i++) {
+            avpInt.inserir(i);
+            avpInt.inserir(i); // duplicado
+        }
+        for (int i = 1; i <= total; i++) {
+            int count = contarOcorrenciasInt(i);
+            assertEquals(2, count);
+        }
+    }
+
+    @Test
+    public void testImpressaoEmOrdemGrandeInt() {
+        int total = 100;
+        for (int i = total; i >= 1; i--) {
+            avpInt.inserir(i);
+        }
+        String emOrdem = avpInt.imprimirEmOrdem();
+        for (int i = 1; i <= total; i++) {
+            assertTrue(emOrdem.contains(String.valueOf(i)));
+        }
+    }
+
+    // String
+    @Test
+    public void testInsercaoMassaEBuscaString() {
+        for (int i = 1; i <= 500; i++) {
+            avpString.inserir("str" + i);
+        }
+        for (int i = 1; i <= 500; i++) {
+            assertTrue(avpString.existe("str" + i));
+        }
+        assertFalse(avpString.existe("str501"));
+    }
+
+    @Test
+    public void testInsercaoDuplicadosMassaString() {
+        for (int i = 1; i <= 100; i++) {
+            avpString.inserir("dup" + i);
+            avpString.inserir("dup" + i);
+        }
+        for (int i = 1; i <= 100; i++) {
+            int count = contarOcorrenciasString("dup" + i);
+            assertEquals(2, count);
+        }
+    }
+
+    // Double
+    @Test
+    public void testInsercaoMassaEBuscaDouble() {
+        for (int i = 1; i <= 300; i++) {
+            avpDouble.inserir(i + 0.5);
+        }
+        for (int i = 1; i <= 300; i++) {
+            assertTrue(avpDouble.existe(i + 0.5));
+        }
+        assertFalse(avpDouble.existe(301.5));
+    }
+
+    @Test
+    public void testInsercaoDuplicadosMassaDouble() {
+        for (int i = 1; i <= 50; i++) {
+            avpDouble.inserir(i + 0.1);
+            avpDouble.inserir(i + 0.1);
+        }
+        for (int i = 1; i <= 50; i++) {
+            int count = contarOcorrenciasDouble(i + 0.1);
+            assertEquals(2, count);
+        }
+    }
+
     // Métodos auxiliares
     private int contarElementosComValor(String valor) {
         String resultado = avpString.imprimirEmOrdem();
@@ -276,5 +379,31 @@ public class AVPGenericaTest {
         // Verificar recursivamente os filhos
         verificarPropriedadesAVP(no.getEsquerda());
         verificarPropriedadesAVP(no.getDireita());
+    }
+
+    // Métodos auxiliares para contar ocorrências
+    private int contarOcorrenciasInt(int valor) {
+        String emOrdem = avpInt.imprimirEmOrdem();
+        int count = 0;
+        for (String s : emOrdem.split("[ ,()\\[\\]]+")) {
+            if (s.equals(String.valueOf(valor))) count++;
+        }
+        return count;
+    }
+    private int contarOcorrenciasString(String valor) {
+        String emOrdem = avpString.imprimirEmOrdem();
+        int count = 0;
+        for (String s : emOrdem.split("[ ,()\\[\\]]+")) {
+            if (s.equals(valor)) count++;
+        }
+        return count;
+    }
+    private int contarOcorrenciasDouble(double valor) {
+        String emOrdem = avpDouble.imprimirEmOrdem();
+        int count = 0;
+        for (String s : emOrdem.split("[ ,()\\[\\]]+")) {
+            if (s.equals(String.valueOf(valor))) count++;
+        }
+        return count;
     }
 } 
