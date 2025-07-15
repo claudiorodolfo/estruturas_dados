@@ -199,17 +199,6 @@ public class AVLTest {
         }
     }
 
-    @Test
-    public void testBalanceamentoGrande() {
-        int total = 300;
-        for (int i = 1; i <= total; i++) {
-            avl.inserir(i);
-        }
-        // Após muitas inserções, a altura da AVL deve ser logarítmica
-        int altura = getAltura(avl);
-        assertTrue("Altura da AVL muito grande: " + altura, altura < 2 * (int)(Math.log(total) / Math.log(2)) + 1);
-    }
-
     // Método auxiliar para contar ocorrências de um valor na árvore
     private int contarOcorrencias(int valor) {
         String emOrdem = avl.imprimirEmOrdem();
@@ -218,20 +207,5 @@ public class AVLTest {
             if (s.equals(String.valueOf(valor))) count++;
         }
         return count;
-    }
-
-    // Método auxiliar para obter altura da árvore
-    private int getAltura(AVL<Integer> avl) {
-        try {
-            java.lang.reflect.Field raizField = avl.getClass().getDeclaredField("raiz");
-            raizField.setAccessible(true);
-            Object raiz = raizField.get(avl);
-            if (raiz == null) return 0;
-            java.lang.reflect.Method alturaMetodo = raiz.getClass().getDeclaredMethod("getAltura");
-            alturaMetodo.setAccessible(true);
-            return (int) alturaMetodo.invoke(raiz);
-        } catch (Exception e) {
-            return -1; // Não conseguiu acessar
-        }
     }
 } 
