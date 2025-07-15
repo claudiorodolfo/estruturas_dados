@@ -39,10 +39,12 @@ public class AVLTest {
         avl.inserir(10);
         avl.inserir(20);
         avl.inserir(5);
+        avl.inserir(30);
         avl.apagar(20);
         assertFalse(avl.existe(20));
         assertTrue(avl.existe(10));
         assertTrue(avl.existe(5));
+        assertTrue(avl.existe(30));
     }
 
     @Test
@@ -142,6 +144,72 @@ public class AVLTest {
         assertTrue(resultado.contains("30"));
     }
 
+    @Test
+    public void testInsercaoMassaEBusca() {
+        int total = 1000;
+        for (int i = 1; i <= total; i++) {
+            avl.inserir(i);
+        }
+        for (int i = 1; i <= total; i++) {
+            assertTrue("Elemento " + i + " deveria existir", avl.existe(i));
+        }
+        assertFalse(avl.existe(total + 1));
+    }
+
+    @Test
+    public void testRemocaoMassa() {
+        int total = 500;
+        for (int i = 1; i <= total; i++) {
+            avl.inserir(i);
+        }
+        for (int i = 1; i <= total; i += 2) {
+            avl.apagar(i);
+        }
+        for (int i = 1; i <= total; i++) {
+            if (i % 2 == 0) {
+                assertTrue(avl.existe(i));
+            } else {
+                assertFalse(avl.existe(i));
+            }
+        }
+    }
+
+    @Test
+    public void testInsercaoDuplicadosMassa() {
+        int total = 200;
+        for (int i = 1; i <= total; i++) {
+            avl.inserir(i);
+            avl.inserir(i); // duplicado
+        }
+        for (int i = 1; i <= total; i++) {
+            int count = contarOcorrencias(i);
+            assertEquals(2, count);
+        }
+    }
+
+    @Test
+    public void testImpressaoEmOrdemGrande() {
+        int total = 100;
+        for (int i = total; i >= 1; i--) {
+            avl.inserir(i);
+        }
+        String emOrdem = avl.imprimirEmOrdem();
+        for (int i = 1; i <= total; i++) {
+            assertTrue(emOrdem.contains(String.valueOf(i)));
+        }
+    }
+
+    @Test
+    public void testBalanceamentoGrande() {
+        int total = 300;
+        for (int i = 1; i <= total; i++) {
+            avl.inserir(i);
+        }
+        // Após muitas inserções, a altura da AVL deve ser logarítmica
+        int altura = getAltura(avl);
+        assertTrue("Altura da AVL muito grande: " + altura, altura < 2 * (int)(Math.log(total) / Math.log(2)) + 1);
+    }
+
     // Método auxiliar para contar ocorrências de um valor na árvore
     private int contarOcorrencias(int valor) {
         String emOrdem = avl.imprimirEmOrdem();
@@ -150,5 +218,20 @@ public class AVLTest {
             if (s.equals(String.valueOf(valor))) count++;
         }
         return count;
+    }
+
+    // Método auxiliar para obter altura da árvore
+    private int getAltura(AVL<Integer> avl) {
+        try {
+            java.lang.reflect.Field raizField = avl.getClass().getDeclaredField("raiz");
+            raizField.setAccessible(true);
+            Object raiz = raizField.get(avl);
+            if (raiz == null) return 0;
+            java.lang.reflect.Method alturaMetodo = raiz.getClass().getDeclaredMethod("getAltura");
+            alturaMetodo.setAccessible(true);
+            return (int) alturaMetodo.invoke(raiz);
+        } catch (Exception e) {
+            return -1; // Não conseguiu acessar
+        }
     }
 } 
