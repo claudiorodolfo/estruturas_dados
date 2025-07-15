@@ -68,7 +68,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         NoArvoreB<T> raizAtual = raiz;
         
         // Se a raiz está cheia, divida-a
-        if (raizAtual.isCheio()) {
+        if (raizAtual.estaCheia()) {
             NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
             novaRaiz.setFolha(false);
             novaRaiz.adicionarFilho(raizAtual);
@@ -250,7 +250,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         }
         // Caso 2c: Ambos os filhos têm menos de 'ordem' chaves
         else {
-            fundirFilhos(no, indice);
+            concatenarFilhos(no, indice);
             return removerRecursivo(no.getFilhos().get(indice), chave);
         }
     }
@@ -360,7 +360,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @param no Nó pai.
      * @param indice Índice do filho.
      */
-    private void fundirComAnterior(NoArvoreB<T> no, int indice) {
+    private void concatenarComAnterior(NoArvoreB<T> no, int indice) {
         NoArvoreB<T> filho = no.getFilhos().get(indice);
         NoArvoreB<T> irmao = no.getFilhos().get(indice - 1);
         
@@ -387,7 +387,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @param no Nó pai.
      * @param indice Índice do filho.
      */
-    private void fundirComPosterior(NoArvoreB<T> no, int indice) {
+    private void concatenarComPosterior(NoArvoreB<T> no, int indice) {
         NoArvoreB<T> filho = no.getFilhos().get(indice);
         NoArvoreB<T> irmao = no.getFilhos().get(indice + 1);
         
@@ -414,7 +414,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @param no Nó pai.
      * @param indice Índice do primeiro filho.
      */
-    private void fundirFilhos(NoArvoreB<T> no, int indice) {
+    private void concatenarFilhos(NoArvoreB<T> no, int indice) {
         NoArvoreB<T> filho1 = no.getFilhos().get(indice);
         NoArvoreB<T> filho2 = no.getFilhos().get(indice + 1);
         

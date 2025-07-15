@@ -20,7 +20,7 @@ public class NoArvoreB<T extends Comparable<T>> {
     /**
      * Lista de filhos do nó.
      */
-    private List<NoArvoreB<T>> filhos;
+    private List<NoArvoreB<T>> ponteirosFilhos;
     
     /**
      * Indica se o nó é uma folha.
@@ -39,7 +39,7 @@ public class NoArvoreB<T extends Comparable<T>> {
     public NoArvoreB(int ordem) {
         this.ordem = ordem;
         this.chaves = new ArrayList<>();
-        this.filhos = new ArrayList<>();
+        this.ponteirosFilhos = new ArrayList<>();
         this.folha = true;
     }
     
@@ -64,15 +64,15 @@ public class NoArvoreB<T extends Comparable<T>> {
      * @return Lista de filhos.
      */
     public List<NoArvoreB<T>> getFilhos() {
-        return filhos;
+        return ponteirosFilhos;
     }
     
     /**
      * Define a lista de filhos.
      * @param filhos Nova lista de filhos.
      */
-    public void setFilhos(List<NoArvoreB<T>> filhos) {
-        this.filhos = filhos;
+    public void setFilhos(List<NoArvoreB<T>> ponteirosFilhos) {
+        this.ponteirosFilhos = ponteirosFilhos;
     }
     
     /**
@@ -111,7 +111,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * Verifica se o nó está cheio.
      * @return true se está cheio, false caso contrário.
      */
-    public boolean isCheio() {
+    public boolean estaCheia() {
         return chaves.size() == 2 * ordem - 1;
     }
     
@@ -138,7 +138,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * @param filho Filho a ser adicionado.
      */
     public void adicionarFilho(NoArvoreB<T> filho) {
-        filhos.add(filho);
+        ponteirosFilhos.add(filho);
     }
     
     /**
@@ -147,7 +147,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * @return true se o filho foi removido, false caso contrário.
      */
     public boolean removerFilho(NoArvoreB<T> filho) {
-        return filhos.remove(filho);
+        return ponteirosFilhos.remove(filho);
     }
     
     /**
