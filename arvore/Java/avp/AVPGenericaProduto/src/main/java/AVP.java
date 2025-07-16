@@ -430,6 +430,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
      * @return String formatada.
      */
     private String formataSaida(String msg) {
-        return msg.replaceAll("\\s+", " ").trim();
+         // Substitui um ou mais espaços em branco por uma vírgula, após remover espaços das bordas
+         msg = msg.trim().replaceAll("\\s+", ",");
+         return "[" + msg + "]";
     }
 } 

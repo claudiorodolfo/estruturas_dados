@@ -237,13 +237,8 @@ public class ABP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     private String formataSaida(String msg) {
-        String resultado;
-        do {
-            resultado = msg;
-            msg = msg.replace("  ", " "); //remove excesso de espaços
-        } while (!msg.equals(resultado));
-        msg = msg.trim(); //remove espaços em branco do inicio e fim, se existir
-        msg = msg.replace(" ", ","); //troca espaço por vírgula
+        // Substitui um ou mais espaços em branco por uma vírgula, após remover espaços das bordas
+        msg = msg.trim().replaceAll("\\s+", ",");
         return "[" + msg + "]";
     }
 }
