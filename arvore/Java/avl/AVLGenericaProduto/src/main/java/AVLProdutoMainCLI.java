@@ -9,6 +9,10 @@ import java.util.Scanner;
  * @since July 1, 2025
  */
 public class AVLProdutoMainCLI {
+    /**
+     * Método principal. Inicia o menu interativo para manipulação da árvore AVL de produtos.
+     * @param args Argumentos de linha de comando (não utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVL<Produto> avl = new AVL<>();
