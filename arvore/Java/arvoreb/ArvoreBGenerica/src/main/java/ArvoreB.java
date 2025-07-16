@@ -1,33 +1,39 @@
-public class ArvoreB<T extends Comparable<T>>  implements Arborizavel<T> {
+public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
     private NoArvoreB<T> raiz;
-    private int ordem;
+    private final int ordem;
+
+    public ArvoreB() {
+        this(6);
+    }
 
     public ArvoreB(int ordem) {
+        if (ordem < 3)
+            throw new IllegalArgumentException("A ordem da árvore B deve ser pelo menos 3.");
         this.ordem = ordem;
-        raiz = null;
+        this.raiz = new NoArvoreB<>(ordem);
     }
 
-    public void inserir(T chave) {
-        if (raiz == null) {
-            raiz = new NoArvoreB<>(ordem);
-            raiz.chaves.add(chave);
-        } else {
-            if (raiz.cheio()) {
-                NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
-                novaRaiz.ponteirosFilhos.add(raiz);
-                novaRaiz.dividirFilho(0);
-                novaRaiz.inserirNaoCheio(chave);
-                raiz = novaRaiz;
-            } else {
-                raiz.inserirNaoCheio(chave);
-            }
+    @Override
+    public void inserir(T valor) {
+        if (raiz.cheio()) {
+            NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
+            novaRaiz.ponteirosFilhos.add(raiz);
+            novaRaiz.dividirFilho(0);
+            raiz = novaRaiz;
         }
+        raiz.inserirNaoCheio(valor);
     }
 
-    public void apagar(T chave) {
-        if (raiz == null) return;
+    @Override
+    public boolean existe(T valor) {
+        return raiz.buscar(valor) != null;
+    }
 
-        raiz.apagar(chave);
+    @Override
+    public T apagar(T valor) {
+        if (raiz == null) return null;
+
+        raiz.apagar(valor);
 
         if (raiz.chaves.size() == 0) {
             if (!raiz.isFolha()) {
@@ -36,14 +42,43 @@ public class ArvoreB<T extends Comparable<T>>  implements Arborizavel<T> {
                 raiz = null;
             }
         }
+        return valor; // Retorna o valor removido (simplificado)
     }
 
-    public NoArvoreB<T> buscar(T chave) {
-        if (raiz == null) return null;
-        return raiz.buscar(chave);
+    @Override
+    public void limpar() {
+        raiz = new NoArvoreB<>(ordem);
     }
 
-    public void imprimirEmOrdem() {
+    @Override
+    public NoArvoreB<T> getRaiz() {
+        return raiz;
+    }
+
+    @Override
+    public String imprimirEmOrdem() {
+        StringBuilder sb = new StringBuilder();
+        emOrdem(raiz, sb);
+        return sb.toString();
+    }
+
+    private void emOrdem(NoArvoreB<T> no, StringBuilder sb) {
+        for (int i = 0; i < no.chaves.size(); i++) {
+            if (!no.isFolha()) {
+                emOrdem(no.ponteirosFilhos.get(i), sb);
+            }
+            sb.append(no.chaves.get(i)).append(" ");
+        }
+        if (!no.isFolha()) {
+            emOrdem(no.ponteirosFilhos.get(no.chaves.size()), sb);
+        }
+    }
+
+    public NoArvoreB<T> buscar(T valor) {
+        return raiz.buscar(valor);
+    }
+
+    public void exibirEmOrdem() {
         if (raiz != null) {
             raiz.imprimirEmOrdem();
             System.out.println();

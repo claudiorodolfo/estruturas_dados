@@ -14,8 +14,7 @@ public class ArvoreBGenericaTest {
         arvore.inserir(25);
         
         System.out.println("Inseridos: 10, 20, 5, 15, 25");
-        System.out.print("Árvore em ordem: ");
-        arvore.imprimirEmOrdem();
+        System.out.println("Árvore em ordem: " + arvore.imprimirEmOrdem());
         
         // Teste de busca
         NoArvoreB<Integer> resultado = arvore.buscar(10);
@@ -32,15 +31,13 @@ public class ArvoreBGenericaTest {
         }
         
         System.out.println("Inseridos números de 1 a 10");
-        System.out.print("Árvore em ordem: ");
-        arvore2.imprimirEmOrdem();
+        System.out.println("Árvore em ordem: " + arvore2.imprimirEmOrdem());
         
         // Teste 3: Remoção
         System.out.println("\n3. Teste de Remoção:");
         System.out.println("Removendo 5...");
         arvore2.apagar(5);
-        System.out.print("Após remoção: ");
-        arvore2.imprimirEmOrdem();
+        System.out.println("Após remoção: " + arvore2.imprimirEmOrdem());
         
         // Teste 4: Diferentes ordens
         System.out.println("\n4. Teste com Diferentes Ordens:");
@@ -52,10 +49,8 @@ public class ArvoreBGenericaTest {
             arvoreOrdem6.inserir(i);
         }
         
-        System.out.print("Árvore ordem 4: ");
-        arvoreOrdem4.imprimirEmOrdem();
-        System.out.print("Árvore ordem 6: ");
-        arvoreOrdem6.imprimirEmOrdem();
+        System.out.println("Árvore ordem 4: " + arvoreOrdem4.imprimirEmOrdem());
+        System.out.println("Árvore ordem 6: " + arvoreOrdem6.imprimirEmOrdem());
         
         System.out.println("\n=== Todos os testes concluídos ===");
     }
