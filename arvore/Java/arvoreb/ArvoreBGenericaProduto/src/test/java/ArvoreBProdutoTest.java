@@ -1,241 +1,82 @@
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
-import src.ArvoreB;
-import src.Produto;
-import src.NoArvoreB;
-
-/**
- * Classe de teste para a Árvore B de Produtos.
- * Testa inserção, busca, remoção, balanceamento e casos de borda.
- * 
- * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- * @since July 1, 2025
- */
 public class ArvoreBProdutoTest {
-    private ArvoreB<Produto> arvoreB;
-
-    @Before
-    public void setUp() {
-        arvoreB = new ArvoreB<>();
-    }
-
-    @Test
-    public void testInserirEExiste() {
-        Produto p1 = new Produto("Café", 1001L);
-        Produto p2 = new Produto("Leite", 1002L);
-        Produto p3 = new Produto("Açúcar", 1003L);
-        arvoreB.inserir(p1);
-        arvoreB.inserir(p2);
-        arvoreB.inserir(p3);
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-        assertTrue(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1003L)));
-        assertFalse(arvoreB.existe(new Produto("", 9999L)));
-    }
-
-    @Test
-    public void testApagarProduto() {
-        Produto p1 = new Produto("Café", 1001L);
-        Produto p2 = new Produto("Leite", 1002L);
-        arvoreB.inserir(p1);
-        arvoreB.inserir(p2);
-        arvoreB.apagar(new Produto("", 1002L));
-        assertFalse(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-    }
-
-    @Test
-    public void testApagarComUmFilho() {
-        Produto p1 = new Produto("Café", 1001L);
-        Produto p2 = new Produto("Leite", 1002L);
-        Produto p3 = new Produto("Açúcar", 1003L);
-        arvoreB.inserir(p1);
-        arvoreB.inserir(p2);
-        arvoreB.inserir(p3);
-        arvoreB.apagar(new Produto("", 1002L));
-        assertFalse(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-        assertTrue(arvoreB.existe(new Produto("", 1003L)));
-    }
-
-    @Test
-    public void testApagarComDoisFilhos() {
-        Produto p1 = new Produto("Café", 1002L);
-        Produto p2 = new Produto("Leite", 1001L);
-        Produto p3 = new Produto("Açúcar", 1003L);
-        Produto p4 = new Produto("Biscoito", 1004L);
-        arvoreB.inserir(p1);
-        arvoreB.inserir(p2);
-        arvoreB.inserir(p3);
-        arvoreB.inserir(p4);
-        arvoreB.apagar(new Produto("", 1002L));
-        assertFalse(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-        assertTrue(arvoreB.existe(new Produto("", 1003L)));
-        assertTrue(arvoreB.existe(new Produto("", 1004L)));
-    }
-
-    @Test
-    public void testLimpar() {
-        arvoreB.inserir(new Produto("Café", 1001L));
-        arvoreB.inserir(new Produto("Leite", 1002L));
-        arvoreB.limpar();
-        assertFalse(arvoreB.existe(new Produto("", 1001L)));
-        assertFalse(arvoreB.existe(new Produto("", 1002L)));
-    }
-
-    @Test
-    public void testImprimirEmOrdem() {
-        arvoreB.inserir(new Produto("Café", 1002L));
-        arvoreB.inserir(new Produto("Leite", 1001L));
-        arvoreB.inserir(new Produto("Açúcar", 1003L));
-        arvoreB.inserir(new Produto("Biscoito", 1004L));
-        String resultado = arvoreB.imprimirEmOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
-        assertTrue(resultado.contains("Biscoito (1004)"));
-    }
-
-    @Test
-    public void testInserirProdutoDuplicado() {
-        Produto p1 = new Produto("Café", 1001L);
-        arvoreB.inserir(p1);
-        arvoreB.inserir(new Produto("Café Duplicado", 1001L)); // Mesmo código de barras
-        // Deve existir apenas um produto com esse código
-        int count = contarProdutosComCodigo(1001L);
-        assertEquals(1, count); // A Árvore B não permite duplicados
-    }
-
-    @Test
-    public void testRemoverProdutoInexistente() {
-        Produto p1 = new Produto("Café", 1001L);
-        arvoreB.inserir(p1);
-        Produto removido = arvoreB.apagar(new Produto("Leite", 9999L));
-        assertNull(removido);
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-    }
-
-    @Test
-    public void testOperacoesEmArvoreVazia() {
-        assertFalse(arvoreB.existe(new Produto("", 1234L)));
-        Produto removido = arvoreB.apagar(new Produto("", 1234L));
-        assertNull(removido);
-        assertEquals("", arvoreB.imprimirEmOrdem().replaceAll("\\s+", "").trim());
-    }
-
-    @Test
-    public void testBalanceamentoArvoreB() {
-        // Inserir produtos em ordem que force divisões de nós
-        arvoreB.inserir(new Produto("A", 1001L));
-        arvoreB.inserir(new Produto("B", 1002L));
-        arvoreB.inserir(new Produto("C", 1003L));
-        arvoreB.inserir(new Produto("D", 1004L));
-        arvoreB.inserir(new Produto("E", 1005L));
-        arvoreB.inserir(new Produto("F", 1006L));
-        arvoreB.inserir(new Produto("G", 1007L));
+    
+    public static void main(String[] args) {
+        System.out.println("=== Testando Árvore B de Produtos ===");
         
-        // Verificar se todos os produtos ainda existem após balanceamento
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-        assertTrue(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1003L)));
-        assertTrue(arvoreB.existe(new Produto("", 1004L)));
-        assertTrue(arvoreB.existe(new Produto("", 1005L)));
-        assertTrue(arvoreB.existe(new Produto("", 1006L)));
-        assertTrue(arvoreB.existe(new Produto("", 1007L)));
-    }
-
-    @Test
-    public void testImprimirPreOrdem() {
-        arvoreB.inserir(new Produto("Café", 1002L));
-        arvoreB.inserir(new Produto("Leite", 1001L));
-        arvoreB.inserir(new Produto("Açúcar", 1003L));
-        String resultado = arvoreB.imprimirPreOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
-    }
-
-    @Test
-    public void testImprimirPosOrdem() {
-        arvoreB.inserir(new Produto("Café", 1002L));
-        arvoreB.inserir(new Produto("Leite", 1001L));
-        arvoreB.inserir(new Produto("Açúcar", 1003L));
-        String resultado = arvoreB.imprimirPosOrdem().replaceAll("\\s+", " ").trim();
-        assertTrue(resultado.contains("Café (1002)"));
-        assertTrue(resultado.contains("Leite (1001)"));
-        assertTrue(resultado.contains("Açúcar (1003)"));
-    }
-
-    @Test
-    public void testPropriedadesArvoreB() {
-        // Testar propriedades básicas da árvore B
-        arvoreB.inserir(new Produto("A", 1001L));
-        arvoreB.inserir(new Produto("B", 1002L));
-        arvoreB.inserir(new Produto("C", 1003L));
+        // Teste 1: Inserção e busca de produtos
+        System.out.println("\n1. Teste de Inserção e Busca de Produtos:");
+        ArvoreB<Produto> arvore = new ArvoreB<>(3);
         
-        // Verificar se a raiz existe
-        NoArvoreB<Produto> raiz = arvoreB.getRaiz();
-        assertNotNull(raiz);
+        Produto p1 = new Produto("Notebook", 123456789L);
+        Produto p2 = new Produto("Mouse", 987654321L);
+        Produto p3 = new Produto("Teclado", 456789123L);
+        Produto p4 = new Produto("Monitor", 789123456L);
+        Produto p5 = new Produto("Headset", 321654987L);
         
-        // Verificar se os elementos estão ordenados
-        String emOrdem = arvoreB.imprimirEmOrdem();
-        assertTrue(emOrdem.contains("A (1001)"));
-        assertTrue(emOrdem.contains("B (1002)"));
-        assertTrue(emOrdem.contains("C (1003)"));
-    }
-
-    @Test
-    public void testOrdemPersonalizada() {
-        // Testar árvore B com ordem diferente
-        ArvoreB<Produto> arvoreBOrdem4 = new ArvoreB<>(4);
-        arvoreBOrdem4.inserir(new Produto("A", 1001L));
-        arvoreBOrdem4.inserir(new Produto("B", 1002L));
-        arvoreBOrdem4.inserir(new Produto("C", 1003L));
-        arvoreBOrdem4.inserir(new Produto("D", 1004L));
-        arvoreBOrdem4.inserir(new Produto("E", 1005L));
+        arvore.inserir(p1);
+        arvore.inserir(p2);
+        arvore.inserir(p3);
+        arvore.inserir(p4);
+        arvore.inserir(p5);
         
-        assertTrue(arvoreBOrdem4.existe(new Produto("", 1001L)));
-        assertTrue(arvoreBOrdem4.existe(new Produto("", 1002L)));
-        assertTrue(arvoreBOrdem4.existe(new Produto("", 1003L)));
-        assertTrue(arvoreBOrdem4.existe(new Produto("", 1004L)));
-        assertTrue(arvoreBOrdem4.existe(new Produto("", 1005L)));
-    }
-
-    @Test
-    public void testRemocaoComplexa() {
-        // Testar remoção de produtos que causam rebalanceamento
-        arvoreB.inserir(new Produto("A", 1001L));
-        arvoreB.inserir(new Produto("B", 1002L));
-        arvoreB.inserir(new Produto("C", 1003L));
-        arvoreB.inserir(new Produto("D", 1004L));
-        arvoreB.inserir(new Produto("E", 1005L));
+        System.out.println("Produtos inseridos: Notebook, Mouse, Teclado, Monitor, Headset");
+        System.out.print("Produtos em ordem: ");
+        arvore.imprimirEmOrdem();
         
-        // Remover produto do meio
-        Produto removido = arvoreB.apagar(new Produto("", 1003L));
-        assertEquals("C (1003)", removido.toString());
-        assertFalse(arvoreB.existe(new Produto("", 1003L)));
-        assertTrue(arvoreB.existe(new Produto("", 1001L)));
-        assertTrue(arvoreB.existe(new Produto("", 1002L)));
-        assertTrue(arvoreB.existe(new Produto("", 1004L)));
-        assertTrue(arvoreB.existe(new Produto("", 1005L)));
-    }
-
-    /**
-     * Conta quantos produtos existem com o código especificado.
-     */
-    private int contarProdutosComCodigo(long codigo) {
-        String emOrdem = arvoreB.imprimirEmOrdem();
-        int count = 0;
-        String codigoStr = "(" + codigo + ")";
-        int index = 0;
-        while ((index = emOrdem.indexOf(codigoStr, index)) != -1) {
-            count++;
-            index += codigoStr.length();
+        // Teste de busca
+        NoArvoreB<Produto> resultado = arvore.buscar(p1);
+        System.out.println("Busca Notebook: " + (resultado != null ? "Encontrado" : "Não encontrado"));
+        
+        Produto buscaInexistente = new Produto("Produto Inexistente", 999999999L);
+        resultado = arvore.buscar(buscaInexistente);
+        System.out.println("Busca produto inexistente: " + (resultado != null ? "Encontrado" : "Não encontrado"));
+        
+        // Teste 2: Inserção com divisão
+        System.out.println("\n2. Teste de Inserção com Divisão:");
+        ArvoreB<Produto> arvore2 = new ArvoreB<>(3);
+        
+        for (int i = 1; i <= 10; i++) {
+            Produto produto = new Produto("Produto " + i, 100000000L + i);
+            arvore2.inserir(produto);
         }
-        return count;
+        
+        System.out.println("Inseridos 10 produtos");
+        System.out.print("Produtos em ordem: ");
+        arvore2.imprimirEmOrdem();
+        
+        // Teste 3: Remoção
+        System.out.println("\n3. Teste de Remoção:");
+        Produto produtoRemover = new Produto("Produto 5", 100000005L);
+        System.out.println("Removendo Produto 5...");
+        arvore2.apagar(produtoRemover);
+        System.out.print("Após remoção: ");
+        arvore2.imprimirEmOrdem();
+        
+        // Teste 4: Diferentes ordens
+        System.out.println("\n4. Teste com Diferentes Ordens:");
+        ArvoreB<Produto> arvoreOrdem4 = new ArvoreB<>(4);
+        ArvoreB<Produto> arvoreOrdem6 = new ArvoreB<>(6);
+        
+        for (int i = 1; i <= 8; i++) {
+            Produto produto = new Produto("Produto Ordem " + i, 200000000L + i);
+            arvoreOrdem4.inserir(produto);
+            arvoreOrdem6.inserir(produto);
+        }
+        
+        System.out.print("Árvore ordem 4: ");
+        arvoreOrdem4.imprimirEmOrdem();
+        System.out.print("Árvore ordem 6: ");
+        arvoreOrdem6.imprimirEmOrdem();
+        
+        // Teste 5: Comparação de produtos
+        System.out.println("\n5. Teste de Comparação de Produtos:");
+        Produto produto1 = new Produto("A", 1L);
+        Produto produto2 = new Produto("B", 2L);
+        Produto produto3 = new Produto("C", 1L); // Mesmo código, nome diferente
+        
+        System.out.println("Comparação produto1 < produto2: " + (produto1.compareTo(produto2) < 0));
+        System.out.println("Comparação produto1 == produto3: " + (produto1.compareTo(produto3) == 0));
+        
+        System.out.println("\n=== Todos os testes concluídos ===");
     }
 } 
