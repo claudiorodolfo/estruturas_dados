@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 /**
  * Implementação de uma Árvore B genérica de ordem definida pelo usuário.
  */
@@ -22,7 +20,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         if (ordem < 3)
             throw new IllegalArgumentException("A ordem da árvore B deve ser pelo menos 3.");
         this.ordem = ordem;
-        this.raiz = new NoArvoreB<>(ordem);
+        raiz = new NoArvoreB<>(ordem);
     }
 
     @Override
@@ -59,23 +57,9 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     @Override
-    public String imprimirPreOrdem() {
-        StringBuilder sb = new StringBuilder();
-        raiz.preOrdem(sb);
-        return sb.toString();
-    }
-
-    @Override
     public String imprimirEmOrdem() {
         StringBuilder sb = new StringBuilder();
         raiz.emOrdem(sb);
-        return sb.toString();
-    }
-
-    @Override
-    public String imprimirPosOrdem() {
-        StringBuilder sb = new StringBuilder();
-        raiz.posOrdem(sb);
         return sb.toString();
     }
 

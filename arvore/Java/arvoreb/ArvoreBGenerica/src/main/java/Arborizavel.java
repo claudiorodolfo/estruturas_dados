@@ -35,22 +35,10 @@ public interface Arborizavel<T extends Comparable<T>> {
     void limpar();
     
     /**
-     * Retorna uma String com os elementos em pré-ordem.
-     * @return Elementos em pré-ordem.
-     */
-    String imprimirPreOrdem();
-    
-    /**
      * Retorna uma String com os elementos em ordem.
      * @return Elementos em ordem.
      */
     String imprimirEmOrdem();
-    
-    /**
-     * Retorna uma String com os elementos em pós-ordem.
-     * @return Elementos em pós-ordem.
-     */
-    String imprimirPosOrdem();
     
     /**
      * Retorna o nó raiz da árvore.

@@ -9,32 +9,29 @@ import java.util.List;
 public class NoArvoreB<T extends Comparable<T>> {
     private List<T> chaves;
     private List<NoArvoreB<T>> ponteirosFilhos;
-    private boolean folha;
     private int ordem;
 
     public NoArvoreB(int ordem) {
         this.ordem = ordem;
-        this.chaves = new ArrayList<>();
-        this.ponteirosFilhos = new ArrayList<>();
-        this.folha = true;
+        chaves = new ArrayList<>();
+        ponteirosFilhos = new ArrayList<>();
     }
 
     public List<T> getChaves() { return chaves; }
     public void setChaves(List<T> chaves) { this.chaves = chaves; }
     public List<NoArvoreB<T>> getFilhos() { return ponteirosFilhos; }
     public void setFilhos(List<NoArvoreB<T>> ponteirosFilhos) { this.ponteirosFilhos = ponteirosFilhos; }
-    public boolean isFolha() { return folha; }
-    public void setFolha(boolean folha) { this.folha = folha; }
     public int getOrdem() { return ordem; }
     public int getNumeroChaves() { return chaves.size(); }
     public boolean isCheio() { return chaves.size() == ordem - 1; }
+    public boolean isFolha() { return ponteirosFilhos.isEmpty(); }
 
     /**
      * Insere um valor em um nó que não está cheio.
      */
     public void inserirNaoCheio(T valor) {
         int i = chaves.size() - 1;
-        if (folha) {
+        if (isFolha()) {
             chaves.add(null); // espaço para nova chave
             while (i >= 0 && valor.compareTo(chaves.get(i)) < 0) {
                 chaves.set(i + 1, chaves.get(i));
@@ -62,14 +59,14 @@ public class NoArvoreB<T extends Comparable<T>> {
     public void dividirFilho(int i) {
         NoArvoreB<T> y = ponteirosFilhos.get(i);
         NoArvoreB<T> z = new NoArvoreB<>(ordem);
-        z.folha = y.folha;
+        // z.folha = y.folha; // Não é mais necessário
         int t = ordem / 2;
         // Move as chaves do meio para frente para z
         for (int j = 0; j < t - 1; j++) {
             z.chaves.add(y.chaves.remove(t));
         }
         // Se não for folha, move os filhos também
-        if (!y.folha) {
+        if (!y.isFolha()) {
             for (int j = 0; j < t; j++) {
                 z.ponteirosFilhos.add(y.ponteirosFilhos.remove(t));
             }
@@ -89,7 +86,7 @@ public class NoArvoreB<T extends Comparable<T>> {
         if (i < chaves.size() && valor.compareTo(chaves.get(i)) == 0) {
             return this;
         }
-        if (folha) {
+        if (isFolha()) {
             return null;
         }
         return ponteirosFilhos.get(i).buscar(valor);
@@ -102,7 +99,7 @@ public class NoArvoreB<T extends Comparable<T>> {
         for (T chave : chaves) {
             sb.append(chave).append(" ");
         }
-        if (!folha) {
+        if (!isFolha()) {
             for (NoArvoreB<T> filho : ponteirosFilhos) {
                 filho.preOrdem(sb);
             }
@@ -110,17 +107,17 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
     public void emOrdem(StringBuilder sb) {
         for (int i = 0; i < chaves.size(); i++) {
-            if (!folha) {
+            if (!isFolha()) {
                 ponteirosFilhos.get(i).emOrdem(sb);
             }
             sb.append(chaves.get(i)).append(" ");
         }
-        if (!folha) {
+        if (!isFolha()) {
             ponteirosFilhos.get(chaves.size()).emOrdem(sb);
         }
     }
     public void posOrdem(StringBuilder sb) {
-        if (!folha) {
+        if (!isFolha()) {
             for (NoArvoreB<T> filho : ponteirosFilhos) {
                 filho.posOrdem(sb);
             }
@@ -131,12 +128,12 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
     public void exibir() {
         for (int i = 0; i < chaves.size(); i++) {
-            if (!folha) {
+            if (!isFolha()) {
                 ponteirosFilhos.get(i).exibir();
             }
             System.out.print(chaves.get(i) + " ");
         }
-        if (!folha) {
+        if (!isFolha()) {
             ponteirosFilhos.get(chaves.size()).exibir();
         }
     }
