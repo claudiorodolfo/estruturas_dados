@@ -35,7 +35,7 @@ public class ArvoreBMainCLI {
                 case 2:
                     System.out.print("Chave para remover: ");
                     int chaveRemover = scanner.nextInt();
-                    arvore.remover(chaveRemover);
+                    arvore.apagar(chaveRemover);
                     System.out.println("Chave removida (se existente).");
                     break;
                 case 3:
