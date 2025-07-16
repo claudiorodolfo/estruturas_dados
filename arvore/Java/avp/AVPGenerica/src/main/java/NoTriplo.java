@@ -42,7 +42,7 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Retorna o dado armazenado.
+     * Retorna o dado armazenado neste nó.
      * @return Dado do nó.
      */
     public T getDado() {
@@ -50,23 +50,23 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Define o dado do nó.
-     * @param dado Novo valor.
+     * Define o dado armazenado neste nó.
+     * @param dado Novo valor a ser armazenado.
      */
     public void setDado(T dado) {
         this.dado = dado;
     }
 
     /**
-     * Retorna o genitor (pai) do nó.
-     * @return Nó genitor.
+     * Retorna o nó genitor (pai) deste nó.
+     * @return Nó genitor ou null se este nó for a raiz.
      */
     public NoTriplo<T> getGenitor() {
         return genitor;
     }
 
     /**
-     * Define o genitor (pai) do nó.
+     * Define o nó genitor (pai) deste nó.
      * @param genitor Novo nó genitor.
      */
     public void setGenitor(NoTriplo<T> genitor) {
@@ -74,15 +74,15 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Retorna o filho à esquerda.
-     * @return Nó à esquerda.
+     * Retorna o filho à esquerda deste nó.
+     * @return Nó à esquerda ou null se não houver.
      */
     public NoTriplo<T> getEsquerda() {
         return esquerda;
     }
 
     /**
-     * Define o filho à esquerda.
+     * Define o filho à esquerda deste nó.
      * @param esquerda Novo nó à esquerda.
      */
     public void setEsquerda(NoTriplo<T> esquerda) {
@@ -90,15 +90,15 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Retorna o filho à direita.
-     * @return Nó à direita.
+     * Retorna o filho à direita deste nó.
+     * @return Nó à direita ou null se não houver.
      */
     public NoTriplo<T> getDireita() {
         return direita;
     }
 
     /**
-     * Define o filho à direita.
+     * Define o filho à direita deste nó.
      * @param direita Novo nó à direita.
      */
     public void setDireita(NoTriplo<T> direita) {
@@ -106,7 +106,7 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Retorna a cor do nó.
+     * Retorna a cor deste nó.
      * @return Cor do nó (VERMELHO ou PRETO).
      */
     public Cor getCor() {
@@ -114,8 +114,8 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Define a cor do nó.
-     * @param cor Nova cor do nó.
+     * Define a cor deste nó.
+     * @param cor Nova cor do nó (VERMELHO ou PRETO).
      */
     public void setCor(Cor cor) {
         this.cor = cor;
@@ -138,8 +138,8 @@ public class NoTriplo<T> {
     }
 
     /**
-     * Retorna uma representação em string do nó.
-     * @return String com o dado e a cor do nó.
+     * Retorna uma representação em string do nó, incluindo dado e cor.
+     * @return String no formato "dado(V)" para vermelho ou "dado(P)" para preto.
      */
     @Override
     public String toString() {

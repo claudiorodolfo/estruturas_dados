@@ -1,8 +1,11 @@
 /**
  * Implementação de uma Árvore Vermelho e Preto (AVP) genérica.
  * Mantém as propriedades da árvore vermelho e preto durante inserção e remoção.
- * 
- * @param <T> Tipo dos dados armazenados na árvore.
+ * <p>
+ * Esta estrutura garante altura logarítmica e operações eficientes de busca, inserção e remoção.
+ * </p>
+ *
+ * @param <T> Tipo dos dados armazenados na árvore. Deve implementar Comparable.
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
  * @since July 1, 2025
@@ -20,7 +23,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Retorna o nó raiz da árvore.
-     * @return Nó raiz.
+     * @return Nó raiz ou null se a árvore estiver vazia.
      */
     @Override
     public NoTriplo<T> getRaiz() {
@@ -28,7 +31,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Remove todos os elementos da árvore.
+     * Remove todos os elementos da árvore, tornando-a vazia.
      */
     @Override
     public void limpar() {
@@ -38,6 +41,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     /**
      * Insere um novo elemento na árvore.
      * @param dado Elemento a ser inserido.
+     * <p>
+     * Se o elemento já existir, será inserido como duplicado (lado esquerdo).
+     * </p>
      */
     @Override
     public void inserir(T dado) {
@@ -56,6 +62,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Insere um nó na posição correta da árvore.
+     * @param atual Nó atual durante a recursão.
+     * @param novoNo Novo nó a ser inserido.
      */
     private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
         int comparacao = novoNo.getDado().compareTo(atual.getDado());
@@ -79,6 +87,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Balanceia a árvore após inserção para manter as propriedades AVP.
+     * @param no Nó recém-inserido que pode ter causado violação das propriedades.
      */
     private void balancearAposInserir(NoTriplo<T> no) {
         NoTriplo<T> pai = no.getGenitor();
@@ -131,7 +140,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Rotação à esquerda.
+     * Realiza rotação à esquerda em torno de um nó.
+     * @param x Nó em torno do qual a rotação será feita.
      */
     private void rotacaoEsquerda(NoTriplo<T> x) {
         NoTriplo<T> y = x.getDireita();
@@ -156,7 +166,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Rotação à direita.
+     * Realiza rotação à direita em torno de um nó.
+     * @param y Nó em torno do qual a rotação será feita.
      */
     private void rotacaoDireita(NoTriplo<T> y) {
         NoTriplo<T> x = y.getEsquerda();
@@ -198,7 +209,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Remove um nó da árvore.
+     * Remove um nó da árvore, realizando balanceamento se necessário.
+     * @param no Nó a ser removido.
      */
     private void removerNo(NoTriplo<T> no) {
         NoTriplo<T> noParaRemover = no;
@@ -252,7 +264,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
     
     /**
-     * Encontra o sucessor de um nó (menor elemento da subárvore direita).
+     * Encontra o sucessor (menor nó à direita) de um nó.
+     * @param no Nó de referência.
+     * @return Sucessor do nó.
      */
     private NoTriplo<T> encontrarSucessor(NoTriplo<T> no) {
         NoTriplo<T> atual = no.getDireita();
@@ -263,7 +277,8 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Balanceia a árvore após remoção.
+     * Realiza balanceamento após remoção para manter as propriedades AVP.
+     * @param no Nó a partir do qual o balanceamento é feito.
      */
     private void balancearAposRemover(NoTriplo<T> no) {
         while (no != raiz && no.isPreto()) {
@@ -331,7 +346,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Busca um elemento na árvore.
+     * Busca um nó pelo valor na árvore.
+     * @param dado Valor a ser buscado.
+     * @return Nó correspondente ou null se não encontrado.
      */
     private NoTriplo<T> buscar(T dado) {
         NoTriplo<T> atual = raiz;
@@ -360,7 +377,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Retorna uma String com os elementos em pré-ordem.
-     * @return Elementos em pré-ordem.
+     * @return Elementos em pré-ordem, separados por vírgula.
      */
     @Override
     public String imprimirPreOrdem() {
@@ -369,7 +386,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Retorna uma String com os elementos em ordem.
-     * @return Elementos em ordem.
+     * @return Elementos em ordem, separados por vírgula.
      */
     @Override
     public String imprimirEmOrdem() {
@@ -378,7 +395,7 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Retorna uma String com os elementos em pós-ordem.
-     * @return Elementos em pós-ordem.
+     * @return Elementos em pós-ordem, separados por vírgula.
      */
     @Override
     public String imprimirPosOrdem() {
@@ -386,7 +403,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Percorre a árvore em pré-ordem recursivamente.
+     * Auxiliar para imprimir elementos em pré-ordem recursivamente.
+     * @param no Nó atual.
+     * @return String com elementos em pré-ordem.
      */
     private String imprimirPreOrdemRec(NoTriplo<T> no) {
         if (no == null) return "";
@@ -396,7 +415,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Percorre a árvore em ordem recursivamente.
+     * Auxiliar para imprimir elementos em ordem recursivamente.
+     * @param no Nó atual.
+     * @return String com elementos em ordem.
      */
     private String imprimirEmOrdemRec(NoTriplo<T> no) {
         if (no == null) return "";
@@ -406,7 +427,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Percorre a árvore em pós-ordem recursivamente.
+     * Auxiliar para imprimir elementos em pós-ordem recursivamente.
+     * @param no Nó atual.
+     * @return String com elementos em pós-ordem.
      */
     private String imprimirPosOrdemRec(NoTriplo<T> no) {
         if (no == null) return "";
@@ -416,7 +439,9 @@ public class AVP<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     /**
-     * Formata a saída removendo espaços extras.
+     * Formata a saída dos métodos de impressão, removendo espaços extras e ajustando separadores.
+     * @param msg String a ser formatada.
+     * @return String formatada.
      */
     private String formataSaida(String msg) {
         return msg.replaceAll("\\s+", " ").trim();

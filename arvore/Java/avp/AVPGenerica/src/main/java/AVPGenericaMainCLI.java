@@ -3,12 +3,18 @@ import java.util.Scanner;
 /**
  * Interface de linha de comando para manipular uma árvore vermelho e preto genérica.
  * Permite inserir, buscar, remover e imprimir elementos de qualquer tipo Comparable.
- * 
+ *
+ * Menu interativo para testar operações básicas e avançadas.
+ *
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
  * @since July 1, 2025
  */
 public class AVPGenericaMainCLI {
+    /**
+     * Método principal. Inicia o menu interativo para manipulação da árvore vermelho e preto.
+     * @param args Argumentos de linha de comando (não utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVP<String> avp = new AVP<>();
@@ -91,7 +97,7 @@ public class AVPGenericaMainCLI {
     }
 
     /**
-     * Exibe o menu principal de opções.
+     * Exibe o menu principal de opções para o usuário.
      */
     private static void exibirMenu() {
         System.out.println("\n==== Árvore Vermelho e Preto Genérica ====");
@@ -108,7 +114,7 @@ public class AVPGenericaMainCLI {
     }
 
     /**
-     * Testa a árvore com elementos inteiros.
+     * Testa a árvore com elementos inteiros, exibindo operações básicas.
      */
     private static void testarComInteiros() {
         System.out.println("\n=== Teste com Inteiros ===");
@@ -138,7 +144,7 @@ public class AVPGenericaMainCLI {
     }
 
     /**
-     * Testa a árvore com elementos decimais.
+     * Testa a árvore com elementos decimais, exibindo operações básicas.
      */
     private static void testarComDecimais() {
         System.out.println("\n=== Teste com Decimais ===");
@@ -167,7 +173,7 @@ public class AVPGenericaMainCLI {
 
     /**
      * Lê um valor inteiro do usuário com tratamento de erro.
-     * 
+     *
      * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor inteiro lido

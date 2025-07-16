@@ -1,6 +1,9 @@
 /**
  * Interface que define operações básicas para árvores binárias.
- * 
+ * <p>
+ * Fornece o contrato para árvores genéricas, incluindo busca, inserção, remoção e impressões.
+ * </p>
+ *
  * @param <T> Tipo dos dados armazenados na árvore.
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
@@ -10,7 +13,7 @@ public interface Arborizavel<T> {
 
     /**
      * Retorna o nó raiz da árvore.
-     * @return Nó raiz.
+     * @return Nó raiz ou null se a árvore estiver vazia.
      */
     NoTriplo<T> getRaiz();
 
@@ -35,25 +38,25 @@ public interface Arborizavel<T> {
     boolean existe(T dado);
 
     /**
-     * Remove todos os elementos da árvore.
+     * Remove todos os elementos da árvore, tornando-a vazia.
      */
     void limpar();
 
     /**
      * Retorna uma String com os elementos em pré-ordem.
-     * @return Elementos em pré-ordem.
+     * @return Elementos em pré-ordem, separados por vírgula.
      */
     String imprimirPreOrdem();
 
     /**
      * Retorna uma String com os elementos em ordem.
-     * @return Elementos em ordem.
+     * @return Elementos em ordem, separados por vírgula.
      */
     String imprimirEmOrdem();
 
     /**
      * Retorna uma String com os elementos em pós-ordem.
-     * @return Elementos em pós-ordem.
+     * @return Elementos em pós-ordem, separados por vírgula.
      */
     String imprimirPosOrdem();
 } 
