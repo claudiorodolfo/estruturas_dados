@@ -43,7 +43,7 @@ import java.util.Scanner;
  * @see NoArvoreB
  */
 public class ArvoreBMainCLI {
-    
+        
     /**
      * Método principal que inicia a interface de linha de comando.
      * Este método configura a árvore B com a ordem especificada pelo usuário
