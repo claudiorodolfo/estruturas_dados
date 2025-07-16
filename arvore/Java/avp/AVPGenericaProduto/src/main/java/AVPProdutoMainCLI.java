@@ -3,12 +3,18 @@ import java.util.Scanner;
 /**
  * Interface de linha de comando para manipular uma árvore vermelho e preto de produtos.
  * Permite inserir, buscar, remover e imprimir produtos com validação de dados.
- * 
+ *
+ * Menu interativo para testar operações básicas e avançadas.
+ *
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
  * @since July 1, 2025
  */
 public class AVPProdutoMainCLI {
+    /**
+     * Método principal. Inicia o menu interativo para manipulação da árvore vermelho e preto de produtos.
+     * @param args Argumentos de linha de comando (não utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AVP<Produto> avp = new AVP<>();
@@ -78,7 +84,7 @@ public class AVPProdutoMainCLI {
     }
 
     /**
-     * Exibe o menu principal de opções.
+     * Exibe o menu principal de opções para o usuário.
      */
     private static void exibirMenu() {
         System.out.println("\n==== Árvore Vermelho e Preto de Produtos ====");
@@ -94,7 +100,7 @@ public class AVPProdutoMainCLI {
 
     /**
      * Busca o produto real na árvore, retornando o objeto completo se encontrado.
-     * 
+     *
      * @param avp Árvore vermelho e preto de produtos
      * @param busca Produto com código de barras para buscar
      * @return Produto encontrado ou null se não encontrado
@@ -111,7 +117,7 @@ public class AVPProdutoMainCLI {
 
     /**
      * Lê um valor inteiro do usuário com tratamento de erro.
-     * 
+     *
      * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor inteiro lido
@@ -129,7 +135,7 @@ public class AVPProdutoMainCLI {
 
     /**
      * Lê um valor long do usuário com tratamento de erro.
-     * 
+     *
      * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor long lido
