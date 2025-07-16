@@ -20,8 +20,7 @@ public class ArvoreBProdutoTest {
         arvore.inserir(p5);
         
         System.out.println("Produtos inseridos: Notebook, Mouse, Teclado, Monitor, Headset");
-        System.out.print("Produtos em ordem: ");
-        arvore.imprimirEmOrdem();
+        System.out.println("Produtos em ordem: " + arvore.imprimirEmOrdem());
         
         // Teste de busca
         NoArvoreB<Produto> resultado = arvore.buscar(p1);
@@ -41,16 +40,14 @@ public class ArvoreBProdutoTest {
         }
         
         System.out.println("Inseridos 10 produtos");
-        System.out.print("Produtos em ordem: ");
-        arvore2.imprimirEmOrdem();
+        System.out.println("Produtos em ordem: " + arvore2.imprimirEmOrdem());
         
         // Teste 3: Remoção
         System.out.println("\n3. Teste de Remoção:");
         Produto produtoRemover = new Produto("Produto 5", 100000005L);
         System.out.println("Removendo Produto 5...");
         arvore2.apagar(produtoRemover);
-        System.out.print("Após remoção: ");
-        arvore2.imprimirEmOrdem();
+        System.out.println("Após remoção: " + arvore2.imprimirEmOrdem());
         
         // Teste 4: Diferentes ordens
         System.out.println("\n4. Teste com Diferentes Ordens:");
@@ -63,10 +60,8 @@ public class ArvoreBProdutoTest {
             arvoreOrdem6.inserir(produto);
         }
         
-        System.out.print("Árvore ordem 4: ");
-        arvoreOrdem4.imprimirEmOrdem();
-        System.out.print("Árvore ordem 6: ");
-        arvoreOrdem6.imprimirEmOrdem();
+        System.out.println("Árvore ordem 4: " + arvoreOrdem4.imprimirEmOrdem());
+        System.out.println("Árvore ordem 6: " + arvoreOrdem6.imprimirEmOrdem());
         
         // Teste 5: Comparação de produtos
         System.out.println("\n5. Teste de Comparação de Produtos:");

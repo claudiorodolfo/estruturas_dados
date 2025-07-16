@@ -69,24 +69,6 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
     }
 
     @Override
-    public String imprimirPreOrdem() {
-        StringBuilder sb = new StringBuilder();
-        preOrdem(raiz, sb);
-        return sb.toString();
-    }
-
-    private void preOrdem(NoArvoreB<T> no, StringBuilder sb) {
-        for (T chave : no.chaves) {
-            sb.append(chave).append(" ");
-        }
-        if (!no.isFolha()) {
-            for (NoArvoreB<T> filho : no.ponteirosFilhos) {
-                preOrdem(filho, sb);
-            }
-        }
-    }
-
-    @Override
     public String imprimirEmOrdem() {
         StringBuilder sb = new StringBuilder();
         emOrdem(raiz, sb);
@@ -102,24 +84,6 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         }
         if (!no.isFolha()) {
             emOrdem(no.ponteirosFilhos.get(no.chaves.size()), sb);
-        }
-    }
-
-    @Override
-    public String imprimirPosOrdem() {
-        StringBuilder sb = new StringBuilder();
-        posOrdem(raiz, sb);
-        return sb.toString();
-    }
-
-    private void posOrdem(NoArvoreB<T> no, StringBuilder sb) {
-        if (!no.isFolha()) {
-            for (NoArvoreB<T> filho : no.ponteirosFilhos) {
-                posOrdem(filho, sb);
-            }
-        }
-        for (T chave : no.chaves) {
-            sb.append(chave).append(" ");
         }
     }
 

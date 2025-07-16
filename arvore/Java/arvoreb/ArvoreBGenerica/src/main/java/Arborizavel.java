@@ -39,4 +39,10 @@ public interface Arborizavel<T extends Comparable<T>> {
      * @return Elementos em ordem.
      */
     String imprimirEmOrdem();
+    
+    /**
+     * Retorna o nó raiz da árvore.
+     * @return Nó raiz.
+     */
+    NoArvoreB<T> getRaiz();
 } 

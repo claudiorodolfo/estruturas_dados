@@ -1,4 +1,4 @@
-public class ArvoreB<T extends Comparable<T>> {
+public class ArvoreB<T extends Comparable<T>>  implements Arborizavel<T> {
     private NoArvoreB<T> raiz;
     private int ordem;
 
