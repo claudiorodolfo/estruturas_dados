@@ -1,5 +1,3 @@
-package arvoreb;
-
 import java.util.Scanner;
 
 /**

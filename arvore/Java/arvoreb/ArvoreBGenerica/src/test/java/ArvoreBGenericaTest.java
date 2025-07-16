@@ -1,11 +1,6 @@
-package test.java;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import arvoreb.ArvoreB;
-import arvoreb.NoArvoreB;
 
 /**
  * Testes para a implementação genérica da Árvore B.

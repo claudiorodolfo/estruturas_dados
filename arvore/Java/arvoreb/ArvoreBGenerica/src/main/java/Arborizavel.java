@@ -1,5 +1,3 @@
-package arvoreb;
-
 /**
  * Interface para estruturas de dados em árvore.
  * Define operações básicas para árvores.
