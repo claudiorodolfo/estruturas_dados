@@ -4,156 +4,142 @@ import java.util.List;
 /**
  * Representa um nó de Árvore B.
  * Cada nó pode conter múltiplas chaves e múltiplos filhos.
- * 
  * @param <T> Tipo dos dados armazenados no nó.
- * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- * @since July 1, 2025
  */
 public class NoArvoreB<T extends Comparable<T>> {
-    
-    /**
-     * Lista de chaves armazenadas no nó.
-     */
     private List<T> chaves;
-    
-    /**
-     * Lista de filhos do nó.
-     */
     private List<NoArvoreB<T>> ponteirosFilhos;
-    
-    /**
-     * Indica se o nó é uma folha.
-     */
     private boolean folha;
-    
-    /**
-     * Ordem da árvore B (número máximo de filhos).
-     */
     private int ordem;
-    
-    /**
-     * Construtor padrão. Cria um nó folha vazio.
-     * @param ordem Ordem da árvore B.
-     */
+
     public NoArvoreB(int ordem) {
         this.ordem = ordem;
         this.chaves = new ArrayList<>();
         this.ponteirosFilhos = new ArrayList<>();
         this.folha = true;
     }
-    
+
+    public List<T> getChaves() { return chaves; }
+    public void setChaves(List<T> chaves) { this.chaves = chaves; }
+    public List<NoArvoreB<T>> getFilhos() { return ponteirosFilhos; }
+    public void setFilhos(List<NoArvoreB<T>> ponteirosFilhos) { this.ponteirosFilhos = ponteirosFilhos; }
+    public boolean isFolha() { return folha; }
+    public void setFolha(boolean folha) { this.folha = folha; }
+    public int getOrdem() { return ordem; }
+    public int getNumeroChaves() { return chaves.size(); }
+    public boolean isCheio() { return chaves.size() == ordem - 1; }
+
     /**
-     * Retorna a lista de chaves.
-     * @return Lista de chaves.
+     * Insere um valor em um nó que não está cheio.
      */
-    public List<T> getChaves() {
-        return chaves;
+    public void inserirNaoCheio(T valor) {
+        int i = chaves.size() - 1;
+        if (folha) {
+            chaves.add(null); // espaço para nova chave
+            while (i >= 0 && valor.compareTo(chaves.get(i)) < 0) {
+                chaves.set(i + 1, chaves.get(i));
+                i--;
+            }
+            chaves.set(i + 1, valor);
+        } else {
+            while (i >= 0 && valor.compareTo(chaves.get(i)) < 0) {
+                i--;
+            }
+            i++;
+            if (ponteirosFilhos.get(i).isCheio()) {
+                dividirFilho(i);
+                if (valor.compareTo(chaves.get(i)) > 0) {
+                    i++;
+                }
+            }
+            ponteirosFilhos.get(i).inserirNaoCheio(valor);
+        }
     }
-    
+
     /**
-     * Define a lista de chaves.
-     * @param chaves Nova lista de chaves.
+     * Divide o filho i deste nó.
      */
-    public void setChaves(List<T> chaves) {
-        this.chaves = chaves;
+    public void dividirFilho(int i) {
+        NoArvoreB<T> y = ponteirosFilhos.get(i);
+        NoArvoreB<T> z = new NoArvoreB<>(ordem);
+        z.folha = y.folha;
+        int t = ordem / 2;
+        // Move as chaves do meio para frente para z
+        for (int j = 0; j < t - 1; j++) {
+            z.chaves.add(y.chaves.remove(t));
+        }
+        // Se não for folha, move os filhos também
+        if (!y.folha) {
+            for (int j = 0; j < t; j++) {
+                z.ponteirosFilhos.add(y.ponteirosFilhos.remove(t));
+            }
+        }
+        chaves.add(i, y.chaves.remove(t - 1));
+        ponteirosFilhos.add(i + 1, z);
     }
-    
+
     /**
-     * Retorna a lista de filhos.
-     * @return Lista de filhos.
+     * Busca um valor neste nó ou nos filhos.
      */
-    public List<NoArvoreB<T>> getFilhos() {
-        return ponteirosFilhos;
+    public NoArvoreB<T> buscar(T valor) {
+        int i = 0;
+        while (i < chaves.size() && valor.compareTo(chaves.get(i)) > 0) {
+            i++;
+        }
+        if (i < chaves.size() && valor.compareTo(chaves.get(i)) == 0) {
+            return this;
+        }
+        if (folha) {
+            return null;
+        }
+        return ponteirosFilhos.get(i).buscar(valor);
     }
-    
+
     /**
-     * Define a lista de filhos.
-     * @param filhos Nova lista de filhos.
+     * Percursos para impressão
      */
-    public void setFilhos(List<NoArvoreB<T>> ponteirosFilhos) {
-        this.ponteirosFilhos = ponteirosFilhos;
+    public void preOrdem(StringBuilder sb) {
+        for (T chave : chaves) {
+            sb.append(chave).append(" ");
+        }
+        if (!folha) {
+            for (NoArvoreB<T> filho : ponteirosFilhos) {
+                filho.preOrdem(sb);
+            }
+        }
     }
-    
-    /**
-     * Verifica se o nó é uma folha.
-     * @return true se é folha, false caso contrário.
-     */
-    public boolean isFolha() {
-        return folha;
+    public void emOrdem(StringBuilder sb) {
+        for (int i = 0; i < chaves.size(); i++) {
+            if (!folha) {
+                ponteirosFilhos.get(i).emOrdem(sb);
+            }
+            sb.append(chaves.get(i)).append(" ");
+        }
+        if (!folha) {
+            ponteirosFilhos.get(chaves.size()).emOrdem(sb);
+        }
     }
-    
-    /**
-     * Define se o nó é uma folha.
-     * @param folha true se é folha, false caso contrário.
-     */
-    public void setFolha(boolean folha) {
-        this.folha = folha;
+    public void posOrdem(StringBuilder sb) {
+        if (!folha) {
+            for (NoArvoreB<T> filho : ponteirosFilhos) {
+                filho.posOrdem(sb);
+            }
+        }
+        for (T chave : chaves) {
+            sb.append(chave).append(" ");
+        }
     }
-    
-    /**
-     * Retorna a ordem da árvore B.
-     * @return Ordem da árvore.
-     */
-    public int getOrdem() {
-        return ordem;
+    public void exibir() {
+        for (int i = 0; i < chaves.size(); i++) {
+            if (!folha) {
+                ponteirosFilhos.get(i).exibir();
+            }
+            System.out.print(chaves.get(i) + " ");
+        }
+        if (!folha) {
+            ponteirosFilhos.get(chaves.size()).exibir();
+        }
     }
-    
-    /**
-     * Retorna o número de chaves no nó.
-     * @return Número de chaves.
-     */
-    public int getNumeroChaves() {
-        return chaves.size();
-    }
-    
-    /**
-     * Verifica se o nó está cheio.
-     * @return true se está cheio, false caso contrário.
-     */
-    public boolean isCheio() {
-        return chaves.size() == 2 * ordem - 1;
-    }
-    
-    /**
-     * Adiciona uma chave ao nó.
-     * @param chave Chave a ser adicionada.
-     */
-    public void adicionarChave(T chave) {
-        chaves.add(chave);
-        chaves.sort(null); // Ordena as chaves
-    }
-    
-    /**
-     * Remove uma chave do nó.
-     * @param chave Chave a ser removida.
-     * @return true se a chave foi removida, false caso contrário.
-     */
-    public boolean removerChave(T chave) {
-        return chaves.remove(chave);
-    }
-    
-    /**
-     * Adiciona um filho ao nó.
-     * @param filho Filho a ser adicionado.
-     */
-    public void adicionarFilho(NoArvoreB<T> filho) {
-        ponteirosFilhos.add(filho);
-    }
-    
-    /**
-     * Remove um filho do nó.
-     * @param filho Filho a ser removido.
-     * @return true se o filho foi removido, false caso contrário.
-     */
-    public boolean removerFilho(NoArvoreB<T> filho) {
-        return ponteirosFilhos.remove(filho);
-    }
-    
-    /**
-     * Retorna uma representação em string do nó.
-     * @return String com as chaves do nó.
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
