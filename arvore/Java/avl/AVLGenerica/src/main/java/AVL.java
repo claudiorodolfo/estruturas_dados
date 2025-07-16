@@ -1,22 +1,45 @@
+/**
+ * Implementação de uma Árvore Binária de Busca Auto-Balanceada (AVL).
+ * <p>
+ * Garante que a altura da árvore permaneça logarítmica após inserções e remoções,
+ * realizando rotações e rebalanceamentos automáticos.
+ * </p>
+ * @param <T> Tipo dos elementos armazenados, que deve ser comparável.
+ */
 public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
 
     private NoTriplo<T> raiz;
 
+    /**
+     * Cria uma árvore AVL vazia.
+     */
     public AVL() {
         raiz = null;
     }
 
+    /**
+     * Retorna o nó raiz da árvore AVL.
+     * @return Nó raiz ou null se a árvore estiver vazia.
+     */
     @Override    
     public NoTriplo<T> getRaiz() {
         return raiz;
     }
 
+    /**
+     * Remove todos os elementos da árvore AVL.
+     */
     @Override
     public void limpar() {
         raiz = null;
     }
     
     //métodos AVL
+    /**
+     * Calcula o fator de balanceamento de um nó AVL.
+     * @param nodo Nó a ser avaliado.
+     * @return Diferença entre altura da subárvore esquerda e direita.
+     */
     private int balanceamento(NoTriplo<T> nodo) {
         //se um noFolha tem altura zero, então 
         //a ausencia de nó (null), tem altura -1
@@ -26,6 +49,10 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return alturaEsquerda - alturaDireita;
     }
 
+    /**
+     * Atualiza a altura de um nó com base nas alturas dos filhos.
+     * @param nodo Nó a ser atualizado.
+     */
     private void atualizaAltura(NoTriplo<T> nodo) {
         //se um noFolha tem altura zero, então
         //a ausencia de nó (null), tem altura -1        
@@ -36,7 +63,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
                 Math.max(alturaEsquerda, alturaDireita));
     }
 
-    // Método para rotacionar à direita ao redor de um nó
+    /**
+     * Realiza rotação simples à direita ao redor de um nó.
+     * @param y Nó em torno do qual a rotação será feita.
+     * @return Nova raiz da subárvore após rotação.
+     */
     private NoTriplo<T> rotacaoDireita(NoTriplo<T> y) {
 		//           T0     |           T0
 		//           |      |           | 
@@ -76,7 +107,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return x;
     }
 
-    //rotacionar à esquerda ao redor de um nó
+    /**
+     * Realiza rotação simples à esquerda ao redor de um nó.
+     * @param y Nó em torno do qual a rotação será feita.
+     * @return Nova raiz da subárvore após rotação.
+     */
     private NoTriplo<T> rotacaoEsquerda(NoTriplo<T> y) {
 		//         T0       |             T0
 		//         |        |             | 
@@ -117,7 +152,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return x;
     }
 
-    //rebalancear a árvore após inserção ou remoção
+    /**
+     * Rebalanceia a árvore após inserção ou remoção.
+     * @param dado Valor inserido/removido.
+     * @param noAuxiliar Nó a partir do qual o rebalanceamento é feito.
+     */
     private void rebalancear(T dado, NoTriplo<T> noAuxiliar) {
         while (noAuxiliar != null) {
             atualizaAltura(noAuxiliar);
@@ -154,7 +193,10 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
     }
     //fim métodos AVL
 
-    //inserir
+    /**
+     * Insere um novo elemento na árvore AVL.
+     * @param dado Elemento a ser inserido.
+     */
     @Override
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
@@ -191,7 +233,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         }
     }
 
-    //apagar
+    /**
+     * Remove um elemento da árvore AVL.
+     * @param dado Elemento a ser removido.
+     * @return Elemento removido, ou null se não encontrado.
+     */
     @Override
     public T apagar(T dado) {
         NoTriplo<T> noAuxiliar = buscar(dado);
@@ -220,6 +266,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return dado;
     }    
 
+    /**
+     * Busca um nó pelo valor na árvore.
+     * @param dado Valor a ser buscado.
+     * @return Nó correspondente ou null se não encontrado.
+     */
     private NoTriplo<T> buscar(T dado) {
         NoTriplo<T> noAuxiliar = raiz;
         while (noAuxiliar != null) {
@@ -235,6 +286,10 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return null;
     }
 
+    /**
+     * Remove um nó folha da árvore.
+     * @param nodo Nó folha a ser removido.
+     */
     private void apagarNoFolha(NoTriplo<T> nodo) {
         NoTriplo<T> pai = nodo.getGenitor();
         if (pai == null) {
@@ -251,10 +306,14 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         }
     }
 
+    /**
+     * Remove um nó com um único filho.
+     * @param nodo Nó a ser removido.
+     */
     private void apagarComUmFilho(NoTriplo<T> nodo) {
         NoTriplo<T> avo = nodo.getGenitor();
         NoTriplo<T> neto = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
-        if (avo == null) {
+        if (avo == null) { //estou apagando algo do segundo nível
             raiz = neto;
             raiz.setGenitor(null);
         } else {
@@ -267,6 +326,10 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         }
     }
 
+    /**
+     * Remove um nó com dois filhos, substituindo pelo sucessor.
+     * @param nodo Nó a ser removido.
+     */
     private void apagarComDoisFilhos(NoTriplo<T> nodo) {
         //sucessor pode ser o menor a direita ou o maior a esquerda
         NoTriplo<T> sucessor = encontraMenorDireita(nodo);
@@ -286,6 +349,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         }
     } 
 
+    /**
+     * Encontra o menor nó à direita de um dado nó.
+     * @param nodo Nó de referência.
+     * @return Menor nó à direita.
+     */
     private NoTriplo<T> encontraMenorDireita(NoTriplo<T> nodo) {
         NoTriplo<T> sucessor = nodo.getDireita();
         while (sucessor.getEsquerda() != null)
@@ -294,6 +362,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return sucessor;
     }  
 
+    /**
+     * Encontra o maior nó à esquerda de um dado nó.
+     * @param nodo Nó de referência.
+     * @return Maior nó à esquerda.
+     */
     private NoTriplo<T> encontraMaiorEsquerda(NoTriplo<T> nodo) {
         NoTriplo<T> sucessor = nodo.getEsquerda();
         while (sucessor.getDireita() != null)
@@ -302,7 +375,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return sucessor;
     } 
 
-    //existe
+    /**
+     * Verifica se um elemento existe na árvore AVL.
+     * @param dado Elemento a ser buscado.
+     * @return true se existe, false caso contrário.
+     */
     @Override
     public boolean existe(T dado) {
         boolean retorno = false;
@@ -321,22 +398,38 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return retorno;
     }
     
-    //imprimir
+    /**
+     * Retorna uma String com os elementos em pré-ordem.
+     * @return Elementos em pré-ordem.
+     */
     @Override
     public String imprimirPreOrdem() {
         return formataSaida(imprimirPreOrdemRec(raiz));
     }
 
+    /**
+     * Retorna uma String com os elementos em ordem.
+     * @return Elementos em ordem.
+     */
     @Override
     public String imprimirEmOrdem() {
         return formataSaida(imprimirEmOrdemRec(raiz));
     }
 
+    /**
+     * Retorna uma String com os elementos em pós-ordem.
+     * @return Elementos em pós-ordem.
+     */
     @Override
     public String imprimirPosOrdem() {
         return formataSaida(imprimirPosOrdemRec(raiz));
     }
 
+    /**
+     * Auxiliar para imprimir elementos em pré-ordem recursivamente.
+     * @param raiz Nó atual.
+     * @return String com elementos em pré-ordem.
+     */
     private String imprimirPreOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";
         if (raiz != null) {
@@ -347,6 +440,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return resultado;
     }
 
+    /**
+     * Auxiliar para imprimir elementos em ordem recursivamente.
+     * @param raiz Nó atual.
+     * @return String com elementos em ordem.
+     */
     private String imprimirEmOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";        
         if (raiz != null) {
@@ -357,6 +455,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return resultado;       
     }
 
+    /**
+     * Auxiliar para imprimir elementos em pós-ordem recursivamente.
+     * @param raiz Nó atual.
+     * @return String com elementos em pós-ordem.
+     */
     private String imprimirPosOrdemRec(NoTriplo<T> raiz) {
         String resultado = "";        
         if (raiz != null) {
@@ -367,6 +470,11 @@ public class AVL<T extends Comparable<T>> implements Arborizavel<T> {
         return resultado;            
     }
 
+    /**
+     * Formata a saída dos métodos de impressão, removendo espaços extras e ajustando separadores.
+     * @param msg String a ser formatada.
+     * @return String formatada.
+     */
     private String formataSaida(String msg) {
         String resultado;
         do {

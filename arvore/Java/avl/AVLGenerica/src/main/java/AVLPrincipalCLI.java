@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Classe principal de interface de linha de comando (CLI) para manipulação de uma árvore AVL de inteiros.
+ * Permite inserir, remover, buscar, imprimir e limpar a árvore via menu interativo.
+ */
 public class AVLPrincipalCLI {
+    /**
+     * Método principal. Inicia o menu interativo para manipulação da árvore AVL.
+     * @param args Argumentos de linha de comando (não utilizados).
+     */
     public static void main(String args[]) {
         //Testar entrada nesta ordem: 
         //4 2 6 1 3 5 7
@@ -66,6 +74,9 @@ public class AVLPrincipalCLI {
         scanner.close();        
     }
 
+    /**
+     * Exibe o menu principal de opções para o usuário.
+     */
     private static void exibirMenu() {
         System.out.println("=== Arvore Binaria AVL ===");
         System.out.println("0. SAIR");
@@ -77,6 +88,9 @@ public class AVLPrincipalCLI {
         System.out.print("Escolha uma opcao (0-5): ");
     }   
 
+    /**
+     * Exibe o menu de opções de impressão para o usuário.
+     */
     private static void exibirMenuImprimir() {
         System.out.println("1. Imprimir Pre-Ordem");
         System.out.println("2. Imprimir Em-Ordem");
