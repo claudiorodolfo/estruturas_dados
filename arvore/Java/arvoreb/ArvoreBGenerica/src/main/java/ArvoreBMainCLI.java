@@ -40,7 +40,7 @@ import java.util.Scanner;
  * @version 1.0
  * @since July 1, 2025
  * @see ArvoreB
- * @see NoArvoreB
+ * @see PaginaArvoreB
  */
 public class ArvoreBMainCLI {
         
@@ -167,7 +167,7 @@ public class ArvoreBMainCLI {
     private static void buscarChave(Scanner scanner, ArvoreB<Integer> arvore) {
         System.out.print("Chave para buscar: ");
         int chaveBuscar = scanner.nextInt();
-        NoArvoreB<Integer> resultado = arvore.buscar(chaveBuscar);
+        PaginaArvoreB<Integer> resultado = arvore.buscar(chaveBuscar);
         if (resultado != null) {
             System.out.println("Chave " + chaveBuscar + " encontrada no nó com chaves: " + resultado.chaves);
         } else {

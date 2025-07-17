@@ -33,11 +33,11 @@ import java.util.List;
  * @version 1.0
  * @since July 1, 2025
  */
-public class NoArvoreB<T extends Comparable<T>> {
+public class PaginaArvoreB<T extends Comparable<T>> {
     /** Lista de chaves ordenadas no nó */
     List<T> chaves;
     /** Lista de ponteiros para nós filhos */
-    List<NoArvoreB<T>> ponteirosFilhos;
+    List<PaginaArvoreB<T>> ponteirosFilhos;
     /** Ordem da árvore B (m) */
     int ordem; // grau mínimo t
 
@@ -47,7 +47,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * @param ordem A ordem da árvore B. Deve ser maior ou igual a 3.
      * @throws IllegalArgumentException se a ordem for menor que 3.
      */
-    public NoArvoreB(int ordem) {
+    public PaginaArvoreB(int ordem) {
         if (ordem < 3) {
             throw new IllegalArgumentException("A ordem da árvore B deve ser pelo menos 3.");
         }
@@ -148,9 +148,9 @@ public class NoArvoreB<T extends Comparable<T>> {
             throw new IndexOutOfBoundsException("Índice do filho inválido: " + i);
         }
         // Nó que será dividido (filho cheio no índice indicado)
-        NoArvoreB<T> filhoCheio = ponteirosFilhos.get(i);
+        PaginaArvoreB<T> filhoCheio = ponteirosFilhos.get(i);
         // Cria um novo nó que vai receber metade das chaves do filhoCheio
-        NoArvoreB<T> novoFilho = new NoArvoreB<>(filhoCheio.ordem);
+        PaginaArvoreB<T> novoFilho = new PaginaArvoreB<>(filhoCheio.ordem);
 
         // Calcula o índice da chave do meio
         int t = ordem;
@@ -181,7 +181,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      * @return O nó que contém a chave, ou null se a chave não for encontrada.
      * @throws IllegalArgumentException se o valor for null.
      */
-    public NoArvoreB<T> buscar(T valor) {
+    public PaginaArvoreB<T> buscar(T valor) {
         // Verifica se o valor passado é nulo, lançando exceção se for
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");
@@ -304,7 +304,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      */
     private T obterAntecessor(int idx) {
         // Obtém o ponteiro para o filho à esquerda da chave em 'idx'
-        NoArvoreB<T> atual = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> atual = ponteirosFilhos.get(idx);
     
         // Desce até o nó folha mais à direita da subárvore esquerda
         while (!atual.isFolha()) {
@@ -324,7 +324,7 @@ public class NoArvoreB<T extends Comparable<T>> {
      */
     private T obterSucessor(int idx) {
         // Acessa o filho à direita da chave na posição 'idx'
-        NoArvoreB<T> atual = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> atual = ponteirosFilhos.get(idx + 1);
     
         // Desce recursivamente pelo filho mais à esquerda até encontrar um nó folha
         while (!atual.isFolha()) {
@@ -372,10 +372,10 @@ public class NoArvoreB<T extends Comparable<T>> {
      */
     private void emprestarDoAnterior(int idx) {
         // Obtém o filho que está com menos chaves do que o permitido
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
     
         // Obtém o irmão imediatamente à esquerda (anterior), que tem chaves sobrando
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx - 1);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx - 1);
     
         // Move a chave do pai (que separa o filho e o irmão) para o início das chaves do filho
         filho.chaves.add(0, chaves.get(idx - 1));
@@ -396,10 +396,10 @@ public class NoArvoreB<T extends Comparable<T>> {
      */
     private void emprestarDoProximo(int idx) {
         // Obtém o filho que está com menos chaves do que o permitido
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
     
         // Obtém o irmão à direita (próximo), que tem chaves sobrando e pode emprestar uma
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
     
         // Move a chave do pai (entre os dois filhos) para o final das chaves do filho necessitado
         filho.chaves.add(chaves.get(idx));
@@ -420,10 +420,10 @@ public class NoArvoreB<T extends Comparable<T>> {
      */
     private void juntar(int idx) {
         // Obtém o filho à esquerda (posição idx)
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
     
         // Obtém o irmão à direita (posição idx + 1)
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
     
         // Remove a chave do nó atual (pai) que separa os dois filhos e adiciona ao filho da esquerda
         filho.chaves.add(chaves.remove(idx));

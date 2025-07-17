@@ -51,7 +51,7 @@
  */
 public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
     /** Nó raiz da árvore */
-    private NoArvoreB<T> raiz;
+    private PaginaArvoreB<T> raiz;
     /** Ordem da árvore B (m) */
     private final int ordem;
 
@@ -87,7 +87,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         this.ordem = ordem;
 
         // Inicializa a raiz como um nó vazio com a ordem definida
-        this.raiz = new NoArvoreB<>(ordem);
+        this.raiz = new PaginaArvoreB<>(ordem);
     }
 
     /**
@@ -115,7 +115,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         // Se a raiz estiver cheia, é necessário dividir para manter propriedades
         if (raiz.cheio()) {
             // Cria um novo nó que será a nova raiz
-            NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
+            PaginaArvoreB<T> novaRaiz = new PaginaArvoreB<>(ordem);
 
             // Adiciona a antiga raiz como filho do novo nó
             novaRaiz.ponteirosFilhos.add(raiz);
@@ -200,7 +200,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
     @Override
     public void limpar() {
         // Reseta a árvore criando uma nova raiz vazia
-        raiz = new NoArvoreB<>(ordem);
+        raiz = new PaginaArvoreB<>(ordem);
     }
 
     /**
@@ -209,7 +209,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @return O nó raiz da árvore, ou null se a árvore estiver vazia.
      */
     @Override
-    public NoArvoreB<T> getRaiz() {
+    public PaginaArvoreB<T> getRaiz() {
         // Retorna a raiz atual da árvore
         return raiz;
     }
@@ -242,7 +242,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @param no O nó atual sendo visitado.
      * @param sb StringBuilder para construir a string de resultado.
      */
-    private void emOrdem(NoArvoreB<T> no, StringBuilder sb) {
+    private void emOrdem(PaginaArvoreB<T> no, StringBuilder sb) {
         // Caso base: nó nulo não faz nada
         if (no == null) return;
 
@@ -270,7 +270,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @return O nó que contém o elemento, ou null se o elemento não for encontrado.
      * @throws IllegalArgumentException se o valor for null.
      */
-    public NoArvoreB<T> buscar(T valor) {
+    public PaginaArvoreB<T> buscar(T valor) {
         // Validação para valor nulo na busca
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");

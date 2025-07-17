@@ -80,7 +80,7 @@ public class ArvoreBGenericaTest {
         arvore.inserir(15);
         
         // Testar busca de elementos existentes
-        NoArvoreB<Integer> resultado = arvore.buscar(10);
+        PaginaArvoreB<Integer> resultado = arvore.buscar(10);
         assertNotNull("Busca de 10 deve retornar um nó", resultado);
         assertTrue("Nó deve conter o elemento 10", resultado.chaves.contains(10));
         
@@ -231,7 +231,7 @@ public class ArvoreBGenericaTest {
         assertNotNull("Raiz deve existir mesmo em árvore vazia", arvore.getRaiz());
         
         arvore.inserir(10);
-        NoArvoreB<Integer> raiz = arvore.getRaiz();
+        PaginaArvoreB<Integer> raiz = arvore.getRaiz();
         assertNotNull("Raiz deve existir após inserção", raiz);
         assertTrue("Raiz deve conter o elemento inserido", raiz.chaves.contains(10));
     }
