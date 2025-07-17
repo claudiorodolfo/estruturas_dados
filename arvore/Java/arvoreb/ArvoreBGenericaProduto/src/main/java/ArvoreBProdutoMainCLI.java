@@ -50,14 +50,6 @@ public class ArvoreBProdutoMainCLI {
                         System.out.println(arvoreB.imprimirEmOrdem());
                         break;
                     case 5:
-                        System.out.println("Produtos em pré-ordem:");
-                        System.out.println(arvoreB.imprimirPreOrdem());
-                        break;
-                    case 6:
-                        System.out.println("Produtos em pós-ordem:");
-                        System.out.println(arvoreB.imprimirPosOrdem());
-                        break;
-                    case 7:
                         arvoreB.limpar();
                         System.out.println("Árvore B de produtos limpa!");
                         break;
@@ -85,9 +77,7 @@ public class ArvoreBProdutoMainCLI {
         System.out.println("2. Buscar produto");
         System.out.println("3. Remover produto");
         System.out.println("4. Imprimir produtos em ordem");
-        System.out.println("5. Imprimir produtos em pré-ordem");
-        System.out.println("6. Imprimir produtos em pós-ordem");
-        System.out.println("7. Limpar árvore");
+        System.out.println("5. Limpar árvore");
         System.out.println("0. Sair");
     }
 
