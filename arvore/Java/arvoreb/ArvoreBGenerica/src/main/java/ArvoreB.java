@@ -60,6 +60,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * A ordem padrão oferece um bom equilíbrio entre performance e uso de memória.
      */
     public ArvoreB() {
+        // Construtor padrão chama o construtor com ordem = 6
         this(6);
     }
 
@@ -78,9 +79,14 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @throws IllegalArgumentException se a ordem for menor que 3.
      */
     public ArvoreB(int ordem) {
+        // Valida se a ordem é menor que 3 e lança exceção caso seja
         if (ordem < 3)
             throw new IllegalArgumentException("A ordem da árvore B deve ser pelo menos 3.");
+
+        // Atribui o valor da ordem ao atributo da classe
         this.ordem = ordem;
+
+        // Inicializa a raiz como um nó vazio com a ordem definida
         this.raiz = new NoArvoreB<>(ordem);
     }
 
@@ -101,16 +107,26 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public void inserir(T valor) {
+        // Verifica se o valor passado é nulo e lança exceção
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");
         }
         
+        // Se a raiz estiver cheia, é necessário dividir para manter propriedades
         if (raiz.cheio()) {
+            // Cria um novo nó que será a nova raiz
             NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
+
+            // Adiciona a antiga raiz como filho do novo nó
             novaRaiz.ponteirosFilhos.add(raiz);
+
+            // Divide o primeiro filho (antiga raiz) em dois nós
             novaRaiz.dividirFilho(0);
+
+            // Atualiza a referência da raiz para o novo nó
             raiz = novaRaiz;
         }
+        // Insere o valor no nó raiz, que agora não está cheio
         raiz.inserirNaoCheio(valor);
     }
 
@@ -125,9 +141,11 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public boolean existe(T valor) {
+        // Validação de valor nulo para busca
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");
         }
+        // Retorna verdadeiro se o valor for encontrado a partir da raiz, falso caso contrário
         return raiz.buscar(valor) != null;
     }
 
@@ -148,23 +166,29 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public T apagar(T valor) {
+        // Valida valor nulo para remoção
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");
         }
         
+        // Se a árvore estiver vazia, não há o que remover, retorna null
         if (raiz == null) return null;
 
+        // Chama o método apagar na raiz para remover o valor
         raiz.apagar(valor);
 
         // Ajusta a raiz se necessário
         if (raiz.chaves.size() == 0) {
+            // Se raiz não for folha e estiver vazia, promove o primeiro filho para raiz
             if (!raiz.isFolha()) {
                 raiz = raiz.ponteirosFilhos.get(0);
             } else {
+                // Se raiz for folha e vazia, a árvore fica vazia (raiz = null)
                 raiz = null;
             }
         }
-        return valor; // Retorna o valor removido (simplificado)
+        // Retorna o valor removido (simplificado)
+        return valor;
     }
 
     /**
@@ -175,6 +199,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public void limpar() {
+        // Reseta a árvore criando uma nova raiz vazia
         raiz = new NoArvoreB<>(ordem);
     }
 
@@ -185,6 +210,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public NoArvoreB<T> getRaiz() {
+        // Retorna a raiz atual da árvore
         return raiz;
     }
 
@@ -199,8 +225,13 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      */
     @Override
     public String imprimirEmOrdem() {
+        // Cria StringBuilder para montar a saída
         StringBuilder sb = new StringBuilder();
+
+        // Executa a travessia em ordem a partir da raiz
         emOrdem(raiz, sb);
+
+        // Retorna a string resultante da travessia
         return sb.toString();
     }
 
@@ -212,14 +243,19 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @param sb StringBuilder para construir a string de resultado.
      */
     private void emOrdem(NoArvoreB<T> no, StringBuilder sb) {
+        // Caso base: nó nulo não faz nada
         if (no == null) return;
-        
+
+        // Percorre as chaves do nó atual
         for (int i = 0; i < no.chaves.size(); i++) {
+            // Se não for folha, visita recursivamente o filho à esquerda da chave i
             if (!no.isFolha()) {
                 emOrdem(no.ponteirosFilhos.get(i), sb);
             }
+            // Adiciona a chave i na string de saída
             sb.append(no.chaves.get(i)).append(" ");
         }
+        // Após a última chave, visita o último filho do nó, se existir
         if (!no.isFolha()) {
             emOrdem(no.ponteirosFilhos.get(no.chaves.size()), sb);
         }
@@ -235,9 +271,11 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @throws IllegalArgumentException se o valor for null.
      */
     public NoArvoreB<T> buscar(T valor) {
+        // Validação para valor nulo na busca
         if (valor == null) {
             throw new IllegalArgumentException("Valor não pode ser null.");
         }
+        // Inicia a busca a partir da raiz e retorna o nó encontrado ou null
         return raiz.buscar(valor);
     }
 
@@ -250,10 +288,12 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
      * @see #imprimirEmOrdem()
      */
     public void exibirEmOrdem() {
+        // Se árvore não está vazia, imprime os elementos em ordem e pula linha
         if (raiz != null) {
             raiz.imprimirEmOrdem();
             System.out.println();
         } else {
+            // Caso contrário, imprime mensagem de árvore vazia
             System.out.println("Árvore vazia.");
         }
     }
