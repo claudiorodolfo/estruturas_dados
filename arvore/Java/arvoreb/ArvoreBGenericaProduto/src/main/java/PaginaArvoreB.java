@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoArvoreB<T extends Comparable<T>> {
+public class PaginaArvoreB<T extends Comparable<T>> {
     List<T> chaves;
-    List<NoArvoreB<T>> ponteirosFilhos;
+    List<PaginaArvoreB<T>> ponteirosFilhos;
     int ordem;
 
-    public NoArvoreB(int ordem) {
+    public PaginaArvoreB(int ordem) {
         this.ordem = ordem;
         this.chaves = new ArrayList<>();
         this.ponteirosFilhos = new ArrayList<>();
@@ -14,8 +14,8 @@ public class NoArvoreB<T extends Comparable<T>> {
 
     public List<T> getChaves() { return chaves; }
     public void setChaves(List<T> chaves) { this.chaves = chaves; }
-    public List<NoArvoreB<T>> getFilhos() { return ponteirosFilhos; }
-    public void setFilhos(List<NoArvoreB<T>> ponteirosFilhos) { this.ponteirosFilhos = ponteirosFilhos; }
+    public List<PaginaArvoreB<T>> getFilhos() { return ponteirosFilhos; }
+    public void setFilhos(List<PaginaArvoreB<T>> ponteirosFilhos) { this.ponteirosFilhos = ponteirosFilhos; }
     public int getOrdem() { return ordem; }
     public int getNumeroChaves() { return chaves.size(); }
     public boolean isCheio() { return chaves.size() == 2 * ordem - 1; }
@@ -31,11 +31,11 @@ public class NoArvoreB<T extends Comparable<T>> {
         return chaves.remove(chave);
     }
 
-    public void adicionarFilho(NoArvoreB<T> filho) {
+    public void adicionarFilho(PaginaArvoreB<T> filho) {
         ponteirosFilhos.add(filho);
     }
 
-    public boolean removerFilho(NoArvoreB<T> filho) {
+    public boolean removerFilho(PaginaArvoreB<T> filho) {
         return ponteirosFilhos.remove(filho);
     }
 
@@ -65,8 +65,8 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     public void dividirFilho(int i) {
-        NoArvoreB<T> filhoCheio = ponteirosFilhos.get(i);
-        NoArvoreB<T> novoFilho = new NoArvoreB<>(filhoCheio.ordem);
+        PaginaArvoreB<T> filhoCheio = ponteirosFilhos.get(i);
+        PaginaArvoreB<T> novoFilho = new PaginaArvoreB<>(filhoCheio.ordem);
 
         int t = ordem;
 
@@ -86,7 +86,7 @@ public class NoArvoreB<T extends Comparable<T>> {
         ponteirosFilhos.add(i + 1, novoFilho);
     }
 
-    public NoArvoreB<T> buscar(T valor) {
+    public PaginaArvoreB<T> buscar(T valor) {
         int i = 0;
         while (i < chaves.size() && valor.compareTo(chaves.get(i)) > 0) {
             i++;
@@ -144,7 +144,7 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     private T obterAntecessor(int idx) {
-        NoArvoreB<T> atual = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> atual = ponteirosFilhos.get(idx);
         while (!atual.isFolha()) {
             atual = atual.ponteirosFilhos.get(atual.ponteirosFilhos.size() - 1);
         }
@@ -152,7 +152,7 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     private T obterSucessor(int idx) {
-        NoArvoreB<T> atual = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> atual = ponteirosFilhos.get(idx + 1);
         while (!atual.isFolha()) {
             atual = atual.ponteirosFilhos.get(0);
         }
@@ -174,8 +174,8 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     private void emprestarDoAnterior(int idx) {
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx - 1);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx - 1);
 
         filho.chaves.add(0, chaves.get(idx - 1));
 
@@ -187,8 +187,8 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     private void emprestarDoProximo(int idx) {
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
 
         filho.chaves.add(chaves.get(idx));
 
@@ -200,8 +200,8 @@ public class NoArvoreB<T extends Comparable<T>> {
     }
 
     private void juntar(int idx) {
-        NoArvoreB<T> filho = ponteirosFilhos.get(idx);
-        NoArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
+        PaginaArvoreB<T> filho = ponteirosFilhos.get(idx);
+        PaginaArvoreB<T> irmao = ponteirosFilhos.get(idx + 1);
 
         filho.chaves.add(chaves.remove(idx));
         filho.chaves.addAll(irmao.chaves);

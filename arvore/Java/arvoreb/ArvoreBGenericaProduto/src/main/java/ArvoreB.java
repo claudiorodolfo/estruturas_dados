@@ -12,7 +12,7 @@ import java.util.List;
  * @since July 1, 2025
  */
 public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
-    private NoArvoreB<T> raiz;
+    private PaginaArvoreB<T> raiz;
     private final int ordem;
 
     public ArvoreB() {
@@ -23,13 +23,13 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         if (ordem < 3)
             throw new IllegalArgumentException("A ordem da árvore B deve ser pelo menos 3.");
         this.ordem = ordem;
-        this.raiz = new NoArvoreB<>(ordem);
+        this.raiz = new PaginaArvoreB<>(ordem);
     }
 
     @Override
     public void inserir(T valor) {
         if (raiz.cheio()) {
-            NoArvoreB<T> novaRaiz = new NoArvoreB<>(ordem);
+            PaginaArvoreB<T> novaRaiz = new PaginaArvoreB<>(ordem);
             novaRaiz.ponteirosFilhos.add(raiz);
             novaRaiz.dividirFilho(0);
             raiz = novaRaiz;
@@ -60,11 +60,11 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
 
     @Override
     public void limpar() {
-        raiz = new NoArvoreB<>(ordem);
+        raiz = new PaginaArvoreB<>(ordem);
     }
 
     @Override
-    public NoArvoreB<T> getRaiz() {
+    public PaginaArvoreB<T> getRaiz() {
         return raiz;
     }
 
@@ -75,7 +75,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         return sb.toString();
     }
 
-    private void emOrdem(NoArvoreB<T> no, StringBuilder sb) {
+    private void emOrdem(PaginaArvoreB<T> no, StringBuilder sb) {
         for (int i = 0; i < no.chaves.size(); i++) {
             if (!no.isFolha()) {
                 emOrdem(no.ponteirosFilhos.get(i), sb);
@@ -87,7 +87,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         }
     }
 
-    public NoArvoreB<T> buscar(T valor) {
+    public PaginaArvoreB<T> buscar(T valor) {
         return raiz.buscar(valor);
     }
 } 

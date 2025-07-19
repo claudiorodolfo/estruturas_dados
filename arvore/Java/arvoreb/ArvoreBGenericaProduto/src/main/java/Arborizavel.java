@@ -44,5 +44,5 @@ public interface Arborizavel<T extends Comparable<T>> {
      * Retorna o nó raiz da árvore.
      * @return Nó raiz.
      */
-    NoArvoreB<T> getRaiz();
+    PaginaArvoreB<T> getRaiz();
 } 
