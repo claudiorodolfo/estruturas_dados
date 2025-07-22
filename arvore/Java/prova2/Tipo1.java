@@ -56,7 +56,7 @@ public class Tipo1 {
     }
 
     //Questão 3
-    //Após inserir até 70, 30, 52 e 47: 
+    //Após inserir 70, 30, 52 e 47: 
     //[30,47,52,70]
 
     //Após inserir 22: 
