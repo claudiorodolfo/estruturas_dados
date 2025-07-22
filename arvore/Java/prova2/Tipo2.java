@@ -4,10 +4,10 @@ public class Tipo2 {
         return ponteiroInicio;
     }
 
-    public ListaDinamica<T> intercalacao(ListaDinamica<T> listaA, ListaDinamica<T> listaB) {
+    public Lista<T> intercalacao(Lista<T> listaA, Lista<T> listaB) {
         NoDuplo<T> p1 = listaA.getInicio();
         NoDuplo<T> p2 = listaB.getInicio();
-        ListaDinamica<T> resultado = new ListaDinamica<>();
+        Lista<T> resultado = new Lista<>();
 
         while (p1 != null && p2 != null) {
             if (p1.getDado().compareTo(p2.getDado()) <= 0) {
@@ -36,12 +36,10 @@ public class Tipo2 {
         return contarNaoFolhaParesRecursivo(raiz);
     }
 
-    // Método recursivo com travessia pré-ordem
     private int contarNaoFolhaParesRecursivo(NoTriplo<Integer> nodo) {
-        if (nodo == null) 
+        if (nodo == null)  //caso base
             return 0;
 
-        // Verifica se o nó não é folha (ou seja, tem pelo menos um filho)
         boolean naoFolha = (nodo.getEsquerda() != null || nodo.getDireita() != null);
         boolean impar = (nodo.getDado() % 2 != 0);
 
@@ -57,8 +55,8 @@ public class Tipo2 {
         return contador;
     }
 
-     //Questão 3
-     //Após inserir até 72, 32, 54 e 49: 
+    //Questão 3
+    //Após inserir até 72, 32, 54 e 49: 
     //[32,49,54,72]
 
     //Após inserir 24: 
