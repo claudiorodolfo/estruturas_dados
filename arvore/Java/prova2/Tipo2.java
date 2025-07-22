@@ -1,5 +1,5 @@
 public class Tipo2 {
-    //Questão 1
+    ///////////////////Questão 1
     public NoDuplo<T> getInicio() {
         return ponteiroInicio;
     }
@@ -31,7 +31,7 @@ public class Tipo2 {
         return resultado;
     }
 
-    //Questão 2
+    ///////////////////Questão 2
     public int contarNaoFolhaPares() {
         return contarNaoFolhaParesRecursivo(raiz);
     }
@@ -55,7 +55,7 @@ public class Tipo2 {
         return contador;
     }
 
-    //Questão 3
+    ///////////////////Questão 3
     //Após inserir 72, 32, 54 e 49: 
     //[32,49,54,72]
 
@@ -121,7 +121,7 @@ public class Tipo2 {
     //       /       /       /\      \       \
     //[24,27] [33,40] [44,47] [50,51] [57,62] [72,82]
 
-    //Questão 4
+    ///////////////////Questão 4
     //Após inserir 72, 32, 54 e 49: 
     //[32,49,54,72]
 
