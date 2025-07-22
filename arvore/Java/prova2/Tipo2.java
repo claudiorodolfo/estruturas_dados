@@ -1,0 +1,127 @@
+public class Tipo2 {
+    //Questão 1
+    public NoDuplo<T> getInicio() {
+        return ponteiroInicio;
+    }
+
+    public ListaDinamica<T> intercalacao(ListaDinamica<T> listaA, ListaDinamica<T> listaB) {
+        NoDuplo<T> p1 = listaA.getInicio();
+        NoDuplo<T> p2 = listaB.getInicio();
+        ListaDinamica<T> resultado = new ListaDinamica<>();
+
+        while (p1 != null && p2 != null) {
+            if (p1.getDado().compareTo(p2.getDado()) <= 0) {
+                resultado.anexar(p1.getDado());
+                p1 = p1.getProximo();
+            } else {
+                resultado.anexar(p2.getDado());
+                p2 = p2.getProximo();
+            }
+        }
+
+        // Anexa o que sobrou de qualquer lista
+        while (p1 != null) {
+            resultado.anexar(p1.getDado());
+            p1 = p1.getProximo();
+        }
+        while (p2 != null) {
+            resultado.anexar(p2.getDado());
+            p2 = p2.getProximo();
+        }
+        return resultado;
+    }
+
+    //Questão 2
+    public int contarNaoFolhaPares() {
+        return contarNaoFolhaParesRecursivo(raiz);
+    }
+
+    // Método recursivo com travessia pré-ordem
+    private int contarNaoFolhaParesRecursivo(NoTriplo<Integer> nodo) {
+        if (nodo == null) 
+            return 0;
+
+        // Verifica se o nó não é folha (ou seja, tem pelo menos um filho)
+        boolean naoFolha = (nodo.getEsquerda() != null || nodo.getDireita() != null);
+        boolean impar = (nodo.getDado() % 2 != 0);
+
+        int contador = 0;
+
+        if (naoFolha && impar)
+            contador++;
+
+        // Pré-ordem: nó atual, esquerda, direita
+        contador += contarNaoFolhaParesRecursivo(nodo.getEsquerda());
+        contador += contarNaoFolhaParesRecursivo(nodo.getDireita());
+
+        return contador;
+    }
+
+     //Questão 3
+     //Após inserir até 72, 32, 54 e 49: 
+    //[32,49,54,72]
+
+    //Após inserir 24: 
+    //        [49]
+    //       /    \
+    //[24,32]     [54,72]
+
+    //Após inserir 62 e 82: 
+    //        [49]
+    //       /    \
+    //[24,32]     [54,62,72,82]
+
+    //Após inserir 52: 
+    //        [49,62]
+    //       /   |    \
+    //[24,32] [52,54] [72,82]
+
+    //Após inserir 12, 67, 57 e 50: 
+    //              [49,62]
+    //          /      |       \
+    //[12,24,32] [50,52,54,57] [67,72,82]
+
+    //Após inserir 51: 
+    //             [49,52,62]
+    //          /    /   \       \
+    //[12,24,32] [50,51] [54,57] [67,72,82]
+
+    //Após inserir 42: 
+    //                [49,52,62]
+    //             /    /   \       \
+    //[12,24,32,42] [50,51] [54,57] [67,72,82]
+
+    //Após inserir 27: 
+    //               [27,49,52,62]
+    //       /         /   |  \       \
+    //[12,24] [32,42] [50,51] [54,57] [67,72,82]
+
+    //Após apagar 12: 
+    //                [49,52,62]
+    //             /    /   \       \
+    //[24,27,32,42] [50,51] [54,57] [67,72,82]
+
+    //Após apagar 54: 
+    //                [49,52,67]
+    //             /    /   \       \
+    //[24,27,32,42] [50,51] [57,62] [72,82]
+
+    //Após inserir 47: 
+    //                [32,49,52,67]
+    //             /    /   \       \
+    //[24,27] [42,47] [50,51] [57,62] [72,82]
+
+    //Após inserir 33 e 40: 
+    //                [32,49,52,67]
+    //       /          /   |       \       \
+    //[24,27] [33,40,42,47] [50,51] [57,62] [72,82]
+
+    //Após inserir 44: 
+    //                       [49]
+    //                      /   \
+    //                 [32,42][52,67]
+    //       /       /       /\       \       \
+    //[24,27] [33,40] [44,47] [50,51] [57,62] [72,82]
+
+     //Questão 4
+}
