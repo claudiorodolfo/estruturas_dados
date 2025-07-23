@@ -41,18 +41,16 @@ public class Tipo1 {
             return 0;
 
         boolean naoFolha = (nodo.getEsquerda() != null || nodo.getDireita() != null);
-        boolean par = (nodo.getDado() % 2 == 0);
+        boolean impar = (nodo.getDado() % 2 != 0);
 
         int contador = 0;
 
-        if (naoFolha && par)
+        if (naoFolha && impar)
             contador++;
 
-        // Pré-ordem: nó atual, esquerda, direita
-        contador += contarNaoFolhaImparesRecursivo(no.esquerdo);
-        contador += contarNaoFolhaImparesRecursivo(no.direito);
-
-        return contador;
+        return (contador + 
+                contarNaoFolhaImparesRecursivo(nodo.getEsquerda()) +
+                contarNaoFolhaImparesRecursivo(nodo.getDireita()));
     }
 
     ///////////////////Questão 3
