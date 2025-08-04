@@ -64,7 +64,7 @@ public class BookStackDAOImpl implements BookStackDAO {
         String result = "";
         for (int i = topPointer; i >= 0; i--) {
             result += books[i];
-            if (i != -1)
+            if (i != 0)
                 result += ",";
         }
         return "[" + result + "]";
