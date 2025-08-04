@@ -4,8 +4,18 @@ import br.edu.ifba.vdc.bsi.stackdao.dao.BookStackDAO;
 import br.edu.ifba.vdc.bsi.stackdao.model.Book;
 
 public class BookStackDAOImpl implements BookStackDAO {
-    private Book[] books = new Book[10];
-    private int topPointer = -1;
+    private Book[] books;
+    private int topPointer;
+
+    public BookStackDAOImpl(int tamanho) {
+        books = new Book[tamanho];
+        topPointer = -1;
+    }
+
+    public BookStackDAOImpl() {
+        this(10);
+
+    }
     
     @Override
     public void push(Book book) {
