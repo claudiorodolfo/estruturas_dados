@@ -1,7 +1,6 @@
-package br.edu.ifba.vdc.bsi.stackdao;
+package br.edu.ifba.vdc.bsi.stackdao.model;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Book {
     private final Long id;            // obrigatório, imutável
@@ -11,14 +10,11 @@ public class Book {
     private String isbn;
     private Double price;
 
+    // Construtor mínimo – apenas campos obrigatórios.
     public Book(Long id, String title) {
-        if (id == null)
-            throw new IllegalArgumentException("id é obrigatório e não pode ser nulo");
-        
-        if (title == null)
-            throw new IllegalArgumentException("title é obrigatório e não pode ser nulo");
-        
-        this.id = id;
+        required(id);
+        required(title);
+        this.id = id;   
         this.title = title;
     }
 
@@ -34,6 +30,11 @@ public class Book {
         this.publicationDate = publicationDate;
         this.isbn = isbn;
         this.price = price;
+    }
+
+    private void required(Object obj) {
+        if (obj == null)
+            throw new IllegalArgumentException("campo obrigatório não pode ser nulo!");
     }
 
     // Getter para id (imutável)

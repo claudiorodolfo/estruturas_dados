@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.stackdao;
+package br.edu.ifba.vdc.bsi.stackdao.dao;
 
 public interface BookStackDAO {
     // empilha um livro no topo

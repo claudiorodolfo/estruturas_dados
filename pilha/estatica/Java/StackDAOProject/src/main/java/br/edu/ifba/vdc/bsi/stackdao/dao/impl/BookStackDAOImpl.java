@@ -1,4 +1,7 @@
-package br.edu.ifba.vdc.bsi.stackdao;
+package br.edu.ifba.vdc.bsi.stackdao.dao.impl;
+
+import br.edu.ifba.vdc.bsi.stackdao.dao.BookStackDAO;
+import br.edu.ifba.vdc.bsi.stackdao.model.Book;
 
 public class BookStackDAOImpl implements BookStackDAO {
     private Book[] books = new Book[10];
