@@ -48,7 +48,8 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = Objects.requireNonNull(title, "title não pode ser nulo");
+        required(title);
+        this.title = title;
     }
 
     // Getter e setter para author

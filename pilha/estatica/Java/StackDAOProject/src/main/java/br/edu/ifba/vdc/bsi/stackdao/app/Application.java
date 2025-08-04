@@ -18,7 +18,7 @@ public class Application {
             stackDao.push(new Book(2L, "O Cortiço", "Aluísio Azevedo",
                                    LocalDate.of(1890, 1, 1), "978-85-359-0271-6", 24.90));
 
-            // espiada e desempilha
+            // espia e desempilha
             Book topo = stackDao.peek();
             System.out.println("Topo da pilha: " + topo.getTitle());
 
