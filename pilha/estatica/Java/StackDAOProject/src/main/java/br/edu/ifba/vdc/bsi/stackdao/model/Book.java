@@ -87,4 +87,23 @@ public class Book {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Book {");
+        sb.append("\n\tid=").append(id);
+        sb.append(", \n\ttitle='").append(title).append('\'');
+        sb.append(", \n\tauthor=").append(author == null ? "null" : "'" + author + "'");
+        sb.append(", \n\tpublicationDate=").append(publicationDate == null
+                ? "null"
+                : publicationDate.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        sb.append(", \n\tisbn=").append(isbn == null ? "null" : "'" + isbn + "'");
+        String priceStr = price == null
+                ? "null"
+                : java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR")).format(price);
+        sb.append(", \n\tprice=").append(priceStr);
+        sb.append("}");
+        return sb.toString();
+    }
 }

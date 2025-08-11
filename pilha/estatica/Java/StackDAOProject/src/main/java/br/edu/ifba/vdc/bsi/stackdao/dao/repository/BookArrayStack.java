@@ -1,25 +1,23 @@
-package br.edu.ifba.vdc.bsi.stackdao.dao.impl;
+package br.edu.ifba.vdc.bsi.stackdao.dao.repository;
 
-import br.edu.ifba.vdc.bsi.stackdao.dao.BookStackDAO;
 import br.edu.ifba.vdc.bsi.stackdao.model.Book;
 
-public class BookStackDAOImpl implements BookStackDAO {
+public class BookArrayStack implements BookStackable {
     private Book[] books;
     private int topPointer;
 
-    public BookStackDAOImpl(int tamanho) {
-        books = new Book[tamanho];
-        topPointer = -1;
+    public BookArrayStack() {
+        this(10);
     }
 
-    public BookStackDAOImpl() {
-        this(10);
-
+    public BookArrayStack(int tamanho) {
+        books = new Book[tamanho];
+        topPointer = -1;
     }
     
     @Override
     public void push(Book book) {
-        if (!isFull()) {
+        if (isFull()) {
             System.out.println("Pilha cheia!");
             return;
         }
@@ -29,7 +27,7 @@ public class BookStackDAOImpl implements BookStackDAO {
 
     @Override
     public Book pop() {
-        if (!isEmpty()) {
+        if (isEmpty()) {
             System.out.println("Pilha vazia!");
             return null;
         }
@@ -40,35 +38,19 @@ public class BookStackDAOImpl implements BookStackDAO {
     }
 
     @Override
-    public void update(Book book) {
-        if (!isEmpty()) {
-            System.out.println("Pilha vazia!");
-            return;
-        }
-        books[topPointer] = book;
-    }
-
-    @Override
     public Book peek() {
-        if (!isEmpty()) {
-            System.out.println("Pilha vazia!");
+        if (isEmpty()) {
+         System.out.println("Pilha vazia!");
             return null;
         }
         return books[topPointer];
     }
-
-    @Override
-    public boolean isEmpty() { 
+    
+    private boolean isEmpty() { 
         return topPointer == -1; 
     }
 
-    @Override
-    public int size() { 
-        return topPointer + 1; 
-    }
-
-    @Override
-    public boolean isFull() {
+    private boolean isFull() {
         return topPointer == books.length - 1;
     }
 
@@ -78,8 +60,8 @@ public class BookStackDAOImpl implements BookStackDAO {
         for (int i = topPointer; i >= 0; i--) {
             result += books[i];
             if (i != 0)
-                result += ",";
+                result += ",\n";
         }
-        return "[" + result + "]";
+        return "[\n" + result + "\n]";
     }
 }
