@@ -1,32 +1,32 @@
 package br.edu.ifba.vdc.bsi.stackdao.dao;
 
-import br.edu.ifba.vdc.bsi.stackdao.dao.repository.BookArrayStack;
-import br.edu.ifba.vdc.bsi.stackdao.dao.repository.BookStackable;
+import br.edu.ifba.vdc.bsi.stackdao.dao.repository.ArrayStack;
+import br.edu.ifba.vdc.bsi.stackdao.dao.repository.Stackable;
 import br.edu.ifba.vdc.bsi.stackdao.model.Book;
 
 public class BookDAOArrayStack implements BookDAO {
 
-    private BookStackable stack = new BookArrayStack(20);
+    private Stackable books = new ArrayStack(20);
 
     @Override
     public void addBook(Book book) {
-        stack.push(book);
+        books.push(book);
     }
   
     @Override
     public Book getBook(Long id){
-        return stack.peek();
+        return (Book) books.peek();
     }
 
     @Override
     public void updateBook(Book book) {
-        stack.pop();
-        stack.push(book);
+        books.pop();
+        books.push(book);
     }
     
     @Override
     public Book deleteBook(Long id) {
-        return stack.pop();
+        return (Book) books.pop();
     }
 
     @Override
@@ -41,6 +41,6 @@ public class BookDAOArrayStack implements BookDAO {
 
     @Override
     public String printBooks() {
-        return stack.toString();
+        return books.toString();
     }
 }
