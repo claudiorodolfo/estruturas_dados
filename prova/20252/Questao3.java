@@ -33,15 +33,15 @@ public class Questao3 {
     public static void main(String[] args) {
         BinaryHeap filaPacientes = new BinaryHeap();
 
-        filaPacientes.enqueue("João", 30, 1);
-        filaPacientes.enqueue("Pedro", 40, 2);
-        filaPacientes.enqueue("Lucas", 28, 3);
-        filaPacientes.enqueue("Maria", 25, 2);
-        filaPacientes.enqueue("Ana", 35, 3);
+        filaPacientes.enqueue(new Patient("João", 30, 1));
+        filaPacientes.enqueue(new Patient("Pedro", 40, 2));
+        filaPacientes.enqueue(new Patient("Lucas", 28, 3));
+        filaPacientes.enqueue(new Patient("Maria", 25, 2));
+        filaPacientes.enqueue(new Patient("Ana", 35, 3));
 
         System.out.println("Atendendo pacientes por ordem de prioridade:");
         while (!filaPacientes.isEmpty()) {
-            Patient p = filaPacientes.dequeue();
+            Patient p = (Patient) filaPacientes.dequeue();
             System.out.println("Paciente:" + p.name);
         }
     }

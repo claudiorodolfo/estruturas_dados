@@ -1,4 +1,4 @@
-    // Cliente
+// Cliente
 class Client {
     int clientCPF;
     String name;
@@ -10,8 +10,8 @@ class Client {
 
  // Pedido
 class Order {
-int clientCPF;
-double value;
+    int clientCPF;
+    double value;
     public Order(int clientCPF, double value) {
         this.clientCPF = clientCPF;
         this.value = value;
@@ -19,7 +19,6 @@ double value;
 }
 
 public class Sistema {
-
     private Client[] clientes;
     private Order[] pedidos;
 
