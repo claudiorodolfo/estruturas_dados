@@ -11,8 +11,8 @@ class Client {
  // Pedido
 class Order {
     int clientCPF;
-    double value;
-    public Order(int clientCPF, double value) {
+    float value;
+    public Order(int clientCPF, float value) {
         this.clientCPF = clientCPF;
         this.value = value;
     }
