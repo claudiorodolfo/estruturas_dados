@@ -49,6 +49,7 @@ public class Sistema {
         return soma;
     }
     //////////////////////
+    
     public static void main(String[] args) {
         ArrayList clientes = new ArrayList(10);
         ArrayList pedidos = new ArrayList(10);

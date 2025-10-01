@@ -63,6 +63,7 @@ public class Questao2 {
         return (String[]) result.selectAll();
     }
     //////////////////////
+    
     public static void main(String[] args) {
         ArrayList culturaA = new ArrayList();
         culturaA.append("Alice");
