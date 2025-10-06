@@ -211,7 +211,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 🙏 Agradecimentos
 
 - Instituto Federal da Bahia (IFBA)
-- Professores de Estruturas de Dados
+- Professor de Estruturas de Dados
 - Comunidade Java e Kotlin
 - Contribuidores do projeto
 
