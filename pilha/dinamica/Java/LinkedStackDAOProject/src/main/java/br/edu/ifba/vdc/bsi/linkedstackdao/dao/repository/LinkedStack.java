@@ -73,8 +73,8 @@ public class LinkedStack<T> implements Stackable<T> {
 			throw new NoSuchElementException("Pilha Vazia!");
 		}
 		T topData = topPointer.getData();
-		topData = topPointer.getPrevious();
-		quantidade--;
+		topPointer = topPointer.getPrevious();
+		amount--;
 		if (!isEmpty()) {
 			topPointer.setNext(null);
 		}

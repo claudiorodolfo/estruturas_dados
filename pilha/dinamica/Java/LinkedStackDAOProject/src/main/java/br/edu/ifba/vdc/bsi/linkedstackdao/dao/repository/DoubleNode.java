@@ -1,3 +1,5 @@
+package br.edu.ifba.vdc.bsi.linkedstackdao.dao.repository;
+
 /**
  * Classe que representa um nó duplamente encadeado.
  * Esta classe é utilizada para implementar estruturas de dados

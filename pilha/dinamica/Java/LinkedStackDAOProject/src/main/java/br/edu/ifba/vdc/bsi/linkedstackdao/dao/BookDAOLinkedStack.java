@@ -6,7 +6,7 @@ import br.edu.ifba.vdc.bsi.linkedstackdao.model.Book;
 
 public class BookDAOLinkedStack implements BookDAO {
 
-    private Stackable books = new LinkedStack(20);
+    private Stackable<Book> books = new LinkedStack<>(20);
 
     @Override
     public void addBook(Book book) {
@@ -15,18 +15,17 @@ public class BookDAOLinkedStack implements BookDAO {
   
     @Override
     public Book getBook(Long id){
-        return (Book) books.peek();
+        return books.peek();
     }
 
     @Override
     public void updateBook(Book book) {
-        books.pop();
-        books.push(book);
+        books.update(book);
     }
     
     @Override
     public Book deleteBook(Long id) {
-        return (Book) books.pop();
+        return books.pop();
     }
 
     @Override
