@@ -198,9 +198,9 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👨‍💻 Autor
 
 **Cláudio Rodolfo Sousa de Oliveira**
-- 📧 Email: [seu-email@exemplo.com](mailto:seu-email@exemplo.com)
-- 💼 LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-perfil)
-- 🐙 GitHub: [@seu-usuario](https://github.com/seu-usuario)
+- 📧 Email: [claudiorodolfo@ifba.edu.br](mailto:claudiorodolfol@ifba.edu.br)
+- 💼 LinkedIn: [Cláudio Rodolfo](https://linkedin.com/in/claudiorodolfo)
+- 🐙 GitHub: [@claudiorodolfo](https://github.com/claudiorodolfo)
 
 ## 🏫 Instituição
 
