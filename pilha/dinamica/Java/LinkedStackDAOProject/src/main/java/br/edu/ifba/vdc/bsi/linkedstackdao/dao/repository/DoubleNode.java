@@ -49,7 +49,7 @@ public class DoubleNode<T> {
 	/**
 	 * Define a referência para o nó anterior.
 	 *
-	 * @param anterior o novo nó anterior
+	 * @param previous o novo nó anterior
 	 */
 	public void setPrevious(DoubleNode<T> previous) {
 		this.previous = previous;
@@ -67,7 +67,7 @@ public class DoubleNode<T> {
 	/**
 	 * Define a referência para o próximo nó.
 	 *
-	 * @param proximo o novo próximo nó
+	 * @param next o novo próximo nó
 	 */
 	public void setNext(DoubleNode<T> next) {
 		this.next = next;
