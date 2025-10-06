@@ -1,3 +1,5 @@
+package br.edu.ifba.vdc.bsi.linkedstackdao.dao.repository;
+
 import java.util.NoSuchElementException;
 
 /**
@@ -10,75 +12,74 @@ import java.util.NoSuchElementException;
  * @version 1.1
  * @since 2025-06-04
  */
-public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
-
-	/** Quantidade atual de elementos na pilha */
-	private int quantidade;
-	
-	/** Tamanho máximo da pilha */
-	private int tamanho;
-	
+public class LinkedStack<T> implements Stackable<T> {
 	/** Ponteiro para o topo da pilha */
-	private NoDuplo<T> ponteiroTopo;
+	private DoubleNode<T> topPointer;
+
+    /** Quantidade atual de elementos */
+    private int amount;
+
+    /** Tamanho máximo da pilha */
+    private int length;
 
 	/**
 	 * Construtor padrão que cria uma pilha com capacidade para 10 elementos.
 	 */
-	public PilhaDinamicaGenerica() {
-		this(10);
-	}
+    public LinkedStack() {
+        this(10);
+    }
 
 	/**
 	 * Construtor que cria uma pilha com capacidade personalizada.
 	 *
-	 * @param tamanho a capacidade máxima da pilha
+	 * @param length a capacidade máxima da pilha
 	 */
-	public PilhaDinamicaGenerica(int tamanho) {
-		ponteiroTopo = null;
-		quantidade = 0;
-		this.tamanho = tamanho;
-	}
-
+    public LinkedStack(int length) {
+		topPointer = null;
+		amount = 0;
+		this.length = length;
+    }
+  
 	/**
 	 * Adiciona um elemento ao topo da pilha.
 	 *
-	 * @param dado o elemento a ser adicionado
+	 * @param data o elemento a ser adicionado
 	 * @throws NoSuchElementException se a pilha estiver cheia
 	 */
-	@Override
-	public void empilhar(T dado) {
-		if (estaCheia()) {
+    @Override
+    public void push(T data) {
+		if (isFull()) {
 			throw new NoSuchElementException("Pilha Cheia!");
 		}
-		NoDuplo<T> noTemporario = new NoDuplo<T>();
-		noTemporario.setDado(dado);
-		noTemporario.setAnterior(ponteiroTopo);
-		if (!estaVazia()) {
-			ponteiroTopo.setProximo(noTemporario);
+		DoubleNode<T> tempNode = new DoubleNode<T>();
+		tempNode.setData(data);
+		tempNode.setPrevious(topPointer);
+		if (!isEmpty()) {
+			topPointer.setNext(tempNode);
 		}
-		ponteiroTopo = noTemporario;
-		quantidade++;		
-	}
-	
-	/**
+		topPointer = tempNode;
+		amount++;	
+    }
+
+    /**
 	 * Remove e retorna o elemento do topo da pilha.
 	 *
 	 * @return o elemento removido do topo
 	 * @throws NoSuchElementException se a pilha estiver vazia
 	 */
-	@Override
-	public T desempilhar() {
-		if (estaVazia()) {
+    @Override
+    public T pop() {
+		if (isEmpty()) {
 			throw new NoSuchElementException("Pilha Vazia!");
 		}
-		T dadoTopo = ponteiroTopo.getDado();
-		ponteiroTopo = ponteiroTopo.getAnterior();
+		T topData = topPointer.getData();
+		topData = topPointer.getPrevious();
 		quantidade--;
-		if (!estaVazia()) {
-			ponteiroTopo.setProximo(null);
+		if (!isEmpty()) {
+			topPointer.setNext(null);
 		}
-		return dadoTopo;
-	}
+		return topData;
+    }
 
 	/**
 	 * Retorna o elemento do topo da pilha sem removê-lo.
@@ -86,13 +87,13 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	 * @return o elemento do topo
 	 * @throws NoSuchElementException se a pilha estiver vazia
 	 */
-	@Override
-	public T espiar() {
-		if (estaVazia()) {
+    @Override
+    public T peek() {
+		if (isEmpty()) {
 			throw new NoSuchElementException("Pilha Vazia!");
 		}
-		return ponteiroTopo.getDado();
-	}
+		return topPointer.getData();
+    }
 
 	/**
 	 * Atualiza o topo da pilha.
@@ -101,11 +102,11 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	 * @throws NoSuchElementException se a pilha estiver vazia
 	 */
 	@Override
-	public void atualizar(T novoDado) {
-		if (estaVazia()) {
+	public void update(T newData) {
+		if (isEmpty()) {
 			throw new NoSuchElementException("Pilha Vazia!");
 		}
-		ponteiroTopo.setDado(novoDado);
+		topPointer.setData(newData);
 	}
 
 	/**
@@ -114,8 +115,8 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	 * @return true se a pilha estiver cheia, false caso contrário
 	 */
 	@Override
-	public boolean estaCheia() {
-		return (quantidade == tamanho);
+	public boolean isFull() {
+		return (amount == length);
 	}
 
 	/**
@@ -124,8 +125,8 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	 * @return true se a pilha estiver vazia, false caso contrário
 	 */
 	@Override
-	public boolean estaVazia() {
-		return (quantidade == 0);
+	public boolean isEmpty() {
+		return (amount == 0);
 	}
 
 	/**
@@ -136,16 +137,16 @@ public class PilhaDinamicaGenerica<T> implements Empilhavel<T> {
 	 * @return string representando a pilha
 	 */
 	@Override
-	public String imprimir() {
-		String resultado = "[";
-		NoDuplo<T> ponteiroAuxiliar = ponteiroTopo;
-		for (int i = 0; i < quantidade; i++) {
-			resultado += ponteiroAuxiliar.getDado();
-			if (i != quantidade - 1) {
-				resultado += ",";
+	public String toString() {
+		String result = "";
+		DoubleNode<T> auxPointer = topPointer;
+		for (int i = 0; i < amount; i++) {
+			result += auxPointer.getData();
+			if (i != amount - 1) {
+				result += ",";
 			}
-			ponteiroAuxiliar = ponteiroAuxiliar.getAnterior();
+			auxPointer = auxPointer.getPrevious();
 		}
-		return resultado + "]";
+		return "[" + result + "]";
 	}
 }

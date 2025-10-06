@@ -19,13 +19,13 @@ public class SegundaChamada {
     }
 
     //Questão 2
-    public NoDuplo<T> getInicio() {
+    public NodoDuplo<T> getInicio() {
         return ponteiroInicio;
     }
 
     public ListaDinamica<T> intercalacao(ListaDinamica<T> listaA, ListaDinamica<T> listaB) {
-        NoDuplo<T> p1 = listaA.getInicio();
-        NoDuplo<T> p2 = listaB.getInicio();
+        NodoDuplo<T> p1 = listaA.getInicio();
+        NodoDuplo<T> p2 = listaB.getInicio();
         ListaDinamica<T> resultado = new ListaDinamica<>();
 
         while (p1 != null && p2 != null) {
