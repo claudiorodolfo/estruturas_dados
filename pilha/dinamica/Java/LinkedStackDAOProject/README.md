@@ -25,9 +25,9 @@ O **LinkedStackDAOProject** é uma implementação completa de um sistema de ger
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    BookService (App Layer)                  │
+│                  BookService (App Layer)                    │
 ├─────────────────────────────────────────────────────────────┤
-│              BookDAOLinkedStack (DAO Layer)                 │
+│               BookDAOLinkedStack (DAO Layer)                │
 ├─────────────────────────────────────────────────────────────┤
 │       LinkedStack<T>, DoubleNode<T> (DataBase Layer)        │
 ├─────────────────────────────────────────────────────────────┤
