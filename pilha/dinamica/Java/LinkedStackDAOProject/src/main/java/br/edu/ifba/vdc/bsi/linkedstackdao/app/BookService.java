@@ -23,9 +23,9 @@ public class BookService {
         Book readBook = dbAcessor.getBook(null);
         System.out.println("Topo da pilha: " + readBook.getTitle());
 
-     //   Book deleteBook = dbAcessor.deleteBook(null);
-     //   System.out.println("Desempilhei: " + deleteBook.getTitle());
-     //   System.out.println(deleteBook.toString());
+        Book deletedBook = dbAcessor.deleteBook(null);
+        System.out.println("Desempilhei: " + deleteBook.getTitle());
+        System.out.println(deleteBook.toString());
         System.out.println(dbAcessor.printBooks());
     }
     

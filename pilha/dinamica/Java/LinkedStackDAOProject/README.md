@@ -43,14 +43,14 @@ src/
 │   ├── app/
 │   │   └── BookService.java              # Classe principal da aplicação
 │   ├── dao/
-│   │   ├── BookDAO.java                   # Interface do DAO
-│   │   └── BookDAOLinkedStack.java        # Implementação do DAO
+│   │   ├── BookDAO.java                   # Interface do DAO para Livro
+│   │   └── BookDAOLinkedStack.java        # Implementação do DAO para Livro
 │   ├── dao/repository/
 │   │   ├── Stackable.java                 # Interface da pilha
-│   │   ├── LinkedStack.java              # Implementação da pilha
+│   │   ├── LinkedStack.java              # Implementação da pilha dinâmica
 │   │   └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
-│       └── Book.java                      # Modelo de dados
+│       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedstackdao/
     ├── app/
     │   └── BookServiceTest.java           # Testes da aplicação
