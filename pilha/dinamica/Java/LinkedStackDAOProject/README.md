@@ -219,10 +219,12 @@ IllegalArgumentException: "campo obrigatório não pode ser nulo!"
 
 | Operação | Complexidade | Descrição |
 |----------|--------------|-----------|
-| **Push** | O(1) | Adicionar ao topo |
-| **Pop** | O(1) | Remover do topo |
-| **Peek** | O(1) | Consultar topo |
-| **Update** | O(1) | Atualizar topo |
+| **push** | O(1) | Adicionar ao topo |
+| **pop** | O(1) | Remover do topo |
+| **peek** | O(1) | Consultar topo |
+| **update** | O(1) | Atualizar topo |
+| **isEmpty** | O(1) | Verificar se está vazia |
+| **isFull** | O(1) | Verificar se está cheia |
 | **toString** | O(n) | Listar todos os elementos |
 
 ## 🤝 Contribuição
@@ -247,7 +249,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 🙏 Agradecimentos
 
 - Instituto Federal da Bahia (IFBA)
-- Professor de Estruturas de Dados
 - Comunidade Java
 - Contribuidores do projeto
 
