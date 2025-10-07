@@ -35,7 +35,8 @@ public class BookDAOLinkedStackTest {
     public void testAddBook() {
         bookDAO.addBook(book1);
         
-        Book retrievedBook = bookDAO.getBook(null);
+        Book retrievedBook = bookDAO.getBook(book1.getId());
+        assertNotNull(retrievedBook);
         assertEquals(book1.getId(), retrievedBook.getId());
         assertEquals(book1.getTitle(), retrievedBook.getTitle());
     }
@@ -46,17 +47,25 @@ public class BookDAOLinkedStackTest {
         bookDAO.addBook(book2);
         bookDAO.addBook(book3);
         
-        // Last added book should be on top (LIFO)
-        Book topBook = bookDAO.getBook(null);
-        assertEquals(book3.getId(), topBook.getId());
-        assertEquals(book3.getTitle(), topBook.getTitle());
+        // Test that all books can be retrieved by their IDs
+        Book retrieved1 = bookDAO.getBook(book1.getId());
+        Book retrieved2 = bookDAO.getBook(book2.getId());
+        Book retrieved3 = bookDAO.getBook(book3.getId());
+        
+        assertNotNull(retrieved1);
+        assertNotNull(retrieved2);
+        assertNotNull(retrieved3);
+        
+        assertEquals(book1.getId(), retrieved1.getId());
+        assertEquals(book2.getId(), retrieved2.getId());
+        assertEquals(book3.getId(), retrieved3.getId());
     }
 
     @Test
     public void testGetBook() {
         bookDAO.addBook(book1);
         
-        Book retrievedBook = bookDAO.getBook(null);
+        Book retrievedBook = bookDAO.getBook(book1.getId());
         assertNotNull(retrievedBook);
         assertEquals(book1.getId(), retrievedBook.getId());
         assertEquals(book1.getTitle(), retrievedBook.getTitle());
@@ -68,13 +77,15 @@ public class BookDAOLinkedStackTest {
         bookDAO.addBook(book1);
         bookDAO.addBook(book2);
         
-        // First get
-        Book firstGet = bookDAO.getBook(null);
-        assertEquals(book2.getId(), firstGet.getId());
+        // First get by ID
+        Book firstGet = bookDAO.getBook(book1.getId());
+        assertNotNull(firstGet);
+        assertEquals(book1.getId(), firstGet.getId());
         
         // Second get should return the same book (not removed)
-        Book secondGet = bookDAO.getBook(null);
-        assertEquals(book2.getId(), secondGet.getId());
+        Book secondGet = bookDAO.getBook(book1.getId());
+        assertNotNull(secondGet);
+        assertEquals(book1.getId(), secondGet.getId());
         assertEquals(firstGet.getId(), secondGet.getId());
     }
 
@@ -87,7 +98,8 @@ public class BookDAOLinkedStackTest {
         
         bookDAO.updateBook(updatedBook);
         
-        Book retrievedBook = bookDAO.getBook(null);
+        Book retrievedBook = bookDAO.getBook(book1.getId());
+        assertNotNull(retrievedBook);
         assertEquals("Dom Casmurro Atualizado", retrievedBook.getTitle());
         assertEquals(Double.valueOf(35.90), retrievedBook.getPrice());
     }
@@ -97,13 +109,19 @@ public class BookDAOLinkedStackTest {
         bookDAO.addBook(book1);
         bookDAO.addBook(book2);
         
-        // Delete the top book (book2)
-        Book deletedBook = bookDAO.deleteBook(null);
-        assertEquals(book2.getId(), deletedBook.getId());
+        // Delete book1 by ID
+        Book deletedBook = bookDAO.deleteBook(book1.getId());
+        assertNotNull(deletedBook);
+        assertEquals(book1.getId(), deletedBook.getId());
         
-        // Now the top should be book1
-        Book remainingBook = bookDAO.getBook(null);
-        assertEquals(book1.getId(), remainingBook.getId());
+        // Verify book1 is deleted
+        Book remainingBook = bookDAO.getBook(book1.getId());
+        assertNull(remainingBook);
+        
+        // Verify book2 still exists
+        Book book2Retrieved = bookDAO.getBook(book2.getId());
+        assertNotNull(book2Retrieved);
+        assertEquals(book2.getId(), book2Retrieved.getId());
     }
 
     @Test
@@ -112,29 +130,39 @@ public class BookDAOLinkedStackTest {
         bookDAO.addBook(book2);
         bookDAO.addBook(book3);
         
-        // Delete in LIFO order
-        Book deleted1 = bookDAO.deleteBook(null);
-        assertEquals(book3.getId(), deleted1.getId());
+        // Delete books by ID
+        Book deleted1 = bookDAO.deleteBook(book1.getId());
+        assertNotNull(deleted1);
+        assertEquals(book1.getId(), deleted1.getId());
         
-        Book deleted2 = bookDAO.deleteBook(null);
+        Book deleted2 = bookDAO.deleteBook(book2.getId());
+        assertNotNull(deleted2);
         assertEquals(book2.getId(), deleted2.getId());
         
-        Book deleted3 = bookDAO.deleteBook(null);
-        assertEquals(book1.getId(), deleted3.getId());
+        Book deleted3 = bookDAO.deleteBook(book3.getId());
+        assertNotNull(deleted3);
+        assertEquals(book3.getId(), deleted3.getId());
+        
+        // Verify all books are deleted
+        assertNull(bookDAO.getBook(book1.getId()));
+        assertNull(bookDAO.getBook(book2.getId()));
+        assertNull(bookDAO.getBook(book3.getId()));
     }
 
     @Test
-    public void testSortBooks() {
-        // This method is not implemented, should return null
-        Book[] sortedBooks = bookDAO.sortBooks();
-        assertNull(sortedBooks);
+    public void testSortBooksByTitle() {
+        // This method is implemented, should return empty array initially
+        Book[] sortedBooks = bookDAO.sortBooksByTitle();
+        assertNotNull(sortedBooks);
+        assertEquals(0, sortedBooks.length);
     }
 
     @Test
     public void testGetAllBooks() {
-        // This method is not implemented, should return null
+        // This method is implemented, should return empty array initially
         Book[] allBooks = bookDAO.getAllBooks();
-        assertNull(allBooks);
+        assertNotNull(allBooks);
+        assertEquals(0, allBooks.length);
     }
 
     @Test
@@ -165,22 +193,33 @@ public class BookDAOLinkedStackTest {
 
     @Test
     public void testStackBehavior() {
-        // Test LIFO behavior
+        // Test that all books can be added and retrieved by ID
         bookDAO.addBook(book1);
         bookDAO.addBook(book2);
         bookDAO.addBook(book3);
         
-        // Should get the last added book
-        Book topBook = bookDAO.getBook(null);
-        assertEquals(book3.getId(), topBook.getId());
+        // All books should be retrievable by their IDs
+        Book retrieved1 = bookDAO.getBook(book1.getId());
+        Book retrieved2 = bookDAO.getBook(book2.getId());
+        Book retrieved3 = bookDAO.getBook(book3.getId());
         
-        // Remove top book
-        Book removedBook = bookDAO.deleteBook(null);
+        assertNotNull(retrieved1);
+        assertNotNull(retrieved2);
+        assertNotNull(retrieved3);
+        
+        assertEquals(book1.getId(), retrieved1.getId());
+        assertEquals(book2.getId(), retrieved2.getId());
+        assertEquals(book3.getId(), retrieved3.getId());
+        
+        // Remove book3 by ID
+        Book removedBook = bookDAO.deleteBook(book3.getId());
+        assertNotNull(removedBook);
         assertEquals(book3.getId(), removedBook.getId());
         
-        // Now top should be book2
-        Book newTopBook = bookDAO.getBook(null);
-        assertEquals(book2.getId(), newTopBook.getId());
+        // Verify book3 is deleted but others remain
+        assertNull(bookDAO.getBook(book3.getId()));
+        assertNotNull(bookDAO.getBook(book1.getId()));
+        assertNotNull(bookDAO.getBook(book2.getId()));
     }
 
     @Test
@@ -188,19 +227,20 @@ public class BookDAOLinkedStackTest {
         bookDAO.addBook(book1);
         bookDAO.addBook(book2);
         
-        // Update the top book (book2)
+        // Update book2 by ID
         Book updatedBook = new Book(2L, "O Cortiço Atualizado", "Aluísio Azevedo",
                                   LocalDate.of(1890, 1, 1), "978-85-359-0271-6", 30.00);
         
         bookDAO.updateBook(updatedBook);
         
-        Book retrievedBook = bookDAO.getBook(null);
+        Book retrievedBook = bookDAO.getBook(book2.getId());
+        assertNotNull(retrievedBook);
         assertEquals("O Cortiço Atualizado", retrievedBook.getTitle());
         assertEquals(Double.valueOf(30.00), retrievedBook.getPrice());
         
-        // book1 should still be underneath
-        bookDAO.deleteBook(null);
-        Book remainingBook = bookDAO.getBook(null);
+        // book1 should still exist
+        Book remainingBook = bookDAO.getBook(book1.getId());
+        assertNotNull(remainingBook);
         assertEquals(book1.getId(), remainingBook.getId());
     }
 
@@ -218,16 +258,27 @@ public class BookDAOLinkedStackTest {
         // Add another book
         bookDAO.addBook(book3);
         
-        // Check final state
-        Book topBook = bookDAO.getBook(null);
-        assertEquals(book3.getId(), topBook.getId());
+        // Check final state - all books should be retrievable by ID
+        Book retrieved1 = bookDAO.getBook(book1.getId());
+        Book retrieved2 = bookDAO.getBook(book2.getId());
+        Book retrieved3 = bookDAO.getBook(book3.getId());
         
-        // Remove top
-        Book removedBook = bookDAO.deleteBook(null);
+        assertNotNull(retrieved1);
+        assertNotNull(retrieved2);
+        assertNotNull(retrieved3);
+        
+        // Check that book2 was updated
+        assertEquals("O Cortiço Modificado", retrieved2.getTitle());
+        assertEquals(Double.valueOf(25.00), retrieved2.getPrice());
+        
+        // Remove book3 by ID
+        Book removedBook = bookDAO.deleteBook(book3.getId());
+        assertNotNull(removedBook);
         assertEquals(book3.getId(), removedBook.getId());
         
-        // Check next book (should be the updated book2)
-        Book nextBook = bookDAO.getBook(null);
-        assertEquals("O Cortiço Modificado", nextBook.getTitle());
+        // Verify book3 is deleted but others remain
+        assertNull(bookDAO.getBook(book3.getId()));
+        assertNotNull(bookDAO.getBook(book1.getId()));
+        assertNotNull(bookDAO.getBook(book2.getId()));
     }
 }

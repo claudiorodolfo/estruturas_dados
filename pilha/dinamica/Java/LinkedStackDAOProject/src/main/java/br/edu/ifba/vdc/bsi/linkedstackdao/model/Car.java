@@ -20,12 +20,7 @@ public class Car {
     }
 
     public Car(String licensePlate, String mark, String model, String color, String ownerName, LocalDateTime arrived) {
-        required(licensePlate);
-        required(mark);
-        required(model);
-        this.licensePlate = licensePlate;
-        this.mark = mark;
-        this.model = model;
+        this(licensePlate, mark, model);
         this.color = color;
         this.ownerName = ownerName;
         this.arrived = arrived;

@@ -1,21 +1,30 @@
 package br.edu.ifba.vdc.bsi.linkedstackdao.dao;
 
 import br.edu.ifba.vdc.bsi.linkedstackdao.model.Car;
+import java.time.LocalDateTime;
 
-public interface BookDAO {
-    // cria um novo carro
+public interface CarDAO {
+    // Operações básicas CRUD
     void addCar(Car car);
-    // retorna um carro
     Car getCar(String plateLicense);
-    // atualiza um carro
     void updateCar(Car newCar);
-    // apaga um carro
     Car deleteCar(String plateLicense);
-
-    // ordena os carros
-    Car[] sortCars();
-    // retorna todos os carros
+    
+    // Operações de consulta específicas para carros
+    Car[] getCarsByMark(String mark);
+    Car[] getCarsByModel(String model);
+    
+    // Operações de análise e estatísticas
+    Car[] getCarsByMostRecentArrival(int limit);
+    Car[] getCarsByOldestArrival(int limit);
+    
+    // Operações de ordenação específicas
+    Car[] sortCarsByMark();
+    Car[] sortCarsByModel();
+    
+    // Operações de relatório
     Car[] getAllCars();
-    //imprime os carros armazenados
-    String printBooks();
+    String printCars();
+    int getTotalCars();
+    LocalDateTime getNewestArrival();
 }

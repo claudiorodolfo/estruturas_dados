@@ -10,6 +10,7 @@ public class BookService {
     public static BookDAO getDBBook() {
         return new BookDAOLinkedStack();
     }
+    
     public static void main(String[] args) {
         BookDAO dbAcessor = BookService.getDBBook();
 
@@ -20,12 +21,12 @@ public class BookService {
 
         dbAcessor.addBook(b1);
         dbAcessor.addBook(b2);
-        Book readBook = dbAcessor.getBook(null);
-        System.out.println("Topo da pilha: " + readBook.getTitle());
+        Book readBook = dbAcessor.getBook(1L);
+        System.out.println("Livro encontrado: " + readBook.getTitle());
 
-        Book deletedBook = dbAcessor.deleteBook(null);
-        System.out.println("Desempilhei: " + deleteBook.getTitle());
-        System.out.println(deleteBook.toString());
+        Book deletedBook = dbAcessor.deleteBook(2L);
+        System.out.println("Desempilhei: " + deletedBook.getTitle());
+        System.out.println(deletedBook.toString());
         System.out.println(dbAcessor.printBooks());
     }
     

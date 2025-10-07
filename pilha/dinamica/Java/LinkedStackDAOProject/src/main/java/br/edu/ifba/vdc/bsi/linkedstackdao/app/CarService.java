@@ -1,8 +1,8 @@
 package br.edu.ifba.vdc.bsi.linkedstackdao.app;
 
-import br.edu.ifba.vdc.bsi.linkedstackdao.dao.BookDAO;
-import br.edu.ifba.vdc.bsi.linkedstackdao.dao.BookDAOLinkedStack;
-import br.edu.ifba.vdc.bsi.linkedstackdao.model.Book;
+import br.edu.ifba.vdc.bsi.linkedstackdao.dao.CarDAO;
+import br.edu.ifba.vdc.bsi.linkedstackdao.dao.CarDAOLinkedStack;
+import br.edu.ifba.vdc.bsi.linkedstackdao.model.Car;
 import java.time.LocalDateTime;
 
 public class CarService {
@@ -10,20 +10,21 @@ public class CarService {
     public static CarDAO getDBCar() {
         return new CarDAOLinkedStack();
     }
+    
     public static void main(String[] args) {
-        CarDAO dbAcessor = CarService.getDBBook();
+        CarDAO dbAcessor = CarService.getDBCar();
 
         Car c1 = new Car("ABC-1234", "Ford", "Fiesta", "Verde", "João", LocalDateTime.now());
         Car c2 = new Car("DEF-5678", "Chevrolet", "Onix", "Azul", "Maria", LocalDateTime.now());
 
         dbAcessor.addCar(c1);
         dbAcessor.addCar(c2);
-        Car readCar = dbAcessor.getCar(null);
-        System.out.println("Topo da pilha: " + readCar.getLicensePlate());
+        Car readCar = dbAcessor.getCar("ABC-1234");
+        System.out.println("Carro encontrado: " + readCar.getLicensePlate());
 
-        Car deletedCar = dbAcessor.deleteCar(null);
-        System.out.println("Desempilhei: " + deletedCar.getLicensePlate());
+        Car deletedCar = dbAcessor.deleteCar("DEF-5678");
+        System.out.println("Carro removido: " + deletedCar.getLicensePlate());
         System.out.println(deletedCar.toString());
-        System.out.println(dbAcessor.printCars());
+        System.out.println("Carros restantes: " + dbAcessor.printCars());
     }
 }

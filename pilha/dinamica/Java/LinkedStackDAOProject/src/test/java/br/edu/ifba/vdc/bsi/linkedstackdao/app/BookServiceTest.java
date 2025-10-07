@@ -38,7 +38,7 @@ public class BookServiceTest {
                                LocalDate.of(2023, 1, 1), "978-1234567890", 19.99);
         
         dbAccessor.addBook(testBook);
-        Book retrievedBook = dbAccessor.getBook(null);
+        Book retrievedBook = dbAccessor.getBook(testBook.getId());
         
         assertNotNull(retrievedBook);
         assertEquals(testBook.getId(), retrievedBook.getId());
@@ -58,26 +58,37 @@ public class BookServiceTest {
         dbAccessor.addBook(book1);
         dbAccessor.addBook(book2);
         
-        // Test retrieval
-        Book topBook = dbAccessor.getBook(null);
-        assertEquals(book2.getId(), topBook.getId());
+        // Test retrieval by ID
+        Book retrieved1 = dbAccessor.getBook(book1.getId());
+        Book retrieved2 = dbAccessor.getBook(book2.getId());
+        
+        assertNotNull(retrieved1);
+        assertNotNull(retrieved2);
+        assertEquals(book1.getId(), retrieved1.getId());
+        assertEquals(book2.getId(), retrieved2.getId());
         
         // Test update
         Book updatedBook = new Book(2L, "Book 2 Updated", "Author 2",
                                  LocalDate.of(2023, 2, 1), "978-2222222222", 25.00);
         dbAccessor.updateBook(updatedBook);
         
-        Book retrievedUpdatedBook = dbAccessor.getBook(null);
+        Book retrievedUpdatedBook = dbAccessor.getBook(book2.getId());
+        assertNotNull(retrievedUpdatedBook);
         assertEquals("Book 2 Updated", retrievedUpdatedBook.getTitle());
         assertEquals(Double.valueOf(25.00), retrievedUpdatedBook.getPrice());
         
-        // Test deletion
-        Book deletedBook = dbAccessor.deleteBook(null);
+        // Test deletion by ID
+        Book deletedBook = dbAccessor.deleteBook(book2.getId());
+        assertNotNull(deletedBook);
         assertEquals(book2.getId(), deletedBook.getId());
         
         // Check remaining book
-        Book remainingBook = dbAccessor.getBook(null);
+        Book remainingBook = dbAccessor.getBook(book1.getId());
+        assertNotNull(remainingBook);
         assertEquals(book1.getId(), remainingBook.getId());
+        
+        // Verify book2 is deleted
+        assertNull(dbAccessor.getBook(book2.getId()));
     }
 
     @Test
@@ -93,19 +104,36 @@ public class BookServiceTest {
         dbAccessor.addBook(book2);
         dbAccessor.addBook(book3);
         
-        // Should get last added book (LIFO)
-        Book topBook = dbAccessor.getBook(null);
-        assertEquals(book3.getId(), topBook.getId());
+        // All books should be retrievable by ID
+        Book retrieved1 = dbAccessor.getBook(book1.getId());
+        Book retrieved2 = dbAccessor.getBook(book2.getId());
+        Book retrieved3 = dbAccessor.getBook(book3.getId());
         
-        // Remove in reverse order
-        Book removed1 = dbAccessor.deleteBook(null);
+        assertNotNull(retrieved1);
+        assertNotNull(retrieved2);
+        assertNotNull(retrieved3);
+        
+        assertEquals(book1.getId(), retrieved1.getId());
+        assertEquals(book2.getId(), retrieved2.getId());
+        assertEquals(book3.getId(), retrieved3.getId());
+        
+        // Remove by ID
+        Book removed1 = dbAccessor.deleteBook(book3.getId());
+        assertNotNull(removed1);
         assertEquals(book3.getId(), removed1.getId());
         
-        Book removed2 = dbAccessor.deleteBook(null);
+        Book removed2 = dbAccessor.deleteBook(book2.getId());
+        assertNotNull(removed2);
         assertEquals(book2.getId(), removed2.getId());
         
-        Book removed3 = dbAccessor.deleteBook(null);
+        Book removed3 = dbAccessor.deleteBook(book1.getId());
+        assertNotNull(removed3);
         assertEquals(book1.getId(), removed3.getId());
+        
+        // Verify all books are deleted
+        assertNull(dbAccessor.getBook(book1.getId()));
+        assertNull(dbAccessor.getBook(book2.getId()));
+        assertNull(dbAccessor.getBook(book3.getId()));
     }
 
     @Test
@@ -133,12 +161,17 @@ public class BookServiceTest {
     }
 
     @Test
-    public void testGetDBBookUnimplementedMethods() {
+    public void testGetDBBookImplementedMethods() {
         BookDAO dbAccessor = BookService.getDBBook();
         
-        // These methods are not implemented and should return null
-        assertNull(dbAccessor.sortBooks());
-        assertNull(dbAccessor.getAllBooks());
+        // These methods are implemented and should work
+        Book[] allBooks = dbAccessor.getAllBooks();
+        assertNotNull(allBooks);
+        assertEquals(0, allBooks.length); // Empty initially
+        
+        Book[] sortedByTitle = dbAccessor.sortBooksByTitle();
+        assertNotNull(sortedByTitle);
+        assertEquals(0, sortedByTitle.length); // Empty initially
     }
 
     @Test

@@ -1,21 +1,30 @@
 package br.edu.ifba.vdc.bsi.linkedstackdao.dao;
 
 import br.edu.ifba.vdc.bsi.linkedstackdao.model.Book;
+import java.time.LocalDate;
 
 public interface BookDAO {
-    // cria um novo livro
+    // Operações básicas CRUD
     void addBook(Book book);
-    // retorna um livro
     Book getBook(Long id);
-    // atualiza um livro
     void updateBook(Book newBook);
-    // apaga um livro
     Book deleteBook(Long id);
-
-    // ordena os livros
-    Book[] sortBooks();
-    // retorna todos os livros
+    
+    // Operações de consulta específicas para livros
+    Book[] getBooksByAuthor(String author);
+    Book getBookByIsbn(String isbn);
+    
+    // Operações de análise e estatísticas
+    Book[] getMostExpensiveBooks(int limit);
+    Book[] getCheapestBooks(int limit);
+    
+    // Operações de ordenação específicas
+    Book[] sortBooksByTitle();
+    Book[] sortBooksByAuthor();
+    
+    // Operações de relatório
     Book[] getAllBooks();
-    //imprime os livros armazenados
     String printBooks();
+    int getTotalBooks();
+
 }
