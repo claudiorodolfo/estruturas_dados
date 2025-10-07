@@ -10,7 +10,7 @@
 
 ## 🎯 Sobre o Projeto
 
-O **LinkedStackDAOProject** é uma implementação completa de um sistema de gerenciamento de livros utilizando uma **pilha dinâmica duplamente encadeada**. O projeto demonstra conceitos fundamentais de estruturas de dados, padrões de design e boas práticas de desenvolvimento Java.
+O **LinkedStackDAOProject** é uma implementação de um sistema de gerenciamento de livros utilizando uma **pilha dinâmica duplamente encadeada**. O projeto demonstra conceitos fundamentais de estruturas de dados, padrões de design e boas práticas de desenvolvimento Java.
 
 ### ✨ Características Principais
 
@@ -27,7 +27,7 @@ O **LinkedStackDAOProject** é uma implementação completa de um sistema de ger
 ┌─────────────────────────────────────────────────────────────┐
 │                  BookService (App Layer)                    │
 ├─────────────────────────────────────────────────────────────┤
-│               BookDAOLinkedStack (DAO Layer)                │
+│              BookDAOLinkedStack (DAO Layer)                 │
 ├─────────────────────────────────────────────────────────────┤
 │       LinkedStack<T>, DoubleNode<T> (DataBase Layer)        │
 ├─────────────────────────────────────────────────────────────┤
@@ -173,10 +173,10 @@ mvn test -Dtest=IntegrationTest
 ## 📊 Funcionalidades
 
 ### 🔧 Operações da Pilha
-- **Push**: Adicionar elemento ao topo
-- **Pop**: Remover elemento do topo
-- **Peek**: Consultar elemento do topo (sem remover)
-- **Update**: Atualizar elemento do topo
+- **push**: Adicionar elemento ao topo
+- **pop**: Remover e retornar o elemento do topo
+- **peek**: Consultar elemento do topo (sem remover)
+- **update**: Atualizar elemento do topo
 - **isEmpty**: Verificar se está vazia
 - **isFull**: Verificar se está cheia
 
