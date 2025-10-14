@@ -12,352 +12,160 @@ public class CarDAOLinkedStack implements CarDAO {
     // Operações básicas CRUD
     @Override
     public void addCar(Car car) {
-        cars.push(car);
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-  
+
     @Override
     public Car getCar(String plateLicense) {
-        Car[] allCars = getAllCars();
-        for (Car car : allCars) {
-            if (car.getLicensePlate().equals(plateLicense)) {
-                return car;
-            }
-        }
-        return null;
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public Car[] getAllCars() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
     @Override
     public void updateCar(Car newCar) {
-        // Para atualizar um carro específico, precisamos reconstruir a pilha
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            if (car.getLicensePlate().equals(newCar.getLicensePlate())) {
-                tempStack.push(newCar);
-            } else {
-                tempStack.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
+
     @Override
     public Car deleteCar(String plateLicense) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Car deletedCar = null;
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            if (car.getLicensePlate().equals(plateLicense)) {
-                deletedCar = car;
-            } else {
-                tempStack.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        return deletedCar;
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
+
     // Operações de consulta específicas para carros
     @Override
+    public Car getCarByLicensePlate(String licensePlate) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
     public Car[] getCarsByMark(String mark) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Stackable<Car> resultStack = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            tempStack.push(car);
-            if (car.getMark() != null && car.getMark().equalsIgnoreCase(mark)) {
-                resultStack.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        // Converter resultado para array
-        Car[] result = new Car[countElements(resultStack)];
-        int index = 0;
-        while (!resultStack.isEmpty()) {
-            result[index++] = resultStack.pop();
-        }
-        
-        return result;
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
     @Override
     public Car[] getCarsByModel(String model) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Stackable<Car> resultStack = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            tempStack.push(car);
-            if (car.getModel() != null && car.getModel().equalsIgnoreCase(model)) {
-                resultStack.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        // Converter resultado para array
-        Car[] result = new Car[countElements(resultStack)];
-        int index = 0;
-        while (!resultStack.isEmpty()) {
-            result[index++] = resultStack.pop();
-        }
-        
-        return result;
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
+
+    @Override
+    public Car[] getCarsByColor(String color) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public Car[] getCarsByOwner(String owner) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public Car[] getCarsByMomentArrival(LocalDateTime initialMoment, LocalDateTime finalMoment) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
     // Operações de análise e estatísticas
     @Override
-    public Car[] getCarsByMostRecentArrival(int limit) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Stackable<Car> carsWithArrival = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros e filtrar os que têm data de chegada
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            tempStack.push(car);
-            if (car.getArrived() != null) {
-                carsWithArrival.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        // Ordenar por data de chegada (mais recentes primeiro) usando bubble sort
-        Car[] carsArray = stackToArray(carsWithArrival);
-        bubbleSortByArrivalDesc(carsArray);
-        
-        // Retornar apenas o limite solicitado
-        int resultSize = Math.min(limit, carsArray.length);
-        Car[] result = new Car[resultSize];
-        for (int i = 0; i < resultSize; i++) {
-            result[i] = carsArray[i];
-        }
-        
-        return result;
+    public Car getCarByNewestArrival() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
     @Override
-    public Car[] getCarsByOldestArrival(int limit) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Stackable<Car> carsWithArrival = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros e filtrar os que têm data de chegada
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            tempStack.push(car);
-            if (car.getArrived() != null) {
-                carsWithArrival.push(car);
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        // Ordenar por data de chegada (mais antigos primeiro) usando bubble sort
-        Car[] carsArray = stackToArray(carsWithArrival);
-        bubbleSortByArrivalAsc(carsArray);
-        
-        // Retornar apenas o limite solicitado
-        int resultSize = Math.min(limit, carsArray.length);
-        Car[] result = new Car[resultSize];
-        for (int i = 0; i < resultSize; i++) {
-            result[i] = carsArray[i];
-        }
-        
-        return result;
-    }
-    
-    // Operações de ordenação específicas
-    @Override
-    public Car[] sortCarsByMark() {
-        Car[] allCars = getAllCars();
-        bubbleSortByMark(allCars);
-        return allCars;
+    public Car getCarByOldestArrival() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
-    @Override
-    public Car[] sortCarsByModel() {
-        Car[] allCars = getAllCars();
-        bubbleSortByModel(allCars);
-        return allCars;
-    }
-    
-    // Operações de relatório
-    @Override
-    public Car[] getAllCars() {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            tempStack.push(cars.pop());
-        }
-        
-        // Reempilhar na ordem original e criar array
-        Car[] result = new Car[countElements(tempStack)];
-        int index = 0;
-        while (!tempStack.isEmpty()) {
-            Car car = tempStack.pop();
-            result[index++] = car;
-            cars.push(car);
-        }
-        
-        return result;
-    }
-
+    // Operações de relatório e estatísticas
     @Override
     public String printCars() {
-        return cars.toString();
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
     @Override
     public int getTotalCars() {
-        return countElements(cars);
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 
     @Override
-    public LocalDateTime getNewestArrival() {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        LocalDateTime newest = null;
-        
-        // Desempilhar todos os carros
-        while (!cars.isEmpty()) {
-            Car car = cars.pop();
-            tempStack.push(car);
-            if (car.getArrived() != null) {
-                if (newest == null || car.getArrived().isAfter(newest)) {
-                    newest = car.getArrived();
-                }
-            }
-        }
-        
-        // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            cars.push(tempStack.pop());
-        }
-        
-        return newest;
+    public String getMostPopularMark() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    // Métodos auxiliares usando apenas Stackable
-    private int countElements(Stackable<Car> stack) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        int count = 0;
-        
-        while (!stack.isEmpty()) {
-            tempStack.push(stack.pop());
-            count++;
-        }
-        
-        // Restaurar a pilha original
-        while (!tempStack.isEmpty()) {
-            stack.push(tempStack.pop());
-        }
-        
-        return count;
+
+    @Override
+    public String getMostPopularModel() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    private Car[] stackToArray(Stackable<Car> stack) {
-        Stackable<Car> tempStack = new LinkedStack<>(20);
-        Car[] array = new Car[countElements(stack)];
-        int index = 0;
-        
-        while (!stack.isEmpty()) {
-            Car car = stack.pop();
-            array[index++] = car;
-            tempStack.push(car);
-        }
-        
-        // Restaurar a pilha original
-        while (!tempStack.isEmpty()) {
-            stack.push(tempStack.pop());
-        }
-        
-        return array;
+
+    @Override
+    public String getMostPopularColor() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    // Algoritmos de ordenação usando apenas arrays (sem List)
-    private void bubbleSortByArrivalDesc(Car[] cars) {
-        int n = cars.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (cars[j].getArrived().isBefore(cars[j + 1].getArrived())) {
-                    Car temp = cars[j];
-                    cars[j] = cars[j + 1];
-                    cars[j + 1] = temp;
-                }
-            }
-        }
+
+    // Operações de gerenciamento
+    @Override
+    public boolean isCarInPlaced(String plateLicense) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    private void bubbleSortByArrivalAsc(Car[] cars) {
-        int n = cars.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (cars[j].getArrived().isAfter(cars[j + 1].getArrived())) {
-                    Car temp = cars[j];
-                    cars[j] = cars[j + 1];
-                    cars[j + 1] = temp;
-                }
-            }
-        }
+
+    @Override
+    public void clearAllCars() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    private void bubbleSortByMark(Car[] cars) {
-        int n = cars.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                String mark1 = cars[j].getMark() != null ? cars[j].getMark() : "";
-                String mark2 = cars[j + 1].getMark() != null ? cars[j + 1].getMark() : "";
-                if (mark1.compareToIgnoreCase(mark2) > 0) {
-                    Car temp = cars[j];
-                    cars[j] = cars[j + 1];
-                    cars[j + 1] = temp;
-                }
-            }
-        }
+
+    @Override
+    public void removeCarsOlderThan(LocalDateTime date) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
-    
-    private void bubbleSortByModel(Car[] cars) {
-        int n = cars.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                String model1 = cars[j].getModel() != null ? cars[j].getModel() : "";
-                String model2 = cars[j + 1].getModel() != null ? cars[j + 1].getModel() : "";
-                if (model1.compareToIgnoreCase(model2) > 0) {
-                    Car temp = cars[j];
-                    cars[j] = cars[j + 1];
-                    cars[j + 1] = temp;
-                }
-            }
-        }
+
+    @Override
+    public Car[] getCarsByParkingDuration(long minHours, long maxHours) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public int getAvailableSpaces() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public boolean isParkingEmpty() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public int getMaxCapacity() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public int getOccupancyRate() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public boolean isParkingFull() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public long getParkingDuration(String plateLicense) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public void removeCarsByOwner(String owner) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public long getAverageArrivalTime() {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
+    }
+
+    @Override
+    public Car[] getCarsWithLongParking(long thresholdHours) {
+        throw new UnsupportedOperationException("Operação ainda não implementada");
     }
 }

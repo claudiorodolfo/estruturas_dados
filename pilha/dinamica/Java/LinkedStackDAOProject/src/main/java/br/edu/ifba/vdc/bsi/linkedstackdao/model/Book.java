@@ -3,15 +3,15 @@ package br.edu.ifba.vdc.bsi.linkedstackdao.model;
 import java.time.LocalDate;
 
 public class Book {
-    private final Long id;            // obrigatório, imutável
+    private final long id;            // obrigatório, imutável
     private String title;             // obrigatório
     private String author;
     private LocalDate publicationDate;
     private String isbn;
-    private Double price;
+    private double price;
 
     // Construtor mínimo – apenas campos obrigatórios.
-    public Book(Long id, String title) {
+    public Book(long id, String title) {
         required(id);
         required(title);
         this.id = id;   
@@ -19,12 +19,12 @@ public class Book {
     }
 
     // Construtor completo – todos os campos.
-    public Book(Long id,
+    public Book(long id,
                 String title,
                 String author,
                 LocalDate publicationDate,
                 String isbn,
-                Double price) {
+                double price) {
         this(id, title);
         this.author = author;
         this.publicationDate = publicationDate;
@@ -38,7 +38,7 @@ public class Book {
     }
 
     // Getter para id (imutável)
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -80,11 +80,11 @@ public class Book {
     }
 
     // Getter e setter para price
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -94,7 +94,7 @@ public class Book {
         String authorJson = (author == null) ? "null" : "\"" + author + "\"";
         String publicationDateJson = (publicationDate == null) ? "null" : "\"" + publicationDate.toString() + "\""; // ISO yyyy-MM-dd
         String isbnJson = (isbn == null) ? "null" : "\"" + isbn + "\"";
-        String priceJson = (price == null) ? "null" : price.toString(); // número JSON (use ponto decimal)
+        String priceJson = Double.toString(price); // número JSON (use ponto decimal)
 
         return "{" +
             "id:" + id +
