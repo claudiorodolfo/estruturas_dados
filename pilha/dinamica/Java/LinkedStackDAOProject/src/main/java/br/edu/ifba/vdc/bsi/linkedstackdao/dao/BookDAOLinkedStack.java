@@ -10,17 +10,9 @@ import java.time.LocalDate;
  * Implementação do DAO (Data Access Object) para gerenciamento de livros
  * utilizando uma estrutura de dados do tipo pilha (stack) baseada em lista encadeada.
  * 
- * <p>Esta classe implementa todas as operações CRUD (Create, Read, Update, Delete)
+ * Esta classe implementa todas as operações CRUD (Create, Read, Update, Delete)
  * e operações de consulta específicas para livros, mantendo os dados em uma
- * estrutura de pilha que preserva a ordem LIFO (Last In, First Out).</p>
- * 
- * <p>Características principais:</p>
- * <ul>
- *   <li>Armazenamento baseado em pilha com lista encadeada</li>
- *   <li>Preservação da ordem original da pilha em todas as operações</li>
- *   <li>Suporte a operações de filtro e busca</li>
- *   <li>Cálculo de estatísticas e análises</li>
- * </ul>
+ * estrutura de pilha que preserva a ordem LIFO (Last In, First Out).
  * 
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0
@@ -36,28 +28,28 @@ public class BookDAOLinkedStack implements BookDAO {
      * Pilha principal para armazenamento dos livros.
      * Utiliza uma implementação baseada em lista encadeada com capacidade inicial de 20 elementos.
      */
-    private Stackable<Book> books = new LinkedStack<>(20);
+    private Stackable<Book> stackBooks = new LinkedStack<>(20);
 
     // Operações básicas CRUD
     /**
      * Adiciona um novo livro à pilha.
      * 
-     * <p>O livro é inserido no topo da pilha, seguindo o princípio LIFO.
-     * Esta operação tem complexidade O(1).</p>
+     * O livro é inserido no topo da pilha, seguindo o princípio LIFO.
+     * Esta operação tem complexidade O(1).
      * 
      * @param book o livro a ser adicionado (não pode ser null)
      * @throws IllegalArgumentException se o livro for null
      */
     @Override
     public void addBook(Book book) {
-        books.push(book);
+        stackBooks.push(book);
     }
   
     /**
      * Busca um livro pelo seu ID.
      * 
-     * <p>Esta operação percorre todos os livros na pilha para encontrar
-     * o livro com o ID especificado. A pilha é preservada após a busca.</p>
+     * Esta operação percorre todos os livros na pilha para encontrar
+     * o livro com o ID especificado. A pilha é preservada após a busca.
      * 
      * @param id o ID do livro a ser buscado
      * @return o livro encontrado ou null se não existir
@@ -76,67 +68,50 @@ public class BookDAOLinkedStack implements BookDAO {
     /**
      * Retorna todos os livros da pilha em um array.
      * 
-     * <p>Esta operação desempilha todos os livros, cria um array com eles
-     * e reempilha na ordem original, preservando a estrutura da pilha.</p>
+     * Esta operação desempilha todos os livros, cria um array com eles
+     * e reempilha na ordem original, preservando a estrutura da pilha.
      * 
      * @return array contendo todos os livros da pilha
      */
     @Override
-    public Book[] getAllBooks() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        
-        // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            tempStack.push(books.pop());
-        }
-        
-        // Reempilhar na ordem original e criar array
-        Book[] result = new Book[countElements(tempStack)];
-        int index = 0;
-        while (!tempStack.isEmpty()) {
-            Book book = tempStack.pop();
-            result[index] = book;
-            index++;
-            books.push(book);
-        }
-        
-        return result;
+    public Book[] getAllBooks() {        
+        return stackToArray(stackBooks);
     }
     
     /**
      * Atualiza um livro existente na pilha.
      * 
-     * <p>Esta operação localiza o livro pelo ID e substitui pela nova versão.
-     * A pilha é reconstruída mantendo a ordem original dos outros livros.</p>
+     * Esta operação localiza o livro pelo ID e substitui pela nova versão.
+     * A pilha é reconstruída mantendo a ordem original dos outros livros.
      * 
      * @param newBook o livro atualizado (deve ter o mesmo ID do livro original)
      */
     @Override
     public void updateBook(Book newBook) {
         // Para atualizar um livro específico, precisamos reconstruir a pilha
-        Stackable<Book> tempStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
  
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
             if (book.getId() == newBook.getId()) {
-                tempStack.push(newBook);
+                tempStackBooks.push(newBook);
             } else {
-                tempStack.push(book);
+                tempStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
     }
     
     /**
      * Remove um livro da pilha pelo seu ID.
      * 
-     * <p>Esta operação localiza o livro pelo ID, remove-o da pilha
-     * e reconstrói a pilha sem o livro removido, mantendo a ordem dos outros.</p>
+     * Esta operação localiza o livro pelo ID, remove-o da pilha
+     * e reconstrói a pilha sem o livro removido, mantendo a ordem dos outros.
      * 
      * @param id o ID do livro a ser removido
      * @return o livro removido ou null se não for encontrado
@@ -144,13 +119,13 @@ public class BookDAOLinkedStack implements BookDAO {
     @Override
     public Book deleteBook(long id) {
         Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book deletedBook = null;
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
             if (book.getId() == id) {
-                deletedBook = book;
+                resultBook = book;
             } else {
                 tempStack.push(book);
             }
@@ -158,173 +133,173 @@ public class BookDAOLinkedStack implements BookDAO {
         
         // Reempilhar na ordem original
         while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+            stackBooks.push(tempStack.pop());
         }
         
-        return deletedBook;
+        return resultBook;
     }
     
     // Operações de consulta específicas para livros
     /**
      * Busca um livro pelo seu ID sem alterar a pilha.
      * 
-     * <p>Esta operação percorre todos os livros preservando a ordem da pilha
-     * e retorna o primeiro livro encontrado com o ID especificado.</p>
+     * Esta operação percorre todos os livros preservando a ordem da pilha
+     * e retorna o primeiro livro encontrado com o ID especificado.
      * 
      * @param id o ID do livro a ser buscado
      * @return o livro encontrado ou null se não existir
      */
     @Override
     public Book getBookById(long id) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book foundBook = null;
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getId() == id) {
-                foundBook = book;
+                resultBook = book;
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }    
          
-        return foundBook;
+        return resultBook;
     }
 
     /**
      * Busca todos os livros de um autor específico.
      * 
-     * <p>A busca é feita de forma case-insensitive, comparando o autor
-     * de cada livro com o parâmetro fornecido.</p>
+     * A busca é feita de forma case-insensitive, comparando o autor
+     * de cada livro com o parâmetro fornecido.
      * 
      * @param author o nome do autor a ser buscado
      * @return array com todos os livros do autor especificado
      */
     @Override
     public Book[] getBooksByAuthor(String author) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Stackable<Book> resultStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getAuthor() != null && book.getAuthor().equalsIgnoreCase(author)) {
-                resultStack.push(book);
+                resultStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return resultStackToArray(resultStack);
+        return stackToArray(resultStackBooks);
     }
 
     /**
      * Busca todos os livros publicados em uma data específica.
      * 
-     * <p>A comparação é feita usando o método equals() da classe LocalDate,
-     * considerando apenas livros com data de publicação não nula.</p>
+     * A comparação é feita usando o método equals() da classe LocalDate,
+     * considerando apenas livros com data de publicação não nula.
      * 
      * @param date a data de publicação a ser buscada
      * @return array com todos os livros publicados na data especificada
      */
     @Override
     public Book[] getBooksByPublicationDate(LocalDate date) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Stackable<Book> resultStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getPublicationDate() != null && book.getPublicationDate().equals(date)) {
-                resultStack.push(book);
+                resultStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return resultStackToArray(resultStack);
+        return stackToArray(resultStackBooks);
     }
 
     /**
      * Busca todos os livros com um título específico.
      * 
-     * <p>A busca é feita de forma case-insensitive, comparando o título
-     * de cada livro com o parâmetro fornecido.</p>
+     * A busca é feita de forma case-insensitive, comparando o título
+     * de cada livro com o parâmetro fornecido.
      * 
      * @param title o título a ser buscado
      * @return array com todos os livros que possuem o título especificado
      */
     @Override
     public Book[] getBooksByTitle(String title) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Stackable<Book> resultStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getTitle() != null && book.getTitle().equalsIgnoreCase(title)) {
-                resultStack.push(book);
+                resultStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return resultStackToArray(resultStack);
+        return stackToArray(resultStackBooks);
     }
 
     /**
      * Busca um livro pelo seu ISBN.
      * 
-     * <p>A busca é feita comparando o ISBN de cada livro com o parâmetro fornecido.
-     * Apenas livros com ISBN não nulo são considerados na busca.</p>
+     * A busca é feita comparando o ISBN de cada livro com o parâmetro fornecido.
+     * Apenas livros com ISBN não nulo são considerados na busca.
      * 
      * @param isbn o ISBN do livro a ser buscado
      * @return o livro encontrado ou null se não existir
      */
     @Override
     public Book getBookByIsbn(String isbn) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book foundBook = null;
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getIsbn() != null && book.getIsbn().equals(isbn)) {
-                foundBook = book;
+                resultBook = book;
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return foundBook;
+        return resultBook;
     }
 
     /**
      * Busca todos os livros dentro de uma faixa de preço.
      * 
-     * <p>A busca inclui livros com preço maior ou igual ao preço mínimo
-     * e menor ou igual ao preço máximo especificados.</p>
+     * A busca inclui livros com preço maior ou igual ao preço mínimo
+     * e menor ou igual ao preço máximo especificados.
      * 
      * @param minPrice o preço mínimo (inclusivo)
      * @param maxPrice o preço máximo (inclusivo)
@@ -332,31 +307,31 @@ public class BookDAOLinkedStack implements BookDAO {
      */
     @Override
     public Book[] getBooksByPriceRange(double minPrice, double maxPrice) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Stackable<Book> resultStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getPrice() >= minPrice && book.getPrice() <= maxPrice) {
-                resultStack.push(book);
+                resultStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return resultStackToArray(resultStack);
+        return stackToArray(resultStackBooks);
     }
 
     /**
      * Busca todos os livros publicados dentro de um intervalo de datas.
      * 
-     * <p>A busca inclui livros com data de publicação maior ou igual à data mínima
-     * e menor ou igual à data máxima especificadas. Apenas livros com data não nula são considerados.</p>
+     * A busca inclui livros com data de publicação maior ou igual à data mínima
+     * e menor ou igual à data máxima especificadas. Apenas livros com data não nula são considerados.
      * 
      * @param minDate a data mínima (inclusiva)
      * @param maxDate a data máxima (inclusiva)
@@ -364,214 +339,214 @@ public class BookDAOLinkedStack implements BookDAO {
      */
     @Override
     public Book[] getBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Stackable<Book> resultStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getPublicationDate() != null && 
                 !book.getPublicationDate().isBefore(minDate) && 
                 !book.getPublicationDate().isAfter(maxDate)) {
-                resultStack.push(book);
+                resultStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return resultStackToArray(resultStack);
+        return stackToArray(resultStackBooks);
     }
 
     // Operações de análise e estatísticas
     /**
      * Encontra o livro mais caro da pilha.
      * 
-     * <p>Esta operação percorre todos os livros comparando seus preços
-     * e retorna o livro com o maior preço. A pilha é preservada após a busca.</p>
+     * Esta operação percorre todos os livros comparando seus preços
+     * e retorna o livro com o maior preço. A pilha é preservada após a busca.
      * 
      * @return o livro mais caro ou null se a pilha estiver vazia
      */
     @Override
     public Book getMostExpensiveBook() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
 
-        Book mostExpensiveBook = null;
+        Book resultBook = null;
         // Desempilhar todos os livros e filtrar os que têm preço
-        if (!books.isEmpty()){
-            mostExpensiveBook = books.pop();
+        if (!stackBooks.isEmpty()){
+            resultBook = stackBooks.pop();
     
-            while (!books.isEmpty()) {
-                Book book = books.pop();
-                tempStack.push(book);
-                if (book.getPrice() > mostExpensiveBook.getPrice()) {
-                    mostExpensiveBook = book;
+            while (!stackBooks.isEmpty()) {
+                Book book = stackBooks.pop();
+                tempStackBooks.push(book);
+                if (book.getPrice() > resultBook.getPrice()) {
+                    resultBook = book;
                 }
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return mostExpensiveBook;
+        return resultBook;
     }
 
     /**
      * Encontra o livro mais barato da pilha.
      * 
-     * <p>Esta operação percorre todos os livros comparando seus preços
-     * e retorna o livro com o menor preço. A pilha é preservada após a busca.</p>
+     * Esta operação percorre todos os livros comparando seus preços
+     * e retorna o livro com o menor preço. A pilha é preservada após a busca.
      * 
      * @return o livro mais barato ou null se a pilha estiver vazia
      */
     @Override
     public Book getCheapestBook() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book cheapestBook = null;
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        if (!books.isEmpty()) {
-            cheapestBook = books.pop();
-            tempStack.push(cheapestBook);
+        if (!stackBooks.isEmpty()) {
+            resultBook = stackBooks.pop();
+            tempStackBooks.push(resultBook);
             
-            while (!books.isEmpty()) {
-                Book book = books.pop();
-                tempStack.push(book);
-                if (book.getPrice() < cheapestBook.getPrice()) {
-                    cheapestBook = book;
+            while (!stackBooks.isEmpty()) {
+                Book book = stackBooks.pop();
+                tempStackBooks.push(book);
+                if (book.getPrice() < resultBook.getPrice()) {
+                    resultBook = book;
                 }
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return cheapestBook;
+        return resultBook;
     }
 
     /**
      * Encontra o livro mais recente da pilha.
      * 
-     * <p>Esta operação percorre todos os livros comparando suas datas de publicação
-     * e retorna o livro com a data mais recente. Apenas livros com data não nula são considerados.</p>
+     * Esta operação percorre todos os livros comparando suas datas de publicação
+     * e retorna o livro com a data mais recente. Apenas livros com data não nula são considerados.
      * 
      * @return o livro mais recente ou null se não houver livros com data válida
      */
     @Override
     public Book getNewestBook() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book newestBook = null;
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getPublicationDate() != null) {
-                if (newestBook == null || book.getPublicationDate().isAfter(newestBook.getPublicationDate())) {
-                    newestBook = book;
+                if (resultBook == null || book.getPublicationDate().isAfter(resultBook.getPublicationDate())) {
+                    resultBook = book;
                 }
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return newestBook;
+        return resultBook;
     }
 
     /**
      * Encontra o livro mais antigo da pilha.
      * 
-     * <p>Esta operação percorre todos os livros comparando suas datas de publicação
-     * e retorna o livro com a data mais antiga. Apenas livros com data não nula são considerados.</p>
+     * Esta operação percorre todos os livros comparando suas datas de publicação
+     * e retorna o livro com a data mais antiga. Apenas livros com data não nula são considerados.
      * 
      * @return o livro mais antigo ou null se não houver livros com data válida
      */
     @Override
     public Book getOldestBook() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
-        Book oldestBook = null;
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getPublicationDate() != null) {
-                if (oldestBook == null || book.getPublicationDate().isBefore(oldestBook.getPublicationDate())) {
-                    oldestBook = book;
+                if (resultBook == null || book.getPublicationDate().isBefore(resultBook.getPublicationDate())) {
+                    resultBook = book;
                 }
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
-        return oldestBook;
+        return resultBook;
     }
     
     // Operações de relatório
     /**
      * Retorna uma representação em string de todos os livros da pilha.
      * 
-     * <p>Utiliza o método toString() da pilha para gerar a representação
-     * de todos os livros armazenados.</p>
+     * Utiliza o método toString() da pilha para gerar a representação
+     * de todos os livros armazenados.
      * 
      * @return string representando todos os livros da pilha
      */
     @Override
     public String printBooks() {
-        return books.toString();
+        return stackBooks.toString();
     }
 
     /**
      * Retorna o número total de livros na pilha.
      * 
-     * <p>Esta operação conta todos os elementos da pilha sem removê-los,
-     * preservando a estrutura original.</p>
+     * Esta operação conta todos os elementos da pilha sem removê-los,
+     * preservando a estrutura original.
      * 
      * @return o número total de livros na pilha
      */
     @Override
     public int getTotalBooks() {
-        return countElements(books);
+        return countElements(stackBooks);
     }
 
     /**
      * Calcula o preço médio de todos os livros na pilha.
      * 
-     * <p>Esta operação percorre todos os livros, soma seus preços
-     * e divide pelo número total de livros. A pilha é preservada após o cálculo.</p>
+     * Esta operação percorre todos os livros, soma seus preços
+     * e divide pelo número total de livros. A pilha é preservada após o cálculo.
      * 
      * @return o preço médio dos livros ou 0.0 se a pilha estiver vazia
      */
     @Override
     public double getAveragePrice() {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         double totalPrice = 0.0;
         int bookCount = 0;
         
         // Desempilhar todos os livros
-        while (!books.isEmpty()) {
-            Book book = books.pop();
-            tempStack.push(book);
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             totalPrice += book.getPrice();
             bookCount++;
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            books.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
         return bookCount > 0 ? totalPrice / bookCount : 0.0;
@@ -581,8 +556,8 @@ public class BookDAOLinkedStack implements BookDAO {
     /**
      * Verifica se um livro está disponível na pilha.
      * 
-     * <p>Esta operação verifica se existe um livro com o ID especificado
-     * na pilha, sem removê-lo.</p>
+     * Esta operação verifica se existe um livro com o ID especificado
+     * na pilha, sem removê-lo.
      * 
      * @param id o ID do livro a ser verificado
      * @return true se o livro estiver disponível, false caso contrário
@@ -595,13 +570,13 @@ public class BookDAOLinkedStack implements BookDAO {
     /**
      * Remove todos os livros da pilha.
      * 
-     * <p>Esta operação esvazia completamente a pilha, removendo
-     * todos os livros armazenados. A operação é irreversível.</p>
+     * Esta operação esvazia completamente a pilha, removendo
+     * todos os livros armazenados. A operação é irreversível.
      */
     @Override
     public void clearAllBooks() {
-        while (!books.isEmpty()) {
-            books.pop();
+        while (!stackBooks.isEmpty()) {
+            stackBooks.pop();
         }
     }
     
@@ -609,25 +584,25 @@ public class BookDAOLinkedStack implements BookDAO {
     /**
      * Conta o número de elementos em uma pilha sem removê-los.
      * 
-     * <p>Este método auxiliar percorre todos os elementos da pilha,
+     * Este método auxiliar percorre todos os elementos da pilha,
      * conta-os e restaura a pilha original. É útil para operações
-     * que precisam saber o tamanho antes de processar os elementos.</p>
+     * que precisam saber o tamanho antes de processar os elementos.
      * 
      * @param stack a pilha a ser contada
      * @return o número de elementos na pilha
      */
     private int countElements(Stackable<Book> stack) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         int count = 0;
         
         while (!stack.isEmpty()) {
-            tempStack.push(stack.pop());
+            tempStackBooks.push(stack.pop());
             count++;
         }
         
         // Restaurar a pilha original
-        while (!tempStack.isEmpty()) {
-            stack.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stack.push(tempStackBooks.pop());
         }
         
         return count;
@@ -636,20 +611,39 @@ public class BookDAOLinkedStack implements BookDAO {
     /**
      * Converte uma pilha de resultados em um array de livros.
      * 
-     * <p>Este método auxiliar é usado para converter pilhas temporárias
+     * Este método auxiliar é usado para converter pilhas temporárias
      * que contêm resultados de filtros em arrays, facilitando o retorno
-     * dos métodos de busca. A pilha original é esvaziada no processo.</p>
+     * dos métodos de busca. A pilha original é esvaziada no processo.
      * 
      * @param resultStack a pilha contendo os livros a serem convertidos
      * @return array contendo todos os livros da pilha
      */
-    private Book[] resultStackToArray(Stackable<Book> resultStack) {
-        Book[] result = new Book[countElements(resultStack)];
+    private Book[] stackToArray(Stackable<Book> stack) {
+        Book[] resultArrayBooks = new Book[countElements(stack)];
         int index = 0;
-        while (!resultStack.isEmpty()) {
-            result[index] = resultStack.pop();
+        while (!stack.isEmpty()) {
+            resultArrayBooks[index] = stack.pop();
             index++;
         }
-        return result;
+        return resultArrayBooks;
+    }
+
+    /**
+     * Converte um array de livros em uma pilha (stack).
+     *
+     * Este método auxiliar é usado para converter arrays que contêm
+     * livros em uma pilha, facilitando operações de empilhamento.
+     * A pilha resultante terá os livros do array empilhados na ordem
+     * do array (o primeiro elemento do array ficará no fundo da pilha).
+     *
+     * @param books o array contendo os livros a serem empilhados
+     * @return pilha contendo todos os livros do array na ordem dada
+     */
+    private Stackable<Book> arrayToStack(Book[] books) {
+        Stackable<Book> resultStackBooks = new LinkedStack<>(20);  // ou a implementação concreta do seu Stackable
+        for (Book book : books) {
+            resultStackBooks.push(book);
+        }
+        return resultStackBooks;
     }
 }

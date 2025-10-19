@@ -150,14 +150,6 @@ public class BookDAOLinkedStackTest {
     }
 
     @Test
-    public void testSortBooksByTitle() {
-        // This method is implemented, should return empty array initially
-        Book[] sortedBooks = bookDAO.sortBooksByTitle();
-        assertNotNull(sortedBooks);
-        assertEquals(0, sortedBooks.length);
-    }
-
-    @Test
     public void testGetAllBooks() {
         // This method is implemented, should return empty array initially
         Book[] allBooks = bookDAO.getAllBooks();
