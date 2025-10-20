@@ -3,15 +3,15 @@ package br.edu.ifba.vdc.bsi.linkedstackdao.model;
 import java.time.LocalDate;
 
 public class Book {
-    private final long id;            // obrigatório, imutável
+    private final Long id;            // obrigatório, imutável
     private String title;             // obrigatório
     private String author;
     private LocalDate publicationDate;
     private String isbn;
-    private double price;
+    private Double price;
 
     // Construtor mínimo – apenas campos obrigatórios.
-    public Book(long id, String title) {
+    public Book(Long id, String title) {
         required(id);
         required(title);
         this.id = id;   
@@ -19,12 +19,12 @@ public class Book {
     }
 
     // Construtor completo – todos os campos.
-    public Book(long id,
+    public Book(Long id,
                 String title,
                 String author,
                 LocalDate publicationDate,
                 String isbn,
-                double price) {
+                Double price) {
         this(id, title);
         this.author = author;
         this.publicationDate = publicationDate;
@@ -38,7 +38,7 @@ public class Book {
     }
 
     // Getter para id (imutável)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,11 +80,11 @@ public class Book {
     }
 
     // Getter e setter para price
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

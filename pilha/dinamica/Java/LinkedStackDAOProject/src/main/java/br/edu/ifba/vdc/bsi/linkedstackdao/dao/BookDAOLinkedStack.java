@@ -56,13 +56,23 @@ public class BookDAOLinkedStack implements BookDAO {
      */
     @Override
     public Book getBook(long id) {
-        Book[] allBooks = getAllBooks();
-        for (Book book : allBooks) {
+        // Para atualizar um livro específico, precisamos reconstruir a pilha
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
+        Book resultBook = null;
+        // Desempilhar todos os livros
+        while (!stackBooks.isEmpty()) {
+            Book book = stackBooks.pop();
+            tempStackBooks.push(book);
             if (book.getId() == id) {
-                return book;
+                resultBook = book;
+                break;
             }
         }
-        return null;
+        // Reempilhar na ordem original
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
+        }
+        return resultBook;
     }
 
     /**
@@ -118,7 +128,7 @@ public class BookDAOLinkedStack implements BookDAO {
      */
     @Override
     public Book deleteBook(long id) {
-        Stackable<Book> tempStack = new LinkedStack<>(20);
+        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         Book resultBook = null;
         
         // Desempilhar todos os livros
@@ -126,14 +136,15 @@ public class BookDAOLinkedStack implements BookDAO {
             Book book = stackBooks.pop();
             if (book.getId() == id) {
                 resultBook = book;
+                break;
             } else {
-                tempStack.push(book);
+                tempStackBooks.push(book);
             }
         }
         
         // Reempilhar na ordem original
-        while (!tempStack.isEmpty()) {
-            stackBooks.push(tempStack.pop());
+        while (!tempStackBooks.isEmpty()) {
+            stackBooks.push(tempStackBooks.pop());
         }
         
         return resultBook;
@@ -373,17 +384,24 @@ public class BookDAOLinkedStack implements BookDAO {
     @Override
     public Book getMostExpensiveBook() {
         Stackable<Book> tempStackBooks = new LinkedStack<>(20);
-
         Book resultBook = null;
+
         // Desempilhar todos os livros e filtrar os que têm preço
         if (!stackBooks.isEmpty()){
-            resultBook = stackBooks.pop();
-    
+            Book book  = stackBooks.pop();
+            tempStackBooks.push(book);
+            if (book.getPrice() != null) {
+                resultBook = book;
+            }
+
             while (!stackBooks.isEmpty()) {
-                Book book = stackBooks.pop();
+                book = stackBooks.pop();
                 tempStackBooks.push(book);
-                if (book.getPrice() > resultBook.getPrice()) {
-                    resultBook = book;
+                if (book.getPrice() != null) {
+                    if (resultBook != null 
+                            && book.getPrice() > resultBook.getPrice()) {
+                        resultBook = book;
+                    }
                 }
             }
         }
@@ -408,21 +426,28 @@ public class BookDAOLinkedStack implements BookDAO {
     public Book getCheapestBook() {
         Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         Book resultBook = null;
+
+        // Desempilhar todos os livros e filtrar os que têm preço
+        if (!stackBooks.isEmpty()){
+            Book book  = stackBooks.pop();
+            tempStackBooks.push(book);
+            if (book.getPrice() != null) {
+                resultBook = book;
+            }
         
-        // Desempilhar todos os livros
-        if (!stackBooks.isEmpty()) {
-            resultBook = stackBooks.pop();
-            tempStackBooks.push(resultBook);
-            
+            // Desempilhar todos os livros           
             while (!stackBooks.isEmpty()) {
-                Book book = stackBooks.pop();
+                book = stackBooks.pop();
                 tempStackBooks.push(book);
-                if (book.getPrice() < resultBook.getPrice()) {
-                    resultBook = book;
+                if (book.getPrice() != null) {
+                    if (resultBook != null 
+                            && book.getPrice() < resultBook.getPrice()) {
+                        resultBook = book;
+                    }
                 }
             }
         }
-        
+
         // Reempilhar na ordem original
         while (!tempStackBooks.isEmpty()) {
             stackBooks.push(tempStackBooks.pop());
@@ -444,13 +469,22 @@ public class BookDAOLinkedStack implements BookDAO {
         Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         Book resultBook = null;
         
-        // Desempilhar todos os livros
-        while (!stackBooks.isEmpty()) {
-            Book book = stackBooks.pop();
+        // Desempilhar todos os livros e filtrar os que têm preço
+        if (!stackBooks.isEmpty()){
+            Book book  = stackBooks.pop();
             tempStackBooks.push(book);
             if (book.getPublicationDate() != null) {
-                if (resultBook == null || book.getPublicationDate().isAfter(resultBook.getPublicationDate())) {
-                    resultBook = book;
+                resultBook = book;
+            }
+            // Desempilhar todos os livros           
+            while (!stackBooks.isEmpty()) {
+                book = stackBooks.pop();
+                tempStackBooks.push(book);
+                if (book.getPublicationDate() != null) {
+                    if (resultBook != null 
+                            && book.getPublicationDate().isBefore(resultBook.getPublicationDate())) {
+                        resultBook = book;
+                    }
                 }
             }
         }
@@ -476,13 +510,22 @@ public class BookDAOLinkedStack implements BookDAO {
         Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         Book resultBook = null;
         
-        // Desempilhar todos os livros
-        while (!stackBooks.isEmpty()) {
-            Book book = stackBooks.pop();
+        // Desempilhar todos os livros e filtrar os que têm preço
+        if (!stackBooks.isEmpty()){
+            Book book  = stackBooks.pop();
             tempStackBooks.push(book);
             if (book.getPublicationDate() != null) {
-                if (resultBook == null || book.getPublicationDate().isBefore(resultBook.getPublicationDate())) {
-                    resultBook = book;
+                resultBook = book;
+            }
+            // Desempilhar todos os livros           
+            while (!stackBooks.isEmpty()) {
+                book = stackBooks.pop();
+                tempStackBooks.push(book);
+                if (book.getPublicationDate() != null) {
+                    if (resultBook != null 
+                            && book.getPublicationDate().isAfter(resultBook.getPublicationDate())) {
+                        resultBook = book;
+                    }
                 }
             }
         }
