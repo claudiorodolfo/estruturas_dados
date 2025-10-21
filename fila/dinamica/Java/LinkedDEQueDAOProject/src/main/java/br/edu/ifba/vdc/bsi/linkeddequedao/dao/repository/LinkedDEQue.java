@@ -47,10 +47,10 @@ public class LinkedDEQue<T> implements DEQueable<T> {
     }
 
 	/**
-	 * Adiciona um elemento ao final da fila.
+	 * Remove e retorna um elemento do início da fila.
 	 *
-	 * @param dado o elemento a ser adicionado
-	 * @throws java.util.NoSuchElementException se a fila estiver cheia
+	 * @return o elemento removido do início da fila
+	 * @throws java.util.NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public T dequeue() {
@@ -69,10 +69,10 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	}
 
 	/**
-	 * Adiciona um elemento ao final da fila.
+	 * Remove e retorna um elemento do fim da fila.
 	 *
-	 * @param dado o elemento a ser adicionado
-	 * @throws java.util.NoSuchElementException se a fila estiver cheia
+	 * @return o elemento removido do fim da fila
+	 * @throws java.util.NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public T endDequeue() {

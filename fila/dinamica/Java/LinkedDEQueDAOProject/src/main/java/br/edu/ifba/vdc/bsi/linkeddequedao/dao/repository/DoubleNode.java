@@ -22,6 +22,15 @@ public class DoubleNode<T> {
 	private DoubleNode<T> next;
 
 	/**
+	 * Já cria um nó com o dado.
+	 *
+	 * @param data o dado a ser armazenado no nó
+	 */
+	public DoubleNode(T data) {
+		this.data = data;
+	}
+
+	/**
 	 * Retorna o dado armazenado no nó.
 	 *
 	 * @return o dado do nó
@@ -33,7 +42,7 @@ public class DoubleNode<T> {
 	/**
 	 * Define o dado a ser armazenado no nó.
 	 *
-	 * @param dado o novo dado
+	 * @param data o dado a ser armazenado no nó
 	 */
 	public void setData(T data) {
 		this.data = data;
