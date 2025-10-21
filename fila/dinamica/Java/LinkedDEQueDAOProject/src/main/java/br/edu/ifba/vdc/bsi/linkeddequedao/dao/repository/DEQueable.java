@@ -1,11 +1,11 @@
 package br.edu.ifba.vdc.bsi.linkeddequedao.dao.repository;
 
 /**
- * Interface que define as operações básicas de uma pilha.
+ * Interface que define as operações básicas de uma fila com dupla terminação.
  * Esta interface define os métodos que devem ser implementados
- * por qualquer classe que represente uma estrutura de dados do tipo pilha.
+ * por qualquer classe que represente uma estrutura de dados do tipo fila com dupla terminação.
  *
- * @param <T> o tipo dos elementos armazenados na pilha
+ * @param <T> o tipo dos elementos armazenados na fila com dupla terminação.
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.2
  * @since 2025-10-21

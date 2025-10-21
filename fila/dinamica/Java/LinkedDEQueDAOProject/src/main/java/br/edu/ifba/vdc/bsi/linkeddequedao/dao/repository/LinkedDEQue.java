@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
  *
  * @param <T> o tipo dos elementos armazenados na fila
  * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.1
- * @since 2025-10-20
+ * @version 1.2
+ * @since 2025-10-21
  * @see DEQueable
  * @see DoubleNode
  */
