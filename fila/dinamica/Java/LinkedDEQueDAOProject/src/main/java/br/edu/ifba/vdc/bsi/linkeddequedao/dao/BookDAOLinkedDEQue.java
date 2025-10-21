@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 /**
  * Implementação do DAO (Data Access Object) para gerenciamento de livros
- * utilizando uma estrutura de dados do tipo fila (queue).
+ * utilizando uma estrutura de dados do tipo fila com dupla terminação (DEQue).
  * 
  * Esta classe implementa todas as operações CRUD (Create, Read, Update, Delete)
  * e operações de consulta específicas para livros, mantendo os dados em uma
@@ -34,8 +34,7 @@ public class BookDAOLinkedDEQue implements BookDAO {
     /**
      * Adiciona um novo livro à fila.
      * 
-     * O livro é inserido no fim da fila, seguindo o princípio FIFO.
-     * Esta operação tem complexidade O(1).
+     * O livro é armazenado na fila.
      * 
      * @param book o livro a ser adicionado (não pode ser null)
      * @throws IllegalArgumentException se o livro for null
@@ -47,9 +46,6 @@ public class BookDAOLinkedDEQue implements BookDAO {
 
     /**
      * Retorna todos os livros da fila em um array.
-     * 
-     * Esta operação desenfileira todos os livros, cria um array com eles
-     * e reenfileira na ordem original, preservando a estrutura da fila.
      * 
      * @return array contendo todos os livros da fila
      */
