@@ -53,7 +53,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * @throws java.util.NoSuchElementException se a fila estiver cheia
 	 */
 	@Override
-	public T beginDequeue() {
+	public T dequeue() {
 		if(isEmpty()) {
 			throw new NoSuchElementException("Fila Vazia!");
 		}
@@ -122,7 +122,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * @throws java.util.NoSuchElementException se a fila estiver cheia
 	 */
     @Override
-    public void endEnqueue(T data) {
+    public void enqueue(T data) {
 		if (isFull()) {
 			throw new NoSuchElementException("Pilha Cheia!");
 		}
@@ -223,7 +223,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * @return string representando a fila do início para o final
 	 */
 	@Override
-	public String printBeginToEnd() {
+	public String print() {
 		String result = "";
 		DoubleNode<T> auxNode = headPointer;
 		for (int i = 0; i < amount; i++) {
