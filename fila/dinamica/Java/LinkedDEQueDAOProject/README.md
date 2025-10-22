@@ -5,12 +5,12 @@
 [![JUnit](https://img.shields.io/badge/JUnit-4.13.2-green.svg)](https://junit.org/junit4/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Implementação de uma Fila Dinâmica Dupla Terminação de Livros em Java**  
-> Sistema de gerenciamento de livros utilizando estrutura de dados fila (queue) com implementação dinâmica duplamente encadeada e dupla terminação.
+> **Implementação de uma Fila Dinâmica com Dupla Terminação de Livros em Java**  
+> Sistema de gerenciamento de livros utilizando estrutura de dados fila (queue) com implementação dinâmica duplamente encadeada e com dupla terminação.
 
 ## 🎯 Sobre o Projeto
 
-O **LinkedDEQueDAOProject** é uma implementação de um sistema de gerenciamento de livros utilizando uma **fila dinâmica dupla terminação duplamente encadeada**. O projeto demonstra conceitos fundamentais de estruturas de dados, padrões de design e boas práticas de desenvolvimento Java.
+O **LinkedDEQueDAOProject** é uma implementação de um sistema de gerenciamento de livros utilizando uma **fila dinâmica com dupla terminação duplamente encadeada**. O projeto demonstra conceitos fundamentais de estruturas de dados, padrões de design e boas práticas de desenvolvimento Java.
 
 ### ✨ Características Principais
 
