@@ -1,8 +1,8 @@
-package br.edu.ifba.vdc.bsi.linkeddequedao.app;
+package br.edu.ifba.vdc.bsi.linkedlistdao.app;
 
-import br.edu.ifba.vdc.bsi.linkeddequedao.dao.BookDAO;
-import br.edu.ifba.vdc.bsi.linkeddequedao.dao.BookDAOLinkedDEQue;
-import br.edu.ifba.vdc.bsi.linkeddequedao.model.Book;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.BookDAO;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.BookDAOLinkedList;
+import br.edu.ifba.vdc.bsi.linkedlistdao.model.Book;
 import java.time.LocalDate;
 import java.util.Scanner;
 

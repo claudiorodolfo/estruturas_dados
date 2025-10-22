@@ -1,8 +1,8 @@
-package br.edu.ifba.vdc.bsi.linkeddequedao.app;
+package br.edu.ifba.vdc.bsi.linkedlistdao.app;
 
-import br.edu.ifba.vdc.bsi.linkeddequedao.dao.CarDAO;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.CarDAO;
 import br.edu.ifba.vdc.bsi.linkedlistdao.dao.CarDAOLinkedList;
-import br.edu.ifba.vdc.bsi.linkeddequedao.model.Car;
+import br.edu.ifba.vdc.bsi.linkedlistdao.model.Car;
 import java.time.LocalDateTime;
 
 public class CarService {
