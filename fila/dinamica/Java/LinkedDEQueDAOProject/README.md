@@ -242,7 +242,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👨‍💻 Autor
 
 **Cláudio Rodolfo Sousa de Oliveira**
-- 📧 Email: [claudiorodolfo@ifba.edu.br](mailto:claudiorodolfol@ifba.edu.br)
+- 📧 Email: [claudiorodolfo@ifba.edu.br](mailto:claudiorodolfo@ifba.edu.br)
 - 💼 LinkedIn: [Cláudio Rodolfo](https://linkedin.com/in/claudiorodolfo)
 - 🐙 GitHub: [@claudiorodolfo](https://github.com/claudiorodolfo)
 

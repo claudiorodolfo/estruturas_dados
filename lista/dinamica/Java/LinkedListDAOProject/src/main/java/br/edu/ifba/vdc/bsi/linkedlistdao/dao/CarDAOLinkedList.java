@@ -5,9 +5,9 @@ import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.Listable;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Car;
 import java.time.LocalDateTime;
 
-public class CarDAOLinkedDEQue implements CarDAO {
+public class CarDAOLinkedList implements CarDAO {
 
-    private DEQueable<Car> cars = new LinkedDEQue<>(20);
+    private Listable<Car> cars = new LinkedList<>(20);
 
     // Operações básicas CRUD
     @Override
