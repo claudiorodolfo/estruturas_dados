@@ -1,14 +1,14 @@
 package br.edu.ifba.vdc.bsi.linkeddequedao.app;
 
 import br.edu.ifba.vdc.bsi.linkeddequedao.dao.CarDAO;
-import br.edu.ifba.vdc.bsi.linkeddequedao.dao.CarDAOLinkedDEQue;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.CarDAOLinkedList;
 import br.edu.ifba.vdc.bsi.linkeddequedao.model.Car;
 import java.time.LocalDateTime;
 
 public class CarService {
 
     public static CarDAO getDBCar() {
-        return new CarDAOLinkedStack();
+        return new CarDAOLinkedList();
     }
     
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class BookService {
 
     public static BookDAO getDBBook() {
-        return new BookDAOLinkedStack();
+        return new BookDAOLinkedDEQue();
     }
     
     public static void main(String[] args) {

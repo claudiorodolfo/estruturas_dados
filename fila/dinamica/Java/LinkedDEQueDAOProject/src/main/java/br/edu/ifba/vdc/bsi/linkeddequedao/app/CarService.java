@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class CarService {
 
     public static CarDAO getDBCar() {
-        return new CarDAOLinkedStack();
+        return new CarDAOLinkedDEQue();
     }
     
     public static void main(String[] args) {
