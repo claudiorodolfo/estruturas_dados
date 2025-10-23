@@ -41,27 +41,23 @@ O **LinkedDEQueDAOProject** é uma implementação de um sistema de gerenciament
 src/
 ├── main/java/br/edu/ifba/vdc/bsi/linkeddequedao/
 │   ├── app/
-│   │   └── BookService.java              # Classe principal da aplicação
+│   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
 │   │   └── BookDAOLinkedDEQue.java        # Implementação do DAO para Livro
 │   ├── dao/repository/
-│   │   ├── Queueable.java                 # Interface da fila
-│   │   ├── LinkedDEQue.java              # Implementação da fila dinâmica
+│   │   ├── Queueable.java                 # Comportamento da fila
+│   │   ├── LinkedDEQue.java               # Implementação da fila dinâmica
 │   │   └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkeddequedao/
-    ├── app/
-    │   └── BookServiceTest.java           # Testes da aplicação
     ├── dao/
     │   └── BookDAOLinkedDEQueTest.java    # Testes do DAO
-    ├── dao/repository/
-    │   ├── LinkedDEQueTest.java          # Testes da fila
-    │   └── DoubleNodeTest.java           # Testes do nó
-    ├── model/
-    │   └── BookTest.java                 # Testes do modelo
     └── IntegrationTest.java              # Testes de integração
+    ├── dao/repository/
+    │   ├── LinkedDEQueTest.java          # Testes da 
+
 ```
 
 ## 🚀 Tecnologias Utilizadas
@@ -78,7 +74,7 @@ src/
 
 - ☕ **Java 21** ou superior
 - 🔧 **Maven 3.6+** ou superior
-- 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
+- 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code, Cursor)
 
 ## 🛠️ Instalação e Configuração
 
@@ -163,11 +159,11 @@ mvn test
 
 ### Executar Testes Específicos
 ```bash
-# Testes do modelo
-mvn test -Dtest=BookTest
-
 # Testes da fila
 mvn test -Dtest=LinkedDEQueTest
+
+# Testes do DAO
+mvn test -Dtest=BookDAOLinkedDEQueTest
 
 # Testes de integração
 mvn test -Dtest=IntegrationTest
@@ -185,9 +181,13 @@ mvn test -Dtest=IntegrationTest
 
 ### 🔧 Operações da Fila
 - **enqueue**: Adicionar elemento ao final da fila
+- **beginEnqueue**: Adicionar elemento no início da fila
 - **dequeue**: Remover e retornar o elemento do início da fila
-- **peek**: Consultar elemento do início (sem remover)
-- **update**: Atualizar elemento do início
+- **endDequeue**: Remover e retornar o elemento do fim da fila
+- **front**: Consultar elemento do início (sem remover)
+- **rear**: Consultar elemento do início (sem remover)
+- **beginUpdate**: Atualizar elemento do início
+- **endUpdate**: Atualizar elemento do fim
 - **isEmpty**: Verificar se está vazia
 - **isFull**: Verificar se está cheia
 
@@ -231,12 +231,17 @@ IllegalArgumentException: "campo obrigatório não pode ser nulo!"
 | Operação | Complexidade | Descrição |
 |----------|--------------|-----------|
 | **enqueue** | O(1) | Adicionar ao final |
+| **beginEnqueue** | O(1) | Adicionar ao início |
+| **endDequeue** | O(1) | Remover do fim |
 | **dequeue** | O(1) | Remover do início |
-| **peek** | O(1) | Consultar início |
-| **update** | O(1) | Atualizar início |
+| **front** | O(1) | Consultar início |
+| **rear** | O(1) | Consultar fim |
+| **beginUpdate** | O(1) | Atualizar início |
+| **endUpdate** | O(1) | Atualizar fim |
 | **isEmpty** | O(1) | Verificar se está vazia |
 | **isFull** | O(1) | Verificar se está cheia |
-| **toString** | O(n) | Listar todos os elementos |
+| **print** | O(n) | Listar todos os elementos |
+| **printEndToBegin** | O(n) | Listar todos os elementos do Fim para o Início |
 
 ## 🤝 Contribuição
 
@@ -269,6 +274,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **⭐ Se este projeto foi útil, considere dar uma estrela! ⭐**
 
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/estruturas_dados?style=social)](https://github.com/seu-usuario/estruturas_dados)
+[![GitHub stars](https://img.shields.io/github/stars/claudiorodolfo/estruturas_dados?style=social)](https://github.com/claudiorodolfo/estruturas_dados)
 
 </div>
