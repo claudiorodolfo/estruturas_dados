@@ -44,19 +44,19 @@ src/
 │   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
-│   │   └── BookDAOLinkedStack.java        # Implementação do DAO para Livro
-│   ├── dao/repository/
-│   │   ├── Stackable.java                 # Interface da pilha
-│   │   ├── LinkedStack.java               # Implementação da pilha dinâmica
-│   │   └── DoubleNode.java                # Nó duplamente encadeado
+│   │   ├── BookDAOLinkedStack.java        # Implementação do DAO para Livro
+│   │   └── repository/
+│   │       ├── Stackable.java             # Interface da pilha
+│   │       ├── LinkedStack.java           # Implementação da pilha dinâmica
+│   │       └── DoubleNode.java            # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedstackdao/
-    ├── dao/
-    │   ├── BookDAOLinkedStackTest.java    # Testes do DAO
-    │   └── IntegrationTest.java           # Testes de integração
-    └── dao/repository/
-        └── LinkedStackTest.java           # Testes da pilha
+    └── dao/
+        ├── BookDAOLinkedStackTest.java    # Testes do DAO
+        ├── IntegrationTest.java           # Testes de integração
+        └── repository/
+            └── LinkedStackTest.java       # Testes da pilha
 
 ```
 
@@ -150,7 +150,7 @@ System.out.println("Removido: " + removedBook.getTitle());
 
 ## 🧪 Testes
 
-O projeto possui **66 testes unitários** cobrindo todas as funcionalidades:
+O projeto possui **36 testes unitários** cobrindo todas as funcionalidades:
 
 ### Executar Todos os Testes
 ```bash

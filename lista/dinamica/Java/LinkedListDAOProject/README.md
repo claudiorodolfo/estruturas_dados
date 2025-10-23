@@ -152,7 +152,7 @@ System.out.println("Removido: " + removedBook.getTitle());
 
 ## 🧪 Testes
 
-O projeto possui **66 testes unitários** cobrindo todas as funcionalidades:
+O projeto possui **36 testes unitários** cobrindo todas as funcionalidades:
 
 ### Executar Todos os Testes
 ```bash
