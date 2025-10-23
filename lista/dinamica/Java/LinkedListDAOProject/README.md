@@ -29,7 +29,7 @@ O **LinkedListDAOProject** é uma implementação de um sistema de gerenciamento
 ├─────────────────────────────────────────────────────────────┤
 │              BookDAOLinkedList (DAO Layer)                  │
 ├─────────────────────────────────────────────────────────────┤
-│       LinkedList<T>, DoubleNode<T> (DataBase Layer)          │
+│       LinkedList<T>, DoubleNode<T> (DataBase Layer)         │
 ├─────────────────────────────────────────────────────────────┤
 │                    Book (Model Layer)                       │
 └─────────────────────────────────────────────────────────────┘
@@ -41,27 +41,23 @@ O **LinkedListDAOProject** é uma implementação de um sistema de gerenciamento
 src/
 ├── main/java/br/edu/ifba/vdc/bsi/linkedlistdao/
 │   ├── app/
-│   │   └── BookService.java              # Classe principal da aplicação
+│   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
-│   │   └── BookDAOLinkedList.java        # Implementação do DAO para Livro
+│   │   └── BookDAOLinkedList.java         # Implementação do DAO para Livro
 │   ├── dao/repository/
 │   │   ├── Listable.java                  # Interface da lista
-│   │   ├── LinkedList.java               # Implementação da lista dinâmica
+│   │   ├── LinkedList.java                # Implementação da lista dinâmica
 │   │   └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedlistdao/
-    ├── app/
-    │   └── BookServiceTest.java           # Testes da aplicação
     ├── dao/
-    │   └── BookDAOLinkedListTest.java     # Testes do DAO
-    ├── dao/repository/
-    │   ├── LinkedListTest.java           # Testes da lista
-    │   └── DoubleNodeTest.java           # Testes do nó
-    ├── model/
-    │   └── BookTest.java                 # Testes do modelo
-    └── IntegrationTest.java              # Testes de integração
+    │   ├── BookDAOLinkedListTest.java     # Testes do DAO
+    │   └── IntegrationTest.java           # Testes de integração
+    └── dao/repository/
+        └── LinkedListTest.java            # Testes da lista
+
 ```
 
 ## 🚀 Tecnologias Utilizadas
@@ -78,7 +74,7 @@ src/
 
 - ☕ **Java 21** ou superior
 - 🔧 **Maven 3.6+** ou superior
-- 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
+- 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code, Cursor)
 
 ## 🛠️ Instalação e Configuração
 
@@ -163,33 +159,31 @@ mvn test
 
 ### Executar Testes Específicos
 ```bash
-# Testes do modelo
-mvn test -Dtest=BookTest
-
 # Testes da lista
 mvn test -Dtest=LinkedListTest
+
+# Testes do DAO
+mvn test -Dtest=BookDAOLinkedListTest
 
 # Testes de integração
 mvn test -Dtest=IntegrationTest
 ```
 
 ### Cobertura de Testes
-- ✅ **Book**: 12 testes (construtores, validação, toString)
 - ✅ **LinkedList**: 18 testes (inserção, remoção, busca, tipos genéricos)
-- ✅ **DoubleNode**: 10 testes (encadeamento, referências)
 - ✅ **BookDAOLinkedList**: 15 testes (CRUD, lista)
-- ✅ **BookService**: 8 testes (factory, integração)
 - ✅ **IntegrationTest**: 3 testes (fluxo completo)
 
 ## 📊 Funcionalidades
 
 ### 🔧 Operações da Lista
-- **add**: Adicionar elemento no início
-- **addLast**: Adicionar elemento no final
-- **remove**: Remover elemento por ID
-- **get**: Buscar elemento por ID
+- **insert**: Adicionar elemento no início
+- **append**: Adicionar elemento no final
+- **delete**: Remover elemento por ID
+- **select**: Buscar elemento por ID
 - **update**: Atualizar elemento por ID
 - **isEmpty**: Verificar se está vazia
+- **isFull**: Verificar se está cheia
 - **size**: Retornar tamanho da lista
 
 ### 📚 Operações de Livros
@@ -231,12 +225,13 @@ IllegalArgumentException: "campo obrigatório não pode ser nulo!"
 
 | Operação | Complexidade | Descrição |
 |----------|--------------|-----------|
-| **add** | O(1) | Adicionar no início |
-| **addLast** | O(1) | Adicionar no final |
-| **remove** | O(n) | Remover por ID |
-| **get** | O(n) | Buscar por ID |
+| **insert** | O(n) | Adicionar no início |
+| **append** | O(1) | Adicionar no final |
+| **delete** | O(n) | Remover por ID |
+| **select** | O(n) | Buscar por ID |
 | **update** | O(n) | Atualizar por ID |
 | **isEmpty** | O(1) | Verificar se está vazia |
+| **isFull** | O(1) | Verificar se está cheia |
 | **size** | O(1) | Retornar tamanho |
 | **toString** | O(n) | Listar todos os elementos |
 
@@ -271,6 +266,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **⭐ Se este projeto foi útil, considere dar uma estrela! ⭐**
 
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/estruturas_dados?style=social)](https://github.com/seu-usuario/estruturas_dados)
+[![GitHub stars](https://img.shields.io/github/stars/claudiorodolfo/estruturas_dados?style=social)](https://github.com/claudiorodolfo/estruturas_dados)
 
 </div>

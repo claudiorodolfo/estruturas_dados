@@ -56,7 +56,7 @@ src/
     │   ├── BookDAOLinkedDEQueTest.java    # Testes do DAO
     │   └── IntegrationTest.java           # Testes de integração
     └── dao/repository/
-        └── LinkedDEQueTest.java           # Testes da 
+        └── LinkedDEQueTest.java           # Testes da fila dinâmica
 
 ```
 
@@ -170,11 +170,8 @@ mvn test -Dtest=IntegrationTest
 ```
 
 ### Cobertura de Testes
-- ✅ **Book**: 12 testes (construtores, validação, toString)
 - ✅ **LinkedDEQue**: 18 testes (FIFO, exceções, tipos genéricos)
-- ✅ **DoubleNode**: 10 testes (encadeamento, referências)
 - ✅ **BookDAOLinkedDEQue**: 15 testes (CRUD, fila)
-- ✅ **BookService**: 8 testes (factory, integração)
 - ✅ **IntegrationTest**: 3 testes (fluxo completo)
 
 ## 📊 Funcionalidades
@@ -241,7 +238,7 @@ IllegalArgumentException: "campo obrigatório não pode ser nulo!"
 | **isEmpty** | O(1) | Verificar se está vazia |
 | **isFull** | O(1) | Verificar se está cheia |
 | **print** | O(n) | Listar todos os elementos |
-| **printEndToBegin** | O(n) | Listar todos os elementos do Fim para o Início |
+| **printEndToBegin** | O(n) | Listar todos os elementos do fim para o início |
 
 ## 🤝 Contribuição
 

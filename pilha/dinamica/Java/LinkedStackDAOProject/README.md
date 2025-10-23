@@ -41,27 +41,23 @@ O **LinkedStackDAOProject** é uma implementação de um sistema de gerenciament
 src/
 ├── main/java/br/edu/ifba/vdc/bsi/linkedstackdao/
 │   ├── app/
-│   │   └── BookService.java              # Classe principal da aplicação
+│   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
 │   │   └── BookDAOLinkedStack.java        # Implementação do DAO para Livro
 │   ├── dao/repository/
 │   │   ├── Stackable.java                 # Interface da pilha
-│   │   ├── LinkedStack.java              # Implementação da pilha dinâmica
+│   │   ├── LinkedStack.java               # Implementação da pilha dinâmica
 │   │   └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedstackdao/
-    ├── app/
-    │   └── BookServiceTest.java           # Testes da aplicação
     ├── dao/
-    │   └── BookDAOLinkedStackTest.java    # Testes do DAO
-    ├── dao/repository/
-    │   ├── LinkedStackTest.java          # Testes da pilha
-    │   └── DoubleNodeTest.java           # Testes do nó
-    ├── model/
-    │   └── BookTest.java                 # Testes do modelo
-    └── IntegrationTest.java              # Testes de integração
+    │   ├── BookDAOLinkedStackTest.java    # Testes do DAO
+    │   └── IntegrationTest.java           # Testes de integração
+    └── dao/repository/
+        └── LinkedStackTest.java           # Testes da pilha
+
 ```
 
 ## 🚀 Tecnologias Utilizadas
@@ -163,22 +159,19 @@ mvn test
 
 ### Executar Testes Específicos
 ```bash
-# Testes do modelo
-mvn test -Dtest=BookTest
-
 # Testes da pilha
 mvn test -Dtest=LinkedStackTest
+
+# Testes do DAO
+mvn test -Dtest=BookDAOLinkedStackTest
 
 # Testes de integração
 mvn test -Dtest=IntegrationTest
 ```
 
 ### Cobertura de Testes
-- ✅ **Book**: 12 testes (construtores, validação, toString)
 - ✅ **LinkedStack**: 18 testes (LIFO, exceções, tipos genéricos)
-- ✅ **DoubleNode**: 10 testes (encadeamento, referências)
 - ✅ **BookDAOLinkedStack**: 15 testes (CRUD, pilha)
-- ✅ **BookService**: 8 testes (factory, integração)
 - ✅ **IntegrationTest**: 3 testes (fluxo completo)
 
 ## 📊 Funcionalidades
@@ -269,6 +262,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **⭐ Se este projeto foi útil, considere dar uma estrela! ⭐**
 
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/estruturas_dados?style=social)](https://github.com/seu-usuario/estruturas_dados)
+[![GitHub stars](https://img.shields.io/github/stars/claudiorodolfo/estruturas_dados?style=social)](https://github.com/claudiorodolfo/estruturas_dados)
 
 </div>
