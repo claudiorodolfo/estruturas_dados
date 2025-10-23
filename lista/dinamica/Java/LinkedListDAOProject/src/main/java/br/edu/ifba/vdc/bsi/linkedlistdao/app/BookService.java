@@ -9,18 +9,23 @@ import java.util.Scanner;
 
 public class BookService {
 
-    public static BookDAO getDBBook() {
-        return new BookDAOSQLite();
-        //return new BookDAOLinkedList();
+    public static BookDAO getDBBook(String type) {
+        if ("sqlite".equalsIgnoreCase(type)) {
+            return new BookDAOSQLite();
+        } 
+        else if("linkedlist".equalsIgnoreCase(type)) {
+            return new BookDAOLinkedList();
+        } else {
+            throw new IllegalArgumentException("Tipo de implementação inválido: " + type);
+        }
     }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        BookDAO dbAccessor = BookService.getDBBook();
+        BookDAO dbAccessor = BookService.getDBBook("sqlite");
         
         System.out.println("=== Sistema de Gerenciamento de Livros ===");
-        System.out.println("Usando implementação LinkedStack");
-        
+        System.out.println("Usando implementação " + type.toUpperCase());
         boolean continuar = true;
         
         while (continuar) {

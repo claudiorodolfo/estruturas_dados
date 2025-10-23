@@ -16,11 +16,11 @@ Sem alterar a lógica de negócio ou a interface do usuário.
 ┌─────────────────────────────────────────────────────────────┐
 │                  BookService (App Layer)                    │
 ├─────────────────────────────────────────────────────────────┤
-│              BookDAO Interface (Contract)                    │
+│              BookDAO Interface (Contract)                   │
 ├─────────────────────────────────────────────────────────────┤
 │    BookDAOLinkedList    │    BookDAOSQLite (DAO Layer)      │
 ├─────────────────────────────────────────────────────────────┤
-│   LinkedList<T>        │  SQLiteConnection + SQLiteDB       │
+│   LinkedList<T>         │  SQLiteConnection + SQLiteDB      │
 ├─────────────────────────────────────────────────────────────┤
 │                    Book (Model Layer)                       │
 └─────────────────────────────────────────────────────────────┘
@@ -114,12 +114,6 @@ BookDAO sqliteDAO = BookService.getSQLiteBook();
 BookDAO dao = BookService.getBookDAO("sqlite");
 ```
 
-### 3. **Exemplo de Demonstração**
-```bash
-# Executar exemplo comparativo
-mvn exec:java -Dexec.mainClass="br.edu.ifba.vdc.bsi.linkedlistdao.app.SQLiteExample"
-```
-
 ## 📊 Estrutura do Banco SQLite
 
 ### Tabela `books`
@@ -135,13 +129,6 @@ CREATE TABLE books (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ```
-
-### Índices Criados
-- `idx_books_author` - Busca por autor
-- `idx_books_title` - Busca por título
-- `idx_books_isbn` - Busca por ISBN
-- `idx_books_publication_date` - Busca por data
-- `idx_books_price` - Busca por preço
 
 ## 🎨 Padrões de Design Utilizados
 
