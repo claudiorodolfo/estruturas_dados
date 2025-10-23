@@ -42,7 +42,6 @@ public class BookRepositorySQLite {
         }
     }
     
-    @Override
     public void insertBook(Book book) {
         String sql = """
             INSERT INTO books (id, title, author, publication_date, isbn, price, created_at, updated_at)
@@ -86,7 +85,6 @@ public class BookRepositorySQLite {
         }
     }
     
-    @Override
     public Book[] selectAllBooks() {
         String sql = "SELECT * FROM books ORDER BY id";
         List<Book> books = new ArrayList<>();
@@ -110,7 +108,6 @@ public class BookRepositorySQLite {
         return books.toArray(new Book[0]);
     }
     
-    @Override
     public void updateBook(Book book) {
         String sql = """
             UPDATE books 
@@ -160,7 +157,6 @@ public class BookRepositorySQLite {
         }
     }
     
-    @Override
     public Book deleteBook(long id) {
         // Primeiro, busca o livro para retorná-lo
         Book book = selectBookById(id);
@@ -197,7 +193,6 @@ public class BookRepositorySQLite {
         return book;
     }
     
-    @Override
     public Book selectBookById(long id) {
         String sql = "SELECT * FROM books WHERE id = ?";
         
@@ -220,25 +215,21 @@ public class BookRepositorySQLite {
         return null;
     }
     
-    @Override
     public Book[] selectBooksByAuthor(String author) {
         String sql = "SELECT * FROM books WHERE author LIKE ? ORDER BY title";
         return executeSearchQuery(sql, "%" + author + "%");
     }
     
-    @Override
     public Book[] selectBooksByPublicationDate(LocalDate date) {
         String sql = "SELECT * FROM books WHERE publication_date = ? ORDER BY title";
         return executeSearchQuery(sql, Date.valueOf(date));
     }
     
-    @Override
     public Book[] selectBooksByTitle(String title) {
         String sql = "SELECT * FROM books WHERE title LIKE ? ORDER BY title";
         return executeSearchQuery(sql, "%" + title + "%");
     }
     
-    @Override
     public Book selectBookByIsbn(String isbn) {
         String sql = "SELECT * FROM books WHERE isbn = ?";
         
@@ -261,43 +252,36 @@ public class BookRepositorySQLite {
         return null;
     }
     
-    @Override
     public Book[] selectBooksByPriceRange(double minPrice, double maxPrice) {
         String sql = "SELECT * FROM books WHERE price BETWEEN ? AND ? ORDER BY price";
         return executeSearchQuery(sql, minPrice, maxPrice);
     }
     
-    @Override
     public Book[] selectBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
         String sql = "SELECT * FROM books WHERE publication_date BETWEEN ? AND ? ORDER BY publication_date";
         return executeSearchQuery(sql, Date.valueOf(minDate), Date.valueOf(maxDate));
     }
     
-    @Override
     public Book selectMostExpensiveBook() {
         String sql = "SELECT * FROM books WHERE price = (SELECT MAX(price) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
-    @Override
     public Book selectCheapestBook() {
         String sql = "SELECT * FROM books WHERE price = (SELECT MIN(price) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
-    @Override
     public Book selectNewestBook() {
         String sql = "SELECT * FROM books WHERE publication_date = (SELECT MAX(publication_date) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
-    @Override
     public Book selectOldestBook() {
         String sql = "SELECT * FROM books WHERE publication_date = (SELECT MIN(publication_date) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
-    @Override
     public int countTotalBooks() {
         String sql = "SELECT COUNT(*) FROM books";
         
@@ -317,7 +301,6 @@ public class BookRepositorySQLite {
         return 0;
     }
     
-    @Override
     public double calculateAveragePrice() {
         String sql = "SELECT AVG(price) FROM books WHERE price IS NOT NULL";
         
@@ -337,12 +320,10 @@ public class BookRepositorySQLite {
         return 0.0;
     }
     
-    @Override
     public boolean existsBook(long id) {
         return selectBookById(id) != null;
     }
     
-    @Override
     public void clearAllBooks() {
         try {
             sqliteDB.clearBooksTable();

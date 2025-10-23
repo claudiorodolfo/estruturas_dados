@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 /**
  * Implementação do DAO para persistência de livros em banco de dados SQLite.
- * Contém apenas regras de negócio, delegando acesso aos dados para o BookRepository.
+ * Contém apenas regras de negócio, delegando acesso aos dados para o BookRepositorySQLite.
  * 
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0.0
@@ -181,7 +181,7 @@ public class BookDAOSQLite implements BookDAO {
     @Override
     public Book getOldestBook() {
         // Delegar para o repository
-        return bookRepository.selectOldestBook();
+        return bookRepositorySQLite.selectOldestBook();
     }
     
     @Override
@@ -203,13 +203,13 @@ public class BookDAOSQLite implements BookDAO {
     @Override
     public int getTotalBooks() {
         // Delegar para o repository
-        return bookRepository.countTotalBooks();
+        return bookRepositorySQLite.countTotalBooks();
     }
     
     @Override
     public double getAveragePrice() {
         // Delegar para o repository
-        return bookRepository.calculateAveragePrice();
+        return bookRepositorySQLite.calculateAveragePrice();
     }
     
     @Override
