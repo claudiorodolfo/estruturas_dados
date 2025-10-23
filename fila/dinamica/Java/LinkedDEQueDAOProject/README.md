@@ -54,9 +54,9 @@ src/
 └── test/java/br/edu/ifba/vdc/bsi/linkeddequedao/
     ├── dao/
     │   └── BookDAOLinkedDEQueTest.java    # Testes do DAO
-    └── IntegrationTest.java              # Testes de integração
+    │   └── IntegrationTest.java           # Testes de integração
     ├── dao/repository/
-    │   ├── LinkedDEQueTest.java          # Testes da 
+    │   ├── LinkedDEQueTest.java           # Testes da 
 
 ```
 
