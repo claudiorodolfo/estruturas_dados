@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list;
 
 /**
  * Classe que representa um nó duplamente encadeado.

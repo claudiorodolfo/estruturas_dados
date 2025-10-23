@@ -1,7 +1,7 @@
 package br.edu.ifba.vdc.bsi.linkedlistdao.dao;
 
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.LinkedList;
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.Listable;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.LinkedList;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.Listable;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Book;
 
 import java.time.LocalDate;
@@ -140,7 +140,7 @@ public class BookDAOLinkedList implements BookDAO {
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
             if (book.getAuthor() != null && book.getAuthor().equalsIgnoreCase(author)) {
-                tempListBooks.append(book);
+                resultListBooks.append(book);
             }
         }
         return listToArray(resultListBooks);
@@ -419,7 +419,9 @@ public class BookDAOLinkedList implements BookDAO {
         double totalPrice = 0.0;
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            totalPrice += book.getPrice();
+            if (book.getPrice() != null) {
+                totalPrice += book.getPrice();
+            }
         }
         
         return totalPrice / listBooks.size();
@@ -449,5 +451,15 @@ public class BookDAOLinkedList implements BookDAO {
     @Override
     public void clearAllBooks() {
         listBooks.clear();
+    }
+    
+    /**
+     * Converte uma lista para array.
+     * 
+     * @param list a lista a ser convertida
+     * @return array com os elementos da lista
+     */
+    private Book[] listToArray(Listable<Book> list) {
+        return list.selectAll();
     }
 }

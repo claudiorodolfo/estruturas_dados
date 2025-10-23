@@ -1,3 +1,4 @@
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list;
 /**
  * Exceção lançada quando uma operação tenta acessar ou remover elementos
  * de uma estrutura de dados que está vazia.

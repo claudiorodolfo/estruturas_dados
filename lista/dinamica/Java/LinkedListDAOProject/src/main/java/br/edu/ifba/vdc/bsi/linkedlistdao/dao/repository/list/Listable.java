@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list;
 
 /**
  * Interface que define as operações básicas de uma lista dinâmica.

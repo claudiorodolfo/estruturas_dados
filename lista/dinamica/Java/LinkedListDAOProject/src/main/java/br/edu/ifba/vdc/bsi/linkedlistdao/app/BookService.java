@@ -140,7 +140,7 @@ public class BookService {
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livro = dbAccessor.getBook(id);
+            Book livro = dbAccessor.getBookById(id);
             
             if (livro != null) {
                 System.out.println("Livro encontrado:");
@@ -159,7 +159,7 @@ public class BookService {
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livroExistente = dbAccessor.getBook(id);
+            Book livroExistente = dbAccessor.getBookById(id);
             
             if (livroExistente == null) {
                 System.out.println("Livro não encontrado!");

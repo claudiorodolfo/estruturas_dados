@@ -1,3 +1,4 @@
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list;
 /**
  * Exceção lançada quando uma operação tenta inserir elementos
  * em uma estrutura de dados que já está cheia.

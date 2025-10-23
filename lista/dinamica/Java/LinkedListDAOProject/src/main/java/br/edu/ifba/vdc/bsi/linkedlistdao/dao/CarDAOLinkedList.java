@@ -1,7 +1,7 @@
 package br.edu.ifba.vdc.bsi.linkedlistdao.dao;
 
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.LinkedList;
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.Listable;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.LinkedList;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.Listable;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Car;
 import java.time.LocalDateTime;
 

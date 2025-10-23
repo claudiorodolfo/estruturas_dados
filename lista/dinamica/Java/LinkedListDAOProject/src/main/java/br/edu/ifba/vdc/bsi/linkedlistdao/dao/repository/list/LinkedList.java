@@ -1,7 +1,7 @@
-package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list;
 
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.OverflowException;
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.UnderflowException;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.OverflowException;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.UnderflowException;
 
 /**
  * Implementação de uma lista dinâmica duplamente encadeada genérica.
@@ -58,8 +58,7 @@ public class LinkedList<T> implements Listable<T> {
 		if (isFull()) {
 			throw new OverflowException("Lista Cheia!");
 		}
-		DoubleNode<T> tempNode = new DoubleNode<T>();
-		tempNode.setData(data);
+		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 
 		if (!isEmpty()) {
 			tailPointer.setNext(tempNode);
@@ -94,8 +93,7 @@ public class LinkedList<T> implements Listable<T> {
 			return;
 		}
 
-		DoubleNode<T> tempNode = new DoubleNode<T>();
-		tempNode.setData(data);
+		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 
 		if (index == 0) {
 			// Inserir no início
@@ -117,7 +115,6 @@ public class LinkedList<T> implements Listable<T> {
 			previous.setNext(tempNode);
 			current.setPrevious(tempNode);
 		}
-
 		amount++;
 	}
 

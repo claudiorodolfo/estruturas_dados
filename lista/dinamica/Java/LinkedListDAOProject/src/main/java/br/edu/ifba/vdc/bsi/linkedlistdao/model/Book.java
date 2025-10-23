@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.linkeddequedao.model;
+package br.edu.ifba.vdc.bsi.linkedlistdao.model;
 
 import java.time.LocalDate;
 
@@ -104,5 +104,5 @@ public class Book {
             ",isbn:" + isbnJson +
             ",price:" + priceJson +
             "}";
-}
+    }
 }

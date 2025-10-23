@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.linkedstackdao.model;
+package br.edu.ifba.vdc.bsi.linkedlistdao.model;
 
 import java.time.LocalDateTime;
 
