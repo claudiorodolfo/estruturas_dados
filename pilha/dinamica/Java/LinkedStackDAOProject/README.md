@@ -103,6 +103,17 @@ mvn test
 mvn exec:java
 ```
 
+### 5. Gere a documentação Javadoc
+```bash
+mvn javadoc:javadoc
+```
+
+### 6. Visualize a documentação
+```bash
+# A documentação será gerada em target/site/apidocs/
+# Abra o arquivo target/site/apidocs/index.html no seu navegador
+```
+
 ## 🎮 Como Usar
 
 ### Execução Básica

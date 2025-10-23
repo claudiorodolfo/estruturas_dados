@@ -5,13 +5,13 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.edu.ifba.vdc.bsi.linkeddequedao</groupId>
-    <artifactId>book-deque</artifactId>
+    <groupId>br.edu.ifba.vdc.bsi.linkedlistdao</groupId>
+    <artifactId>book-list</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Fila Dinâmica</name>
-    <description>Implementação de Uma Fila Dinâmica de Livros em Java</description>
+    <name>Lista Dinâmica</name>
+    <description>Implementação de Uma Lista Dinâmica de Livros em Java</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -67,7 +67,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>br.edu.ifba.vdc.bsi.linkeddequedao.app.BookService</mainClass>
+                            <mainClass>br.edu.ifba.vdc.bsi.linkedlistdao.app.BookService</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -90,7 +90,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>br.edu.ifba.vdc.bsi.linkeddequedao.app.BookService</mainClass>
+                    <mainClass>br.edu.ifba.vdc.bsi.linkedlistdao.app.BookService</mainClass>
                 </configuration>
             </plugin>
         </plugins>
