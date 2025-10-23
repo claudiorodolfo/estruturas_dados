@@ -25,7 +25,6 @@ public class BookService {
         BookDAO dbAccessor = BookService.getDBBook("sqlite");
         
         System.out.println("=== Sistema de Gerenciamento de Livros ===");
-        System.out.println("Usando implementação " + type.toUpperCase());
         boolean continuar = true;
         
         while (continuar) {
