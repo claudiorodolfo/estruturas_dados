@@ -44,19 +44,21 @@ src/
 │   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
-│   │   └── BookDAOLinkedList.java         # Implementação do DAO para Livro
-│   ├── dao/repository/
-│   │   ├── Listable.java                  # Interface da lista
-│   │   ├── LinkedList.java                # Implementação da lista dinâmica
-│   │   └── DoubleNode.java                # Nó duplamente encadeado
+│   │   ├── BookDAOLinkedList.java         # Implementação do DAO para Livro
+│   │   └── repository/list
+│   │       ├── Listable.java                  # Interface da lista
+│   │       ├── LinkedList.java                # Implementação da lista dinâmica
+│   │       ├── OverflowException.java                # Exceção de Transbordamento acima
+│   │       ├── UnderflowException.java                # Exceção de Transbordamento abaixo
+│   │       └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedlistdao/
-    ├── dao/
-    │   ├── BookDAOLinkedListTest.java     # Testes do DAO
-    │   └── IntegrationTest.java           # Testes de integração
-    └── dao/repository/
-        └── LinkedListTest.java            # Testes da lista
+    └── dao/
+        ├── BookDAOLinkedListTest.java     # Testes do DAO
+        ├── IntegrationTest.java           # Testes de integração
+        └── repository/list/
+            └── LinkedListTest.java            # Testes da lista
 
 ```
 

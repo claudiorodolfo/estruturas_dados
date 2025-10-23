@@ -87,8 +87,8 @@ public class BookService {
         System.out.println("7.  Buscar Livro Mais Caro");
         System.out.println("8.  Buscar Livro Mais Barato");
         System.out.println("9. Listar Todos os Livros");
-        System.out.println("10. Imprimir Livros (toString)");
-        System.out.println("12. Mostrar Total de Livros");
+        System.out.println("10. Imprimir Livros");
+        System.out.println("11. Mostrar Total de Livros");
         System.out.println("0.  Sair");
         System.out.print("Escolha uma opção: ");
     }
