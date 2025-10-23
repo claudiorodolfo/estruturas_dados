@@ -510,7 +510,7 @@ public class BookDAOLinkedStack implements BookDAO {
         Stackable<Book> tempStackBooks = new LinkedStack<>(20);
         Book resultBook = null;
         
-        // Desempilhar todos os livros e filtrar os que têm preço
+        // Desempilhar todos os livros e filtrar os que têm data
         if (!stackBooks.isEmpty()){
             Book book  = stackBooks.pop();
             tempStackBooks.push(book);

@@ -35,7 +35,7 @@ public class IntegrationTest {
         dbAccessor.addBook(book3);
         
         // 4. Verificar se o último livro adicionado está no topo
-        Book topBook = dbAccessor.getBook(null);
+        Book topBook = dbAccessor.getBook(book3.getId());
         assertNotNull(topBook);
         assertEquals(book3.getId(), topBook.getId());
         assertEquals("Capitães da Areia", topBook.getTitle());
@@ -45,16 +45,16 @@ public class IntegrationTest {
                                   LocalDate.of(1937, 1, 1), "978-85-359-0272-3", 45.00);
         dbAccessor.updateBook(updatedBook);
         
-        Book retrievedUpdatedBook = dbAccessor.getBook(null);
+        Book retrievedUpdatedBook = dbAccessor.getBook(book3.getId());
         assertEquals("Capitães da Areia - Edição Especial", retrievedUpdatedBook.getTitle());
         assertEquals(Double.valueOf(45.00), retrievedUpdatedBook.getPrice());
         
         // 6. Remover o livro do topo
-        Book removedBook = dbAccessor.deleteBook(null);
+        Book removedBook = dbAccessor.deleteBook(book3.getId());
         assertEquals(book3.getId(), removedBook.getId());
         
         // 7. Verificar se o próximo livro está no topo
-        Book newTopBook = dbAccessor.getBook(null);
+        Book newTopBook = dbAccessor.getBook(book2.getId());
         assertEquals(book2.getId(), newTopBook.getId());
         assertEquals("O Cortiço", newTopBook.getTitle());
         
@@ -65,10 +65,10 @@ public class IntegrationTest {
         assertFalse(printResult.contains("Capitães da Areia")); // Já foi removido
         
         // 9. Remover todos os livros restantes
-        Book removedBook2 = dbAccessor.deleteBook(null);
+        Book removedBook2 = dbAccessor.deleteBook(book2.getId());
         assertEquals(book2.getId(), removedBook2.getId());
         
-        Book removedBook1 = dbAccessor.deleteBook(null);
+        Book removedBook1 = dbAccessor.deleteBook(book1.getId());
         assertEquals(book1.getId(), removedBook1.getId());
         
         // 10. Verificar se a pilha está vazia
@@ -90,13 +90,13 @@ public class IntegrationTest {
         dbAccessor.addBook(book3);
         
         // Verificar ordem LIFO (Last In, First Out)
-        Book top1 = dbAccessor.deleteBook(null);
+        Book top1 = dbAccessor.deleteBook(book3.getId());
         assertEquals("Terceiro", top1.getTitle());
         
-        Book top2 = dbAccessor.deleteBook(null);
+        Book top2 = dbAccessor.deleteBook(book2.getId());
         assertEquals("Segundo", top2.getTitle());
         
-        Book top3 = dbAccessor.deleteBook(null);
+        Book top3 = dbAccessor.deleteBook(book1.getId());
         assertEquals("Primeiro", top3.getTitle());
     }
 
@@ -117,7 +117,7 @@ public class IntegrationTest {
         }
         
         // Verificar se o último adicionado está no topo
-        Book topBook = dbAccessor.getBook(null);
+        Book topBook = dbAccessor.getBook(3L);
         assertEquals("Harry Potter", topBook.getTitle());
         
         // Testar operações de atualização
@@ -125,7 +125,7 @@ public class IntegrationTest {
                                   LocalDate.of(1997, 6, 26), "978-0-439-35529-6", 24.99);
         dbAccessor.updateBook(updatedBook);
         
-        Book retrievedBook = dbAccessor.getBook(null);
+        Book retrievedBook = dbAccessor.getBook(3L);
         assertEquals("Harry Potter e a Pedra Filosofal", retrievedBook.getTitle());
         assertEquals(Double.valueOf(24.99), retrievedBook.getPrice());
         

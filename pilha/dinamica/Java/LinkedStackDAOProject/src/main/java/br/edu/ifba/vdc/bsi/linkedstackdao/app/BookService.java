@@ -88,7 +88,7 @@ public class BookService {
         System.out.println("8.  Buscar Livro Mais Barato");
         System.out.println("9. Listar Todos os Livros");
         System.out.println("10. Imprimir Livros (toString)");
-        System.out.println("12. Mostrar Total de Livros");
+        System.out.println("11. Mostrar Total de Livros");
         System.out.println("0.  Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -255,12 +255,12 @@ public class BookService {
     }
     
     private static void buscarLivrosMaisCaros(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVRO MAIS CAROS ===");        
+        System.out.println("\n=== BUSCAR LIVRO MAIS CARO ===");        
         try {
             Book livro = dbAccessor.getMostExpensiveBook();
             
             if (livro != null) {
-                System.out.println("Livro mais caros:");
+                System.out.println("Livro mais caro:");
                 System.out.println(livro.toString());
             } else {
                 System.out.println("Nenhum livro encontrado!");
@@ -271,12 +271,12 @@ public class BookService {
     }
     
     private static void buscarLivrosMaisBaratos(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVROS MAIS BARATOS ===");       
+        System.out.println("\n=== BUSCAR LIVRO MAIS BARATO ===");       
         try {
             Book livro = dbAccessor.getCheapestBook();
             
             if (livro != null) {
-                System.out.println("Livro mais baratos:");
+                System.out.println("Livro mais barato:");
                 System.out.println(livro.toString());
             } else {
                 System.out.println("Nenhum livro encontrado!");
