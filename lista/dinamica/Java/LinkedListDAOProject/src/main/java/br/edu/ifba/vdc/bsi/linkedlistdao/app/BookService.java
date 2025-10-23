@@ -2,6 +2,7 @@ package br.edu.ifba.vdc.bsi.linkedlistdao.app;
 
 import br.edu.ifba.vdc.bsi.linkedlistdao.dao.BookDAO;
 import br.edu.ifba.vdc.bsi.linkedlistdao.dao.BookDAOLinkedList;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.BookDAOSQLite;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Book;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -9,7 +10,8 @@ import java.util.Scanner;
 public class BookService {
 
     public static BookDAO getDBBook() {
-        return new BookDAOLinkedList();
+        return new BookDAOSQLite();
+        //return new BookDAOLinkedList();
     }
     
     public static void main(String[] args) {

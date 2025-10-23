@@ -1,0 +1,152 @@
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                           ARQUITETURA DO SISTEMA                               │
+│                        Sistema de Livros - Desacoplado                         │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              APPLICATION LAYER                                 │
+│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐            │
+│  │   BookService   │    │ SQLiteExample   │    │   Main Class    │            │
+│  │                 │    │                 │    │                 │            │
+│  │ + getDBBook()   │    │ + main()        │    │ + main()        │            │
+│  │ + getSQLiteBook()│   │ + demonstrate() │    │ + menu()        │            │
+│  │ + getBookDAO()  │    │                 │    │                 │            │
+│  └─────────────────┘    └─────────────────┘    └─────────────────┘            │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                DAO LAYER                                       │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │                            BookDAO Interface                            │   │
+│  │  + addBook(Book)           + getBookById(long)                         │   │
+│  │  + getAllBooks()           + getBooksByAuthor(String)                   │   │
+│  │  + updateBook(Book)        + getBooksByTitle(String)                    │   │
+│  │  + deleteBook(long)        + getBookByIsbn(String)                      │   │
+│  │  + getTotalBooks()         + getMostExpensiveBook()                     │   │
+│  │  + clearAllBooks()         + getCheapestBook()                          │   │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                    ┌───────────────────┼───────────────────┐
+                    │                   │                   │
+                    ▼                   ▼                   ▼
+┌─────────────────────────┐ ┌─────────────────────────┐ ┌─────────────────────────┐
+│   BookDAOLinkedList     │ │    BookDAOSQLite        │ │   Future Implementations│
+│                         │ │                         │ │                         │
+│  - LinkedList<Book>     │ │  - SQLiteConnection     │ │  - BookDAOPostgreSQL   │
+│  - DoubleNode<Book>     │ │  - SQLiteDB             │ │  - BookDAOMongoDB      │
+│  - In-memory storage    │ │  - SQLite database      │ │  - BookDAORedis        │
+│  - Volatile data        │ │  - Persistent storage   │ │  - etc...              │
+│                         │ │                         │ │                         │
+│  + addBook()            │ │  + addBook()            │ │  + addBook()            │
+│  + getAllBooks()        │ │  + getAllBooks()        │ │  + getAllBooks()        │
+│  + updateBook()         │ │  + updateBook()         │ │  + updateBook()         │
+│  + deleteBook()         │ │  + deleteBook()         │ │  + deleteBook()         │
+│  + getTotalBooks()      │ │  + getTotalBooks()      │ │  + getTotalBooks()      │
+│  + clearAllBooks()      │ │  + clearAllBooks()      │ │  + clearAllBooks()      │
+└─────────────────────────┘ └─────────────────────────┘ └─────────────────────────┘
+                    │                   │
+                    ▼                   ▼
+┌─────────────────────────┐ ┌─────────────────────────────────────────────────────┐
+│    REPOSITORY LAYER     │ │              REPOSITORY LAYER                        │
+│                         │ │                                                     │
+│  ┌─────────────────┐   │ │  ┌─────────────────┐    ┌─────────────────┐        │
+│  │   LinkedList<T>  │   │ │  │ SQLiteConnection│    │     SQLiteDB     │        │
+│  │                 │   │ │  │                 │    │                 │        │
+│  │ - head: Node    │   │ │  │ - getInstance() │    │ - initializeDB() │        │
+│  │ - tail: Node    │   │ │  │ - getConnection()│   │ - createTables() │        │
+│  │ - size: int     │   │ │  │ - commit()      │    │ - createIndexes()│        │
+│  │                 │   │ │  │ - rollback()    │    │ - clearTable()   │        │
+│  │ + insert()      │   │ │  │ - close()       │    │ - dropTable()   │        │
+│  │ + append()      │   │ │  │                 │    │                 │        │
+│  │ + delete()      │   │ │  │ Singleton       │    │ Database Mgmt    │        │
+│  │ + select()      │   │ │  │ Pattern         │    │ Operations       │        │
+│  │ + update()      │   │ │  │                 │    │                 │        │
+│  │ + isEmpty()     │   │ │  │                 │    │                 │        │
+│  │ + isFull()      │   │ │  │                 │    │                 │        │
+│  │ + size()        │   │ │  │                 │    │                 │        │
+│  └─────────────────┘   │ │  └─────────────────┘    └─────────────────┘        │
+│                         │ │                                                     │
+│  ┌─────────────────┐   │ │  ┌─────────────────────────────────────────────┐   │
+│  │   DoubleNode<T> │   │ │  │            SQLite Database                   │   │
+│  │                 │   │ │  │                                             │   │
+│  │ - data: T       │   │ │  │  ┌─────────────────────────────────────┐   │   │
+│  │ - previous: Node│   │ │  │  │            books table              │   │   │
+│  │ - next: Node    │   │ │  │  │                                     │   │   │
+│  │                 │   │ │  │  │  id (INTEGER PRIMARY KEY)          │   │   │
+│  │ + getData()     │   │ │  │  │  title (TEXT NOT NULL)             │   │   │
+│  │ + setData()     │   │ │  │  │  author (TEXT)                    │   │   │
+│  │ + getPrevious() │   │ │  │  │  publication_date (DATE)           │   │   │
+│  │ + setPrevious() │   │ │  │  │  isbn (TEXT)                      │   │   │
+│  │ + getNext()     │   │ │  │  │  price (REAL)                     │   │   │
+│  │ + setNext()     │   │ │  │  │  created_at (DATETIME)            │   │   │
+│  └─────────────────┘   │ │  │  │  updated_at (DATETIME)            │   │   │
+│                         │ │  │  └─────────────────────────────────────┘   │   │
+│                         │ │  │                                             │   │
+│                         │ │  │  ┌─────────────────────────────────────┐   │   │
+│                         │ │  │  │            Indexes                  │   │   │
+│                         │ │  │  │                                     │   │   │
+│                         │ │  │  │  - idx_books_author                │   │   │
+│                         │ │  │  │  - idx_books_title                 │   │   │
+│                         │ │  │  │  - idx_books_isbn                  │   │   │
+│                         │ │  │  │  - idx_books_publication_date       │   │   │
+│                         │ │  │  │  - idx_books_price                 │   │   │
+│                         │ │  │  └─────────────────────────────────────┘   │   │
+│                         │ │  └─────────────────────────────────────────────┘   │   │
+│                         │ └─────────────────────────────────────────────────────┘   │
+└─────────────────────────┘ └─────────────────────────────────────────────────────────┘
+                    │                   │
+                    ▼                   ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              MODEL LAYER                                       │
+│  ┌─────────────────────────────────────────────────────────────────────────┐   │
+│  │                              Book Model                                │   │
+│  │                                                                         │   │
+│  │  - id: Long (immutable)                                                 │   │
+│  │  - title: String (required)                                            │   │
+│  │  - author: String                                                       │   │
+│  │  - publicationDate: LocalDate                                           │   │
+│  │  - isbn: String                                                        │   │
+│  │  - price: Double                                                       │   │
+│  │                                                                         │   │
+│  │  + getId()                                                             │   │
+│  │  + getTitle() / setTitle()                                             │   │
+│  │  + getAuthor() / setAuthor()                                           │   │
+│  │  + getPublicationDate() / setPublicationDate()                        │   │
+│  │  + getIsbn() / setIsbn()                                               │   │
+│  │  + getPrice() / setPrice()                                             │   │
+│  │  + toString()                                                          │   │
+│  └─────────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              BENEFITS                                          │
+│                                                                                 │
+│  ✅ DESACOPLAMENTO: Mesma interface, implementações diferentes                 │
+│  ✅ FLEXIBILIDADE: Troca fácil entre LinkedList e SQLite                       │
+│  ✅ MANUTENIBILIDADE: Código organizado em camadas                             │
+│  ✅ REUTILIZAÇÃO: Mesma lógica, diferentes backends                            │
+│  ✅ ESCALABILIDADE: Fácil adição de novas implementações                       │
+│  ✅ TESTABILIDADE: Testes independentes para cada implementação               │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              USAGE EXAMPLES                                    │
+│                                                                                 │
+│  // Desenvolvimento (rápido)                                                    │
+│  BookDAO dao = BookService.getDBBook(); // LinkedList                          │
+│                                                                                 │
+│  // Produção (persistente)                                                      │
+│  BookDAO dao = BookService.getSQLiteBook(); // SQLite                           │
+│                                                                                 │
+│  // Factory method                                                              │
+│  BookDAO dao = BookService.getBookDAO("sqlite"); // ou "linkedlist"            │
+│                                                                                 │
+│  // Operações idênticas independente da implementação                          │
+│  dao.addBook(livro);                                                            │
+│  Book[] livros = dao.getAllBooks();                                             │
+│  Book encontrado = dao.getBookById(1L);                                         │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
