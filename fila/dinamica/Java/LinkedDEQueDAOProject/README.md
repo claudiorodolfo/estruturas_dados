@@ -44,19 +44,19 @@ src/
 │   │   └── BookService.java               # Classe principal da aplicação
 │   ├── dao/
 │   │   ├── BookDAO.java                   # Interface do DAO para Livro
-│   │   └── BookDAOLinkedDEQue.java        # Implementação do DAO para Livro
-│   ├── dao/repository/
-│   │   ├── Queueable.java                 # Comportamento da fila
-│   │   ├── LinkedDEQue.java               # Implementação da fila dinâmica
-│   │   └── DoubleNode.java                # Nó duplamente encadeado
+│   │   ├── BookDAOLinkedDEQue.java        # Implementação do DAO para Livro
+│       └── repository/
+│   │       ├── Queueable.java                 # Comportamento da fila
+│   │       ├── LinkedDEQue.java               # Implementação da fila dinâmica
+│   │       └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
 │       └── Book.java                      # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkeddequedao/
-    ├── dao/
-    │   ├── BookDAOLinkedDEQueTest.java    # Testes do DAO
-    │   └── IntegrationTest.java           # Testes de integração
-    └── dao/repository/
-        └── LinkedDEQueTest.java           # Testes da fila dinâmica
+    └── dao/
+        ├── BookDAOLinkedDEQueTest.java    # Testes do DAO
+        ├── IntegrationTest.java           # Testes de integração
+        └── repository/
+            └── LinkedDEQueTest.java           # Testes da fila dinâmica
 
 ```
 

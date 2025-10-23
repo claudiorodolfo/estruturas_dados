@@ -48,15 +48,15 @@ src/
 │   │   └── repository/list
 │   │       ├── Listable.java                  # Interface da lista
 │   │       ├── LinkedList.java                # Implementação da lista dinâmica
-│   │       ├── OverflowException.java                # Exceção de Transbordamento acima
-│   │       ├── UnderflowException.java                # Exceção de Transbordamento abaixo
+│   │       ├── OverflowException.java         # Exceção de Transbordamento acima
+│   │       ├── UnderflowException.java        # Exceção de Transbordamento abaixo
 │   │       └── DoubleNode.java                # Nó duplamente encadeado
 │   └── model/
-│       └── Book.java                      # Modelo de dados para Livro
+│       └── Book.java                          # Modelo de dados para Livro
 └── test/java/br/edu/ifba/vdc/bsi/linkedlistdao/
     └── dao/
-        ├── BookDAOLinkedListTest.java     # Testes do DAO
-        ├── IntegrationTest.java           # Testes de integração
+        ├── BookDAOLinkedListTest.java         # Testes do DAO
+        ├── IntegrationTest.java               # Testes de integração
         └── repository/list/
             └── LinkedListTest.java            # Testes da lista
 
