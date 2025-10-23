@@ -1,8 +1,8 @@
-package br.edu.ifba.vdc.bsi.linkedstackdao;
+package br.edu.ifba.vdc.bsi.linkeddequedao;
 
-import br.edu.ifba.vdc.bsi.linkedstackdao.app.BookService;
-import br.edu.ifba.vdc.bsi.linkedstackdao.dao.BookDAO;
-import br.edu.ifba.vdc.bsi.linkedstackdao.model.Book;
+import br.edu.ifba.vdc.bsi.linkeddequedao.app.BookService;
+import br.edu.ifba.vdc.bsi.linkeddequedao.dao.BookDAO;
+import br.edu.ifba.vdc.bsi.linkeddequedao.model.Book;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.time.LocalDate;

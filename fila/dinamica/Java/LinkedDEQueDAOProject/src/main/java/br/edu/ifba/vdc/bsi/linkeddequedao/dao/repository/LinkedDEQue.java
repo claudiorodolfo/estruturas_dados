@@ -50,7 +50,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Remove e retorna um elemento do início da fila.
 	 *
 	 * @return o elemento removido do início da fila
-	 * @throws java.util.NoSuchElementException se a fila estiver vazia
+	 * @throws NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public T dequeue() {
@@ -64,6 +64,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 			headPointer.setPrevious(null);
 		} else {
 			headPointer = null;
+			tailPointer = null;
 		}
 		return data;	
 	}
@@ -72,7 +73,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Remove e retorna um elemento do fim da fila.
 	 *
 	 * @return o elemento removido do fim da fila
-	 * @throws java.util.NoSuchElementException se a fila estiver vazia
+	 * @throws NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public T endDequeue() {
@@ -86,6 +87,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 			tailPointer.setNext(null);
 		} else {
 			headPointer = null;
+			tailPointer = null;
 		}
 		return data;	
 	}
@@ -119,7 +121,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Adiciona um elemento ao fim da fila.
 	 *
 	 * @param data o elemento a ser adicionado
-	 * @throws java.util.NoSuchElementException se a fila estiver cheia
+	 * @throws NoSuchElementException se a fila estiver cheia
 	 */
     @Override
     public void enqueue(T data) {
@@ -144,7 +146,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Retorna o elemento do início da fila sem removê-lo.
 	 *
 	 * @return o elemento do início
-	 * @throws java.util.NoSuchElementException se a fila estiver vazia
+	 * @throws NoSuchElementException se a fila estiver vazia
 	 */	
 	@Override
 	public T front() {
@@ -172,7 +174,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Atualiza o elemento do início da fila.
 	 *
 	 * @param data o novo elemento
-	 * @throws java.util.NoSuchElementException se a fila estiver vazia
+	 * @throws NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public void beginUpdate(T data) {
@@ -186,7 +188,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 	 * Atualiza o elemento do fim da fila.
 	 *
 	 * @param data o novo elemento
-	 * @throws java.util.NoSuchElementException se a fila estiver vazia
+	 * @throws NoSuchElementException se a fila estiver vazia
 	 */
 	@Override
 	public void endUpdate(T data) {

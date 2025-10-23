@@ -435,7 +435,7 @@ public class BookDAOLinkedDEQue implements BookDAO {
         DEQueable<Book> tempQueueBooks = new LinkedDEQue<>(20);
         Book resultBook = null;
         
-        // Desenfileirar todos os livros e filtrar os que têm preço
+        // Desenfileirar todos os livros e filtrar os que têm data de publicação
         if (!queueBooks.isEmpty()){
             Book book  = queueBooks.dequeue();
             tempQueueBooks.enqueue(book);
@@ -476,7 +476,7 @@ public class BookDAOLinkedDEQue implements BookDAO {
         DEQueable<Book> tempQueueBooks = new LinkedDEQue<>(20);
         Book resultBook = null;
         
-        // Reenfileirar todos os livros e filtrar os que têm preço
+        // Desenfileirar todos os livros e filtrar os que têm data de publicação
         if (!queueBooks.isEmpty()){
             Book book  = queueBooks.dequeue();
             tempQueueBooks.enqueue(book);
@@ -604,14 +604,14 @@ public class BookDAOLinkedDEQue implements BookDAO {
         DEQueable<Book> tempQueueBooks = new LinkedDEQue<>(20);
         int count = 0;
         
-        while (!queueBooks.isEmpty()) {
-            tempQueueBooks.enqueue(queueBooks.dequeue());
+        while (!queue.isEmpty()) {
+            tempQueueBooks.enqueue(queue.dequeue());
             count++;
         }
         
         // Restaurar a fila original
         while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
+            queue.enqueue(tempQueueBooks.dequeue());
         }
         
         return count;
