@@ -1,6 +1,7 @@
 package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
 
-import java.util.NoSuchElementException;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.OverflowException;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.UnderflowException;
 
 /**
  * Implementação de uma lista dinâmica duplamente encadeada genérica.
@@ -50,12 +51,12 @@ public class LinkedList<T> implements Listable<T> {
 	 * Adiciona um elemento no final da lista.
 	 *
 	 * @param data o elemento a ser adicionado
-	 * @throws java.util.NoSuchElementException se a lista estiver cheia
+	 * @throws OverflowException se a lista estiver cheia
 	 */
 	@Override
 	public void append(T data) {
 		if (isFull()) {
-			throw new NoSuchElementException("Lista Cheia!");
+			throw new OverflowException("Lista Cheia!");
 		}
 		DoubleNode<T> tempNode = new DoubleNode<T>();
 		tempNode.setData(data);
@@ -76,13 +77,13 @@ public class LinkedList<T> implements Listable<T> {
 	 *
 	 * @param index a posição onde o elemento será inserido
 	 * @param data o elemento a ser adicionado
-	 * @throws java.util.NoSuchElementException se a lista estiver cheia
+	 * @throws OverflowException se a lista estiver cheia
 	 * @throws IndexOutOfBoundsException se o índice for inválido
 	 */
 	@Override
 	public void insert(int index, T data) {
 		if (isFull()) {
-			throw new NoSuchElementException("Lista Cheia!");
+			throw new OverflowException("Lista Cheia!");
 		}
 		if (index < 0 || index > amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
@@ -126,9 +127,13 @@ public class LinkedList<T> implements Listable<T> {
 	 * @param index o índice do elemento
 	 * @return o elemento na posição especificada
 	 * @throws IndexOutOfBoundsException se o índice for inválido
+	 * @throws UnderflowException se a lista estiver vazia
 	 */
 	@Override
 	public T select(int index) {
+		if (isEmpty()) {
+			throw new UnderflowException("Lista Vazia!");
+		}
 		if (index < 0 || index >= amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
@@ -162,9 +167,13 @@ public class LinkedList<T> implements Listable<T> {
 	 * @param index a posição do elemento a ser atualizado
 	 * @param data o novo elemento
 	 * @throws IndexOutOfBoundsException se o índice for inválido
+	 * @throws UnderflowException se a lista estiver vazia
 	 */
 	@Override
 	public void update(int index, T data) {
+		if (isEmpty()) {
+			throw new UnderflowException("Lista Vazia!");
+		}
 		if (index < 0 || index >= amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
@@ -177,9 +186,13 @@ public class LinkedList<T> implements Listable<T> {
 	 * @param index o índice do elemento a ser removido
 	 * @return o elemento removido
 	 * @throws IndexOutOfBoundsException se o índice for inválido
+	 * @throws UnderflowException se a lista estiver vazia
 	 */
 	@Override
 	public T delete(int index) {
+		if (isEmpty()) {
+			throw new UnderflowException("Lista Vazia!");
+		}
 		if (index < 0 || index >= amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
