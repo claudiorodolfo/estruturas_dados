@@ -1,6 +1,6 @@
-package br.edu.ifba.vdc.bsi.linkedstackdao.dao;
+package br.edu.ifba.vdc.bsi.linkeddequedao.dao;
 
-import br.edu.ifba.vdc.bsi.linkedstackdao.model.Book;
+import br.edu.ifba.vdc.bsi.linkeddequedao.model.Book;
 import java.time.LocalDate;
 
 public interface BookDAO {
@@ -8,10 +8,10 @@ public interface BookDAO {
     void addBook(Book book);
     Book[] getAllBooks();
     void updateBook(Book newBook);
-    Book deleteBook(long id);
+    Book deleteBook(Long id);
     
     // Operações de consulta específicas para livros
-    Book getBookById(long id);   //implementet
+    Book getBookById(Long id);
     Book[] getBooksByAuthor(String author);
     Book[] getBooksByPublicationDate(LocalDate date);
     Book[] getBooksByTitle(String title);
@@ -31,7 +31,7 @@ public interface BookDAO {
     double getAveragePrice();
     
     // Operações de gerenciamento
-    boolean isBookAvailable(long id);
+    boolean isBookAvailable(Long id);
     
     // Operações de backup e restore
     void clearAllBooks();

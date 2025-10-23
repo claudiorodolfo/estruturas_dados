@@ -17,7 +17,7 @@ public class BookService {
         BookDAO dbAccessor = BookService.getDBBook();
         
         System.out.println("=== Sistema de Gerenciamento de Livros ===");
-        System.out.println("Usando implementação LinkedStack");
+        System.out.println("Usando implementação LinkedDEQue");
         
         boolean continuar = true;
         
@@ -87,8 +87,8 @@ public class BookService {
         System.out.println("7.  Buscar Livro Mais Caro");
         System.out.println("8.  Buscar Livro Mais Barato");
         System.out.println("9. Listar Todos os Livros");
-        System.out.println("10. Imprimir Livros (toString)");
-        System.out.println("12. Mostrar Total de Livros");
+        System.out.println("10. Imprimir Livros");
+        System.out.println("11. Mostrar Total de Livros");
         System.out.println("0.  Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -140,7 +140,7 @@ public class BookService {
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livro = dbAccessor.getBook(id);
+            Book livro = dbAccessor.getBookById(id);
             
             if (livro != null) {
                 System.out.println("Livro encontrado:");
@@ -159,7 +159,7 @@ public class BookService {
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livroExistente = dbAccessor.getBook(id);
+            Book livroExistente = dbAccessor.getBookById(id);
             
             if (livroExistente == null) {
                 System.out.println("Livro não encontrado!");

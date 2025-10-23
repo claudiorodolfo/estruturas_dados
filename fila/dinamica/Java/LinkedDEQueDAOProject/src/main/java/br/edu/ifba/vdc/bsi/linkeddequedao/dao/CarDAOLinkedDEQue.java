@@ -5,6 +5,22 @@ import br.edu.ifba.vdc.bsi.linkeddequedao.dao.repository.DEQueable;
 import br.edu.ifba.vdc.bsi.linkeddequedao.model.Car;
 import java.time.LocalDateTime;
 
+/**
+ * Implementação do DAO (Data Access Object) para gerenciamento de carros
+ * utilizando uma estrutura de dados do tipo fila com dupla terminação (DEQue).
+ * 
+ * Esta classe implementa todas as operações CRUD (Create, Read, Update, Delete)
+ * e operações de consulta específicas para carros, mantendo os dados em uma
+ * estrutura de fila que preserva a ordem FIFO (First In, First Out).
+ * 
+ * @author Cláudio Rodolfo Sousa de Oliveira
+ * @version 1.0
+ * @since 2025-10-20
+ * @see CarDAO
+ * @see Car
+ * @see DEQueable
+ * @see LinkedDEQue
+ */
 public class CarDAOLinkedDEQue implements CarDAO {
 
     private DEQueable<Car> cars = new LinkedDEQue<>(20);

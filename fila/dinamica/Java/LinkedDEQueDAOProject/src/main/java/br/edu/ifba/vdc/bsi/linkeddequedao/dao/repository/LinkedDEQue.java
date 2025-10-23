@@ -101,7 +101,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 		if (isFull()) {
 			throw new NoSuchElementException("Pilha Cheia!");
 		}
-		DoubleNode<T> tempNode = new DoubleNode<T>();
+		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 		tempNode.setData(data);
 
 		if (!isEmpty()) {
@@ -126,7 +126,7 @@ public class LinkedDEQue<T> implements DEQueable<T> {
 		if (isFull()) {
 			throw new NoSuchElementException("Pilha Cheia!");
 		}
-		DoubleNode<T> tempNode = new DoubleNode<T>();
+		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 		tempNode.setData(data);
 
 		if (!isEmpty()) {

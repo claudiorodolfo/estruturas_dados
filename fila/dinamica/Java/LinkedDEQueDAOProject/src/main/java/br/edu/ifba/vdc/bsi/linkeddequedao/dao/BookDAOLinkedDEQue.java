@@ -93,7 +93,7 @@ public class BookDAOLinkedDEQue implements BookDAO {
      * @return o livro removido ou null se não for encontrado
      */
     @Override
-    public Book deleteBook(long id) {
+    public Book deleteBook(Long id) {
         DEQueable<Book> tempQueueBooks = new LinkedDEQue<>(20);
         Book resultBook = null;
         
@@ -127,7 +127,7 @@ public class BookDAOLinkedDEQue implements BookDAO {
      * @return o livro encontrado ou null se não existir
      */
     @Override
-    public Book getBookById(long id) {
+    public Book getBookById(Long id) {
         DEQueable<Book> tempQueueBooks = new LinkedDEQue<>(20);
         Book resultBook = null;
         
@@ -572,8 +572,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
      * @return true se o livro estiver disponível, false caso contrário
      */
     @Override
-    public boolean isBookAvailable(long id) {
-        return getBook(id) != null;
+    public boolean isBookAvailable(Long id) {
+        return getBookById(id) != null;
     }
 
     /**

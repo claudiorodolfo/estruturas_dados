@@ -1,6 +1,6 @@
-package br.edu.ifba.vdc.bsi.linkedstackdao.dao;
+package br.edu.ifba.vdc.bsi.linkeddequedao.dao;
 
-import br.edu.ifba.vdc.bsi.linkedstackdao.model.Car;
+import br.edu.ifba.vdc.bsi.linkeddequedao.model.Car;
 import java.time.LocalDateTime;
 
 public interface CarDAO {
