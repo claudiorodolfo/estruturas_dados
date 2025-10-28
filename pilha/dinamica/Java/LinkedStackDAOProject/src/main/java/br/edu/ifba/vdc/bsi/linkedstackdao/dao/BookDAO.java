@@ -6,13 +6,12 @@ import java.time.LocalDate;
 public interface BookDAO {
     // Operações básicas CRUD
     void addBook(Book book);
-    Book getBook(long id);
+    Book getBookById(long id);
     Book[] getAllBooks();
     void updateBook(Book newBook);
     Book deleteBook(long id);
     
     // Operações de consulta específicas para livros
-    Book getBookById(long id);   //implementet
     Book[] getBooksByAuthor(String author);
     Book[] getBooksByPublicationDate(LocalDate date);
     Book[] getBooksByTitle(String title);

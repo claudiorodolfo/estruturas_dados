@@ -72,15 +72,19 @@ public class BookDAOLinkedDEQue implements BookDAO {
             Book book = queueBooks.dequeue();
             if (book.getId() == newBook.getId()) {
                 tempQueueBooks.enqueue(newBook);
+                break;
             } else {
                 tempQueueBooks.enqueue(book);
             }
         }
-        
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
+
+        // Reenfileirar o restante da fila
+        while (!queueBooks.isEmpty()) {
+            tempQueueBooks.enqueue(queueBooks.dequeue());
         }
+
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
     }
     
     /**
@@ -108,11 +112,14 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
+        // Reenfileirar o restante da fila
+        while (!queueBooks.isEmpty()) {
+            tempQueueBooks.enqueue(queueBooks.dequeue());
         }
         
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
+
         return resultBook;
     }
     
@@ -137,13 +144,17 @@ public class BookDAOLinkedDEQue implements BookDAO {
             tempQueueBooks.enqueue(book);
             if (book.getId() == id) {
                 resultBook = book;
+                break;
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }    
+        // Reenfileirar o restante da fila
+        while (!queueBooks.isEmpty()) {
+            tempQueueBooks.enqueue(queueBooks.dequeue());
+        }
+        
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;   
          
         return resultBook;
     }
@@ -171,10 +182,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return queueToArray(resultQueueBooks);
     }
@@ -202,10 +211,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return queueToArray(resultQueueBooks);
     }
@@ -233,10 +240,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return queueToArray(resultQueueBooks);
     }
@@ -261,13 +266,17 @@ public class BookDAOLinkedDEQue implements BookDAO {
             tempQueueBooks.enqueue(book);
             if (book.getIsbn() != null && book.getIsbn().equals(isbn)) {
                 resultBook = book;
+                break;
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
+        // Reenfileirar o restante da fila
+        while (!queueBooks.isEmpty()) {
+            tempQueueBooks.enqueue(queueBooks.dequeue());
         }
+        
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return resultBook;
     }
@@ -296,10 +305,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return queueToArray(resultQueueBooks);
     }
@@ -330,10 +337,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return queueToArray(resultQueueBooks);
     }
@@ -372,10 +377,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return resultBook;
     }
@@ -413,11 +416,9 @@ public class BookDAOLinkedDEQue implements BookDAO {
                 }
             }
         }
-
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return resultBook;
     }
@@ -455,10 +456,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return resultBook;
     }
@@ -496,10 +495,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             }
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return resultBook;
     }
@@ -553,10 +550,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             bookCount++;
         }
         
-        // Reenfileirar na ordem original
-        while (!tempQueueBooks.isEmpty()) {
-            queueBooks.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return bookCount > 0 ? totalPrice / bookCount : 0.0;
     }
@@ -609,10 +604,8 @@ public class BookDAOLinkedDEQue implements BookDAO {
             count++;
         }
         
-        // Restaurar a fila original
-        while (!tempQueueBooks.isEmpty()) {
-            queue.enqueue(tempQueueBooks.dequeue());
-        }
+        //restaurar a fila original
+        queueBooks = tempQueueBooks;
         
         return count;
     }

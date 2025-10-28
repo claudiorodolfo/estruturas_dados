@@ -44,36 +44,6 @@ public class BookDAOLinkedStack implements BookDAO {
     public void addBook(Book book) {
         stackBooks.push(book);
     }
-  
-    /**
-     * Busca um livro pelo seu ID.
-     * 
-     * Esta operação percorre todos os livros na pilha para encontrar
-     * o livro com o ID especificado. A pilha é preservada após a busca.
-     * 
-     * @param id o ID do livro a ser buscado
-     * @return o livro encontrado ou null se não existir
-     */
-    @Override
-    public Book getBook(long id) {
-        // Para atualizar um livro específico, precisamos reconstruir a pilha
-        Stackable<Book> tempStackBooks = new LinkedStack<>(20);
-        Book resultBook = null;
-        // Desempilhar todos os livros
-        while (!stackBooks.isEmpty()) {
-            Book book = stackBooks.pop();
-            tempStackBooks.push(book);
-            if (book.getId() == id) {
-                resultBook = book;
-                break;
-            }
-        }
-        // Reempilhar na ordem original
-        while (!tempStackBooks.isEmpty()) {
-            stackBooks.push(tempStackBooks.pop());
-        }
-        return resultBook;
-    }
 
     /**
      * Retorna todos os livros da pilha em um array.
@@ -106,6 +76,7 @@ public class BookDAOLinkedStack implements BookDAO {
             Book book = stackBooks.pop();
             if (book.getId() == newBook.getId()) {
                 tempStackBooks.push(newBook);
+                break;
             } else {
                 tempStackBooks.push(book);
             }
@@ -295,6 +266,7 @@ public class BookDAOLinkedStack implements BookDAO {
             tempStackBooks.push(book);
             if (book.getIsbn() != null && book.getIsbn().equals(isbn)) {
                 resultBook = book;
+                break;
             }
         }
         
