@@ -88,33 +88,33 @@ public class LinkedList<T> implements Listable<T> {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
 
-		if (index == amount) {
-			append(data);
-			return;
-		}
-
 		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 
-		if (index == 0) {
-			// Inserir no início
-			tempNode.setNext(headPointer);
-			if (headPointer != null) {
-				headPointer.setPrevious(tempNode);
-			}
-			headPointer = tempNode;
-			if (amount == 0) {
-				tailPointer = tempNode;
-			}
-		} else {
-			// Inserir no meio
-			DoubleNode<T> current = getNodeAt(index);
-			DoubleNode<T> previous = current.getPrevious();
+		NoDuplo<T> previous = null;
+		NoDuplo<T> next = headPointer;
 
-			tempNode.setNext(current);
-			tempNode.setPrevious(previous);
-			previous.setNext(tempNode);
-			current.setPrevious(tempNode);
+		for (int i = 0; i < index; i++) {
+			previous = next;
+			next = next.getNext();
 		}
+
+		if (previous != null) {
+			previous.setNext(tempNode);
+			// se o anterior é nulo é pq a insercao está sendo no inicio
+		} else {
+			headPointer = tempNode;
+		}
+
+		if (next != null) {
+			next.setPrevious(tempNode);
+			// se o proximo é nulo é pq a insercao está sendo no fim
+		} else {
+			tailPointer = tempNode;
+		}
+
+		tempNode.setPrevious(previous);
+		tempNode.setNext(next);
+
 		amount++;
 	}
 
@@ -134,7 +134,16 @@ public class LinkedList<T> implements Listable<T> {
 		if (index < 0 || index >= amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
-		return getNodeAt(index).getData();
+
+		DoubleNode<T> tempNode = null;
+		//nó a ser manipulado está mais perto do ínicio
+		if (index <= amount/2) {
+			tempNode = new getNodeAt(index);
+		} else {
+			tempNode = new getNodeAtByEnd(index);
+		}
+
+		return tempNode.getData();
 	}
 
 	/**
@@ -145,17 +154,13 @@ public class LinkedList<T> implements Listable<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] selectAll() {
-		if (isEmpty()) {
-			return (T[]) new Object[0];
-		}
-
-		Object[] array = new Object[amount];
+		T[] array = (T[]) new Object[amount];
 		DoubleNode<T> current = headPointer;
 		for (int i = 0; i < amount; i++) {
 			array[i] = current.getData();
 			current = current.getNext();
 		}
-		return (T[]) array;
+		return  array;
 	}
 
 	/**
@@ -174,7 +179,16 @@ public class LinkedList<T> implements Listable<T> {
 		if (index < 0 || index >= amount) {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
-		getNodeAt(index).setData(data);
+
+		DoubleNode<T> tempNode = null;
+		//nó a ser manipulado está mais perto do ínicio
+		if (index <= amount/2) {
+			tempNode = new getNodeAt(index);
+		} else {
+			tempNode = new getNodeAtByEnd(index);
+		}
+
+		tempNode.setData(data);
 	}
 
 	/**
@@ -194,31 +208,32 @@ public class LinkedList<T> implements Listable<T> {
 			throw new IndexOutOfBoundsException("Índice inválido: " + index);
 		}
 
-		DoubleNode<T> nodeToRemove = getNodeAt(index);
-		T data = nodeToRemove.getData();
-
-		if (amount == 1) {
-			// Único elemento
-			headPointer = null;
-			tailPointer = null;
-		} else if (index == 0) {
-			// Remover do início
-			headPointer = nodeToRemove.getNext();
-			headPointer.setPrevious(null);
-		} else if (index == amount - 1) {
-			// Remover do fim
-			tailPointer = nodeToRemove.getPrevious();
-			tailPointer.setNext(null);
+		DoubleNode<T> tempNode = null;
+		//nó a ser manipulado está mais perto do ínicio
+		if (index <= amount/2) {
+			tempNode = new getNodeAt(index);
 		} else {
-			// Remover do meio
-			DoubleNode<T> previous = nodeToRemove.getPrevious();
-			DoubleNode<T> next = nodeToRemove.getNext();
+			tempNode = new getNodeAtByEnd(index);
+		}
+
+		DoubleNode<T> previous = tempNode.getPrevious();
+		DoubleNode<T> next = tempNode.getNext();
+
+		if (previous != null) {
 			previous.setNext(next);
+			// remoção do início, avança o ponteiro de inicio para o proximo nodo.
+		} else {
+			headPointer = headPointer.getNext();
+		}
+		if (next != null) {
 			next.setPrevious(previous);
+			// remocao do fim, retrocede o ponteiro de fim para o nodo anterior.
+		} else {
+			tailPointer = tailPointer.getPrevious();
 		}
 
 		amount--;
-		return data;
+		return tempNode.getData();
 	}
 
 	/**
@@ -282,7 +297,7 @@ public class LinkedList<T> implements Listable<T> {
 	}
 
 	/**
-	 * Método auxiliar para obter um nó em uma posição específica.
+	 * Método auxiliar para obter um nó em uma posição específica, a partir do início da ED.
 	 *
 	 * @param index a posição do nó
 	 * @return o nó na posição especificada
@@ -291,6 +306,20 @@ public class LinkedList<T> implements Listable<T> {
 		DoubleNode<T> current = headPointer;
 		for (int i = 0; i < index; i++) {
 			current = current.getNext();
+		}
+		return current;
+	}
+
+	/**
+	 * Método auxiliar para obter um nó em uma posição específica, a partir do fim da ED.
+	 *
+	 * @param index a posição do nó
+	 * @return o nó na posição especificada
+	 */
+	private DoubleNode<T> getNodeAtByEnd(int index) {
+		DoubleNode<T> current = tailPointer;
+		for (int i = 0; i < (amount - 1) - index; i++) {
+			current = current.getPrevious();
 		}
 		return current;
 	}
