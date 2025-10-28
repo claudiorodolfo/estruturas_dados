@@ -41,9 +41,6 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public void addBook(Book book) {
-        if (book == null) {
-            throw new IllegalArgumentException("Livro não pode ser null");
-        }
         listBooks.append(book);
     }
 
@@ -66,16 +63,12 @@ public class BookDAOLinkedList implements BookDAO {
      * @param newBook o livro atualizado (deve ter o mesmo ID do livro original)
      */
     @Override
-    public void updateBook(Book newBook) {
-        if (newBook == null) {
-            throw new IllegalArgumentException("Livro não pode ser null");
-        }
-        
+    public void updateBook(Book newBook) {        
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
             if (book.getId() == newBook.getId()) {
                 listBooks.update(i, newBook);
-                return;
+                break;
             }
         }
     }
@@ -461,5 +454,20 @@ public class BookDAOLinkedList implements BookDAO {
      */
     private Book[] listToArray(Listable<Book> list) {
         return list.selectAll();
+    }
+
+    /**
+     * Converte um array para lista.
+     * 
+     * @param array o array a ser convertida
+     * @return lista com os elementos do array
+     */
+    private Listable<Book> listToArray(Book[] array) {
+        Listable<Book> resultListBooks = new LinkedList<>(20);
+        for (Book book: array) {
+            resultListBooks.append(book);
+        }
+
+        return resultListBooks;
     }
 }
