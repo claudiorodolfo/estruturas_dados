@@ -73,7 +73,7 @@
 │  │   DoubleNode<T> │   │   │            SQLite Database                  │     │
 │  │                 │   │   │                                             │     │
 │  │ - data: T       │   │   │  ┌─────────────────────────────────────┐    │     │
-│  │ - previous: Node│   │   │  │            books table              │    │     │
+│  │ - previous: Node│   │   │  │            book table               │    │     │
 │  │ - next: Node    │   │   │  │                                     │    │     │
 │  │                 │   │   │  │  id (INTEGER PRIMARY KEY)           │    │     │
 │  │ + getData()     │   │   │  │  title (TEXT NOT NULL)              │    │     │
@@ -83,16 +83,6 @@
 │  │ + getNext()     │   │   │  │  price (REAL)                       │    │     │
 │  │ + setNext()     │   │   │  │  created_at (DATETIME)              │    │     │
 │  └─────────────────┘   │   │  │  updated_at (DATETIME)              │    │     │
-│                        │   │  └─────────────────────────────────────┘    │     │
-│                        │   │                                             │     │
-│                        │   │  ┌─────────────────────────────────────┐    │     │
-│                        │   │  │            Indexes                  │    │     │
-│                        │   │  │                                     │    │     │
-│                        │   │  │  - idx_books_author                 │    │     │
-│                        │   │  │  - idx_books_title                  │    │     │
-│                        │   │  │  - idx_books_isbn                   │    │     │
-│                        │   │  │  - idx_books_publication_date       │    │     │
-│                        │   │  │  - idx_books_price                  │    │     │
 │                        │   │  └─────────────────────────────────────┘    │     │
 │                        │   └─────────────────────────────────────────────┘     │      
 └────────────────────────┘───────────────────────────────────────────────────────┘
