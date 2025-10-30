@@ -5,13 +5,14 @@
 
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                              APPLICATION LAYER                                  │
-│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐              │
-│  │   BookService   │    │ SQLiteExample   │    │   Main Class    │              │
-│  │                 │    │                 │    │                 │              │
-│  │ + getDBBook()   │    │ + main()        │    │ + main()        │              │
-│  │+ getSQLiteBook()│    │ + demonstrate() │    │ + menu()        │              │
-│  │ + getBookDAO()  │    │                 │    │                 │              │
-│  └─────────────────┘    └─────────────────┘    └─────────────────┘              │
+│                         ┌──────────────────────┐                                │
+│                         │   BookService        │                                │
+│                         │                      │                                │
+│                         │ + getDBBook()        │                                │
+│                         │ + getBookDAO()       │                                │ 
+│                         │ + getSQLiteBook()    │                                │
+│                         │ + getLinkedListBook()│                                │
+│                         └──────────────────────┘                                │
 └─────────────────────────────────────────────────────────────────────────────────┘
                                         │
                                         ▼
@@ -48,53 +49,53 @@
 └─────────────────────────┘ └─────────────────────────┘ └─────────────────────────┘
                     │                   │
                     ▼                   ▼
-┌────────────────────────┐ ┌──────────────────────────────────────────────────────┐
-│    REPOSITORY LAYER    │ │              REPOSITORY LAYER                        │
-│                        │ │                                                      │
-│  ┌─────────────────┐   │ │  ┌──────────────────┐   ┌──────────────────┐         │
-│  │   LinkedList<T> │   │ │  │ SQLiteConnection │   │     SQLiteDB     │         │
-│  │                 │   │ │  │                  │   │                  │         │
-│  │ - head: Node    │   │ │  │ - getInstance()  │   │ - initializeDB() │         │
-│  │ - tail: Node    │   │ │  │ - getConnection()│   │ - createTables() │         │
-│  │ - size: int     │   │ │  │ - commit()       │   │ - createIndexes()│         │
-│  │                 │   │ │  │ - rollback()     │   │ - clearTable()   │         │
-│  │ + insert()      │   │ │  │ - close()        │   │ - dropTable()    │         │
-│  │ + append()      │   │ │  │                  │   │                  │         │
-│  │ + delete()      │   │ │  │ Singleton        │   │ Database Mgmt    │         │
-│  │ + select()      │   │ │  │ Pattern          │   │ Operations       │         │
-│  │ + update()      │   │ │  │                  │   │                  │         │
-│  │ + isEmpty()     │   │ │  │                  │   │                  │         │
-│  │ + isFull()      │   │ │  │                  │   │                  │         │
-│  │ + size()        │   │ │  │                  │   │                  │         │
-│  └─────────────────┘   │ │  └──────────────────┘   └──────────────────┘         │
-│                        │ │                                                      │
-│  ┌─────────────────┐   │ │  ┌─────────────────────────────────────────────┐     │
-│  │   DoubleNode<T> │   │ │  │            SQLite Database                  │     │
-│  │                 │   │ │  │                                             │     │
-│  │ - data: T       │   │ │  │  ┌─────────────────────────────────────┐    │     │
-│  │ - previous: Node│   │ │  │  │            books table              │    │     │
-│  │ - next: Node    │   │ │  │  │                                     │    │     │
-│  │                 │   │ │  │  │  id (INTEGER PRIMARY KEY)           │    │     │
-│  │ + getData()     │   │ │  │  │  title (TEXT NOT NULL)              │    │     │
-│  │ + setData()     │   │ │  │  │  author (TEXT)                      │    │     │
-│  │ + getPrevious() │   │ │  │  │  publication_date (DATE)            │    │     │
-│  │ + setPrevious() │   │ │  │  │  isbn (TEXT)                        │    │     │
-│  │ + getNext()     │   │ │  │  │  price (REAL)                       │    │     │
-│  │ + setNext()     │   │ │  │  │  created_at (DATETIME)              │    │     │
-│  └─────────────────┘   │ │  │  │  updated_at (DATETIME)              │    │     │
-│                        │ │  │  └─────────────────────────────────────┘    │     │
-│                        │ │  │                                             │     │
-│                        │ │  │  ┌─────────────────────────────────────┐    │     │
-│                        │ │  │  │            Indexes                  │    │     │
-│                        │ │  │  │                                     │    │     │
-│                        │ │  │  │  - idx_books_author                 │    │     │
-│                        │ │  │  │  - idx_books_title                  │    │     │
-│                        │ │  │  │  - idx_books_isbn                   │    │     │
-│                        │ │  │  │  - idx_books_publication_date       │    │     │
-│                        │ │  │  │  - idx_books_price                  │    │     │
-│                        │ │  │  └─────────────────────────────────────┘    │     │
-│                        │ │  └─────────────────────────────────────────────┘     │      
-└────────────────────────┘ └──────────────────────────────────────────────────────┘
+┌────────────────────────┐──────────────────────────────────────────────────────┐
+│    REPOSITORY LAYER    │               REPOSITORY LAYER                        │
+│                        │                                                       │
+│  ┌─────────────────┐   │   ┌──────────────────┐   ┌──────────────────┐         │
+│  │   LinkedList<T> │   │   │ SQLiteConnection │   │     SQLiteDB     │         │
+│  │                 │   │   │                  │   │                  │         │
+│  │ - head: Node    │   │   │ - getInstance()  │   │ - initializeDB() │         │
+│  │ - tail: Node    │   │   │ - getConnection()│   │ - createTables() │         │
+│  │ - size: int     │   │   │ - commit()       │   │ - createIndexes()│         │
+│  │                 │   │   │ - rollback()     │   │ - clearTable()   │         │
+│  │ + insert()      │   │   │ - close()        │   │ - dropTable()    │         │
+│  │ + append()      │   │   │                  │   │                  │         │
+│  │ + delete()      │   │   │ Singleton        │   │ Database Mgmt    │         │
+│  │ + select()      │   │   │ Pattern          │   │ Operations       │         │
+│  │ + update()      │   │   │                  │   │                  │         │
+│  │ + isEmpty()     │   │   │                  │   │                  │         │
+│  │ + isFull()      │   │   │                  │   │                  │         │
+│  │ + size()        │   │   │                  │   │                  │         │
+│  └─────────────────┘   │   └──────────────────┘   └──────────────────┘         │
+│                        │                                                       │
+│  ┌─────────────────┐   │   ┌─────────────────────────────────────────────┐     │
+│  │   DoubleNode<T> │   │   │            SQLite Database                  │     │
+│  │                 │   │   │                                             │     │
+│  │ - data: T       │   │   │  ┌─────────────────────────────────────┐    │     │
+│  │ - previous: Node│   │   │  │            books table              │    │     │
+│  │ - next: Node    │   │   │  │                                     │    │     │
+│  │                 │   │   │  │  id (INTEGER PRIMARY KEY)           │    │     │
+│  │ + getData()     │   │   │  │  title (TEXT NOT NULL)              │    │     │
+│  │ + setData()     │   │   │  │  author (TEXT)                      │    │     │
+│  │ + getPrevious() │   │   │  │  publication_date (DATE)            │    │     │
+│  │ + setPrevious() │   │   │  │  isbn (TEXT)                        │    │     │
+│  │ + getNext()     │   │   │  │  price (REAL)                       │    │     │
+│  │ + setNext()     │   │   │  │  created_at (DATETIME)              │    │     │
+│  └─────────────────┘   │   │  │  updated_at (DATETIME)              │    │     │
+│                        │   │  └─────────────────────────────────────┘    │     │
+│                        │   │                                             │     │
+│                        │   │  ┌─────────────────────────────────────┐    │     │
+│                        │   │  │            Indexes                  │    │     │
+│                        │   │  │                                     │    │     │
+│                        │   │  │  - idx_books_author                 │    │     │
+│                        │   │  │  - idx_books_title                  │    │     │
+│                        │   │  │  - idx_books_isbn                   │    │     │
+│                        │   │  │  - idx_books_publication_date       │    │     │
+│                        │   │  │  - idx_books_price                  │    │     │
+│                        │   │  └─────────────────────────────────────┘    │     │
+│                        │   └─────────────────────────────────────────────┘     │      
+└────────────────────────┘───────────────────────────────────────────────────────┘
                     │                   │
                     ▼                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────────┐
