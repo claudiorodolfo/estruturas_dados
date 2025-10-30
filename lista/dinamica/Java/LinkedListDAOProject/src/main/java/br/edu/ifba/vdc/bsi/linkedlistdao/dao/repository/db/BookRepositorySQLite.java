@@ -7,8 +7,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Implementação do repositório para persistência de livros em SQLite.
@@ -20,7 +18,6 @@ import java.util.logging.Logger;
  */
 public class BookRepositorySQLite {
     
-    private static final Logger LOGGER = Logger.getLogger(BookRepositorySQLite.class.getName());
     private final SQLiteConnection sqliteConnection;
     private final SQLiteDB sqliteDB;
     
@@ -37,14 +34,14 @@ public class BookRepositorySQLite {
                 sqliteDB.initializeDatabase();
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao inicializar banco de dados", e);
+            System.err.println("Erro ao inicializar banco de dados: " + e.getMessage());
             throw new RuntimeException("Erro ao inicializar banco de dados", e);
         }
     }
     
     public void insertBook(Book book) {
         String sql = """
-            INSERT INTO books (id, title, author, publication_date, isbn, price, created_at, updated_at)
+            INSERT INTO book (id, title, author, publication_date, isbn, price, created_at, updated_at)
             VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
             """;
         
@@ -72,21 +69,21 @@ public class BookRepositorySQLite {
             statement.executeUpdate();
             sqliteConnection.commit();
             
-            LOGGER.info("Livro inserido com sucesso: " + book.getTitle());
+            System.out.println("Livro inserido com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao inserir livro", e);
+            System.err.println("Erro ao inserir livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                LOGGER.log(Level.SEVERE, "Erro no rollback", rollbackException);
+                System.err.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao inserir livro", e);
         }
     }
     
     public Book[] selectAllBooks() {
-        String sql = "SELECT * FROM books ORDER BY id";
+        String sql = "SELECT * FROM book ORDER BY id";
         List<Book> books = new ArrayList<>();
         
         try (Connection connection = sqliteConnection.getConnection();
@@ -98,10 +95,10 @@ public class BookRepositorySQLite {
                 books.add(book);
             }
             
-            LOGGER.info("Total de livros recuperados: " + books.size());
+            System.out.println("Total de livros recuperados: " + books.size());
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao recuperar todos os livros", e);
+            System.err.println("Erro ao recuperar todos os livros: " + e.getMessage());
             throw new RuntimeException("Erro ao recuperar livros", e);
         }
         
@@ -110,7 +107,7 @@ public class BookRepositorySQLite {
     
     public void updateBook(Book book) {
         String sql = """
-            UPDATE books 
+            UPDATE book 
             SET title = ?, author = ?, publication_date = ?, isbn = ?, price = ?, updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
             """;
@@ -144,14 +141,14 @@ public class BookRepositorySQLite {
                 throw new RuntimeException("Livro não encontrado para atualização: " + book.getId());
             }
             
-            LOGGER.info("Livro atualizado com sucesso: " + book.getTitle());
+            System.out.println("Livro atualizado com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao atualizar livro", e);
+            System.err.println("Erro ao atualizar livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                LOGGER.log(Level.SEVERE, "Erro no rollback", rollbackException);
+                System.err.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao atualizar livro", e);
         }
@@ -164,7 +161,7 @@ public class BookRepositorySQLite {
             throw new RuntimeException("Livro não encontrado para exclusão: " + id);
         }
         
-        String sql = "DELETE FROM books WHERE id = ?";
+        String sql = "DELETE FROM book WHERE id = ?";
         
         try (Connection connection = sqliteConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -178,14 +175,14 @@ public class BookRepositorySQLite {
                 throw new RuntimeException("Livro não encontrado para exclusão: " + id);
             }
             
-            LOGGER.info("Livro excluído com sucesso: " + book.getTitle());
+            System.out.println("Livro excluído com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao excluir livro", e);
+            System.err.println("Erro ao excluir livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                LOGGER.log(Level.SEVERE, "Erro no rollback", rollbackException);
+                System.err.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao excluir livro", e);
         }
@@ -194,7 +191,7 @@ public class BookRepositorySQLite {
     }
     
     public Book selectBookById(long id) {
-        String sql = "SELECT * FROM books WHERE id = ?";
+        String sql = "SELECT * FROM book WHERE id = ?";
         
         try (Connection connection = sqliteConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -208,7 +205,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao buscar livro por ID", e);
+            System.err.println("Erro ao buscar livro por ID: " + e.getMessage());
             throw new RuntimeException("Erro ao buscar livro", e);
         }
         
@@ -216,22 +213,22 @@ public class BookRepositorySQLite {
     }
     
     public Book[] selectBooksByAuthor(String author) {
-        String sql = "SELECT * FROM books WHERE author LIKE ? ORDER BY title";
+        String sql = "SELECT * FROM book WHERE author LIKE ? ORDER BY title";
         return executeSearchQuery(sql, "%" + author + "%");
     }
     
     public Book[] selectBooksByPublicationDate(LocalDate date) {
-        String sql = "SELECT * FROM books WHERE publication_date = ? ORDER BY title";
+        String sql = "SELECT * FROM book WHERE publication_date = ? ORDER BY title";
         return executeSearchQuery(sql, Date.valueOf(date));
     }
     
     public Book[] selectBooksByTitle(String title) {
-        String sql = "SELECT * FROM books WHERE title LIKE ? ORDER BY title";
+        String sql = "SELECT * FROM book WHERE title LIKE ? ORDER BY title";
         return executeSearchQuery(sql, "%" + title + "%");
     }
     
     public Book selectBookByIsbn(String isbn) {
-        String sql = "SELECT * FROM books WHERE isbn = ?";
+        String sql = "SELECT * FROM book WHERE isbn = ?";
         
         try (Connection connection = sqliteConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -245,7 +242,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao buscar livro por ISBN", e);
+            System.err.println("Erro ao buscar livro por ISBN: " + e.getMessage());
             throw new RuntimeException("Erro ao buscar livro por ISBN", e);
         }
         
@@ -253,37 +250,37 @@ public class BookRepositorySQLite {
     }
     
     public Book[] selectBooksByPriceRange(double minPrice, double maxPrice) {
-        String sql = "SELECT * FROM books WHERE price BETWEEN ? AND ? ORDER BY price";
+        String sql = "SELECT * FROM book WHERE price BETWEEN ? AND ? ORDER BY price";
         return executeSearchQuery(sql, minPrice, maxPrice);
     }
     
     public Book[] selectBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
-        String sql = "SELECT * FROM books WHERE publication_date BETWEEN ? AND ? ORDER BY publication_date";
+        String sql = "SELECT * FROM book WHERE publication_date BETWEEN ? AND ? ORDER BY publication_date";
         return executeSearchQuery(sql, Date.valueOf(minDate), Date.valueOf(maxDate));
     }
     
     public Book selectMostExpensiveBook() {
-        String sql = "SELECT * FROM books WHERE price = (SELECT MAX(price) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE price = (SELECT MAX(price) FROM book) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
     public Book selectCheapestBook() {
-        String sql = "SELECT * FROM books WHERE price = (SELECT MIN(price) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE price = (SELECT MIN(price) FROM book) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
     public Book selectNewestBook() {
-        String sql = "SELECT * FROM books WHERE publication_date = (SELECT MAX(publication_date) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MAX(publication_date) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
     public Book selectOldestBook() {
-        String sql = "SELECT * FROM books WHERE publication_date = (SELECT MIN(publication_date) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MIN(publication_date) FROM books) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
     public int countTotalBooks() {
-        String sql = "SELECT COUNT(*) FROM books";
+        String sql = "SELECT COUNT(*) FROM book";
         
         try (Connection connection = sqliteConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -294,7 +291,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao contar livros", e);
+            System.err.println("Erro ao contar livros: " + e.getMessage());
             throw new RuntimeException("Erro ao contar livros", e);
         }
         
@@ -302,7 +299,7 @@ public class BookRepositorySQLite {
     }
     
     public double calculateAveragePrice() {
-        String sql = "SELECT AVG(price) FROM books WHERE price IS NOT NULL";
+        String sql = "SELECT AVG(price) FROM book WHERE price IS NOT NULL";
         
         try (Connection connection = sqliteConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -313,7 +310,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao calcular preço médio", e);
+            System.err.println("Erro ao calcular preço médio: " + e.getMessage());
             throw new RuntimeException("Erro ao calcular preço médio", e);
         }
         
@@ -327,9 +324,9 @@ public class BookRepositorySQLite {
     public void clearAllBooks() {
         try {
             sqliteDB.clearBooksTable();
-            LOGGER.info("Todos os livros foram removidos");
+            System.out.println("Todos os livros foram removidos");
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao limpar todos os livros", e);
+            System.err.println("Erro ao limpar todos os livros: " + e.getMessage());
             throw new RuntimeException("Erro ao limpar livros", e);
         }
     }
@@ -359,7 +356,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao executar consulta de busca", e);
+            System.err.println("Erro ao executar consulta de busca: " + e.getMessage());
             throw new RuntimeException("Erro ao executar consulta", e);
         }
         
@@ -382,7 +379,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao executar consulta de livro único", e);
+            System.err.println("Erro ao executar consulta de livro único: " + e.getMessage());
             throw new RuntimeException("Erro ao executar consulta", e);
         }
         

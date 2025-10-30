@@ -3,7 +3,6 @@ package br.edu.ifba.vdc.bsi.linkedlistdao.dao;
 import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.db.BookRepositorySQLite;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Book;
 import java.time.LocalDate;
-import java.util.logging.Logger;
 
 /**
  * Implementação do DAO para persistência de livros em banco de dados SQLite.
@@ -14,8 +13,6 @@ import java.util.logging.Logger;
  * @since 2024-01-01
  */
 public class BookDAOSQLite implements BookDAO {
-    
-    private static final Logger LOGGER = Logger.getLogger(BookDAOSQLite.class.getName());
     private final BookRepositorySQLite bookRepositorySQLite;
     
     /**
@@ -38,7 +35,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         bookRepositorySQLite.insertBook(book);
         
-        LOGGER.info("Livro adicionado com sucesso: " + book.getTitle());
+        System.out.println("Livro adicionado com sucesso: " + book.getTitle());
     }
     
     @Override
@@ -46,7 +43,7 @@ public class BookDAOSQLite implements BookDAO {
         // Regra de negócio: retornar todos os livros ordenados
         Book[] books = bookRepositorySQLite.selectAllBooks();
         
-        LOGGER.info("Total de livros recuperados: " + books.length);
+        System.out.println("Total de livros recuperados: " + books.length);
         
         return books;
     }
@@ -64,7 +61,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         bookRepositorySQLite.updateBook(newBook);
         
-        LOGGER.info("Livro atualizado com sucesso: " + newBook.getTitle());
+        System.out.println("Livro atualizado com sucesso: " + newBook.getTitle());
     }
     
     @Override
@@ -77,7 +74,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         Book deletedBook = bookRepositorySQLite.deleteBook(id);
         
-        LOGGER.info("Livro excluído com sucesso: " + deletedBook.getTitle());
+        System.out.println("Livro excluído com sucesso: " + deletedBook.getTitle());
         
         return deletedBook;
     }
@@ -221,12 +218,12 @@ public class BookDAOSQLite implements BookDAO {
     @Override
     public void clearAllBooks() {
         // Regra de negócio: confirmar operação destrutiva
-        LOGGER.warning("Operação destrutiva: removendo todos os livros");
+        System.out.println("Operação destrutiva: removendo todos os livros");
         
         // Delegar para o repository
         bookRepositorySQLite.clearAllBooks();
         
-        LOGGER.info("Todos os livros foram removidos");
+        System.out.println("Todos os livros foram removidos");
     }
     
     /**

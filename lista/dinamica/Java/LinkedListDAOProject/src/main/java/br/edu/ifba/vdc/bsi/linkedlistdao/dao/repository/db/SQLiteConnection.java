@@ -3,8 +3,6 @@ package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe responsável por gerenciar a conexão com o banco de dados SQLite.
@@ -15,8 +13,6 @@ import java.util.logging.Logger;
  * @since 2024-01-01
  */
 public class SQLiteConnection {
-    
-    private static final Logger LOGGER = Logger.getLogger(SQLiteConnection.class.getName());
     private static final String DB_URL = "jdbc:sqlite:books.db";
     private static SQLiteConnection instance;
     private Connection connection;
@@ -55,13 +51,13 @@ public class SQLiteConnection {
             // Configurações da conexão
             connection.setAutoCommit(false);
             
-            LOGGER.info("Conexão com SQLite estabelecida com sucesso: " + DB_URL);
+            System.out.println("Conexão com SQLite estabelecida com sucesso: " + DB_URL);
             
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "Driver SQLite não encontrado", e);
+            System.err.println("Driver SQLite não encontrado: " + e.getMessage());
             throw new RuntimeException("Driver SQLite não encontrado", e);
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao conectar com o banco SQLite", e);
+            System.err.println("Erro ao conectar com o banco SQLite: " + e.getMessage());
             throw new RuntimeException("Erro ao conectar com o banco SQLite", e);
         }
     }
@@ -74,7 +70,7 @@ public class SQLiteConnection {
      */
     public Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            LOGGER.warning("Conexão perdida, tentando reconectar...");
+            System.out.println("Conexão perdida, tentando reconectar...");
             initializeConnection();
         }
         return connection;
@@ -89,7 +85,7 @@ public class SQLiteConnection {
         try {
             return connection != null && !connection.isClosed() && connection.isValid(5);
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Erro ao verificar validade da conexão", e);
+            System.err.println("Erro ao verificar validade da conexão: " + e.getMessage());
             return false;
         }
     }
@@ -101,10 +97,10 @@ public class SQLiteConnection {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                LOGGER.info("Conexão com SQLite fechada com sucesso");
+                System.out.println("Conexão com SQLite fechada com sucesso");
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Erro ao fechar conexão", e);
+            System.err.println("Erro ao fechar conexão: " + e.getMessage());
         }
     }
     
@@ -116,7 +112,7 @@ public class SQLiteConnection {
     public void commit() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.commit();
-            LOGGER.fine("Commit executado com sucesso");
+            System.out.println("Commit executado com sucesso");
         }
     }
     
@@ -128,7 +124,7 @@ public class SQLiteConnection {
     public void rollback() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.rollback();
-            LOGGER.fine("Rollback executado com sucesso");
+            System.out.println("Rollback executado com sucesso");
         }
     }
     
@@ -144,7 +140,7 @@ public class SQLiteConnection {
                     DB_URL, connection.getAutoCommit(), connection.isValid(5));
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Erro ao obter informações da conexão", e);
+            System.err.println("Erro ao obter informações da conexão: " + e.getMessage());
         }
         return "Conexão não disponível";
     }

@@ -10,8 +10,8 @@ import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.list.UnderflowException;
  *
  * @param <T> o tipo dos elementos armazenados na lista
  * @author Cláudio Rodolfo Sousa de Oliveira
- * @version 1.0
- * @since 2025-10-22
+ * @version 1.2
+ * @since 2025-10-30
  * @see Listable
  * @see DoubleNode
  */
@@ -90,9 +90,12 @@ public class LinkedList<T> implements Listable<T> {
 
 		DoubleNode<T> tempNode = new DoubleNode<T>(data);
 
-		NoDuplo<T> previous = null;
-		NoDuplo<T> next = headPointer;
+        DoubleNode<T> previous = null;
+        DoubleNode<T> next = headPointer;
 
+		// percorre a lista até a posição desejada
+		//posicionando os ponteiros previous e next
+		//antes e depois de onde ficará o novo nodo.
 		for (int i = 0; i < index; i++) {
 			previous = next;
 			next = next.getNext();
@@ -137,11 +140,11 @@ public class LinkedList<T> implements Listable<T> {
 
 		DoubleNode<T> tempNode = null;
 		//nó a ser manipulado está mais perto do ínicio
-		if (index <= amount/2) {
-			tempNode = new getNodeAt(index);
-		} else {
-			tempNode = new getNodeAtByEnd(index);
-		}
+        if (index <= amount/2) {
+            tempNode = getNodeAt(index);
+        } else {
+            tempNode = getNodeAtByEnd(index);
+        }
 
 		return tempNode.getData();
 	}
@@ -182,11 +185,11 @@ public class LinkedList<T> implements Listable<T> {
 
 		DoubleNode<T> tempNode = null;
 		//nó a ser manipulado está mais perto do ínicio
-		if (index <= amount/2) {
-			tempNode = new getNodeAt(index);
-		} else {
-			tempNode = new getNodeAtByEnd(index);
-		}
+        if (index <= amount/2) {
+            tempNode = getNodeAt(index);
+        } else {
+            tempNode = getNodeAtByEnd(index);
+        }
 
 		tempNode.setData(data);
 	}
@@ -210,11 +213,11 @@ public class LinkedList<T> implements Listable<T> {
 
 		DoubleNode<T> tempNode = null;
 		//nó a ser manipulado está mais perto do ínicio
-		if (index <= amount/2) {
-			tempNode = new getNodeAt(index);
-		} else {
-			tempNode = new getNodeAtByEnd(index);
-		}
+        if (index <= amount/2) {
+            tempNode = getNodeAt(index);
+        } else {
+            tempNode = getNodeAtByEnd(index);
+        }
 
 		DoubleNode<T> previous = tempNode.getPrevious();
 		DoubleNode<T> next = tempNode.getNext();

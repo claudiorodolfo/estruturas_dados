@@ -3,8 +3,6 @@ package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe responsável por gerenciar a estrutura do banco de dados SQLite.
@@ -16,7 +14,6 @@ import java.util.logging.Logger;
  */
 public class SQLiteDB {
     
-    private static final Logger LOGGER = Logger.getLogger(SQLiteDB.class.getName());
     private final SQLiteConnection sqliteConnection;
     
     /**
@@ -34,7 +31,7 @@ public class SQLiteDB {
      * @throws SQLException se houver erro na criação das tabelas
      */
     public void initializeDatabase() throws SQLException {
-        LOGGER.info("Inicializando banco de dados SQLite...");
+        System.out.println("Inicializando banco de dados SQLite...");
         
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
@@ -45,10 +42,10 @@ public class SQLiteDB {
             // Commit das alterações
             sqliteConnection.commit();
             
-            LOGGER.info("Banco de dados SQLite inicializado com sucesso");
+            System.out.println("Banco de dados SQLite inicializado com sucesso");
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao inicializar banco de dados", e);
+            System.err.println("Erro ao inicializar banco de dados: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -62,7 +59,7 @@ public class SQLiteDB {
      */
     private void createBooksTable(Statement statement) throws SQLException {
         String createTableSQL = """
-            CREATE TABLE IF NOT EXISTS books (
+            CREATE TABLE IF NOT EXISTS book (
                 id INTEGER PRIMARY KEY,
                 title TEXT NOT NULL,
                 author TEXT,
@@ -75,7 +72,7 @@ public class SQLiteDB {
             """;
         
         statement.execute(createTableSQL);
-        LOGGER.info("Tabela 'books' criada/verificada com sucesso");
+        System.out.println("Tabela 'book' criada/verificada com sucesso");
         
         // Cria índices para melhorar performance
         createIndexes(statement);
@@ -89,26 +86,26 @@ public class SQLiteDB {
      */
     private void createIndexes(Statement statement) throws SQLException {
         // Índice para busca por autor
-        String indexAuthorSQL = "CREATE INDEX IF NOT EXISTS idx_books_author ON books(author)";
+        String indexAuthorSQL = "CREATE INDEX IF NOT EXISTS idx_books_author ON book(author)";
         statement.execute(indexAuthorSQL);
         
         // Índice para busca por título
-        String indexTitleSQL = "CREATE INDEX IF NOT EXISTS idx_books_title ON books(title)";
+        String indexTitleSQL = "CREATE INDEX IF NOT EXISTS idx_books_title ON book(title)";
         statement.execute(indexTitleSQL);
         
         // Índice para busca por ISBN
-        String indexIsbnSQL = "CREATE INDEX IF NOT EXISTS idx_books_isbn ON books(isbn)";
+        String indexIsbnSQL = "CREATE INDEX IF NOT EXISTS idx_books_isbn ON book(isbn)";
         statement.execute(indexIsbnSQL);
         
         // Índice para busca por data de publicação
-        String indexDateSQL = "CREATE INDEX IF NOT EXISTS idx_books_publication_date ON books(publication_date)";
+        String indexDateSQL = "CREATE INDEX IF NOT EXISTS idx_books_publication_date ON book(publication_date)";
         statement.execute(indexDateSQL);
         
         // Índice para busca por preço
-        String indexPriceSQL = "CREATE INDEX IF NOT EXISTS idx_books_price ON books(price)";
+        String indexPriceSQL = "CREATE INDEX IF NOT EXISTS idx_books_price ON book(price)";
         statement.execute(indexPriceSQL);
         
-        LOGGER.info("Índices criados/verificados com sucesso");
+        System.out.println("Índices criados/verificados com sucesso");
     }
     
     /**
@@ -122,8 +119,9 @@ public class SQLiteDB {
              Statement statement = connection.createStatement()) {
             
             String checkTableSQL = """
-                SELECT name FROM sqlite_master 
-                WHERE type='table' AND name='books'
+                SELECT name 
+                FROM sqlite_master 
+                WHERE type='table' AND name='book'
                 """;
             
             return statement.executeQuery(checkTableSQL).next();
@@ -139,15 +137,15 @@ public class SQLiteDB {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
-            String clearTableSQL = "DELETE FROM books";
+            String clearTableSQL = "DELETE FROM book";
             int rowsAffected = statement.executeUpdate(clearTableSQL);
             
             sqliteConnection.commit();
             
-            LOGGER.info("Tabela 'books' limpa com sucesso. Registros removidos: " + rowsAffected);
+            System.out.println("Tabela 'book' limpa com sucesso. Registros removidos: " + rowsAffected);
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao limpar tabela de livros", e);
+            System.err.println("Erro ao limpar tabela de livros: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -162,15 +160,15 @@ public class SQLiteDB {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
-            String dropTableSQL = "DROP TABLE IF EXISTS books";
+            String dropTableSQL = "DROP TABLE IF EXISTS book";
             statement.execute(dropTableSQL);
             
             sqliteConnection.commit();
             
-            LOGGER.info("Tabela 'books' removida com sucesso");
+            System.out.println("Tabela 'book' removida com sucesso");
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao remover tabela de livros", e);
+            System.err.println("Erro ao remover tabela de livros: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -182,7 +180,7 @@ public class SQLiteDB {
      * @throws SQLException se houver erro na recriação
      */
     public void recreateBooksTable() throws SQLException {
-        LOGGER.info("Recriando tabela de livros...");
+        System.out.println("Recriando tabela book...");
         
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
@@ -195,10 +193,10 @@ public class SQLiteDB {
             
             sqliteConnection.commit();
             
-            LOGGER.info("Tabela de livros recriada com sucesso");
+            System.out.println("Tabela book recriada com sucesso");
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao recriar tabela de livros", e);
+            System.err.println("Erro ao recriar tabela book: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -216,7 +214,7 @@ public class SQLiteDB {
                     sqliteConnection.getConnectionInfo(), isBooksTableExists());
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Erro ao obter informações do banco", e);
+            System.err.println("Erro ao obter informações do banco: " + e.getMessage());
         }
         return "Banco de dados não disponível";
     }
