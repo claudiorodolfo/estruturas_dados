@@ -252,8 +252,6 @@ IllegalArgumentException: "campo obrigatório não pode ser nulo!"
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 👨‍💻 Autor
 
 **Cláudio Rodolfo Sousa de Oliveira**
