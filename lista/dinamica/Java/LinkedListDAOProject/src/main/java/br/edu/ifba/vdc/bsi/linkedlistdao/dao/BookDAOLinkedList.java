@@ -36,8 +36,8 @@ public class BookDAOLinkedList implements BookDAO {
      * 
      * O livro é armazenado no final da lista.
      * 
-     * @param book o livro a ser adicionado (não pode ser null)
-     * @throws IllegalArgumentException se o livro for null
+     * @param book o livro a ser adicionado (não pode ser null e nem ter id já existente)
+     * @throws IllegalArgumentException se o livro for null ou se já existir um livro com o mesmo id
      */
     @Override
     public void addBook(Book book) {
