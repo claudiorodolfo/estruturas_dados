@@ -41,6 +41,14 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public void addBook(Book book) {
+        if (book == null) {
+            throw new IllegalArgumentException("Book não pode ser null");
+        }
+        long id = book.getId();
+        int idx = findIndexById(id);
+        if (idx >= 0) {
+            throw new IllegalArgumentException("Já existe um livro com id = " + id);
+        }
         listBooks.append(book);
     }
 
@@ -64,13 +72,15 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public void updateBook(Book newBook) {        
-        for (int i = 0; i < listBooks.size(); i++) {
-            Book book = listBooks.select(i);
-            if (book.getId() == newBook.getId()) {
-                listBooks.update(i, newBook);
-                break;
-            }
+        if (newBook == null) {
+            throw new IllegalArgumentException("novo livro não pode ser nulo");
         }
+        long targetId = newBook.getId();
+        int idx = findIndexById(targetId);
+        if (idx < 0) {
+            throw new IllegalArgumentException("Livro com id = " + targetId + " não encontrado para atualização");
+        }
+        listBooks.update(idx, newBook);
     }
     
     /**
@@ -84,11 +94,9 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book deleteBook(long id) {
-        for (int i = 0; i < listBooks.size(); i++) {
-            Book book = listBooks.select(i);
-            if (book.getId() == id) {
-                return listBooks.delete(i);
-            }
+        int idx = findIndexById(id);
+        if (idx >= 0) {
+            return listBooks.delete(idx);
         }
         return null;
     }
@@ -105,11 +113,9 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book getBookById(long id) {
-        for (int i = 0; i < listBooks.size(); i++) {
-            Book book = listBooks.select(i);
-            if (book.getId() == id) {
-                return book;
-            }
+        int idx = findIndexById(id);
+        if (idx >= 0) {
+            return listBooks.select(idx);
         }
         return null;
     }
@@ -125,15 +131,15 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book[] getBooksByAuthor(String author) {
-        Listable<Book> resultListBooks = new LinkedList<>(20);
         if (author == null) {
             return new Book[0];
         }
-    
+        Listable<Book> resultListBooks = new LinkedList<>(20);
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getAuthor() != null && book.getAuthor().equalsIgnoreCase(author)) {
-                resultListBooks.append(book);
+            if (book.getAuthor() != null 
+                && book.getAuthor().equalsIgnoreCase(author)) {
+                result.append(book);
             }
         }
         return listToArray(resultListBooks);
@@ -150,14 +156,14 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book[] getBooksByPublicationDate(LocalDate date) {
-        Listable<Book> resultListBooks = new LinkedList<>(20);
         if (date == null) {
             return new Book[0];
         }
-        
+        Listable<Book> resultListBooks = new LinkedList<>(20);
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPublicationDate() != null && book.getPublicationDate().equals(date)) {
+            if (book.getPublicationDate() != null 
+                && book.getPublicationDate().equals(date)) {
                 resultListBooks.append(book);
             }
         }
@@ -175,14 +181,14 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book[] getBooksByTitle(String title) {
-        Listable<Book> resultListBooks = new LinkedList<>(20);
         if (title == null) {
             return new Book[0];
         }
-        
+        Listable<Book> resultListBooks = new LinkedList<>(20);
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getTitle() != null && book.getTitle().equalsIgnoreCase(title)) {
+            if (book.getTitle() != null 
+                && book.getTitle().equalsIgnoreCase(title)) {
                 resultListBooks.append(book);
             }
         }
@@ -203,7 +209,6 @@ public class BookDAOLinkedList implements BookDAO {
         if (isbn == null) {
             return null;
         }
-        
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
             if (book.getIsbn() != null && book.getIsbn().equals(isbn)) {
@@ -228,7 +233,8 @@ public class BookDAOLinkedList implements BookDAO {
         Listable<Book> resultListBooks = new LinkedList<>(20);
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPrice() >= minPrice && book.getPrice() <= maxPrice) {
+            Double price = book.getPrice();
+            if (price != null && price >= minPrice && price <= maxPrice) {
                 resultListBooks.append(book);
             }
         }
@@ -247,20 +253,20 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book[] getBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
-        Listable<Book> resultListBooks = new LinkedList<>(20);
         if (minDate == null || maxDate == null) {
             return new Book[0];
         }
-        
+        Listable<Book> resultListBooks = new LinkedList<>(20);
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPublicationDate() != null && 
-                !book.getPublicationDate().isBefore(minDate) && 
-                !book.getPublicationDate().isAfter(maxDate)) {
+            LocalDate pub = book.getPublicationDate();
+            if (pub != null 
+                && !pub.isBefore(minDate) 
+                && !pub.isAfter(maxDate)) {
                 resultListBooks.append(book);
             }
         }
-        return listToArray(resultListBooks);
+        return resultListBooks.listToArray();
     }
 
     // Operações de análise e estatísticas
@@ -274,15 +280,12 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book getMostExpensiveBook() {
-        if (listBooks.isEmpty()) {
-            return null;
-        }
-        
         Book resultBook = null;
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPrice() != null) {
-                if (resultBook == null || book.getPrice() > resultBook.getPrice()) {
+            Double price = book.getPrice();
+            if (price != null) {
+                if (resultBook == null || price > resultBook.getPrice()) {
                     resultBook = book;
                 }
             }
@@ -300,15 +303,12 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book getCheapestBook() {
-        if (listBooks.isEmpty()) {
-            return null;
-        }
-        
         Book resultBook = null;
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPrice() != null) {
-                if (resultBook == null || book.getPrice() < resultBook.getPrice()) {
+            Double price = book.getPrice();
+            if (price != null) {
+                if (resultBook == null || price < resultBook.getPrice()) {
                     resultBook = book;
                 }
             }
@@ -326,15 +326,12 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book getNewestBook() {
-        if (listBooks.isEmpty()) {
-            return null;
-        }
-        
         Book resultBook = null;
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPublicationDate() != null) {
-                if (resultBook == null || book.getPublicationDate().isAfter(resultBook.getPublicationDate())) {
+            LocalDate pub = book.getPublicationDate();
+            if (pub != null) {
+                if (resultBook == null || pub.isAfter(resultBook.getPublicationDate())) {
                     resultBook = book;
                 }
             }
@@ -352,15 +349,12 @@ public class BookDAOLinkedList implements BookDAO {
      */
     @Override
     public Book getOldestBook() {
-        if (listBooks.isEmpty()) {
-            return null;
-        }
-        
         Book resultBook = null;
         for (int i = 0; i < listBooks.size(); i++) {
             Book book = listBooks.select(i);
-            if (book.getPublicationDate() != null) {
-                if (resultBook == null || book.getPublicationDate().isBefore(resultBook.getPublicationDate())) {
+            LocalDate pub = book.getPublicationDate();
+            if (pub != null) {
+                if (resultBook == null || pub.isBefore(resultBook.getPublicationDate())) {
                     resultBook = book;
                 }
             }
@@ -408,16 +402,16 @@ public class BookDAOLinkedList implements BookDAO {
         if (listBooks.isEmpty()) {
             return 0.0;
         }
-        
         double totalPrice = 0.0;
+        int count = 0;
         for (int i = 0; i < listBooks.size(); i++) {
-            Book book = listBooks.select(i);
-            if (book.getPrice() != null) {
-                totalPrice += book.getPrice();
+            Double price = listBooks.select(i).getPrice();
+            if (price != null) {
+                totalPrice += price;
+                count++;
             }
         }
-        
-        return totalPrice / listBooks.size();
+        return count > 0 ? totalPrice / count : 0.0;
     }
 
     // Operações de gerenciamento
@@ -447,6 +441,21 @@ public class BookDAOLinkedList implements BookDAO {
     }
     
     /**
+     * Localiza o índice de um livro pelo seu ID.
+     *
+     * @param id o ID do livro
+     * @return o índice se encontrado, ou -1 se não encontrado
+     */
+    private int findIndexById(long id) {
+        for (int i = 0; i < listBooks.size(); i++) {
+            if (listBooks.select(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Converte uma lista para array.
      * 
      * @param list a lista a ser convertida
@@ -459,10 +468,10 @@ public class BookDAOLinkedList implements BookDAO {
     /**
      * Converte um array para lista.
      * 
-     * @param array o array a ser convertida
+     * @param array o array a ser convertido
      * @return lista com os elementos do array
      */
-    private Listable<Book> listToArray(Book[] array) {
+    private Listable<Book> arrayToList(Book[] array) {
         Listable<Book> resultListBooks = new LinkedList<>(20);
         for (Book book: array) {
             resultListBooks.append(book);
