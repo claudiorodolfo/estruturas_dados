@@ -36,7 +36,7 @@ public class SQLiteDB {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
-            // Cria a tabela de livros
+            // Cria a tabela de book
             createBooksTable(statement);
             
             // Commit das alterações
@@ -114,7 +114,7 @@ public class SQLiteDB {
      * @return true se a tabela existir, false caso contrário
      * @throws SQLException se houver erro na verificação
      */
-    public boolean isBooksTableExists() throws SQLException {
+    public boolean isBookTableExists() throws SQLException {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
@@ -133,7 +133,7 @@ public class SQLiteDB {
      * 
      * @throws SQLException se houver erro na limpeza
      */
-    public void clearBooksTable() throws SQLException {
+    public void clearBookTable() throws SQLException {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
@@ -156,7 +156,7 @@ public class SQLiteDB {
      * 
      * @throws SQLException se houver erro na remoção
      */
-    public void dropBooksTable() throws SQLException {
+    public void dropBookTable() throws SQLException {
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
@@ -179,14 +179,14 @@ public class SQLiteDB {
      * 
      * @throws SQLException se houver erro na recriação
      */
-    public void recreateBooksTable() throws SQLException {
+    public void recreateBookTable() throws SQLException {
         System.out.println("Recriando tabela book...");
         
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
             
             // Remove a tabela se existir
-            dropBooksTable();
+            dropBookTable();
             
             // Cria a tabela novamente
             createBooksTable(statement);
@@ -211,7 +211,7 @@ public class SQLiteDB {
         try {
             if (sqliteConnection.isConnectionValid()) {
                 return String.format("SQLite Database - Connection: %s, Table exists: %s", 
-                    sqliteConnection.getConnectionInfo(), isBooksTableExists());
+                    sqliteConnection.getConnectionInfo(), isBookTableExists());
             }
         } catch (SQLException e) {
             System.err.println("Erro ao obter informações do banco: " + e.getMessage());

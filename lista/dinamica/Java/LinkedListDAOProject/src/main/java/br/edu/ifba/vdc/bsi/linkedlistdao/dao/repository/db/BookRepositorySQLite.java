@@ -30,7 +30,7 @@ public class BookRepositorySQLite {
         
         try {
             // Inicializa o banco de dados se necessário
-            if (!sqliteDB.isBooksTableExists()) {
+            if (!sqliteDB.isBookTableExists()) {
                 sqliteDB.initializeDatabase();
             }
         } catch (SQLException e) {
@@ -323,7 +323,7 @@ public class BookRepositorySQLite {
     
     public void clearAllBooks() {
         try {
-            sqliteDB.clearBooksTable();
+            sqliteDB.clearBookTable();
             System.out.println("Todos os livros foram removidos");
         } catch (SQLException e) {
             System.err.println("Erro ao limpar todos os livros: " + e.getMessage());

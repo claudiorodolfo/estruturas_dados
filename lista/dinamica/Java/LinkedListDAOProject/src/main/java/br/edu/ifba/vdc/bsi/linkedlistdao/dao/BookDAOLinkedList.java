@@ -139,7 +139,7 @@ public class BookDAOLinkedList implements BookDAO {
             Book book = listBooks.select(i);
             if (book.getAuthor() != null 
                 && book.getAuthor().equalsIgnoreCase(author)) {
-                result.append(book);
+                resultListBooks.append(book);
             }
         }
         return listToArray(resultListBooks);
@@ -266,7 +266,7 @@ public class BookDAOLinkedList implements BookDAO {
                 resultListBooks.append(book);
             }
         }
-        return resultListBooks.listToArray();
+        return listToArray(resultListBooks);
     }
 
     // Operações de análise e estatísticas
