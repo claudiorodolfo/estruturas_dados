@@ -118,7 +118,7 @@
                                     <mainClass>br.edu.ifba.vdc.bsi.linkedlistdao.app.BookService</mainClass>
                                 </transformer>
                             </transformers>
-                            <finalName>book-stack-${project.version}</finalName>
+                            <finalName>book-list-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>
