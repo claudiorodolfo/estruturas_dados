@@ -51,10 +51,10 @@ public class BookService {
                     buscarLivroPorIsbn(scanner, dbAccessor);
                     break;
                 case 7:
-                    buscarLivrosMaisCaros(scanner, dbAccessor);
+                    buscarLivrosMaisCaros(dbAccessor);
                     break;
                 case 8:
-                    buscarLivrosMaisBaratos(scanner, dbAccessor);
+                    buscarLivrosMaisBaratos(dbAccessor);
                     break;
                 case 9:
                     listarTodosLivros(dbAccessor);
@@ -260,7 +260,7 @@ public class BookService {
         }
     }
     
-    private static void buscarLivrosMaisCaros(Scanner scanner, BookDAO dbAccessor) {
+    private static void buscarLivrosMaisCaros(BookDAO dbAccessor) {
         System.out.println("\n=== BUSCAR LIVRO MAIS CAROS ===");        
         try {
             Book livro = dbAccessor.getMostExpensiveBook();
@@ -276,7 +276,7 @@ public class BookService {
         }
     }
     
-    private static void buscarLivrosMaisBaratos(Scanner scanner, BookDAO dbAccessor) {
+    private static void buscarLivrosMaisBaratos(BookDAO dbAccessor) {
         System.out.println("\n=== BUSCAR LIVROS MAIS BARATOS ===");       
         try {
             Book livro = dbAccessor.getCheapestBook();
