@@ -9,20 +9,25 @@ import java.util.Scanner;
 
 public class BookService {
 
-    public static BookDAO getDBBook(String type) {
-        if ("sqlite".equalsIgnoreCase(type)) {
-            return new BookDAOSQLite();
-        } 
-        else if("linkedlist".equalsIgnoreCase(type)) {
-            return new BookDAOLinkedList();
-        } else {
-            throw new IllegalArgumentException("Tipo de implementação inválido: " + type);
+    public enum RepositoryType {
+        SQLITE,
+        LINKEDLIST
+    }
+
+    public static BookDAO getRepositoryBook(RepositoryType type) {
+        switch (type) {
+            case SQLITE:
+                return new BookDAOSQLite();
+            case LINKEDLIST:
+                return new BookDAOLinkedList();
+            default:
+                throw new IllegalArgumentException("Tipo de implementação inválido: " + type);
         }
     }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        BookDAO dbAccessor = BookService.getDBBook("sqlite");
+        BookDAO repositoryAccessor = BookService.getRepositoryBook(RepositoryType.SQLITE);
         
         System.out.println("=== Sistema de Gerenciamento de Livros ===");
         boolean continuar = true;
@@ -33,37 +38,37 @@ public class BookService {
             
             switch (opcao) {
                 case 1:
-                    adicionarLivro(scanner, dbAccessor);
+                    adicionarLivro(scanner, repositoryAccessor);
                     break;
                 case 2:
-                    buscarLivroPorId(scanner, dbAccessor);
+                    buscarLivroPorId(scanner, repositoryAccessor);
                     break;
                 case 3:
-                    atualizarLivro(scanner, dbAccessor);
+                    atualizarLivro(scanner, repositoryAccessor);
                     break;
                 case 4:
-                    deletarLivro(scanner, dbAccessor);
+                    deletarLivro(scanner, repositoryAccessor);
                     break;
                 case 5:
-                    buscarLivrosPorAutor(scanner, dbAccessor);
+                    buscarLivrosPorAutor(scanner, repositoryAccessor);
                     break;
                 case 6:
-                    buscarLivroPorIsbn(scanner, dbAccessor);
+                    buscarLivroPorIsbn(scanner, repositoryAccessor);
                     break;
                 case 7:
-                    buscarLivrosMaisCaros(dbAccessor);
+                    buscarLivrosMaisCaros(repositoryAccessor);
                     break;
                 case 8:
-                    buscarLivrosMaisBaratos(dbAccessor);
+                    buscarLivrosMaisBaratos(repositoryAccessor);
                     break;
                 case 9:
-                    listarTodosLivros(dbAccessor);
+                    listarTodosLivros(repositoryAccessor);
                     break;
                 case 10:
-                    imprimirLivros(dbAccessor);
+                    imprimirLivros(repositoryAccessor);
                     break;
                 case 11:
-                    mostrarTotalLivros(dbAccessor);
+                    mostrarTotalLivros(repositoryAccessor);
                     break;
                 case 0:
                     continuar = false;
@@ -107,7 +112,7 @@ public class BookService {
         }
     }
     
-    private static void adicionarLivro(Scanner scanner, BookDAO dbAccessor) {
+    private static void adicionarLivro(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== ADICIONAR LIVRO ===");
         
         try {
@@ -131,7 +136,7 @@ public class BookService {
             Double preco = Double.parseDouble(scanner.nextLine());
             
             Book livro = new Book(id, titulo, autor, dataPublicacao, isbn, preco);
-            dbAccessor.addBook(livro);
+            repositoryAccessor.addBook(livro);
             
             System.out.println("Livro adicionado com sucesso!");
             
@@ -140,13 +145,13 @@ public class BookService {
         }
     }
     
-    private static void buscarLivroPorId(Scanner scanner, BookDAO dbAccessor) {
+    private static void buscarLivroPorId(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== BUSCAR LIVRO POR ID ===");
         System.out.print("Digite o ID do livro: ");
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livro = dbAccessor.getBookById(id);
+            Book livro = repositoryAccessor.getBookById(id);
             
             if (livro != null) {
                 System.out.println("Livro encontrado:");
@@ -159,13 +164,13 @@ public class BookService {
         }
     }
     
-    private static void atualizarLivro(Scanner scanner, BookDAO dbAccessor) {
+    private static void atualizarLivro(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== ATUALIZAR LIVRO ===");
         System.out.print("Digite o ID do livro a ser atualizado: ");
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livroExistente = dbAccessor.getBookById(id);
+            Book livroExistente = repositoryAccessor.getBookById(id);
             
             if (livroExistente == null) {
                 System.out.println("Livro não encontrado!");
@@ -192,7 +197,7 @@ public class BookService {
             Double novoPreco = Double.parseDouble(scanner.nextLine());
             
             Book livroAtualizado = new Book(id, novoTitulo, novoAutor, novaDataPublicacao, novoIsbn, novoPreco);
-            dbAccessor.updateBook(livroAtualizado);
+            repositoryAccessor.updateBook(livroAtualizado);
             
             System.out.println("Livro atualizado com sucesso!");
             
@@ -201,13 +206,13 @@ public class BookService {
         }
     }
     
-    private static void deletarLivro(Scanner scanner, BookDAO dbAccessor) {
+    private static void deletarLivro(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== DELETAR LIVRO ===");
         System.out.print("Digite o ID do livro a ser deletado: ");
         
         try {
             Long id = Long.parseLong(scanner.nextLine());
-            Book livro = dbAccessor.deleteBook(id);
+            Book livro = repositoryAccessor.deleteBook(id);
             
             if (livro != null) {
                 System.out.println("Livro deletado com sucesso:");
@@ -220,13 +225,13 @@ public class BookService {
         }
     }
     
-    private static void buscarLivrosPorAutor(Scanner scanner, BookDAO dbAccessor) {
+    private static void buscarLivrosPorAutor(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== BUSCAR LIVROS POR AUTOR ===");
         System.out.print("Digite o nome do autor: ");
         
         try {
             String autor = scanner.nextLine();
-            Book[] livros = dbAccessor.getBooksByAuthor(autor);
+            Book[] livros = repositoryAccessor.getBooksByAuthor(autor);
             
             if (livros != null && livros.length > 0) {
                 System.out.println("Livros encontrados:");
@@ -241,13 +246,13 @@ public class BookService {
         }
     }
     
-    private static void buscarLivroPorIsbn(Scanner scanner, BookDAO dbAccessor) {
+    private static void buscarLivroPorIsbn(Scanner scanner, BookDAO repositoryAccessor) {
         System.out.println("\n=== BUSCAR LIVRO POR ISBN ===");
         System.out.print("Digite o ISBN: ");
         
         try {
             String isbn = scanner.nextLine();
-            Book livro = dbAccessor.getBookByIsbn(isbn);
+            Book livro = repositoryAccessor.getBookByIsbn(isbn);
             
             if (livro != null) {
                 System.out.println("Livro encontrado:");
@@ -260,10 +265,10 @@ public class BookService {
         }
     }
     
-    private static void buscarLivrosMaisCaros(BookDAO dbAccessor) {
+    private static void buscarLivrosMaisCaros(BookDAO repositoryAccessor) {
         System.out.println("\n=== BUSCAR LIVRO MAIS CAROS ===");        
         try {
-            Book livro = dbAccessor.getMostExpensiveBook();
+            Book livro = repositoryAccessor.getMostExpensiveBook();
             
             if (livro != null) {
                 System.out.println("Livro mais caros:");
@@ -276,10 +281,10 @@ public class BookService {
         }
     }
     
-    private static void buscarLivrosMaisBaratos(BookDAO dbAccessor) {
+    private static void buscarLivrosMaisBaratos(BookDAO repositoryAccessor) {
         System.out.println("\n=== BUSCAR LIVROS MAIS BARATOS ===");       
         try {
-            Book livro = dbAccessor.getCheapestBook();
+            Book livro = repositoryAccessor.getCheapestBook();
             
             if (livro != null) {
                 System.out.println("Livro mais baratos:");
@@ -292,11 +297,11 @@ public class BookService {
         }
     }  
     
-    private static void listarTodosLivros(BookDAO dbAccessor) {
+    private static void listarTodosLivros(BookDAO repositoryAccessor) {
         System.out.println("\n=== LISTAR TODOS OS LIVROS ===");
         
         try {
-            Book[] livros = dbAccessor.getAllBooks();
+            Book[] livros = repositoryAccessor.getAllBooks();
             
             if (livros != null && livros.length > 0) {
                 System.out.println("Todos os livros:");
@@ -311,11 +316,11 @@ public class BookService {
         }
     }
     
-    private static void imprimirLivros(BookDAO dbAccessor) {
+    private static void imprimirLivros(BookDAO repositoryAccessor) {
         System.out.println("\n=== IMPRIMIR LIVROS (toString) ===");
         
         try {
-            String resultado = dbAccessor.printBooks();
+            String resultado = repositoryAccessor.printBooks();
             System.out.println("Resultado:");
             System.out.println(resultado);
         } catch (Exception e) {
@@ -323,11 +328,11 @@ public class BookService {
         }
     }
     
-    private static void mostrarTotalLivros(BookDAO dbAccessor) {
+    private static void mostrarTotalLivros(BookDAO repositoryAccessor) {
         System.out.println("\n=== TOTAL DE LIVROS ===");
         
         try {
-            int total = dbAccessor.getTotalBooks();
+            int total = repositoryAccessor.getTotalBooks();
             System.out.println("Total de livros: " + total);
         } catch (Exception e) {
             System.out.println("Erro ao contar livros: " + e.getMessage());
