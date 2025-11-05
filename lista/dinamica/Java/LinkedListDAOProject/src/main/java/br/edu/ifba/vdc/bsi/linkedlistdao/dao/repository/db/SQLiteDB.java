@@ -1,4 +1,4 @@
-package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository;
+package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;

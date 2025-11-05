@@ -1,7 +1,7 @@
 package br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.db;
 
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.SQLiteConnection;
-import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.SQLiteDB;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.db.SQLiteConnection;
+import br.edu.ifba.vdc.bsi.linkedlistdao.dao.repository.db.SQLiteDB;
 import br.edu.ifba.vdc.bsi.linkedlistdao.model.Book;
 import java.sql.*;
 import java.time.LocalDate;
@@ -270,12 +270,12 @@ public class BookRepositorySQLite {
     }
     
     public Book selectNewestBook() {
-        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MAX(publication_date) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MAX(publication_date) FROM book) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
     public Book selectOldestBook() {
-        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MIN(publication_date) FROM books) LIMIT 1";
+        String sql = "SELECT * FROM book WHERE publication_date = (SELECT MIN(publication_date) FROM book) LIMIT 1";
         return executeSingleBookQuery(sql);
     }
     
