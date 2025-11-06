@@ -15,6 +15,9 @@ import java.util.List;
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0.0
  * @since 2024-01-01
+ * @see SQLiteConnection
+ * @see SQLiteDB
+ * @see Book
  */
 public class BookRepositorySQLite {
     

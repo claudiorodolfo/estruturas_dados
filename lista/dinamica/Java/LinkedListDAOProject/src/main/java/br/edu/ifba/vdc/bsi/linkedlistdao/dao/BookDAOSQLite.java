@@ -10,7 +10,10 @@ import java.time.LocalDate;
  * 
  * @author Cláudio Rodolfo Sousa de Oliveira
  * @version 1.0.0
- * @since 2024-01-01
+ * @since 2025-11-01
+ * @see BookDAO
+ * @see Book
+ * @see BookRepositorySQLite
  */
 public class BookDAOSQLite implements BookDAO {
     private final BookRepositorySQLite bookRepositorySQLite;
@@ -22,6 +25,13 @@ public class BookDAOSQLite implements BookDAO {
         bookRepositorySQLite = new BookRepositorySQLite();
     }
     
+    /**
+     * Adiciona um novo livro ao banco de dados.
+     * Valida se o livro já existe e se todos os campos obrigatórios estão preenchidos.
+     * 
+     * @param book livro a ser adicionado
+     * @throws IllegalArgumentException se o livro já existir ou se algum campo obrigatório for inválido
+     */
     @Override
     public void addBook(Book book) {
         // Regra de negócio: validar se livro já existe
@@ -38,6 +48,11 @@ public class BookDAOSQLite implements BookDAO {
         System.out.println("Livro adicionado com sucesso: " + book.getTitle());
     }
     
+    /**
+     * Recupera todos os livros cadastrados no banco de dados.
+     * 
+     * @return array contendo todos os livros
+     */
     @Override
     public Book[] getAllBooks() {
         // Regra de negócio: retornar todos os livros ordenados
@@ -48,6 +63,13 @@ public class BookDAOSQLite implements BookDAO {
         return books;
     }
     
+    /**
+     * Atualiza as informações de um livro existente no banco de dados.
+     * Valida se o livro existe e se todos os campos obrigatórios estão preenchidos.
+     * 
+     * @param newBook livro com as informações atualizadas
+     * @throws IllegalArgumentException se o livro não existir ou se algum campo obrigatório for inválido
+     */
     @Override
     public void updateBook(Book newBook) {
         // Regra de negócio: validar se livro existe
@@ -64,6 +86,13 @@ public class BookDAOSQLite implements BookDAO {
         System.out.println("Livro atualizado com sucesso: " + newBook.getTitle());
     }
     
+    /**
+     * Remove um livro do banco de dados pelo seu ID.
+     * 
+     * @param id identificador único do livro a ser removido
+     * @return livro removido do banco de dados
+     * @throws IllegalArgumentException se o livro não existir
+     */
     @Override
     public Book deleteBook(long id) {
         // Regra de negócio: validar se livro existe
@@ -79,12 +108,25 @@ public class BookDAOSQLite implements BookDAO {
         return deletedBook;
     }
     
+    /**
+     * Busca um livro pelo seu ID.
+     * 
+     * @param id identificador único do livro
+     * @return livro encontrado ou null se não existir
+     */
     @Override
     public Book getBookById(long id) {
         // Delegar para o repository
         return bookRepositorySQLite.selectBookById(id);
     }
     
+    /**
+     * Busca todos os livros de um determinado autor.
+     * 
+     * @param author nome do autor a ser pesquisado
+     * @return array contendo os livros do autor especificado
+     * @throws IllegalArgumentException se o autor for nulo ou vazio
+     */
     @Override
     public Book[] getBooksByAuthor(String author) {
         // Regra de negócio: validar parâmetro
@@ -96,6 +138,13 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBooksByAuthor(author);
     }
     
+    /**
+     * Busca todos os livros publicados em uma data específica.
+     * 
+     * @param date data de publicação a ser pesquisada
+     * @return array contendo os livros publicados na data especificada
+     * @throws IllegalArgumentException se a data for nula
+     */
     @Override
     public Book[] getBooksByPublicationDate(LocalDate date) {
         // Regra de negócio: validar parâmetro
@@ -107,6 +156,13 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBooksByPublicationDate(date);
     }
     
+    /**
+     * Busca livros pelo título.
+     * 
+     * @param title título do livro a ser pesquisado
+     * @return array contendo os livros com o título especificado
+     * @throws IllegalArgumentException se o título for nulo ou vazio
+     */
     @Override
     public Book[] getBooksByTitle(String title) {
         // Regra de negócio: validar parâmetro
@@ -118,6 +174,13 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBooksByTitle(title);
     }
     
+    /**
+     * Busca um livro pelo seu ISBN.
+     * 
+     * @param isbn código ISBN do livro
+     * @return livro encontrado ou null se não existir
+     * @throws IllegalArgumentException se o ISBN for nulo ou vazio
+     */
     @Override
     public Book getBookByIsbn(String isbn) {
         // Regra de negócio: validar parâmetro
@@ -129,6 +192,14 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBookByIsbn(isbn);
     }
     
+    /**
+     * Busca livros dentro de uma faixa de preços.
+     * 
+     * @param minPrice preço mínimo da faixa
+     * @param maxPrice preço máximo da faixa
+     * @return array contendo os livros dentro da faixa de preços especificada
+     * @throws IllegalArgumentException se os preços forem negativos ou se o preço mínimo for maior que o máximo
+     */
     @Override
     public Book[] getBooksByPriceRange(double minPrice, double maxPrice) {
         // Regra de negócio: validar parâmetros
@@ -143,6 +214,14 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBooksByPriceRange(minPrice, maxPrice);
     }
     
+    /**
+     * Busca livros publicados dentro de uma faixa de datas.
+     * 
+     * @param minDate data mínima da faixa
+     * @param maxDate data máxima da faixa
+     * @return array contendo os livros publicados dentro da faixa de datas especificada
+     * @throws IllegalArgumentException se as datas forem nulas ou se a data mínima for posterior à máxima
+     */
     @Override
     public Book[] getBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
         // Regra de negócio: validar parâmetros
@@ -157,30 +236,55 @@ public class BookDAOSQLite implements BookDAO {
         return bookRepositorySQLite.selectBooksByDateRange(minDate, maxDate);
     }
     
+    /**
+     * Busca o livro mais caro cadastrado.
+     * 
+     * @return livro com o maior preço ou null se não houver livros cadastrados
+     */
     @Override
     public Book getMostExpensiveBook() {
         // Delegar para o repository
         return bookRepositorySQLite.selectMostExpensiveBook();
     }
     
+    /**
+     * Busca o livro mais barato cadastrado.
+     * 
+     * @return livro com o menor preço ou null se não houver livros cadastrados
+     */
     @Override
     public Book getCheapestBook() {
         // Delegar para o repository
         return bookRepositorySQLite.selectCheapestBook();
     }
     
+    /**
+     * Busca o livro mais recente cadastrado (com a data de publicação mais recente).
+     * 
+     * @return livro mais recente ou null se não houver livros cadastrados
+     */
     @Override
     public Book getNewestBook() {
         // Delegar para o repository
         return bookRepositorySQLite.selectNewestBook();
     }
     
+    /**
+     * Busca o livro mais antigo cadastrado (com a data de publicação mais antiga).
+     * 
+     * @return livro mais antigo ou null se não houver livros cadastrados
+     */
     @Override
     public Book getOldestBook() {
         // Delegar para o repository
         return bookRepositorySQLite.selectOldestBook();
     }
     
+    /**
+     * Gera uma representação em string formatada de todos os livros cadastrados.
+     * 
+     * @return string formatada contendo a lista de todos os livros
+     */
     @Override
     public String printBooks() {
         // Regra de negócio: formatar lista de livros
@@ -197,24 +301,44 @@ public class BookDAOSQLite implements BookDAO {
         return sb.toString();
     }
     
+    /**
+     * Retorna o número total de livros cadastrados.
+     * 
+     * @return quantidade total de livros no banco de dados
+     */
     @Override
     public int getTotalBooks() {
         // Delegar para o repository
         return bookRepositorySQLite.countTotalBooks();
     }
     
+    /**
+     * Calcula o preço médio de todos os livros cadastrados.
+     * 
+     * @return preço médio dos livros ou 0.0 se não houver livros cadastrados
+     */
     @Override
     public double getAveragePrice() {
         // Delegar para o repository
         return bookRepositorySQLite.calculateAveragePrice();
     }
     
+    /**
+     * Verifica se um livro existe no banco de dados.
+     * 
+     * @param id identificador único do livro
+     * @return true se o livro existir, false caso contrário
+     */
     @Override
     public boolean isBookAvailable(long id) {
         // Delegar para o repository
         return bookRepositorySQLite.existsBook(id);
     }
     
+    /**
+     * Remove todos os livros do banco de dados.
+     * Esta é uma operação destrutiva que não pode ser desfeita.
+     */
     @Override
     public void clearAllBooks() {
         // Regra de negócio: confirmar operação destrutiva
