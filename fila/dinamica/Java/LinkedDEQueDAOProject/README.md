@@ -80,7 +80,7 @@ src/
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/estruturas_dados.git
+git clone https://github.com/claudiorodolfo/estruturas_dados.git
 cd estruturas_dados/fila/dinamica/Java/LinkedDEQueDAOProject
 ```
 
