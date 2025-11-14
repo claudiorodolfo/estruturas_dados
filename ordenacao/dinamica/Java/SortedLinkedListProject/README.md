@@ -20,8 +20,7 @@ Projeto Java que implementa algoritmos de ordenação utilizando uma estrutura d
 ```
 SortedLinkedListProject/
 ├── src/
-│   ├── main/
-│   │   └── java/
+│   ├── main/java/
 │   │       └── br/edu/ifba/vdc/bsi/sortedlinkedlist/
 │   │           ├── app/
 │   │           │   └── SortedLinkedListApp.java      # Aplicação principal interativa
@@ -36,8 +35,7 @@ SortedLinkedListProject/
 │   │                   ├── Sortable.java              # Interface para estruturas ordenáveis
 │   │                   ├── SortAlgorithm.java         # Enum dos algoritmos disponíveis
 │   │                   └── SortOrder.java             # Enum da ordem de ordenação
-│   └── test/
-│       └── java/
+│   └── test/java/
 │           └── br/edu/ifba/vdc/bsi/sortedlinkedlist/
 │               └── SortedLinkedListTest.java          # Testes unitários
 ├── pom.xml                                            # Configuração Maven
