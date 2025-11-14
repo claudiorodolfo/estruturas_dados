@@ -1,4 +1,4 @@
-# Sorted Linked List Project
+# Projeto de Lista Dinâmica Ordenada
 
 ## 📋 Descrição
 
@@ -46,7 +46,7 @@ SortedLinkedListProject/
 
 ## 📦 Requisitos
 
-- **Java**: JDK 11 ou superior
+- **Java**: JDK 21 ou superior
 - **Maven**: 3.6.0 ou superior (para compilação e gerenciamento de dependências)
 - **JUnit**: 5.9.2 (incluído via Maven)
 
@@ -123,22 +123,22 @@ System.out.println(list.print()); // [12,22,25,34,64]
 ## 🔧 Algoritmos Implementados
 
 ### Bubble Sort
-- **Complexidade**: O(n²) no pior caso
+- **Complexidade**: O(n²)  em todos os casos (tem como melhorá-lo para se tornar O(n) no melhor caso
 - **Descrição**: Compara elementos adjacentes e os troca se estiverem na ordem errada, repetindo até que a lista esteja ordenada.
 
 ### Insertion Sort
 - **Complexidade**: O(n²) no pior caso, O(n) no melhor caso
-- **Descrição**: Constrói a lista ordenada um elemento por vez, inserindo cada novo elemento na posição correta.
+- **Descrição**: Constrói a lista ordenada um elemento por vez, inserindo cada novo elemento na posição correta. Da posição do elemento até o ínicio (configuração padrão), os elementos já estão ordenados.
 
 ### Selection Sort
 - **Complexidade**: O(n²) em todos os casos
-- **Descrição**: Encontra o menor (ou maior) elemento e o coloca na posição correta, repetindo para os elementos restantes.
+- **Descrição**: Encontra o menor (configuração padrão) ou maior elemento e o coloca na posição correta, repetindo para os elementos restantes.
 
 ## 📚 Estrutura de Classes
 
 ### Classes Principais
 
-- **`SortedLinkedList`**: Extende `LinkedList` e implementa `Sortable`, fornecendo métodos de ordenação
+- **`SortedLinkedList`**: Estende `LinkedList` e implementa `Sortable`, fornecendo métodos de ordenação
 - **`LinkedList<T>`**: Implementação genérica de lista duplamente encadeada
 - **`DoubleNode<T>`**: Representa um nó da lista com referências para o próximo e anterior
 - **`SortedLinkedListApp`**: Aplicação interativa para testar os algoritmos
@@ -177,7 +177,7 @@ Projeto desenvolvido como parte do curso de Estruturas de Dados.
 
 ## 📄 Licença
 
-Este projeto é fornecido "como está" para fins educacionais.
+Este projeto é disponibilizado para fins educacionais.
 
 ## 🔄 Versão
 
