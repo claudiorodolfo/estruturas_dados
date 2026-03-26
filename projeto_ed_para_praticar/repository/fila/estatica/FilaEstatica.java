@@ -24,6 +24,13 @@ public class FilaEstatica implements Enfileiravel {
     }
 
     @Override
+    public void limpar() {
+        ponteiroInicio = 0;
+        ponteiroFim = -1;
+        quantidade = 0;
+    }
+    
+    @Override
     public void enfileirar(Object objeto) {
         if (!estaCheia()) {
             if (estaVazia()) {

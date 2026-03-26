@@ -25,6 +25,11 @@ public class ListaEstatica implements Listavel {
     }
 
     @Override
+    public int tamanho() {
+        return quantidade;
+    }
+
+    @Override
     public void inserir(Object objeto, int posicao) {
         if (!estaCheia()) {
             if (posicao >= 0 && posicao <= quantidade) {

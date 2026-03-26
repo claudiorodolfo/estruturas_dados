@@ -12,6 +12,7 @@ public interface Listavel {
     void limpar();                              //D - clear
 
     //Métodos auxiliares
+    int tamanho();
     boolean estaVazia();
     boolean estaCheia();
     String imprimir();

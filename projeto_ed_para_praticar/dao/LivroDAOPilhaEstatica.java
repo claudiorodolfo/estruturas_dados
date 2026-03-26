@@ -11,6 +11,9 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
            
     @Override
     public void addLivro(Livro livro) {
+        if (livro == null) {
+            throw new IllegalArgumentException("livro nao pode ser nulo.");
+        }
         pilhaLivros.empilhar(livro);
     }  
     
@@ -390,7 +393,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
 
     @Override
     public int getTotalLivros() {
-        return contarLivros();
+        return contarLivros(pilhaLivros);
     }
 
     @Override
@@ -425,23 +428,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         pilhaLivros = new PilhaEstatica(100);
     }
 
-    private int contarLivros() {
-        Empilhavel pilhaAuxiliar = new PilhaEstatica(100);
-        int contador = 0;
-
-        while (!pilhaLivros.estaVazia()) {
-            pilhaAuxiliar.empilhar(pilhaLivros.desempilhar());
-            contador++;
-        }
-
-        while (!pilhaAuxiliar.estaVazia()) {
-            pilhaLivros.empilhar(pilhaAuxiliar.desempilhar());
-        }
-
-        return contador;
-    }
-
-    private int contarPilha(Empilhavel pilha) {
+    private int contarLivros(Empilhavel pilha) {
         if (pilha == null) {
             return 0;
         }
@@ -462,7 +449,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
             return new Livro[0];
         }
 
-        int tamanho = contarPilha(pilha);
+        int tamanho = contarLivros(pilha);
         Livro[] array = new Livro[tamanho];
         Empilhavel aux = new PilhaEstatica(100);
 
