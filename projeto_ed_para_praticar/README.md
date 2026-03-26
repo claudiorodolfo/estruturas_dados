@@ -115,11 +115,10 @@ No arquivo `app/MainLivro.java`, você pode trocar a implementação do DAO:
 - `LivroDAOFilaEstatica`, `LivroDAOListaEstatica` e DAOs de `Carro`: estão como base para prática e ainda precisam de implementação completa.
 
 ## Passos sugeridos
-
-- implementar os métodos faltantes dos DAOs de fila para `Livro`;
-- implementar os métodos faltantes dos DAOs de lista para `Livro`;
-- implementar os DAOs de `Carro` na abordagem pilha;
-- implementar os DAOs de `Carro` na abordagem fila;
-- implementar os DAOs de `Carro` nas abordagem lista;
-- criar classe `MainCarro` para validar os cenários.
+- implementar os métodos faltantes do DAO de fila para `Livro` usando fila estática (LivroDAOFilaEstatica.java);
+- implementar os métodos faltantes do DAO de lista para `Livro` usando lista estática (LivroDAOListaEstatica.java);
+- implementar os métodos do DAO de pilha para `Carro` usando pilha estática (CarroDAOPilhaEstatica.java);
+- implementar os métodos do DAO de fila para `Carro` usando fila estática (CarroDAOFilaEstatica.java);
+- implementar os métodos do DAO de lista para `Carro` usando lista estática (CarroDAOListaEstatica.java);
+- criar classe `MainCarro` para validar os cenários utilizando as estruturas de dados estáticas para `Carro`.
 
