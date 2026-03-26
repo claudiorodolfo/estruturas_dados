@@ -109,10 +109,12 @@ No arquivo `app/MainLivro.java`, você pode trocar a implementação do DAO:
 - `LivroDAOFilaEstatica` (esqueleto);
 - `LivroDAOListaEstatica` (esqueleto).
 
-## Status do projeto (IMPLEMENTAR OS ELEMENTOS FALTANTES)
+## Status do projeto 
 
 - `LivroDAOPilhaEstatica`: possui implementação funcional das operações do `LivroDAO`.
-- `LivroDAOFilaEstatica`, `LivroDAOListaEstatica` e DAOs de `Carro`: estão como base para prática e ainda precisam de implementação completa.
+- `LivroDAOFilaEstatica` e `LivroDAOListaEstatica`: possuem implementação parcial das operações do `LivroDAO`.
+- DAOs de `Carro`: estão como base para prática e ainda precisam de implementação completa.
+- `MainCarro`: ainda inexistente mas importante para validação dos DAOS de `Carro`.
 
 ## Passos sugeridos
 - implementar os métodos faltantes do DAO de fila para `Livro` usando fila estática (LivroDAOFilaEstatica.java);
