@@ -6,9 +6,9 @@ Projeto em Java para praticar **Estruturas de Dados** e a aplicação de operaç
 
 Este projeto foi criado para exercitar:
 
-- implementação de estruturas lineares estáticas;
+- implementação de estruturas de dados;
 - manipulação de dados por meio de DAOs;
-- operações de busca, atualização, remoção e estatísticas;
+- operações baseadas no CRUD (Criar, Ler, Atualizar, Apagar);
 - organização em camadas simples (`model`, `repository`, `dao`, `app`).
 
 ## Tecnologias
@@ -109,14 +109,17 @@ No arquivo `app/MainLivro.java`, você pode trocar a implementação do DAO:
 - `LivroDAOFilaEstatica` (esqueleto);
 - `LivroDAOListaEstatica` (esqueleto).
 
-## Status do projeto
+## Status do projeto (IMPLEMENTAR OS ELEMENTOS FALTANTES)
 
 - `LivroDAOPilhaEstatica`: possui implementação funcional das operações do `LivroDAO`.
 - `LivroDAOFilaEstatica`, `LivroDAOListaEstatica` e DAOs de `Carro`: estão como base para prática e ainda precisam de implementação completa.
 
-## Próximos passos sugeridos
+## Passos sugeridos
 
-- implementar os métodos faltantes dos DAOs de fila/lista para `Livro`;
-- implementar os DAOs de `Carro` nas três abordagens (pilha, fila e lista);
-- criar classes `MainCarro` e/ou testes automatizados para validar os cenários.
+- implementar os métodos faltantes dos DAOs de fila para `Livro`;
+- implementar os métodos faltantes dos DAOs de lista para `Livro`;
+- implementar os DAOs de `Carro` na abordagem pilha;
+- implementar os DAOs de `Carro` na abordagem fila;
+- implementar os DAOs de `Carro` nas abordagem lista;
+- criar classe `MainCarro` para validar os cenários.
 
