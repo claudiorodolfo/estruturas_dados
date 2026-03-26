@@ -55,7 +55,7 @@ projeto_ed_para_praticar/
   - operações: empilhar, desempilhar, espiar, atualizar topo;
 - **Fila estática circular** (`FilaEstatica`)
   - operações: enfileirar, desenfileirar, frente, atualizar início/fim;
-- **Fila de dupla terminação (Deque)** (`FilaEstaticaComDuplaTerminacao`)
+- **Fila estática circular de dupla terminação (Deque)** (`FilaEstaticaComDuplaTerminacao`)
   - operações adicionais: enfileirar no início e desenfileirar no fim;
 - **Lista estática circular** (`ListaEstatica`)
   - operações: inserir em posição, anexar, selecionar, atualizar e apagar.
@@ -77,10 +77,10 @@ Atualmente, o ponto de entrada disponível é o `MainLivro`.
    cd projeto_ed_para_praticar
    ```
 
-2. Compile:
+2. Compile apenas os arquivos necessarios para o `MainLivro`:
 
    ```bash
-   javac app/MainLivro.java
+   javac model/Livro.java repository/pilha/Empilhavel.java repository/pilha/estatica/PilhaEstatica.java dao/LivroDAO.java dao/LivroDAOPilhaEstatica.java app/MainLivro.java
    ```
 
 3. Execute:
