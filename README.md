@@ -115,15 +115,22 @@ mvn test
 
 ### 📚 Pilhas (Stacks)
 - ✅ Pilha Estática (Array)
-- ✅ Pilha Dinâmica (Lista Encadeada)
 - ✅ Pilha Dupla
+- ✅ Pilha Dinâmica (Pilha Encadeada)
 - ✅ Pilha com Filas
 
 ### 🔗 Filas (Queues)
 - ✅ Fila Estática (Array)
-- ✅ Fila Dinâmica (Lista Encadeada)
-- ✅ Fila Circular
-- ✅ Fila Dupla Terminação
+- ✅ Fila Estática Circular
+- ✅ Fila Dinâmica (Fila Encadeada)
+- ✅ Fila com Dupla Terminação
+- ✅ Fila com Pilhas
+
+### 📋 Listas (Lists)
+- ✅ Lista Estática (Array)
+- ✅ Lista Estática Circular
+- ✅ Lista Dinâmica (Lista Encadeada)
+- ✅ Lista Dinâmica (Lista Duplamente Encadeada)
 
 ### 🌳 Árvores (Trees)
 - ✅ Árvore Binária de Pesquisa (ABP)
@@ -132,12 +139,6 @@ mvn test
 - ✅ Árvore B
 - ✅ Árvore B+
 - ✅ Heap Binário
-
-### 📋 Listas (Lists)
-- ✅ Lista Estática (Array)
-- ✅ Lista Dinâmica (Lista Encadeada)
-- ✅ Lista Circular
-- ✅ Lista Duplamente Encadeada
 
 ### 🔍 Tabelas Hash (Hash Tables)
 - ✅ HashMap com Espalhamento
