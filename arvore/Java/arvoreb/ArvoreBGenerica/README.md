@@ -38,6 +38,13 @@ ArvoreBGenerica/
 
 ---
 
+## Pré-requisitos
+
+- **JDK** 25 ou superior
+- **Maven** 3.6+
+
+---
+
 ## 🚀 Como Usar
 
 ### 1. Compilar o projeto

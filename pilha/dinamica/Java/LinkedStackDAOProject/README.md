@@ -1,6 +1,6 @@
 # 📚 LinkedStackDAOProject
 
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue.svg)](https://maven.apache.org/)
 [![JUnit](https://img.shields.io/badge/JUnit-4.13.2-green.svg)](https://junit.org/junit4/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -72,7 +72,7 @@ src/
 
 ## 📋 Pré-requisitos
 
-- ☕ **Java 21** ou superior
+- ☕ **Java 25** ou superior
 - 🔧 **Maven 3.6+** ou superior
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
 

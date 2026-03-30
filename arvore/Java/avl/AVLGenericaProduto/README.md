@@ -58,7 +58,7 @@ A classe `Produto` implementa `Comparable<Produto>` e possui:
 
 ## Pré-requisitos
 
-- Java 21 ou superior
+- Java 25 ou superior
 - Maven 3.6 ou superior
 
 ## Como Usar

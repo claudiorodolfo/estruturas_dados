@@ -13,7 +13,7 @@ Este projeto foi criado para exercitar:
 
 ## Tecnologias
 
-- Java (JDK 8+)
+- Java (JDK 25 ou superior)
 - Estruturas implementadas manualmente (sem frameworks)
 
 ## Estrutura do projeto

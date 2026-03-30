@@ -59,7 +59,7 @@ AVPGenericaProduto/
 
 #### `pom.xml`
 Configuração Maven com:
-- Java 21
+- Java 25
 - JUnit 4.13.2
 - Hamcrest 1.3
 - Plugins para compilação, testes, JAR e documentação
@@ -147,11 +147,11 @@ java -jar target/avp-generica-produto-1.0.0.jar
 
 ## 🔧 Configurações Específicas
 
-### Java 21
-O projeto foi configurado para usar Java 21:
+### Java 25
+O projeto foi configurado para usar Java 25:
 ```xml
-<maven.compiler.source>21</maven.compiler.source>
-<maven.compiler.target>21</maven.compiler.target>
+<maven.compiler.source>25</maven.compiler.source>
+<maven.compiler.target>25</maven.compiler.target>
 ```
 
 ### JUnit 4.13.2
@@ -161,7 +161,7 @@ Mantida a versão do JUnit conforme solicitado:
 ```
 
 ### Plugins Maven
-- **maven-compiler-plugin**: Compilação Java 21
+- **maven-compiler-plugin**: Compilação Java 25
 - **maven-surefire-plugin**: Execução de testes
 - **maven-jar-plugin**: Geração de JAR executável
 - **maven-javadoc-plugin**: Documentação JavaDoc
@@ -182,7 +182,7 @@ Todos os comandos devem executar sem erros.
 
 - [Documentação Maven](https://maven.apache.org/guides/)
 - [JUnit 4 User Guide](https://junit.org/junit4/)
-- [Java 21 Documentation](https://docs.oracle.com/en/java/javase/21/)
+- [Java 25 Documentation](https://docs.oracle.com/en/java/javase/25/)
 
 ---
 

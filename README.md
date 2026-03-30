@@ -1,6 +1,6 @@
 # 📚 Estruturas de Dados
 
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.8+-purple.svg)](https://kotlinlang.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue.svg)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -21,7 +21,7 @@ estruturas_dados/
 │   │   ├── abp/                  # Árvore Binária de Pesquisa
 │   │   ├── avl/                  # Árvore AVL
 │   │   ├── avp/                  # Árvore Vermelha-Preta
-│   │   └── arvoreb/              # Árvore B e B+
+│   │   └── arvoreb/              # Árvores B e B+
 │   └── Kotlin/
 ├── 🔗 fila/                      # Filas
 │   ├── dinamica/                 # Implementação dinâmica
@@ -45,7 +45,13 @@ estruturas_dados/
 ### 📚 Pilha Dinâmica (LinkedStackDAOProject)
 - **Localização**: `pilha/dinamica/Java/LinkedStackDAOProject/`
 - **Descrição**: Sistema completo de gerenciamento de livros com pilha dinâmica
-- **Tecnologias**: Java 21, Maven, JUnit 4
+### 📚 Fila Dinâmica (LinkedDEQueDAOProject)
+- **Localização**: `fila/dinamica/Java/LinkedDEQueDAOProject/`
+- **Descrição**: Sistema completo de gerenciamento de livros com fila dinâmica
+### 📚 Lista Dinâmica (LinkedListDAOProject)
+- **Localização**: `lista/dinamica/Java/LinkedListDAOProject/`
+- **Descrição**: Sistema completo de gerenciamento de livros com lista dinâmica
+- **Tecnologias**: Java 25, Maven, JUnit 4
 - **Características**: DAO Pattern, Testes Abrangentes, Arquitetura em Camadas
 
 ### 🌳 Árvores Binárias
@@ -63,7 +69,7 @@ estruturas_dados/
 
 | Tecnologia | Versão | Uso |
 |------------|--------|-----|
-| **Java** | 21 | Linguagem principal |
+| **Java** | 25 | Linguagem principal |
 | **Kotlin** | 1.8+ | Linguagem alternativa |
 | **Maven** | 3.6+ | Gerenciamento de dependências |
 | **JUnit** | 4.13.2 | Testes unitários |
@@ -71,7 +77,7 @@ estruturas_dados/
 
 ## 📋 Pré-requisitos
 
-- ☕ **Java 21** ou superior
+- ☕ **Java 25** ou superior
 - 🔧 **Maven 3.6+** ou superior
 - 🐘 **Kotlin 1.8+** (para projetos Kotlin)
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)

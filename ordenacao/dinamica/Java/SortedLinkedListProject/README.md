@@ -44,7 +44,7 @@ SortedLinkedListProject/
 
 ## 📦 Requisitos
 
-- **Java**: JDK 21 ou superior
+- **Java**: JDK 25 ou superior
 - **Maven**: 3.6.0 ou superior (para compilação e gerenciamento de dependências)
 - **JUnit**: 5.9.2 (incluído via Maven)
 
