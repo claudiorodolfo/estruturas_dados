@@ -41,6 +41,7 @@ public class Questao2 {
         return produtoRetorno;
     }
 }
+
 //Tipo 3
 public class Questao2 {
     private Enfileiravel filaPacientes = new FilaEstatica(20);
