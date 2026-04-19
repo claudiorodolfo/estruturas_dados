@@ -1,126 +1,141 @@
 # Projeto ED para Praticar
 
-Projeto em Java para praticar **Estruturas de Dados** e a aplicação de operações de CRUD/consulta sobre entidades de domínio (`Livro` e `Carro`) usando diferentes estruturas estáticas.
+Projeto em Java para praticar **Estruturas de Dados** e operações de CRUD/consulta sobre entidades de domínio (`Livro` e `Carro`), usando estruturas **estáticas** e **dinâmicas** implementadas manualmente.
 
 ## Objetivo
 
 Este projeto foi criado para exercitar:
 
-- implementação de estruturas de dados;
+- implementação de estruturas de dados (alocação em arrays e encadeamento);
 - manipulação de dados por meio de DAOs;
-- operações baseadas no CRUD (Criar, Ler, Atualizar, Apagar);
-- organização em camadas simples (`model`, `repository`, `dao`, `app`).
+- operações baseadas no CRUD (Criar, Ler, Atualizar, Apagar) e consultas específicas;
+- organização em camadas (`model`, `repository`, `dao`, `app`).
 
 ## Tecnologias
 
-- Java (JDK 25 ou superior)
-- Estruturas implementadas manualmente (sem frameworks)
+- Java 21 (`maven.compiler.release` no `pom.xml`)
+- Apache Maven (compilação e execução)
+- Estruturas implementadas manualmente (sem frameworks de persistência)
 
 ## Estrutura do projeto
 
+Layout Maven padrão; o código-fonte fica em `src/main/java`.
+
 ```text
 projeto_ed_para_praticar/
-├── app/
-│   └── MainLivro.java
-├── dao/
-│   ├── LivroDAO.java
-│   ├── LivroDAOPilhaEstatica.java
-│   ├── LivroDAOFilaEstatica.java
-│   ├── LivroDAOListaEstatica.java
-│   ├── CarroDAO.java
-│   ├── CarroDAOPilhaEstatica.java
-│   ├── CarroDAOFilaEstatica.java
-│   └── CarroDAOListaEstatica.java
-├── model/
-│   ├── Livro.java
-│   └── Carro.java
-└── repository/
-    ├── pilha/
-    │   ├── Empilhavel.java
-    │   └── estatica/PilhaEstatica.java
-    ├── fila/
-    │   ├── Enfileiravel.java
-    │   ├── DuplamenteEnfileiravel.java
-    │   └── estatica/
-    │       ├── FilaEstatica.java
-    │       └── FilaEstaticaComDuplaTerminacao.java
-    └── lista/
+├── pom.xml
+└── src/main/java/
+    ├── app/
+    │   ├── MainLivro.java      # menu interativo (uso principal)
+    │   └── MainCarro.java      # esqueleto (sem fluxo ainda)
+    ├── dao/
+    │   ├── LivroDAO.java
+    │   ├── CarroDAO.java
+    │   ├── livro/              # DAOs de Livro (pilha/fila/lista × estático/dinâmico)
+    │   └── carro/              # DAOs de Carro (esqueleto; em construção)
+    ├── model/
+    │   ├── Livro.java
+    │   └── Carro.java
+    └── repository/
+        ├── Empilhavel.java
+        ├── Enfileiravel.java
+        ├── DuplamenteEnfileiravel.java
         ├── Listavel.java
-        └── estatica/ListaEstatica.java
+        ├── estaticas/
+        │   ├── pilha/PilhaEstatica.java
+        │   ├── fila/FilaEstatica.java
+        │   ├── fila/FilaEstaticaComDuplaTerminacao.java
+        │   └── lista/ListaEstatica.java
+        └── dinamicas/
+            ├── NoDuplo.java
+            ├── pilha/PilhaDinamica.java
+            ├── fila/FilaDinamica.java
+            ├── fila/FilaDinamicaComDuplaTerminacao.java
+            └── lista/ListaDinamica.java
 ```
 
 ## Estruturas de dados presentes
 
-- **Pilha estática** (`PilhaEstatica`)
-  - operações: empilhar, desempilhar, espiar, atualizar topo;
-- **Fila estática circular** (`FilaEstatica`)
-  - operações: enfileirar, desenfileirar, frente, atualizar início/fim;
-- **Fila estática circular de dupla terminação (Deque)** (`FilaEstaticaComDuplaTerminacao`)
-  - operações adicionais: enfileirar no início e desenfileirar no fim;
-- **Lista estática circular** (`ListaEstatica`)
-  - operações: inserir em posição, anexar, selecionar, atualizar e apagar.
+### Estáticas (`repository.estaticas`)
+
+- **Pilha** (`PilhaEstatica`): empilhar, desempilhar, espiar, atualizar topo.
+- **Fila circular** (`FilaEstatica`): enfileirar, desenfileirar, frente, atualizar início/fim.
+- **DEQue circular** (`FilaEstaticaComDuplaTerminacao`): enfileirar no início, desenfileirar no fim, entre outras.
+- **Lista circular** (`ListaEstatica`): inserir em posição, anexar, selecionar, atualizar, apagar.
+
+### Dinâmicas (`repository.dinamicas`)
+
+- **Pilha encadeada** (`PilhaDinamica`).
+- **Fila encadeada** (`FilaDinamica`).
+- **DEQue encadeado** (`FilaDinamicaComDuplaTerminacao`).
+- **Lista duplamente encadeada** (`ListaDinamica`) com `NoDuplo`.
 
 ## Domínios modelados
 
-- **Livro**
-  - campos principais: `id`, `titulo`, `autor`, `dataPublicacao`, `isbn`, `preco`.
-- **Carro**
-  - campos principais: `placa`, `marca`, `modelo`, `cor`, `nomeProprietario`, `chegada`.
+- **Livro**: `id`, `titulo`, `autor`, `dataPublicacao`, `isbn`, `preco`, entre outros.
+- **Carro**: `placa`, `marca`, `modelo`, `cor`, `nomeProprietario`, `chegada`, entre outros.
 
 ## Como executar
 
-Atualmente, o ponto de entrada disponível é o `MainLivro`.
+Use Maven a partir da pasta `projeto_ed_para_praticar`:
 
-1. Entre na pasta do projeto:
+```bash
+cd projeto_ed_para_praticar
+mvn compile
+```
 
-   ```bash
-   cd projeto_ed_para_praticar
-   ```
+Executar o menu de livros (classe principal configurada no `exec-maven-plugin`):
 
-2. Compile apenas os arquivos necessarios para o `MainLivro`:
+```bash
+mvn exec:java
+```
 
-   ```bash
-   javac model/Livro.java repository/pilha/Empilhavel.java repository/pilha/estatica/PilhaEstatica.java dao/LivroDAO.java dao/LivroDAOPilhaEstatica.java app/MainLivro.java
-   ```
+Equivalente explícito:
 
-3. Execute:
+```bash
+mvn exec:java -Dexec.mainClass=app.MainLivro
+```
 
-   ```bash
-   java app.MainLivro
-   ```
+Após `mvn compile`, também é possível rodar com o classpath gerado em `target/classes`:
+
+```bash
+java -cp target/classes app.MainLivro
+```
+
+Para outra classe principal (por exemplo `MainCarro`, quando houver implementação):
+
+```bash
+mvn exec:java -Dexec.mainClass=app.MainCarro
+```
 
 ## Menu atual (`MainLivro`)
 
 O menu permite, entre outras ações:
 
 - carregar exemplos;
-- cadastrar/listar livros;
+- cadastrar e listar livros;
 - buscar por ID, ISBN, autor, título e datas;
 - buscar por faixa de preço e faixa de datas;
 - atualizar e remover livros;
-- visualizar estatísticas (preço médio, mais caro/barato, mais novo/antigo);
+- estatísticas (preço médio, mais caro/barato, mais novo/antigo);
 - limpar a base em memória.
 
 ## Alternando a estratégia de armazenamento de `Livro`
 
-No arquivo `app/MainLivro.java`, você pode trocar a implementação do DAO:
+No arquivo `app/MainLivro.java`, troque a instância do `LivroDAO` no início do `main`:
 
-- `LivroDAOPilhaEstatica` (ativo no momento);
-- `LivroDAOFilaEstatica` (esqueleto);
-- `LivroDAOListaEstatica` (esqueleto).
+- **Estáticas**: `LivroDAOPilhaEstatica`, `LivroDAOFilaEstatica`, `LivroDAOListaEstatica`.
+- **Dinâmicas**: `LivroDAOPilhaDinamica`, `LivroDAOFilaDinamica`, `LivroDAOListaDinamica`.
 
-## Status do projeto 
+Descomente uma linha e comente as demais para escolher a estrutura subjacente.
 
-- `LivroDAOPilhaEstatica`: possui implementação funcional das operações do `LivroDAO`.
-- `LivroDAOFilaEstatica` e `LivroDAOListaEstatica`: possuem implementação parcial das operações do `LivroDAO`.
-- DAOs de `Carro`: estão como base para prática e ainda precisam de implementação completa.
-- `MainCarro`: ainda inexistente mas importante para validação dos DAOS de `Carro`.
+## Status do projeto
+
+- **DAOs de `Livro`**: implementam `LivroDAO` nas variantes pilha/fila/lista (estático e dinâmico).
+- **DAOs de `Carro`**: classes-base para prática; ainda não implementam `CarroDAO` de forma completa (conforme comentários no código).
+- **`MainCarro`**: arquivo presente, porém sem menu ou cenários de teste — próximo passo natural após implementar os DAOs de carro.
 
 ## Passos sugeridos
-- implementar os métodos faltantes do DAO de fila para `Livro` usando fila estática (LivroDAOFilaEstatica.java);
-- implementar os métodos faltantes do DAO de lista para `Livro` usando lista estática (LivroDAOListaEstatica.java);
-- implementar os métodos do DAO de pilha para `Carro` usando pilha estática (CarroDAOPilhaEstatica.java);
-- implementar os métodos do DAO de fila para `Carro` usando fila estática (CarroDAOFilaEstatica.java);
-- implementar os métodos do DAO de lista para `Carro` usando lista estática (CarroDAOListaEstatica.java);
-- criar classe `MainCarro` para validar os cenários utilizando as estruturas de dados estáticas para `Carro`.
 
+- Implementar os métodos da interface `CarroDAO` nas classes em `dao/carro`, escolhendo pilha/fila/lista estática ou dinâmica conforme o exercício.
+- Preencher `MainCarro` com um fluxo semelhante ao de `MainLivro` para validar cada implementação.
