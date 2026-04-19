@@ -3,21 +3,24 @@ package repository.dinamicas.pilha;
 import java.util.NoSuchElementException;
 
 import repository.Empilhavel;
-import repository.ed_dinamicas.NoDuplo;
+import repository.dinamicas.NoDuplo;
 
 public class PilhaDinamica implements Empilhavel {
     private NoDuplo ponteiroTopo;
     private int tamanhoMaximo;
     private int quantidade;
 
-    public PilhaDinamica() {
-        this(10);
-    }
-
     public PilhaDinamica(int tamanhoMaximo) {
+        if (tamanhoMaximo <= 0) {
+            throw new IllegalArgumentException("capacidade deve ser maior que zero.");
+        }
         ponteiroTopo = null;
         this.tamanhoMaximo = tamanhoMaximo;
         quantidade = 0;
+    }
+
+    public PilhaDinamica() {
+        this(10);
     }
 
     @Override

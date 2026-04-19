@@ -11,9 +11,6 @@ public class ListaEstatica implements Listavel {
 
     //construtores
     public ListaEstatica(int tamanho) {
-        if (tamanho <= 0) {
-            throw new IllegalArgumentException("O tamanho da lista deve ser maior que zero.");
-        }
         dados = new Object[tamanho];
         ponteiroInicio = 0;
         ponteiroFim = -1;

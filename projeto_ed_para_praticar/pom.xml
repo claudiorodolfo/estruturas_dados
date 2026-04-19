@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>projeto-ed-para-praticar</name>
-    <description>Prática de estruturas de dados e DAOs em Java</description>
+    <description>Prática de Estruturas de Dados em Java</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -5,7 +5,7 @@ import dao.CarroDAO;
 import repository.Empilhavel;
 import repository.estaticas.pilha.PilhaEstatica;
 
-public class CarroDAOPilhaEstatica implements CarroDAO {
+public class CarroDAOPilhaEstatica {//implements CarroDAO {
  
     private Empilhavel pilhaCarros = new PilhaEstatica(100);
 }

@@ -10,9 +10,6 @@ public class FilaEstatica implements Enfileiravel {
 
     //construtores
     public FilaEstatica(int tamanho) {
-        if (tamanho <= 0) {
-            throw new IllegalArgumentException("O tamanho da fila deve ser maior que zero.");
-        }
         dados = new Object[tamanho];
         ponteiroInicio = 0;
         ponteiroFim = -1;
