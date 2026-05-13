@@ -1,9 +1,9 @@
 package repository.dinamicas.lista;
 
-import java.util.NoSuchElementException;
-
 import repository.Listavel;
 import repository.dinamicas.NoDuplo;
+import repository.OverflowException;
+import repository.UnderflowException;
 
 public class ListaDinamica implements Listavel {
     private NoDuplo ponteiroInicio;
@@ -27,51 +27,58 @@ public class ListaDinamica implements Listavel {
 
     @Override
     public void inserir(Object objeto, int posicao) {
-        if (estaCheia() || posicao < 0 || posicao > quantidade) {
+        if (estaCheia()) {
+            throw new OverflowException("Lista cheia");
+        }
+        if (posicao < 0 || posicao > quantidade) {
             throw new IndexOutOfBoundsException("Posição inválida");
         }
-        if (posicao == quantidade) {
-            anexar(objeto);
-            return;
+
+        NoDuplo ponteiroAuxiliar = ponteiroInicio;
+        for(int i = 0; i < posicao; i++) {
+            ponteiroAuxiliar = ponteiroAuxiliar.getProximo();
         }
-        NoDuplo novo = new NoDuplo(objeto);
-        if (posicao == 0) {
-            if (ponteiroInicio == null) {
-                ponteiroInicio = ponteiroFim = novo;
-            } else {
-                novo.setProximo(ponteiroInicio);
-                ponteiroInicio.setAnterior(novo);
-                ponteiroInicio = novo;
-            }
-        } else {
-            NoDuplo ponteiroAtual = noNaPosicao(posicao);
-            NoDuplo ponteiroAnterior = ponteiroAtual.getAnterior();
-            ponteiroAnterior.setProximo(novo);
-            novo.setAnterior(ponteiroAnterior);
-            novo.setProximo(ponteiroAtual);
-            ponteiroAtual.setAnterior(novo);
-        }
+        NoDuplo ant = (ponteiroAuxiliar != null) ? ponteiroAuxiliar.getAnterior() : ponteiroFim;
+        NoDuplo prox = ponteiroAuxiliar;
+
+        NoDuplo novoNo = new NoDuplo(objeto);
+        novoNo.setProximo(prox);
+        novoNo.setAnterior(ant);
+        if (prox != null)
+            prox.setAnterior(novoNo);
+        else
+            ponteiroFim = novoNo;
+
+
+        if (ant != null)
+            ant.setProximo(novoNo);
+        else
+            ponteiroInicio = novoNo;
+
         quantidade++;
     }
 
     @Override
     public void anexar(Object objeto) {
         if (estaCheia()) {
-            throw new NoSuchElementException("Lista cheia");
+            throw new OverflowException("Lista cheia");
         }
         NoDuplo novoNo = new NoDuplo(objeto);
-        if (estaVazia()) {
-            ponteiroInicio = ponteiroFim = novoNo;
-        } else {
+        novoNo.setAnterior(ponteiroFim);
+        if (!estaVazia()) {
             ponteiroFim.setProximo(novoNo);
-            novoNo.setAnterior(ponteiroFim);
-            ponteiroFim = novoNo;
+        } else {
+            ponteiroInicio = novoNo;
         }
+        ponteiroFim = novoNo;
         quantidade++;
     }
 
     @Override
     public Object selecionar(int posicao) {
+        if (estaVazia()) {
+            throw new UnderflowException("Lista vazia");
+        }
         if (posicao < 0 || posicao >= quantidade) {
             throw new IndexOutOfBoundsException("Posição inválida");
         }
@@ -95,6 +102,9 @@ public class ListaDinamica implements Listavel {
 
     @Override
     public void atualizar(Object objeto, int posicao) {
+        if (estaVazia()) {
+            throw new UnderflowException("Lista vazia");
+        }
         if (posicao < 0 || posicao >= quantidade) {
             throw new IndexOutOfBoundsException("Posição inválida");
         }
@@ -107,6 +117,9 @@ public class ListaDinamica implements Listavel {
 
     @Override
     public Object apagar(int posicao) {
+        if (estaVazia()) {
+            throw new UnderflowException("Lista vazia");
+        }
         if (posicao < 0 || posicao >= quantidade) {
             throw new IndexOutOfBoundsException("Posição inválida");
         }
@@ -115,17 +128,17 @@ public class ListaDinamica implements Listavel {
             ponteiroAuxiliar = ponteiroAuxiliar.getProximo();
         }
         Object retorno = ponteiroAuxiliar.getDado();
-        if (quantidade == 1) {
-            ponteiroInicio = ponteiroFim = null;
-        } else if (ponteiroAuxiliar == ponteiroInicio) {
+        NoDuplo ant = ponteiroAuxiliar.getAnterior();
+        NoDuplo prox = ponteiroAuxiliar.getProximo();
+        if (ant != null) {
+            ant.setProximo(prox);
+        }else {
             ponteiroInicio = ponteiroInicio.getProximo();
-            ponteiroInicio.setAnterior(null);
-        } else if (ponteiroAuxiliar == ponteiroFim) {
-            ponteiroFim = ponteiroFim.getAnterior();
-            ponteiroFim.setProximo(null);
+        }
+        if (prox != null) {
+            prox.setAnterior(ant);
         } else {
-            ponteiroAuxiliar.getAnterior().setProximo(ponteiroAuxiliar.getProximo());
-            ponteiroAuxiliar.getProximo().setAnterior(ponteiroAuxiliar.getAnterior());
+            ponteiroFim = ponteiroFim.getAnterior();
         }
         quantidade--;
         return retorno;
