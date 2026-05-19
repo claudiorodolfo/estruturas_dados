@@ -62,9 +62,9 @@ public class Questao3 {
         }
         NoDuplo ponteiroAuxiliar = ponteiroInicio; 
         while (ponteiroAuxiliar.getProximo() != null) { 
-            Double atual = (Double) ponteiroAuxiliar.getDado(); 
-            Double proximo = (Double) ponteiroAuxiliar.getProximo().getDado(); 
-            if (atual > proximo) { 
+            Double ant = (Double) ponteiroAuxiliar.getDado(); 
+            Double prox = (Double) ponteiroAuxiliar.getProximo().getDado(); 
+            if (ant > prox) { 
                 return false; 
             }
             ponteiroAuxiliar = ponteiroAuxiliar.getProximo(); 
