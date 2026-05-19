@@ -1,5 +1,5 @@
-//Tipo 1
 public class Questao4 {
+    //Tipo 1
     //1. Instanciou a lista de alunos.
     //2. Criou variável para armazenar o aluno encontrado.
     //3. Percorreu a lista selecionando os alunos.
@@ -20,10 +20,8 @@ public class Questao4 {
         }
         return alunoRetorno;
     }
-}
 
-// Tipo 2
-public class Questao4 {
+    // Tipo 2
     //1. Instanciou a lista de produtos.
     //2. Criou variável para armazenar o produto encontrado.
     //3. Percorreu a lista selecionando os produtos.
@@ -43,10 +41,8 @@ public class Questao4 {
         }
         return produtoRetorno;
     }
-}
 
-// Tipo 3
-public class Questao4 {
+    // Tipo 3
     //1. Instanciou a pilha de pacientes.
     //2. Criou pilha auxiliar.
     //3. Percorreu a pilha desempilhando os pacientes.
@@ -62,7 +58,7 @@ public class Questao4 {
         boolean pacienteAtualizado = false;
         while (!pilhaPacientes.estaVazia()) {
             Paciente paciente = (Paciente) pilhaPacientes.desempilhar();
-            if (paciente.getCPF() != p.getCPF()) {
+            if (!paciente.getCPF().equals(p.getCPF())) {
                 pilhaAuxiliar.empilhar(paciente);
             }
             else {
