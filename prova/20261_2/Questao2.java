@@ -1,17 +1,17 @@
 /* 
 // Tipo 1
-O Colegiado de Curso é o órgão consultivo, deliberativo e 
-avaliativo responsável pelos assuntos relacionados à política 
-de ensino do curso, em conformidade com as diretrizes 
-institucionais do IFBA. Entre suas funções estão propor 
-alterações no projeto pedagógico do curso, avaliar 
-continuamente o curso, deliberar sobre questões acadêmicas 
-relacionadas à vida estudantil, emitir pareceres sobre 
-equivalências curriculares, propor melhorias na qualidade do 
-ensino e analisar problemas disciplinares vinculados ao curso.
+O Colegiado de Curso é o órgão deliberativo e avaliativo 
+responsável pelos assuntos relacionados à política de ensino 
+do curso, em conformidade com as diretrizes institucionais 
+do IFBA. Entre suas funções estão propor alterações no projeto 
+pedagógico do curso, avaliar continuamente o curso, deliberar 
+sobre questões acadêmicas relacionadas à vida estudantil, 
+emitir pareceres sobre equivalências curriculares, propor 
+melhorias na qualidade do ensino e analisar problemas disciplinares 
+vinculados ao curso.
 
 //Tipo 2
-O Núcleo Docente Estruturante (NDE) é um órgão consultivo 
+O Núcleo Docente Estruturante (NDE) é um órgão deliberativo 
 responsável pela concepção, atualização e revitalização do 
 Projeto Pedagógico do Curso (PPC). Entre suas funções estão 
 contribuir para a consolidação do perfil do egresso, colaborar 
