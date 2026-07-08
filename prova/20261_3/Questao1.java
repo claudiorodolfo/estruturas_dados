@@ -33,9 +33,9 @@ public class Questao1 {
     //Tipo 2
     public NoTriplo rotacaoEsquerda(NoTriplo b) {
         // T1 e T3 não sofrem alteração
-        NoTriplo<T> T0 = b.getGenitor();        
-        NoTriplo<T> c  = b.getDireita();
-        NoTriplo<T> T2 = c.getEsquerda();
+        NoTriplo T0 = b.getGenitor();        
+        NoTriplo c  = b.getDireita();
+        NoTriplo T2 = c.getEsquerda();
 
         //corrige ponteiros, descendo e subindo
         //[T0-->c], [T0<--c]
@@ -59,7 +59,7 @@ public class Questao1 {
         // Atualiza as alturas
         atualizaAltura(b);
         atualizaAltura(c);
-        // Retorna a nova raiz
+        // A nova raiz é c
         return c;        
     }
 
