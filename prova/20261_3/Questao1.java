@@ -14,14 +14,14 @@ public class Questao1 {
             else
                 T0.setDireita(a);
 
-        x.setGenitor(T0);
+        a.setGenitor(T0);
 
         //[a-->b], [a<--b]
         a.setDireita(b);
         b.setGenitor(a);   
 
         //[b-->T2], [b<--T2]
-        y.setEsquerda(T2);        
+        b.setEsquerda(T2);        
         if (T2 != null)
             T2.setGenitor(b);
 
@@ -45,14 +45,14 @@ public class Questao1 {
             else
                 T0.setDireita(c);
                 
-        x.setGenitor(T0);
+        c.setGenitor(T0);
         
         //[c-->b], [c<--b]
         c.setEsquerda(b);
         b.setGenitor(c); 
 
         //[b-->T2], [b<--T2]
-        y.setDireita(T2);        
+        b.setDireita(T2);        
         if (T2 != null)
             T2.setGenitor(b);
 
@@ -68,9 +68,9 @@ public class Questao1 {
         if(raiz == null)
             return -1;
     
-        int hEsquerda = calcularAltura(raiz.getEsquerda());
-        int hDireita = calcularAltura(raiz.getDireita());
+        int alturaEsq = calcularAltura(raiz.getEsquerda());
+        int alturaDir = calcularAltura(raiz.getDireita());
     
-        return Math.max(hEsquerda, hDireita) + 1;
+        return Math.max(alturaEsq, alturaDir) + 1;
     }
 }
