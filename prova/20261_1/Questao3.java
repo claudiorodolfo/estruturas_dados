@@ -12,7 +12,7 @@ public class Questao3 {
         Empilhavel pilhaAuxiliar = new PilhaEstatica(20);
         while (!pilhaAlunos.estaVazia()) {
             Aluno aluno = (Aluno) pilhaAlunos.desempilhar();
-            if (aluno.getCurso() == null && 
+            if (aluno.getCurso() != null && 
                     !aluno.getCurso().equalsIgnoreCase(curso)) {
                 pilhaAuxiliar.empilhar(aluno);
             }
