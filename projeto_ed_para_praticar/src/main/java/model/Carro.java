@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Carro {
     private final String placa;       // obrigatório, imutável
     private String marca;             // obrigatório
-    private String modelo;
+    private String modelo;            // obrigatório
     private String cor;
     private String nomeProprietario;
     private LocalDateTime chegada;
@@ -13,7 +13,7 @@ public class Carro {
     public Carro(String placa, String marca, String modelo) {
         obrigatorio(placa);
         obrigatorio(marca);
-        this.modelo = modelo;
+        obrigatorio(modelo);
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -78,13 +78,20 @@ public class Carro {
 
     @Override
     public String toString() {
+        String placaJson = "\"" + placa + "\"";
+        String marcaJson = "\"" + marca + "\"";
+        String modeloJson = "\"" + modelo + "\"";
+        String corJson = (cor == null) ? "null" : "\"" + cor + "\"";
+        String nomeProprietarioJson = (nomeProprietario == null) ? "null" : "\"" + nomeProprietario + "\"";
+        String chegadaJson = (chegada == null) ? "null" : "\"" + chegada.toString() + "\""; // ISO yyyy-MM-dd
+
         return "Carro{" +
-                "placa='" + placa + '\'' +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", cor='" + cor + '\'' +
-                ", nomeProprietario='" + nomeProprietario + '\'' +
-                ", chegada=" + chegada +
-                '}';
+                "placa:" + placaJson +
+                ",marca:" + marcaJson +
+                ",modelo:" + modeloJson +
+                ",cor:" + corJson +
+                ",nomeProprietario:" + nomeProprietarioJson +
+                ",chegada:" + chegadaJson +
+                "}";
     }
 }

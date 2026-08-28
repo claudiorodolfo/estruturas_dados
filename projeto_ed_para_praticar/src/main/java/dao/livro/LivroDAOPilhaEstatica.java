@@ -27,7 +27,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo.getId() != null && livroTopo.getId().longValue() == id) {
+            if (livroTopo.getId() == id) {
                 livroRetorno = livroTopo;
                 break;
             }
@@ -63,17 +63,16 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
     
     @Override
     public void updateLivro(Livro newLivro) {
-        if (newLivro == null || newLivro.getId() == null) {
+        if (newLivro == null) {
             return;
         }
 
-        long id = newLivro.getId().longValue();
         Empilhavel pilhaAuxiliar = new PilhaEstatica(100);
         boolean atualizado = false;
 
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
-            if (!atualizado && livroTopo != null && livroTopo.getId() != null && livroTopo.getId().longValue() == id) {
+            if (!atualizado && livroTopo.getId() == newLivro.getId()) {
                 pilhaAuxiliar.empilhar(newLivro);
                 atualizado = true;
             } else {
@@ -94,7 +93,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         // Desempilhar e remover se encontrar
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
-            if (livroTopo != null && livroTopo.getId() != null && livroTopo.getId().longValue() == id) {
+            if (livroTopo.getId() == id) {
                 livroRetorno = livroTopo;
                 // Não empilhar o removido
             } else {
@@ -119,7 +118,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getAutor() != null && autor != null
+            if (livroTopo.getAutor() != null && autor != null
                     && livroTopo.getAutor().equalsIgnoreCase(autor)) {
                 pilhaRetorno.empilhar(livroTopo);
             }
@@ -142,7 +141,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getDataPublicacao() != null && dataPublicacao != null
+            if (livroTopo.getDataPublicacao() != null && dataPublicacao != null
                     && livroTopo.getDataPublicacao().equals(dataPublicacao)) {
                 pilhaRetorno.empilhar(livroTopo);
             }
@@ -163,8 +162,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getTitulo() != null && titulo != null
-                    && livroTopo.getTitulo().equalsIgnoreCase(titulo)) {
+            if (titulo != null && livroTopo.getTitulo().equalsIgnoreCase(titulo)) {
                 pilhaRetorno.empilhar(livroTopo);
             }
         }
@@ -183,8 +181,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
 
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
-            if (livroTopo != null && livroTopo.getTitulo() != null && titulo != null
-                    && livroTopo.getTitulo().equalsIgnoreCase(titulo)) {
+            if (titulo != null && livroTopo.getTitulo().equalsIgnoreCase(titulo)) {
                 pilhaRemovidos.empilhar(livroTopo);
             } else {
                 pilhaAuxiliar.empilhar(livroTopo);
@@ -206,7 +203,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (retorno == null && livroTopo != null && livroTopo.getIsbn() != null && isbn != null
+            if (retorno == null && livroTopo.getIsbn() != null && isbn != null
                     && livroTopo.getIsbn().equalsIgnoreCase(isbn)) {
                 retorno = livroTopo;
                 break;
@@ -231,7 +228,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getPreco() != null) {
+            if (livroTopo.getPreco() != null) {
                 double preco = livroTopo.getPreco().doubleValue();
                 if (preco >= min && preco <= max) {
                     pilhaRetorno.empilhar(livroTopo);
@@ -260,7 +257,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getDataPublicacao() != null) {
+            if (livroTopo.getDataPublicacao() != null) {
                 LocalDate d = livroTopo.getDataPublicacao();
                 boolean geMin = d.isAfter(min) || d.isEqual(min);
                 boolean leMax = d.isBefore(max) || d.isEqual(max);
@@ -285,7 +282,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getPreco() != null) {
+            if (livroTopo.getPreco() != null) {
                 if (melhor == null || melhor.getPreco() == null
                         || livroTopo.getPreco().doubleValue() > melhor.getPreco().doubleValue()) {
                     melhor = livroTopo;
@@ -308,7 +305,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getPreco() != null) {
+            if (livroTopo.getPreco() != null) {
                 if (melhor == null || melhor.getPreco() == null
                         || livroTopo.getPreco().doubleValue() < melhor.getPreco().doubleValue()) {
                     melhor = livroTopo;
@@ -331,7 +328,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getDataPublicacao() != null) {
+            if (livroTopo.getDataPublicacao() != null) {
                 if (melhor == null || melhor.getDataPublicacao() == null
                         || livroTopo.getDataPublicacao().isAfter(melhor.getDataPublicacao())) {
                     melhor = livroTopo;
@@ -354,7 +351,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getDataPublicacao() != null) {
+            if (livroTopo.getDataPublicacao() != null) {
                 if (melhor == null || melhor.getDataPublicacao() == null
                         || livroTopo.getDataPublicacao().isBefore(melhor.getDataPublicacao())) {
                     melhor = livroTopo;
@@ -406,7 +403,7 @@ public class LivroDAOPilhaEstatica implements LivroDAO {
         while (!pilhaLivros.estaVazia()) {
             Livro livroTopo = (Livro) pilhaLivros.desempilhar();
             pilhaAuxiliar.empilhar(livroTopo);
-            if (livroTopo != null && livroTopo.getPreco() != null) {
+            if (livroTopo.getPreco() != null) {
                 soma += livroTopo.getPreco().doubleValue();
                 qtd++;
             }

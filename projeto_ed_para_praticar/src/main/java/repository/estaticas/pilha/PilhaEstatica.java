@@ -70,12 +70,12 @@ public class PilhaEstatica implements Empilhavel {
 		
 	@Override
 	public String imprimir() {
-		String resultado = "[";
+		String resultado = "";
 		for(int i = ponteiroTopo; i >= 0; i--) {
 			resultado += dados[i];
 			if (i != 0)
 				resultado += ",";
 		}
-		return resultado + "]";
+		return "[" + resultado + "]";
 	}
 }
