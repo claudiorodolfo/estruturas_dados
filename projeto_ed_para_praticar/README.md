@@ -13,7 +13,7 @@ Este projeto foi criado para exercitar:
 
 ## Tecnologias
 
-- Java 21 (`maven.compiler.release` no `pom.xml`)
+- Java 25 (`maven.compiler.release` no `pom.xml`)
 - Apache Maven (compilação e execução)
 - Estruturas implementadas manualmente (sem frameworks de persistência)
 
