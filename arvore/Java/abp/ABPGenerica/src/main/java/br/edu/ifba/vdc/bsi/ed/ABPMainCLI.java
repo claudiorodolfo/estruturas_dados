@@ -67,21 +67,25 @@ public class ABPMainCLI {
      * Exibe o menu principal de opções.
      */
     private static void exibirMenu() {
-        IO.println("=== Arvore Binaria de Pesquisa ===");
-        IO.println("0. SAIR");
-        IO.println("1. Inserir");
-        IO.println("2. Apagar");
-        IO.println("3. Existe?");
-        IO.println("4. Imprimir");
-        IO.println("5. Limpar");
+        IO.println("""
+            === Arvore Binaria de Pesquisa ===
+            0. SAIR
+            1. Inserir
+            2. Apagar
+            3. Existe?
+            4. Imprimir
+            5. Limpar
+            """);
     }
 
     /**
      * Exibe o menu de opções de impressão.
      */
     private static void exibirMenuImprimir() {
-        IO.println("1. Imprimir Pre-Ordem");
-        IO.println("2. Imprimir Em-Ordem");
-        IO.println("3. Imprimir Pos-Ordem");
+        IO.println("""
+            1. Imprimir Pre-Ordem
+            2. Imprimir Em-Ordem
+            3. Imprimir Pos-Ordem
+            """);
     }
 }

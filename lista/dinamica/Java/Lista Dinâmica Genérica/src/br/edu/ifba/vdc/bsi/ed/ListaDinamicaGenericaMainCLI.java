@@ -44,17 +44,20 @@ public class ListaDinamicaGenericaMainCLI {
 	 * Exibe o menu de opções disponíveis para o usuário.
 	 */
 	private static void exibirMenu() {
-		IO.println("\n=== MENU ===");
-		IO.println("1) Anexar");
-		IO.println("2) Inserir");
-		IO.println("3) Selecionar");
-		IO.println("4) Selecionar Todos");
-		IO.println("5) Atualizar");
-		IO.println("6) Apagar");
-		IO.println("7) Imprimir");
-		IO.println("8) Está Vazia?");
-		IO.println("9) Está Cheia?");
-		IO.println("0) Sair");
+		IO.println("""
+			
+			=== MENU ===
+			1) Anexar
+			2) Inserir
+			3) Selecionar
+			4) Selecionar Todos
+			5) Atualizar
+			6) Apagar
+			7) Imprimir
+			8) Está Vazia?
+			9) Está Cheia?
+			0) Sair
+			""");
 	}
 
 	/**

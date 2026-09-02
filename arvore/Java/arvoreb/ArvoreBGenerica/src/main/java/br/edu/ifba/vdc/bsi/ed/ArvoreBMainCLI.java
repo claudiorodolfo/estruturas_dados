@@ -102,12 +102,15 @@ public class ArvoreBMainCLI {
      * Apresenta todas as opções disponíveis para o usuário.
      */
     private static void exibirMenu() {
-        IO.println("\nMenu:");
-        IO.println("1 - Inserir chave");
-        IO.println("2 - Remover chave");
-        IO.println("3 - Buscar chave");
-        IO.println("4 - Imprimir árvore em ordem");
-        IO.println("0 - Sair");
+        IO.println("""
+            
+            Menu:
+            1 - Inserir chave
+            2 - Remover chave
+            3 - Buscar chave
+            4 - Imprimir árvore em ordem
+            0 - Sair
+            """);
     }
 
     /**

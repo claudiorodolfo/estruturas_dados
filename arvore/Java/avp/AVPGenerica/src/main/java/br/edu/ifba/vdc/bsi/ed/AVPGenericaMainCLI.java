@@ -87,17 +87,20 @@ public class AVPGenericaMainCLI {
      * Exibe o menu principal de opções para o usuário.
      */
     private static void exibirMenu() {
-        IO.println("\n==== Árvore Vermelho e Preto Genérica ====");
-        IO.println("1. Inserir elemento (String)");
-        IO.println("2. Buscar elemento");
-        IO.println("3. Remover elemento");
-        IO.println("4. Imprimir elementos em ordem");
-        IO.println("5. Imprimir elementos em pré-ordem");
-        IO.println("6. Imprimir elementos em pós-ordem");
-        IO.println("7. Limpar árvore");
-        IO.println("8. Testar com inteiros");
-        IO.println("9. Testar com decimais");
-        IO.println("0. Sair");
+        IO.println("""
+            
+            ==== Árvore Vermelho e Preto Genérica ====
+            1. Inserir elemento (String)
+            2. Buscar elemento
+            3. Remover elemento
+            4. Imprimir elementos em ordem
+            5. Imprimir elementos em pré-ordem
+            6. Imprimir elementos em pós-ordem
+            7. Limpar árvore
+            8. Testar com inteiros
+            9. Testar com decimais
+            0. Sair
+            """);
     }
 
     /**

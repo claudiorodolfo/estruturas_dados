@@ -98,17 +98,19 @@ public class FilaDinamicaDuplaTerminacaoGenericaMainCLI {
   }
 
   public static void exibirMenu() {
-    IO.println("=== FILA DUPLA DINÂMICA GENÉRICA CLI ===");
-    IO.println("0. SAIR");
-    IO.println("1. Enfileirar no Inicio");
-    IO.println("2. Enfileirar no Fim");
-    IO.println("3. Desenfileirar do Inicio");
-    IO.println("4. Desenfileirar do Fim");
-    IO.println("5. Frente da Fila");
-    IO.println("6. Fundo da Fila");
-    IO.println("7. Atualizar no Inicio");
-    IO.println("8. Atualizar no Fim");
-    IO.println("9. Imprimir de Frente para Tras");
-    IO.println("10. Imprimir de Tras para Frente");
+    IO.println("""
+      === FILA DUPLA DINÂMICA GENÉRICA CLI ===
+      0. SAIR
+      1. Enfileirar no Inicio
+      2. Enfileirar no Fim
+      3. Desenfileirar do Inicio
+      4. Desenfileirar do Fim
+      5. Frente da Fila
+      6. Fundo da Fila
+      7. Atualizar no Inicio
+      8. Atualizar no Fim
+      9. Imprimir de Frente para Tras
+      10. Imprimir de Tras para Frente
+      """);
   }
 }

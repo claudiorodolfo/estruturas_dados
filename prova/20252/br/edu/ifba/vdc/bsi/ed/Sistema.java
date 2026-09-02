@@ -7,24 +7,10 @@
 // Cliente
 package br.edu.ifba.vdc.bsi.ed;
 
-class Client {
-    int clientCPF;
-    String name;
-    public Client(int clientCPF, String name) {
-        this.clientCPF = clientCPF;
-        this.name = name;
-    }
-}
+record Client(int clientCPF, String name) {}
 
  // Pedido
-class Order {
-    int clientCPF;
-    float value;
-    public Order(int clientCPF, float value) {
-        this.clientCPF = clientCPF;
-        this.value = value;
-    }
-}
+record Order(int clientCPF, float value) {}
 
 public class Sistema {
     private Client[] clientes;
@@ -42,16 +28,16 @@ public class Sistema {
         // procura CPF do cliente com nome “name”
         Integer cpfBusca = null;
         for (Client c: clientes)
-            if (c.name.equals(name)) {
-                cpfBusca = c.clientCPF;
+            if (c.name().equals(name)) {
+                cpfBusca = c.clientCPF();
                 break;
             }
 
         float soma = 0.0f;
         if (cpfBusca != null) {
             for (Order o : pedidos)
-                if (o.clientCPF == cpfBusca)
-                    soma += o.value;
+                if (o.clientCPF() == cpfBusca)
+                    soma += o.value();
         } 
         return soma;
     }

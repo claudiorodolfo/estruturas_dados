@@ -47,14 +47,17 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      * Exibe o menu de opções disponíveis para o usuário.
      */
     private static void exibirMenu() {
-        IO.println("\n=== MENU HEAP MÁXIMO ===");
-        IO.println("1) Inserir");
-        IO.println("2) Extrair");
-        IO.println("3) Obter Raiz");
-        IO.println("4) Imprimir");
-        IO.println("5) Está Vazia?");
-        IO.println("6) Está Cheia?");
-        IO.println("0) Sair");
+        IO.println("""
+            
+            === MENU HEAP MÁXIMO ===
+            1) Inserir
+            2) Extrair
+            3) Obter Raiz
+            4) Imprimir
+            5) Está Vazia?
+            6) Está Cheia?
+            0) Sair
+            """);
     }
     
     /**

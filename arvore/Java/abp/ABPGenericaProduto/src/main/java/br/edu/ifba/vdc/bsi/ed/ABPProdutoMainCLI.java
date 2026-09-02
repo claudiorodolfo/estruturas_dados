@@ -56,13 +56,16 @@ public class ABPProdutoMainCLI {
     }
 
     private static void exibirMenu() {
-        IO.println("\n==== Árvore Binária de Produtos ====");
-        IO.println("1. Inserir produto");
-        IO.println("2. Buscar produto");
-        IO.println("3. Remover produto");
-        IO.println("4. Imprimir produtos em ordem");
-        IO.println("5. Limpar árvore");
-        IO.println("0. Sair");
+        IO.println("""
+            
+            ==== Árvore Binária de Produtos ====
+            1. Inserir produto
+            2. Buscar produto
+            3. Remover produto
+            4. Imprimir produtos em ordem
+            5. Limpar árvore
+            0. Sair
+            """);
     }
 
     private static int lerInt(String msg) {

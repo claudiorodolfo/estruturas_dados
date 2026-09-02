@@ -82,14 +82,16 @@ public class FilaDinamicaGenericaMainCLI {
   }
 
   public static void exibirMenu() {
-    IO.println("=== FILA DINÂMICA GENÉRICA CLI ===");
-    IO.println("0. SAIR");
-    IO.println("1. Enfileirar");
-    IO.println("2. Desenfileirar");
-    IO.println("3. Frente");
-    IO.println("4. Atualizar no Inicio");
-    IO.println("5. Atualizar no Fim");
-    IO.println("6. Imprimir");
+    IO.println("""
+      === FILA DINÂMICA GENÉRICA CLI ===
+      0. SAIR
+      1. Enfileirar
+      2. Desenfileirar
+      3. Frente
+      4. Atualizar no Inicio
+      5. Atualizar no Fim
+      6. Imprimir
+      """);
 
   }
 }

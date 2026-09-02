@@ -10,12 +10,12 @@ public class MapaEspalhamentoPrincipal {
 
 	void main(){
 		//elementos que serão introduzidos na ED
-		Cliente c1 = new Cliente("Claudio Rodolfo", 30);
-		Cliente c2 = new Cliente("Maria Isabel", 12);
-		Cliente c3 = new Cliente("Antonio Carlos", 23);
-		Cliente c4 = new Cliente("João Pedro", 21);
-		Cliente c5 = new Cliente("Maria Eduarda", 53);
-		Cliente c6 = new Cliente("Carlos Eduardo", 56);
+		var c1 = new Cliente("Claudio Rodolfo", 30);
+		var c2 = new Cliente("Maria Isabel", 12);
+		var c3 = new Cliente("Antonio Carlos", 23);
+		var c4 = new Cliente("João Pedro", 21);
+		var c5 = new Cliente("Maria Eduarda", 53);
+		var c6 = new Cliente("Carlos Eduardo", 56);
 		
 		//popula a Estrutura Conjunto Espalhamento
 		Espalhavel hashmap = new MapaEspalhamento(26);
@@ -27,8 +27,9 @@ public class MapaEspalhamentoPrincipal {
 		
 		//chave para testes
 		String chave = "clro";
-		Cliente clienteTemp = (Cliente) hashmap.buscar(chave);
-		IO.println("a idade de "+ chave +" eh:"+ clienteTemp.getIdade());
+		if (hashmap.buscar(chave) instanceof Cliente clienteTemp) {
+			IO.println("a idade de "+ chave +" eh:"+ clienteTemp.idade());
+		}
 		
 		//verifica se há elemento com a chave maria
 		chave = "maria";

@@ -73,12 +73,14 @@ public class PilhaDinamicaGenericaMainCLI {
   }
 
   public static void exibirMenu() {
-    IO.println("=== PILHA DINÂMICA GENÉRICA CLI ===");
-    IO.println("0. SAIR");
-    IO.println("1. Empilhar");
-    IO.println("2. Desempilhar");
-    IO.println("3. Espiar");
-    IO.println("4. Atualizar");
-    IO.println("5. Imprimir");
+    IO.println("""
+      === PILHA DINÂMICA GENÉRICA CLI ===
+      0. SAIR
+      1. Empilhar
+      2. Desempilhar
+      3. Espiar
+      4. Atualizar
+      5. Imprimir
+      """);
   }
 }

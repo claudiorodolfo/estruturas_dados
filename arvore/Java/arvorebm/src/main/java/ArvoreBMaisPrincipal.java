@@ -8,15 +8,17 @@ public class ArvoreBMaisPrincipal {
     void main() {
         ArvoreBMais<Integer, String> arvore = new ArvoreBMais<>(3); // Ordem 3
         
-        IO.println("=== Árvore B+ (B Mais) ===");
-        IO.println("Comandos:");
-        IO.println("1 - Inserir chave-valor");
-        IO.println("2 - Buscar por chave");
-        IO.println("3 - Remover por chave");
-        IO.println("4 - Mostrar todos os valores");
-        IO.println("5 - Mostrar árvore");
-        IO.println("6 - Limpar árvore");
-        IO.println("0 - Sair");
+        IO.println("""
+            === Árvore B+ (B Mais) ===
+            Comandos:
+            1 - Inserir chave-valor
+            2 - Buscar por chave
+            3 - Remover por chave
+            4 - Mostrar todos os valores
+            5 - Mostrar árvore
+            6 - Limpar árvore
+            0 - Sair
+            """);
         
         int opcao;
         do {
