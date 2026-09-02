@@ -26,7 +26,7 @@ public class ArvoreBinariaHeapMaximoMainCLI {
      * Método principal que inicia o programa.
      */
     void main() {
-        heap = new ArvoreBinariaHeapMaximo<>(Paciente.class, 10);
+        heap = new ArvoreBinariaHeapMaximo<>(10);
         executar();
     }
     

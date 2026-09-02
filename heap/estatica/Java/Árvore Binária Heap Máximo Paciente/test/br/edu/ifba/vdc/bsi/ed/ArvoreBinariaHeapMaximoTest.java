@@ -23,7 +23,7 @@ public class ArvoreBinariaHeapMaximoTest {
     @Before
     public void setUp() {
         // Este método será executado antes de cada @Test
-        heap = new ArvoreBinariaHeapMaximo<>(Paciente.class, 5);
+        heap = new ArvoreBinariaHeapMaximo<>(5);
         
         // Criando pacientes com diferentes prioridades
         pJoao = new Paciente("Joao", 30, 1);
