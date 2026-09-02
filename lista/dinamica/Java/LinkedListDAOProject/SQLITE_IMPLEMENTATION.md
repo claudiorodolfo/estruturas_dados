@@ -214,7 +214,7 @@ public void testSQLiteOperations() {
 
 ```java
 public class ExemploUso {
-    public static void main(String[] args) {
+    void main() {
         // Escolha da implementação
         BookDAO dao = BookService.getSQLiteBook();
         
@@ -223,7 +223,7 @@ public class ExemploUso {
         dao.addBook(livro);
         
         Book encontrado = dao.getBookById(1L);
-        System.out.println("Encontrado: " + encontrado.getTitle());
+        IO.println("Encontrado: " + encontrado.getTitle());
         
         // SQLite persiste os dados automaticamente
         // LinkedList perde os dados ao fechar o programa

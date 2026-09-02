@@ -18,12 +18,12 @@ public class VerificaBalanceamento {
         return pilha.estaVazia();
     }
 
-    public static void main(String[] args) {
+    void main() {
         String s1 = "{(()[({})])}";
         String s2 = "([)]";
         VerificaBalanceamento vb = new VerificaBalanceamento();
-        System.out.println(vb.estaBemFormado(s1)); // true
-        System.out.println(vb.estaBemFormado(s2)); // false
+        IO.println(vb.estaBemFormado(s1)); // true
+        IO.println(vb.estaBemFormado(s2)); // false
     }
 }
 
@@ -102,16 +102,16 @@ public class OperacoesConjunto {
         return copiarArray(resultado, cont);
     }
 
-    public static void main(String[] args) {
+    void main() {
         int[] lista1 = {1, 2, 3, 4};
         int[] lista2 = {3, 4, 5, 6};
 
         OperacoesConjunto oc = new OperacoesConjunto();
-        System.out.println("Diferença: ");
-        System.out.println(java.util.Arrays.toString(oc.difference(lista1, lista2)));
-        System.out.println("União: ");
-        System.out.println(java.util.Arrays.toString(oc.union(lista1, lista2)));
-        System.out.println("Interseção: ");
-        System.out.println(java.util.Arrays.toString(oc.intersection(lista1, lista2)));
+        IO.println("Diferença: ");
+        IO.println(java.util.Arrays.toString(oc.difference(lista1, lista2)));
+        IO.println("União: ");
+        IO.println(java.util.Arrays.toString(oc.union(lista1, lista2)));
+        IO.println("Interseção: ");
+        IO.println(java.util.Arrays.toString(oc.intersection(lista1, lista2)));
     }
 }
