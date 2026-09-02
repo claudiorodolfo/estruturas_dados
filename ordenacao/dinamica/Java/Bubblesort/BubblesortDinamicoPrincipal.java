@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd ordenacao/dinamica/Java/Bubblesort
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out BubblesortDinamicoPrincipal
 import java.util.Random;
 
 public class BubblesortDinamicoPrincipal {

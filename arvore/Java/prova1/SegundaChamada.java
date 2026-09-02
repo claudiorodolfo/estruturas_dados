@@ -1,8 +1,10 @@
+// Acessar o diretório dos fontes:
+// cd arvore/Java/prova1
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out prova.SegundaChamada
 package prova;
-//Pra rodar
-//cd "estruturas_dados\arvore\"
-//javac SegundaChamada.java
-//java SegundaChamada
 
 public class SegundaChamada {
 					

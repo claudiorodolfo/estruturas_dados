@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "fila/dinamica/Java/Fila Dinâmica Genérica/src"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out FilaDinamicaGenericaMainCLI
 import java.util.NoSuchElementException;
 
 /**
