@@ -81,11 +81,11 @@ public class MapaEspalhamento implements Espalhavel{
 				}
 			}
 			else {
-				System.err.println("Chave não existente.");
+				IO.println("Chave não existente.");
 			}
 		}
 		else {
-				System.err.println("A estrutura de dados está vazia.");
+				IO.println("A estrutura de dados está vazia.");
 		}
 		return dadoAuxiliar;
 	}	
@@ -112,7 +112,7 @@ public class MapaEspalhamento implements Espalhavel{
 			}		
 		} 
 		else {
-				System.err.println("A estrutura de dados está vazia.");
+				IO.println("A estrutura de dados está vazia.");
 		}
 		return chaveEncontrada;
 	}		
@@ -140,11 +140,11 @@ public class MapaEspalhamento implements Espalhavel{
 				}
 			}
 			else {
-				System.err.println("Chave não existente.");
+				IO.println("Chave não existente.");
 			}			
 		}
 		else {
-				System.err.println("A estrutura de dados está vazia");
+				IO.println("A estrutura de dados está vazia");
 		}
 		return dadoAuxiliar;
 	}

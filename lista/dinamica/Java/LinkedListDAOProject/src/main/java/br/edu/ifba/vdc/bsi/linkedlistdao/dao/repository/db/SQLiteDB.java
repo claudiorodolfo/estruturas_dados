@@ -31,7 +31,7 @@ public class SQLiteDB {
      * @throws SQLException se houver erro na criação das tabelas
      */
     public void initializeDatabase() throws SQLException {
-        System.out.println("Inicializando banco de dados SQLite...");
+        IO.println("Inicializando banco de dados SQLite...");
         
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
@@ -42,10 +42,10 @@ public class SQLiteDB {
             // Commit das alterações
             sqliteConnection.commit();
             
-            System.out.println("Banco de dados SQLite inicializado com sucesso");
+            IO.println("Banco de dados SQLite inicializado com sucesso");
             
         } catch (SQLException e) {
-            System.err.println("Erro ao inicializar banco de dados: " + e.getMessage());
+            IO.println("Erro ao inicializar banco de dados: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -72,7 +72,7 @@ public class SQLiteDB {
             """;
         
         statement.execute(createTableSQL);
-        System.out.println("Tabela 'book' criada/verificada com sucesso");
+        IO.println("Tabela 'book' criada/verificada com sucesso");
         
         // Cria índices para melhorar performance
         createIndexes(statement);
@@ -105,7 +105,7 @@ public class SQLiteDB {
         String indexPriceSQL = "CREATE INDEX IF NOT EXISTS idx_books_price ON book(price)";
         statement.execute(indexPriceSQL);
         
-        System.out.println("Índices criados/verificados com sucesso");
+        IO.println("Índices criados/verificados com sucesso");
     }
     
     /**
@@ -142,10 +142,10 @@ public class SQLiteDB {
             
             sqliteConnection.commit();
             
-            System.out.println("Tabela 'book' limpa com sucesso. Registros removidos: " + rowsAffected);
+            IO.println("Tabela 'book' limpa com sucesso. Registros removidos: " + rowsAffected);
             
         } catch (SQLException e) {
-            System.err.println("Erro ao limpar tabela de livros: " + e.getMessage());
+            IO.println("Erro ao limpar tabela de livros: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -165,10 +165,10 @@ public class SQLiteDB {
             
             sqliteConnection.commit();
             
-            System.out.println("Tabela 'book' removida com sucesso");
+            IO.println("Tabela 'book' removida com sucesso");
             
         } catch (SQLException e) {
-            System.err.println("Erro ao remover tabela de livros: " + e.getMessage());
+            IO.println("Erro ao remover tabela de livros: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -180,7 +180,7 @@ public class SQLiteDB {
      * @throws SQLException se houver erro na recriação
      */
     public void recreateBookTable() throws SQLException {
-        System.out.println("Recriando tabela book...");
+        IO.println("Recriando tabela book...");
         
         try (Connection connection = sqliteConnection.getConnection();
              Statement statement = connection.createStatement()) {
@@ -193,10 +193,10 @@ public class SQLiteDB {
             
             sqliteConnection.commit();
             
-            System.out.println("Tabela book recriada com sucesso");
+            IO.println("Tabela book recriada com sucesso");
             
         } catch (SQLException e) {
-            System.err.println("Erro ao recriar tabela book: " + e.getMessage());
+            IO.println("Erro ao recriar tabela book: " + e.getMessage());
             sqliteConnection.rollback();
             throw e;
         }
@@ -214,7 +214,7 @@ public class SQLiteDB {
                     sqliteConnection.getConnectionInfo(), isBookTableExists());
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao obter informações do banco: " + e.getMessage());
+            IO.println("Erro ao obter informações do banco: " + e.getMessage());
         }
         return "Banco de dados não disponível";
     }

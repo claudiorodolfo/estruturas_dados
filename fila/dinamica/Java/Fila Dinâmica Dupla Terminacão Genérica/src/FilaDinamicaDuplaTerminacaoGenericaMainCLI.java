@@ -1,128 +1,106 @@
-
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class FilaDinamicaDuplaTerminacaoGenericaMainCLI {
-  public static void main(String[] args) {
+  void main() {
     Enfileiravel<String> fila = new FilaDinamicaDuplaTerminacaoGenerica<>(7);
-    Scanner scanner = new Scanner(System.in);
     int opcao;
 
     do {
       exibirMenu();
-      System.out.print("Escolha uma opção (0-6): ");
       try {
-        opcao = scanner.nextInt();
-        scanner.nextLine(); // Consumir o newline
+        opcao = Integer.parseInt(IO.readln("Escolha uma opção (0-6): ").trim());
 
         switch (opcao) {
-          case 0:
-            System.out.println("Saindo da Fila. Até mais!");
-            break;
-          case 1:
-            System.out.print("Digite o valor: ");
-            String valor = scanner.nextLine();
-            try {
-              fila.enfileirarInicio(valor);
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 0 -> IO.println("Saindo da Fila. Até mais!");
+            case 1 -> {
+                String valor = IO.readln("Digite o valor: ");
+                try {
+                fila.enfileirarInicio(valor);
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-          case 2:
-            System.out.print("Digite o valor: ");
-            valor = scanner.nextLine();
-            try {
-              fila.enfileirarFim(valor);
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 2 -> {
+                valor = IO.readln("Digite o valor: ");
+                try {
+                fila.enfileirarFim(valor);
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-          case 3:
-            System.out.print("Deseja desenfileirar[s/n]? ");
-            String confirmacao = scanner.nextLine().trim().toLowerCase();
-            if (confirmacao.equals("s")) {
-              try {
+            case 3 -> {
+                String confirmacao = IO.readln("Deseja desenfileirar[s/n]? ").trim().toLowerCase();
+                if (confirmacao.equals("s")) {
+                try {
                 fila.desenfileirarInicio();
-              } catch (NoSuchElementException e) {
-                System.err.println(e.getMessage());
-              }
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
+                }
             }
-            break;
-          case 4:
-            System.out.print("Deseja desenfileirar[s/n]? ");
-            confirmacao = scanner.nextLine().trim().toLowerCase();
-            if (confirmacao.equals("s")) {
-              try {
+            case 4 -> {
+                confirmacao = IO.readln("Deseja desenfileirar[s/n]? ").trim().toLowerCase();
+                if (confirmacao.equals("s")) {
+                try {
                 fila.desenfileirarFim();
-              } catch (NoSuchElementException e) {
-                System.err.println(e.getMessage());
-              }
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
+                }
             }
-            break;
-          case 5:
-            try {
-              System.out.println("Frente: " + fila.frente());
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 5 -> {
+                try {
+                IO.println("Frente: " + fila.frente());
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-            case 6:
-            try {
-              System.out.println("Fundo: " + fila.tras());
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 6 -> {
+                try {
+                IO.println("Fundo: " + fila.tras());
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-          case 7:
-            System.out.print("Digite o valor: ");
-            String novoValor = scanner.nextLine();
-            try {
-              fila.atualizarInicio(novoValor);
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 7 -> {
+                String novoValor = IO.readln("Digite o valor: ");
+                try {
+                fila.atualizarInicio(novoValor);
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-            case 8:
-            System.out.print("Digite o valor: ");
-            novoValor = scanner.nextLine();
-            try {
-              fila.atualizarFim(novoValor);
-            } catch (NoSuchElementException e) {
-              System.err.println(e.getMessage());
+            case 8 -> {
+                novoValor = IO.readln("Digite o valor: ");
+                try {
+                fila.atualizarFim(novoValor);
+                } catch (NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-          case 9:
-            System.out.println(fila.imprimirDeFrentePraTras());
-            break;
-            case 10:
-            System.out.println(fila.imprimirDeTrasPraFrente());
-            break;
-          default:
-            System.out.println("Opção inválida. Tente novamente.");
+            case 9 -> IO.println(fila.imprimirDeFrentePraTras());
+            case 10 -> IO.println(fila.imprimirDeTrasPraFrente());
+            default -> IO.println("Opção inválida. Tente novamente.");
         }
-      } catch (InputMismatchException e) {
-        System.out.println("Entrada inválida. Tente novamente.");
-        scanner.nextLine(); // Consumir a entrada inválida
+      } catch (NumberFormatException e) {
+        IO.println("Entrada inválida. Tente novamente.");
         opcao = -1; // Para não sair do loop
       }
     } while (opcao != 0);
-
-    scanner.close();
   }
 
   public static void exibirMenu() {
-    System.out.println("=== FILA DUPLA DINÂMICA GENÉRICA CLI ===");
-    System.out.println("0. SAIR");
-    System.out.println("1. Enfileirar no Inicio");
-    System.out.println("2. Enfileirar no Fim");
-    System.out.println("3. Desenfileirar do Inicio");
-    System.out.println("4. Desenfileirar do Fim");
-    System.out.println("5. Frente da Fila");
-    System.out.println("6. Fundo da Fila");
-    System.out.println("7. Atualizar no Inicio");
-    System.out.println("8. Atualizar no Fim");
-    System.out.println("9. Imprimir de Frente para Tras");
-    System.out.println("10. Imprimir de Tras para Frente");
+    IO.println("=== FILA DUPLA DINÂMICA GENÉRICA CLI ===");
+    IO.println("0. SAIR");
+    IO.println("1. Enfileirar no Inicio");
+    IO.println("2. Enfileirar no Fim");
+    IO.println("3. Desenfileirar do Inicio");
+    IO.println("4. Desenfileirar do Fim");
+    IO.println("5. Frente da Fila");
+    IO.println("6. Fundo da Fila");
+    IO.println("7. Atualizar no Inicio");
+    IO.println("8. Atualizar no Fim");
+    IO.println("9. Imprimir de Frente para Tras");
+    IO.println("10. Imprimir de Tras para Frente");
   }
 }

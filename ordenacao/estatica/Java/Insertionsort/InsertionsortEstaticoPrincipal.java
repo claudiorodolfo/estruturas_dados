@@ -4,15 +4,15 @@ public class InsertionsortEstaticoPrincipal {
 
 	private Integer dados[] = new Integer[20];
 	
-    public static void main(String[] args){
+    void main(){
 		InsertionsortEstaticoPrincipal principal = new InsertionsortEstaticoPrincipal();
 		
 		principal.preencheDadosAleatorios();     
 		
 		Ordenavel sort = new InsertionsortEstatico(principal.dados);
-		System.out.println(principal.imprimir());
+		IO.println(principal.imprimir());
 		sort.ordenar();
-		System.out.println(principal.imprimir());
+		IO.println(principal.imprimir());
 	}
 	
 	public void preencheDadosAleatorios() {

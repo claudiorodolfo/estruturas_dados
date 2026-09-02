@@ -1,8 +1,8 @@
 public class FilaEstaticaCircularGenericaPrincipal {
-	public static void main(String[] args) {
+	void main() {
 		EnfileiravelGenerica<Character> fila = new FilaEstaticaCircularGenerica<>();
 		fila.enfileirar('A');
-		System.out.println(fila.frente());		
+		IO.println(fila.frente());		
 		fila.enfileirar('B');
 		fila.enfileirar('C');
 		fila.atualizarInicio('Y');
@@ -11,14 +11,14 @@ public class FilaEstaticaCircularGenericaPrincipal {
 		fila.enfileirar('E');
 		char conteudo = fila.desenfileirar();
 		fila.enfileirar('F');
-		System.out.println(fila.frente());
-		System.out.println(fila.frente());		
+		IO.println(fila.frente());
+		IO.println(fila.frente());		
 		fila.enfileirar('G');
 		fila.enfileirar(conteudo);
 		fila.enfileirar('I');
 		fila.enfileirar('J');
 		fila.atualizarFim('K');
 		fila.enfileirar('K');					
-		System.out.println("Fila: " + fila.imprimir());
+		IO.println("Fila: " + fila.imprimir());
 	}
 }

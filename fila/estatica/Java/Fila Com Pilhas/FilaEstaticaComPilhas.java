@@ -26,7 +26,7 @@ public class FilaEstaticaComPilhas implements Enfileiravel {
 				p1.empilhar(p2.desempilhar());
 			}			
 		} else {
-			System.err.println("Fila Cheia!");
+			IO.println("Fila Cheia!");
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class FilaEstaticaComPilhas implements Enfileiravel {
 		if (!estaVazia()) {
 			dadoInicio = p1.desempilhar();
 		} else {
-			System.err.println("Fila Vazia!");
+			IO.println("Fila Vazia!");
 		}
 		return dadoInicio;
 	}
@@ -55,7 +55,7 @@ public class FilaEstaticaComPilhas implements Enfileiravel {
 		if (!estaVazia()) {
 			dadoInicio = p1.espiar();
 		} else {
-			System.err.println("Fila Vazia!");		
+			IO.println("Fila Vazia!");		
 		}
 		return dadoInicio;
 	}

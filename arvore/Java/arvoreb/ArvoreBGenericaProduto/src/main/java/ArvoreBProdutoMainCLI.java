@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Interface de linha de comando para manipular uma árvore B de produtos.
  * Permite inserir, buscar, remover e imprimir produtos com validação de dados.
@@ -9,92 +7,84 @@ import java.util.Scanner;
  * @since July 1, 2025
  */
 public class ArvoreBProdutoMainCLI {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    void main() {
         ArvoreB<Produto> arvoreB = new ArvoreB<>();
         int opcao;
         do {
             exibirMenu();
-            opcao = lerInt(scanner, "Escolha uma opção: ");
+            opcao = lerInt("Escolha uma opção: ");
             try {
                 switch (opcao) {
-                    case 1:
-                        System.out.print("Nome do produto: ");
-                        String nome = scanner.nextLine();
-                        long codigo = lerLong(scanner, "Código de barras: ");
+                    case 1 -> {
+                        String nome = IO.readln("Nome do produto: ");
+                        long codigo = lerLong("Código de barras: ");
                         Produto p = new Produto(nome, codigo);
                         arvoreB.inserir(p);
-                        System.out.println("Produto inserido: " + p);
-                        break;
-                    case 2:
-                        long codigoBusca = lerLong(scanner, "Código de barras do produto a buscar: ");
+                        IO.println("Produto inserido: " + p);
+                    }
+                    case 2 -> {
+                        long codigoBusca = lerLong("Código de barras do produto a buscar: ");
                         Produto busca = new Produto("Produto temporário", codigoBusca);
                         if (arvoreB.existe(busca)) {
-                            System.out.println("Produto encontrado com código: " + codigoBusca);
+                            IO.println("Produto encontrado com código: " + codigoBusca);
                         } else {
-                            System.out.println("Produto não encontrado.");
+                            IO.println("Produto não encontrado.");
                         }
-                        break;
-                    case 3:
-                        long codigoRemover = lerLong(scanner, "Código de barras do produto a remover: ");
+                    }
+                    case 3 -> {
+                        long codigoRemover = lerLong("Código de barras do produto a remover: ");
                         Produto remover = new Produto("Produto temporário", codigoRemover);
                         Produto removido = arvoreB.apagar(remover);
                         if (removido != null) {
-                            System.out.println("Produto removido: " + removido);
+                            IO.println("Produto removido: " + removido);
                         } else {
-                            System.out.println("Produto não encontrado para remoção.");
+                            IO.println("Produto não encontrado para remoção.");
                         }
-                        break;
-                    case 4:
-                        System.out.println("Produtos em ordem:");
-                        System.out.println(arvoreB.imprimirEmOrdem());
-                        break;
-                    case 5:
+                    }
+                    case 4 -> {
+                        IO.println("Produtos em ordem:");
+                        IO.println(arvoreB.imprimirEmOrdem());
+                    }
+                    case 5 -> {
                         arvoreB.limpar();
-                        System.out.println("Árvore B de produtos limpa!");
-                        break;
-                    case 0:
-                        System.out.println("Saindo...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida!");
+                        IO.println("Árvore B de produtos limpa!");
+                    }
+                    case 0 -> IO.println("Saindo...");
+                    default -> IO.println("Opção inválida!");
                 }
             } catch (IllegalArgumentException e) {
-                System.out.println("Erro: " + e.getMessage());
+                IO.println("Erro: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Erro inesperado: " + e.getMessage());
+                IO.println("Erro inesperado: " + e.getMessage());
             }
         } while (opcao != 0);
-        scanner.close();
     }
 
     /**
      * Exibe o menu principal de opções.
      */
     private static void exibirMenu() {
-        System.out.println("\n==== Árvore B de Produtos ====");
-        System.out.println("1. Inserir produto");
-        System.out.println("2. Buscar produto");
-        System.out.println("3. Remover produto");
-        System.out.println("4. Imprimir produtos em ordem");
-        System.out.println("5. Limpar árvore");
-        System.out.println("0. Sair");
+        IO.println("\n==== Árvore B de Produtos ====");
+        IO.println("1. Inserir produto");
+        IO.println("2. Buscar produto");
+        IO.println("3. Remover produto");
+        IO.println("4. Imprimir produtos em ordem");
+        IO.println("5. Limpar árvore");
+        IO.println("0. Sair");
     }
 
     /**
      * Lê um valor inteiro do usuário com tratamento de erro.
      * 
-     * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor inteiro lido
      */
-    private static int lerInt(Scanner scanner, String msg) {
+    private static int lerInt(String msg) {
         while (true) {
-            System.out.print(msg);
             try {
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(IO.readln(msg).trim());
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                IO.println("Valor inválido. Tente novamente.");
             }
         }
     }
@@ -102,18 +92,16 @@ public class ArvoreBProdutoMainCLI {
     /**
      * Lê um valor long do usuário com tratamento de erro.
      * 
-     * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor long lido
      */
-    private static long lerLong(Scanner scanner, String msg) {
+    private static long lerLong(String msg) {
         while (true) {
-            System.out.print(msg);
             try {
-                return Long.parseLong(scanner.nextLine());
+                return Long.parseLong(IO.readln(msg).trim());
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                IO.println("Valor inválido. Tente novamente.");
             }
         }
     }
-} 
+}

@@ -28,7 +28,7 @@ public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> 
 			
 			quantidade++;
 		} else {
-			System.err.println("Queue is full!");
+			IO.println("Queue is full!");
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> 
 			ponteiroInicio = avancar(ponteiroInicio);
 			quantidade--;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 		return dadoInicio;	
 	}
@@ -51,7 +51,7 @@ public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> 
 		if (!estaVazia())
 			dadoInicio = dados[ponteiroInicio];
 		else
-			System.err.println("Fila Vazia!");		
+			IO.println("Fila Vazia!");		
 
 		return dadoInicio;
 	}
@@ -61,7 +61,7 @@ public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> 
 		if (!estaVazia()){
 			dados[ponteiroInicio] = dado;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 	}	
 	
@@ -70,7 +70,7 @@ public class FilaEstaticaCircularGenerica<T> implements EnfileiravelGenerica<T> 
   		if (!estaVazia()){
 			dados[ponteiroFim] = dado;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 	}
 	

@@ -19,7 +19,7 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 			ponteiroTopo--;
 			dados[ponteiroTopo] = dado;
 		} else {
-			System.err.println("Pilha Cheia!");
+			IO.println("Pilha Cheia!");
 		}
 	}
 
@@ -28,7 +28,7 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 		if(!estaVazia()) {
 			dados[ponteiroTopo] = dado;
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 			dadoTopo = dados[ponteiroTopo]; 
 			ponteiroTopo++;
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}
 		return dadoTopo;
 	}
@@ -50,7 +50,7 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 		if(!estaVazia()) {
 			dadoTopo = dados[ponteiroTopo]; 
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}
 		return dadoTopo;	
 	}

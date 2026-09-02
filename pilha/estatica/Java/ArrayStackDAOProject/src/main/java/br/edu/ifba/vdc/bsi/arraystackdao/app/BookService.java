@@ -11,7 +11,7 @@ public class BookService {
     public static BookDAO getDBBook() {
         return new BookDAOArrayStack();
     }
-    public static void main(String[] args) {
+    void main() {
         BookDAO dbAcessor = BookService.getDBBook();
 
         Book b1 = new Book(1L, "Dom Casmurro", "Machado de Assis",
@@ -22,12 +22,12 @@ public class BookService {
         dbAcessor.addBook(b1);
         dbAcessor.addBook(b2);
         Book readBook = dbAcessor.getBook(null);
-        System.out.println("Topo da pilha: " + readBook.getTitle());
+        IO.println("Topo da pilha: " + readBook.getTitle());
 
      //   Book deleteBook = dbAcessor.deleteBook(null);
-     //   System.out.println("Desempilhei: " + deleteBook.getTitle());
-     //   System.out.println(deleteBook.toString());
-        System.out.println(dbAcessor.printBooks());
+     //   IO.println("Desempilhei: " + deleteBook.getTitle());
+     //   IO.println(deleteBook.toString());
+        IO.println(dbAcessor.printBooks());
     }
     
 }

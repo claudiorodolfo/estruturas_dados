@@ -33,7 +33,7 @@
  * 
  * // Buscar elementos
  * if (arvore.existe(10)) {
- *     System.out.println("Elemento 10 encontrado!");
+ *     IO.println("Elemento 10 encontrado!");
  * }
  * 
  * // Remover elementos
@@ -41,7 +41,7 @@
  * 
  * // Imprimir em ordem
  * String elementos = arvore.imprimirEmOrdem();
- * System.out.println("Elementos: " + elementos);
+ * IO.println("Elementos: " + elementos);
  * }</pre>
  * 
  * @param <T> Tipo dos elementos armazenados na árvore. Deve implementar Comparable.
@@ -281,7 +281,7 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
 
     /**
      * Exibe os elementos da árvore em ordem no console.
-     * Esta é uma versão que imprime diretamente no System.out.
+     * Esta é uma versão que imprime diretamente no console via IO.
      * 
      * <p><strong>Complexidade:</strong> O(n) onde n é o número de elementos</p>
      * 
@@ -291,10 +291,10 @@ public class ArvoreB<T extends Comparable<T>> implements Arborizavel<T> {
         // Se árvore não está vazia, imprime os elementos em ordem e pula linha
         if (raiz != null) {
             raiz.imprimirEmOrdem();
-            System.out.println();
+            IO.println();
         } else {
             // Caso contrário, imprime mensagem de árvore vazia
-            System.out.println("Árvore vazia.");
+            IO.println("Árvore vazia.");
         }
     }
 }

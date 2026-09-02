@@ -227,7 +227,7 @@ public class PaginaArvoreB<T extends Comparable<T>> {
             if (!isFolha()) {
                 ponteirosFilhos.get(i).imprimirEmOrdem();
             }
-            System.out.print(chaves.get(i) + " ");
+            IO.print(chaves.get(i) + " ");
         }
         if (!isFolha()) {
             ponteirosFilhos.get(i).imprimirEmOrdem();

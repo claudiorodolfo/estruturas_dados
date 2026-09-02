@@ -3,11 +3,9 @@ package prova;
 //cd "estruturas_dados\arvore\"
 //javac Prova.java
 //java Prova
-import java.util.Scanner;
-
 public class Prova {
 					
-    public static void main(String args[]) {
+    void main() {
 		Prova prova = new Prova();
 		ABP<Integer> arvore1 = new ABP<>();
 		AVL<Integer> arvore2 = new AVL<>();
@@ -38,44 +36,41 @@ public class Prova {
 		String matricula;
 		int deslocamento;
     
-        Scanner scanner = new Scanner(System.in);
-		System.out.println("Informe o numero de matricula:");
-		matricula = scanner.next();
-		System.out.println("Informe o deslocamento escolhido pelo aluno:");	
-		deslocamento = scanner.nextInt();
+		matricula = IO.readln("Informe o numero de matricula:");
+		deslocamento = Integer.parseInt(IO.readln("Informe o deslocamento escolhido pelo aluno:").trim());
 		
 		//Questão 1
-		System.out.println("");		
-		System.out.println("Questao 1");		
+		IO.println("");		
+		IO.println("Questao 1");		
 		q1 = prova.regra1(matricula, deslocamento);
-		System.out.print(q1+":");					
+		IO.print(q1+":");					
 		prova.imprimeDados(dados[q1]);
 		prova.resolveQ1(dados[q1], arvore1);
-		System.out.println("");
+		IO.println("");
 		//Questão 2
-		System.out.println("");
-		System.out.println("Questao 2");		
+		IO.println("");
+		IO.println("Questao 2");		
 		q2 = prova.regra2(matricula, deslocamento);
-		System.out.print(q2+":");			
+		IO.print(q2+":");			
 		prova.imprimeDados(dados[q2]);
 		prova.resolveQ2(dados[q2], arvore1);
-		System.out.println("");		
+		IO.println("");		
 		//Questão 3
-		System.out.println("");			
-		System.out.println("Questao 3");		
+		IO.println("");			
+		IO.println("Questao 3");		
 		q3 = prova.regra3(matricula, deslocamento);
-		System.out.print(q3+":");			
+		IO.print(q3+":");			
 		prova.imprimeDados(dados[q3]);
 		prova.resolveQ3(dados[q3], arvore2);
-		System.out.println("");
+		IO.println("");
 		//Questão 4
-		System.out.println("");		
-		System.out.println("Questao 4");
+		IO.println("");		
+		IO.println("Questao 4");
 		q4 = prova.regra4(matricula, deslocamento);
-		System.out.print(q4+":");				
+		IO.print(q4+":");				
 		prova.imprimeDados(dados[q4]);
 		prova.resolveQ4(dados[q4], arvore2);
-		System.out.println("");				
+		IO.println("");				
     }
 	
 	//("soma dos números da matrícula" * 5 + deslocamento) % 20	
@@ -124,8 +119,8 @@ public class Prova {
 	
 	private void imprimeDados(int dados[]) {
 		for (int valor : dados)
-			System.out.print(valor + " ");
-		System.out.println("");
+			IO.print(valor + " ");
+		IO.println("");
 	}
 	
 	private void resolveQ1(int dados[], ABP<Integer> arvore1) {
@@ -133,7 +128,7 @@ public class Prova {
 		for (int dado : dados) {
 			arvore1.inserir(dado);
 		}
-		System.out.println(arvore1.imprimirPosOrdem());
+		IO.println(arvore1.imprimirPosOrdem());
 	}
 
 	private void resolveQ2(int dados[], ABP<Integer> arvore1) {
@@ -156,7 +151,7 @@ public class Prova {
 		resultado = resultado.substring(1,resultado.length()-1);		
 		//explode a string pela virgula
 		valores = resultado.split(",");
-		System.out.println("Quinto elemento: "+ valores[4]);	
+		IO.println("Quinto elemento: "+ valores[4]);	
 	}
 
 	private void resolveQ3(int dados[], AVL<Integer> arvore2) {
@@ -164,7 +159,7 @@ public class Prova {
 		for (int dado : dados) {
 			arvore2.inserir(dado);
 		}
-		System.out.println("Raiz: "+arvore2.getRaiz().getDado());
+		IO.println("Raiz: "+arvore2.getRaiz().getDado());
 	}
 	
 	private void resolveQ4(int dados[], AVL<Integer> arvore2) {
@@ -177,6 +172,6 @@ public class Prova {
 		resultado = resultado.substring(1,resultado.length()-1);
 		//explode a string pela virgula
 		String[] valores = resultado.split(",");
-		System.out.println("Sexto elemento: "+valores[5]);
+		IO.println("Sexto elemento: "+valores[5]);
 	}
 }

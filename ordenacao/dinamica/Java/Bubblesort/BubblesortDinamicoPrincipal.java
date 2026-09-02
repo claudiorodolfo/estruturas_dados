@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class BubblesortDinamicoPrincipal {
 
-    public static void main(String[] args){
+    void main(){
         Random gerador = new Random();
 		int tamanho = 20;
 		BubblesortDinamico sort = new BubblesortDinamico();
@@ -14,8 +14,8 @@ public class BubblesortDinamicoPrincipal {
 		   sort.anexar(numero);
 		}
 
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 		sort.ordenar();
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 	}
 }

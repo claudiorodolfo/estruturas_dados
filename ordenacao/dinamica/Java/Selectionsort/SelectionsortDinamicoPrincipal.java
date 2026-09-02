@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class SelectionsortDinamicoPrincipal {
 
-    public static void main(String[] args){
+    void main(){
         Random gerador = new Random();
 		int tamanho = 20;
 		SelectionsortDinamico sort = new SelectionsortDinamico();
@@ -15,8 +15,8 @@ public class SelectionsortDinamicoPrincipal {
 		}
 		
 
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 		sort.ordenar();
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 	}	
 }

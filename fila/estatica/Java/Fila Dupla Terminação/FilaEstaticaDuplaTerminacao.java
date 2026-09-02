@@ -24,7 +24,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 			dados[ponteiroFim] = dado;			
 			quantidade++;
 		} else {
-			System.err.println("Queue is full!");
+			IO.println("Queue is full!");
 		}	
 	}
 	
@@ -37,7 +37,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 			ponteiroInicio = avancar(ponteiroInicio);			
 			quantidade--;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 		return dadoInicio;			
 	}
@@ -49,7 +49,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		if (!estaVazia())
 			dadoInicio = dados[ponteiroInicio];
 		else
-			System.err.println("Fila Vazia!");		
+			IO.println("Fila Vazia!");		
 
 		return dadoInicio;
 	}
@@ -62,7 +62,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 			dados[ponteiroInicio] = dado;
 			quantidade++;
 		} else {
-			System.err.println("Queue is full!");
+			IO.println("Queue is full!");
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 			ponteiroFim = retroceder(ponteiroFim);
 			quantidade--;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 		return dadoFim;			
 	}
@@ -87,7 +87,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		if (!estaVazia()) {
 			dadoFim = dados[ponteiroFim];
 		} else {
-			System.err.println("Fila Vazia!");		
+			IO.println("Fila Vazia!");		
 		}
 		return dadoFim;
 	}
@@ -98,7 +98,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 		if (!estaVazia()){
 			dados[ponteiroInicio] = dado;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 	}	
 
@@ -108,7 +108,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
   		if (!estaVazia()){
 			dados[ponteiroFim] = dado;
 		} else {
-			System.err.println("Queue is empty!");
+			IO.println("Queue is empty!");
 		}
 	}
 	

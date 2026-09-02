@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class QuicksortEstaticoPrincipal {
 
-    public static void main(String[] args){
+    void main(){
         Random gerador = new Random();
         Integer numeros[] = new Integer[20];
 		// Preenchendo o vetor com números aleatórios
@@ -12,8 +12,8 @@ public class QuicksortEstaticoPrincipal {
 		}
 		
 		Ordenavel sort = new QuicksortEstatico(numeros);
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 		sort.ordenar();
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 	}
 }

@@ -5,8 +5,6 @@
 
 //executar fonte: java -cp .;bin PilhaDinamicaGenericaMainCLI
 
-import java.util.Scanner;
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 /**
@@ -19,81 +17,67 @@ import java.util.NoSuchElementException;
  * @since 2025-06-04
  */
 public class PilhaDinamicaGenericaMainCLI {
-  public static void main(String[] args) {
+  void main() {
     Empilhavel<String> pilha = new PilhaDinamicaGenerica<>(7);
-    Scanner scanner = new Scanner(System.in);
     int opcao;
 
     do {
       exibirMenu();
-      System.out.print("Escolha uma opção (0-5): ");
 	  try {
-        opcao = scanner.nextInt();
-        scanner.nextLine(); // Consumir o newline
+        opcao = Integer.parseInt(IO.readln("Escolha uma opção (0-5): ").trim());
 
         switch (opcao) {
-          case 0:
-            System.out.println("Saindo da Pilha. Até mais!");
-            break;
-          case 1:
-            System.out.print("Digite o valor: ");
-            String valor = scanner.nextLine();
-			try {			
-              pilha.empilhar(valor);
-			} catch(NoSuchElementException e) {
-		      System.err.println(e.getMessage());
-			}
-            break;
-          case 2:
-            System.out.print("Deseja desempilhar[s/n]? ");
-            String confirmacao = scanner.nextLine().trim().toLowerCase();
-            if (confirmacao.equals("s")) {
-			  try {
-                pilha.desempilhar();
-			  } catch(NoSuchElementException e) {
-		        System.err.println(e.getMessage());
-			  }
+            case 0 -> IO.println("Saindo da Pilha. Até mais!");
+            case 1 -> {
+                String valor = IO.readln("Digite o valor: ");
+                try {			
+                pilha.empilhar(valor);
+                } catch(NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
             }
-            break;
-          case 3:
-			try {
-              System.out.println("Topo: " + pilha.espiar());
-			} catch(NoSuchElementException e) {
-		      System.err.println(e.getMessage());
-			}
-            break;
-          case 4:
-            System.out.print("Digite o valor: ");
-            String novoValor = scanner.nextLine();
-			try {
-              pilha.atualizar(novoValor);
-            } catch(NoSuchElementException e) {
-		      System.err.println(e.getMessage());
-			}
-			break;
-          case 5:
-            System.out.println(pilha.imprimir());
-            break;
-          default:
-            System.out.println("Opção inválida. Tente novamente.");
+            case 2 -> {
+                String confirmacao = IO.readln("Deseja desempilhar[s/n]? ").trim().toLowerCase();
+                if (confirmacao.equals("s")) {
+                try {
+                pilha.desempilhar();
+                } catch(NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
+                }
+            }
+            case 3 -> {
+                try {
+                IO.println("Topo: " + pilha.espiar());
+                } catch(NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
+            }
+            case 4 -> {
+                String novoValor = IO.readln("Digite o valor: ");
+                try {
+                pilha.atualizar(novoValor);
+                } catch(NoSuchElementException e) {
+                IO.println(e.getMessage());
+                }
+            }
+            case 5 -> IO.println(pilha.imprimir());
+            default -> IO.println("Opção inválida. Tente novamente.");
         }
-      } catch (InputMismatchException e) {
-        System.out.println("Entrada inválida. Tente novamente.");
-        scanner.nextLine(); // Consumir a entrada inválida
+      } catch (NumberFormatException e) {
+        IO.println("Entrada inválida. Tente novamente.");
         opcao = -1; // Para não sair do loop
       }		
     } while (opcao != 0);
-
-    scanner.close();
   }
 
   public static void exibirMenu() {
-    System.out.println("=== PILHA DINÂMICA GENÉRICA CLI ===");
-    System.out.println("0. SAIR");
-    System.out.println("1. Empilhar");
-    System.out.println("2. Desempilhar");
-    System.out.println("3. Espiar");
-    System.out.println("4. Atualizar");
-    System.out.println("5. Imprimir");
+    IO.println("=== PILHA DINÂMICA GENÉRICA CLI ===");
+    IO.println("0. SAIR");
+    IO.println("1. Empilhar");
+    IO.println("2. Desempilhar");
+    IO.println("3. Espiar");
+    IO.println("4. Atualizar");
+    IO.println("5. Imprimir");
   }
 }

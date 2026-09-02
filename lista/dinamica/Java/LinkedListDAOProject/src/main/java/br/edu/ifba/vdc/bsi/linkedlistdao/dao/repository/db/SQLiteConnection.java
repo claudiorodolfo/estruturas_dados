@@ -51,13 +51,13 @@ public class SQLiteConnection {
             // Configurações da conexão
             connection.setAutoCommit(false);
             
-            System.out.println("Conexão com SQLite estabelecida com sucesso: " + DB_URL);
+            IO.println("Conexão com SQLite estabelecida com sucesso: " + DB_URL);
             
         } catch (ClassNotFoundException e) {
-            System.err.println("Driver SQLite não encontrado: " + e.getMessage());
+            IO.println("Driver SQLite não encontrado: " + e.getMessage());
             throw new RuntimeException("Driver SQLite não encontrado", e);
         } catch (SQLException e) {
-            System.err.println("Erro ao conectar com o banco SQLite: " + e.getMessage());
+            IO.println("Erro ao conectar com o banco SQLite: " + e.getMessage());
             throw new RuntimeException("Erro ao conectar com o banco SQLite", e);
         }
     }
@@ -70,7 +70,7 @@ public class SQLiteConnection {
      */
     public Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            System.out.println("Conexão perdida, tentando reconectar...");
+            IO.println("Conexão perdida, tentando reconectar...");
             initializeConnection();
         }
         return connection;
@@ -85,7 +85,7 @@ public class SQLiteConnection {
         try {
             return connection != null && !connection.isClosed() && connection.isValid(5);
         } catch (SQLException e) {
-            System.err.println("Erro ao verificar validade da conexão: " + e.getMessage());
+            IO.println("Erro ao verificar validade da conexão: " + e.getMessage());
             return false;
         }
     }
@@ -97,10 +97,10 @@ public class SQLiteConnection {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Conexão com SQLite fechada com sucesso");
+                IO.println("Conexão com SQLite fechada com sucesso");
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao fechar conexão: " + e.getMessage());
+            IO.println("Erro ao fechar conexão: " + e.getMessage());
         }
     }
     
@@ -112,7 +112,7 @@ public class SQLiteConnection {
     public void commit() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.commit();
-            System.out.println("Commit executado com sucesso");
+            IO.println("Commit executado com sucesso");
         }
     }
     
@@ -124,7 +124,7 @@ public class SQLiteConnection {
     public void rollback() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.rollback();
-            System.out.println("Rollback executado com sucesso");
+            IO.println("Rollback executado com sucesso");
         }
     }
     
@@ -140,7 +140,7 @@ public class SQLiteConnection {
                     DB_URL, connection.getAutoCommit(), connection.isValid(5));
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao obter informações da conexão: " + e.getMessage());
+            IO.println("Erro ao obter informações da conexão: " + e.getMessage());
         }
         return "Conexão não disponível";
     }

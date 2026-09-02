@@ -4,13 +4,13 @@ public class BubblesortEstaticoPrincipal {
 
 	private Integer dados[] = new Integer[200];
     
-	public static void main(String[] args){
+	void main(){
 		BubblesortEstaticoPrincipal principal = new BubblesortEstaticoPrincipal();
 		
 		principal.preencheDadosAleatorios();
 		
 		Ordenavel sort = new BubblesortEstatico(principal.dados);
-		System.out.println(principal.imprimir());
+		IO.println(principal.imprimir());
 		long tempoInicioMili = System.currentTimeMillis();
 		long tempoInicioNano = System.nanoTime();
 		
@@ -18,9 +18,9 @@ public class BubblesortEstaticoPrincipal {
 		
 		long tempoFimNano = System.nanoTime();
 		long tempoFimMili = System.currentTimeMillis();		
-		System.out.println(principal.imprimir());
-		System.out.println("Tempo em ms:" + (tempoFimMili - tempoInicioMili));
-		System.out.println("Tempo em ns:" + (tempoFimNano - tempoInicioNano));		
+		IO.println(principal.imprimir());
+		IO.println("Tempo em ms:" + (tempoFimMili - tempoInicioMili));
+		IO.println("Tempo em ns:" + (tempoFimNano - tempoInicioNano));		
 	}
 	
 	public void preencheDadosAleatorios() {

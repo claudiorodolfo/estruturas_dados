@@ -64,7 +64,7 @@ public class ListaEstaticaCircular implements Listavel {
 			ponteiroFim++;
 			dados[ponteiroFim] = elemento;
 		} else {
-			System.err.println("Lista Cheia!");
+			IO.println("Lista Cheia!");
 		}				
 	}
 
@@ -79,10 +79,10 @@ public class ListaEstaticaCircular implements Listavel {
 				int pontoManipulacao = ((ponteiroInicio+1)+posicao) % dados.length;
 				elementoTemp = dados[pontoManipulacao];
 			} else {
-				System.err.println("Indice Invalido!");	
+				IO.println("Indice Invalido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");		
+			IO.println("Lista Vazia!");		
 		}
 		return elementoTemp;
 	}
@@ -97,10 +97,10 @@ public class ListaEstaticaCircular implements Listavel {
 				int pontoManipulacao = ((ponteiroInicio+1)+posicao) % dados.length;
 				dados[pontoManipulacao] = novoElemento;
 			} else {
-				System.err.println("Indice Inválido!");	
+				IO.println("Indice Inválido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");
+			IO.println("Lista Vazia!");
 		}
 	}
 	
@@ -134,10 +134,10 @@ public class ListaEstaticaCircular implements Listavel {
 				ponteiroFim++;
 				//fim do patch
 			} else {
-				System.err.println("Indice Inválido");
+				IO.println("Indice Inválido");
 			}
 		} else {
-			System.err.println("Lista Cheia!");
+			IO.println("Lista Cheia!");
 		}
 	}
 	
@@ -172,10 +172,10 @@ public class ListaEstaticaCircular implements Listavel {
 				}
 				//fim do patch
 			} else {
-				System.err.println("Indice Inválido!");
+				IO.println("Indice Inválido!");
 			}
 		} else {
-			System.err.println("Lista Vazia!");
+			IO.println("Lista Vazia!");
 		}
 		return elementoTemp;
 	}

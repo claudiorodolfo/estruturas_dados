@@ -3,10 +3,10 @@ public class Questao2 {
     String[] alunosB;
     String[] alunosC;
 
-    public Questao2(ArrayList A, ArrayList B, ArrayList C) {
-        alunosA = (String[]) A.selectAll();
-        alunosB = (String[]) B.selectAll();
-        alunosC = (String[]) C.selectAll();
+    public Questao2(String[] A, String[] B, String[] C) {
+        alunosA = A;
+        alunosB = B;
+        alunosC = C;
     }
 
     //////////////////////
@@ -20,72 +20,72 @@ public class Questao2 {
         return false;
     }
 
+    private boolean contains(String nome, String[] alunos, int limite) {
+        for (int i = 0; i < limite; i++)
+            if (alunos[i].equals(nome))
+                return true;
+        return false;
+    }
+
+    private String[] copiar(String[] original, int tamanho) {
+        String[] copia = new String[tamanho];
+        for (int i = 0; i < tamanho; i++)
+            copia[i] = original[i];
+        return copia;
+    }
+
     /** a) alunos que fazem esportiva e cultural e não extensão */
     public String[] culturaEEsporteSemExtensao() {
-
-        ArrayList result = new ArrayList();
+        String[] result = new String[alunosB.length];
+        int n = 0;
         for (String aluno : alunosB) {
             if (contains(aluno, alunosA) && !contains(aluno, alunosC)) {
-                result.append(aluno);
+                result[n++] = aluno;
             }
         }
-        return (String[]) result.selectAll();
+        return copiar(result, n);
     }
 
     /** b) alunos que fazem somente extensão */
     public String[] somenteExtensao() {
-
-        ArrayList result = new ArrayList();
+        String[] result = new String[alunosC.length];
+        int n = 0;
         for (String aluno : alunosC) {
             if (!contains(aluno, alunosA) && !contains(aluno, alunosB)) {
-                result.append(aluno);
+                result[n++] = aluno;
             }
         }
-        return (String[]) result.selectAll();
+        return copiar(result, n);
     }
 
     /** c) alunos que fazem cultural ou extensão, mas não fazem esportiva */
     public String[] culturaOuExtensaoSemEsporte() {
-
-        ArrayList result = new ArrayList();
+        String[] result = new String[alunosA.length + alunosC.length];
+        int n = 0;
         // incluir os de A que não estão em B
         for (String aluno : alunosA) {
-            if (!contains(aluno, alunosB) && !contains(aluno, result)) {
-                result.append(aluno);
+            if (!contains(aluno, alunosB) && !contains(aluno, result, n)) {
+                result[n++] = aluno;
             }
         }
         // incluir os de C que não estão em B, e que ainda não foram incluídos
         for (String aluno : alunosC) {
-            if (!contains(aluno, alunosB) && !contains(aluno, result)) {
-                result.append(aluno);
+            if (!contains(aluno, alunosB) && !contains(aluno, result, n)) {
+                result[n++] = aluno;
             }
         }
-        return (String[]) result.selectAll();
+        return copiar(result, n);
     }
     //////////////////////
     
-    public static void main(String[] args) {
-        ArrayList culturaA = new ArrayList();
-        culturaA.append("Alice");
-        culturaA.append("Bob");
-        culturaA.append("Carol");
-        culturaA.append("David");
-
-        ArrayList esporteB = new ArrayList();
-        esporteB.append("Bob");
-        esporteB.append("David");
-        esporteB.append("Eve");
-        esporteB.append("Frank");
-
-        ArrayList extensaoC = new ArrayList();
-        extensaoC.append("Carol");
-        extensaoC.append("David");
-        extensaoC.append("Frank");
-        extensaoC.append("Gael");
+    void main() {
+        String[] culturaA = {"Alice", "Bob", "Carol", "David"};
+        String[] esporteB = {"Bob", "David", "Eve", "Frank"};
+        String[] extensaoC = {"Carol", "David", "Frank", "Gael"};
 
         Questao2 q2 = new Questao2(culturaA, esporteB, extensaoC);
-        System.out.println("a) Esporte + Cultura, sem Extensão: " + q2.culturaEEsporteSemExtensao());     // Bob
-        System.out.println("b) Somente Extensão: " + q2.somenteExtensao());                               // Gael
-        System.out.println("c) Cultura ou Extensão, sem Esporte: " + q2.culturaOuExtensaoSemEsporte());   // Alice, Caro, Gael
+        IO.println("a) Esporte + Cultura, sem Extensão: " + java.util.Arrays.toString(q2.culturaEEsporteSemExtensao()));     // Bob
+        IO.println("b) Somente Extensão: " + java.util.Arrays.toString(q2.somenteExtensao()));                               // Gael
+        IO.println("c) Cultura ou Extensão, sem Esporte: " + java.util.Arrays.toString(q2.culturaOuExtensaoSemEsporte()));   // Alice, Caro, Gael
     }
 }

@@ -11,7 +11,7 @@ public class CarService {
         return new CarDAOLinkedList();
     }
     
-    public static void main(String[] args) {
+    void main() {
         CarDAO dbAcessor = CarService.getDBCar();
 
         Car c1 = new Car("ABC-1234", "Ford", "Fiesta", "Verde", "João", LocalDateTime.now());
@@ -20,11 +20,11 @@ public class CarService {
         dbAcessor.addCar(c1);
         dbAcessor.addCar(c2);
         Car readCar = dbAcessor.getCar("ABC-1234");
-        System.out.println("Carro encontrado: " + readCar.getLicensePlate());
+        IO.println("Carro encontrado: " + readCar.getLicensePlate());
 
         Car deletedCar = dbAcessor.deleteCar("DEF-5678");
-        System.out.println("Carro removido: " + deletedCar.getLicensePlate());
-        System.out.println(deletedCar.toString());
-        System.out.println("Carros restantes: " + dbAcessor.printCars());
+        IO.println("Carro removido: " + deletedCar.getLicensePlate());
+        IO.println(deletedCar.toString());
+        IO.println("Carros restantes: " + dbAcessor.printCars());
     }
 }

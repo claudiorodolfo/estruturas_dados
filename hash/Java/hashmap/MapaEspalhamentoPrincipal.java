@@ -1,6 +1,6 @@
 public class MapaEspalhamentoPrincipal {
 
-	public static void main(String args[]) {
+	void main(){
 		//elementos que serão introduzidos na ED
 		Cliente c1 = new Cliente("Claudio Rodolfo", 30);
 		Cliente c2 = new Cliente("Maria Isabel", 12);
@@ -20,29 +20,29 @@ public class MapaEspalhamentoPrincipal {
 		//chave para testes
 		String chave = "clro";
 		Cliente clienteTemp = (Cliente) hashmap.buscar(chave);
-		System.out.println("a idade de "+ chave +" eh:"+ clienteTemp.getIdade());
+		IO.println("a idade de "+ chave +" eh:"+ clienteTemp.getIdade());
 		
 		//verifica se há elemento com a chave maria
 		chave = "maria";
 		if (hashmap.contemChave(chave))
-			System.out.println("contem a chave " + chave);
+			IO.println("contem a chave " + chave);
 		else
-			System.out.println("nao contem a chave " + chave);
+			IO.println("nao contem a chave " + chave);
 
 		//verifica se há elemento com a chave jorge
 		chave = "jorge";
 		if (hashmap.contemChave(chave))
-			System.out.println("contem a chave " + chave);
+			IO.println("contem a chave " + chave);
 		else
-			System.out.println("nao contem a chave " + chave);
+			IO.println("nao contem a chave " + chave);
 		
 		//remove o elemento referenciado pela chave maria
 		hashmap.remover("maria");
 		chave = "maria";
 		if (hashmap.contemChave(chave))
-			System.out.println("contem a chave " + chave);
+			IO.println("contem a chave " + chave);
 		else
-			System.out.println("não contem a chave " + chave);
+			IO.println("não contem a chave " + chave);
 		
 	}
 }

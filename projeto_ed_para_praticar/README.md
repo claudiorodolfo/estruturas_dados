@@ -15,6 +15,7 @@ Este projeto foi criado para exercitar:
 
 - Java 25 (`maven.compiler.release` no `pom.xml`)
 - Apache Maven (compilação e execução)
+- Programas principais com `void main()`, `IO.println` / `IO.readln` (sem `Scanner`)
 - Estruturas implementadas manualmente (sem frameworks de persistência)
 
 ## Estrutura do projeto
@@ -133,7 +134,7 @@ Descomente uma linha e comente as demais para escolher a estrutura subjacente.
 
 - **DAOs de `Livro`**: implementam `LivroDAO` nas variantes pilha/fila/lista (estático e dinâmico).
 - **DAOs de `Carro`**: classes-base para prática; ainda não implementam `CarroDAO` de forma completa (conforme comentários no código).
-- **`MainCarro`**: arquivo presente, porém sem menu ou cenários de teste — próximo passo natural após implementar os DAOs de carro.
+- **`MainCarro`**: esqueleto com `void main()`; menu completo fica para depois dos DAOs de carro.
 
 ## Passos sugeridos
 

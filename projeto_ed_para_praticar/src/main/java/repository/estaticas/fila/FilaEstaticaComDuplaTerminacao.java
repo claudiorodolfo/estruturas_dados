@@ -17,7 +17,7 @@ public class FilaEstaticaComDuplaTerminacao extends FilaEstatica implements Dupl
         if (!estaVazia()) {
             return dados[ponteiroFim];
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
         return null;
 
@@ -34,7 +34,7 @@ public class FilaEstaticaComDuplaTerminacao extends FilaEstatica implements Dupl
             dados[ponteiroInicio] = objeto;
             quantidade++;
         } else {
-            System.err.println("Fila cheia");
+            IO.println("Fila cheia");
         }
 
     }
@@ -47,7 +47,7 @@ public class FilaEstaticaComDuplaTerminacao extends FilaEstatica implements Dupl
             ponteiroFim = retrocederPonteiro(ponteiroFim);
             quantidade--;
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
         return objetoRetorno;
     }

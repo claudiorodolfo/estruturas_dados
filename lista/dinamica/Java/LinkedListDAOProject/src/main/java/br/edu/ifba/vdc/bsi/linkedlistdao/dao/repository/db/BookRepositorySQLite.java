@@ -37,7 +37,7 @@ public class BookRepositorySQLite {
                 sqliteDB.initializeDatabase();
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao inicializar banco de dados: " + e.getMessage());
+            IO.println("Erro ao inicializar banco de dados: " + e.getMessage());
             throw new RuntimeException("Erro ao inicializar banco de dados", e);
         }
     }
@@ -72,14 +72,14 @@ public class BookRepositorySQLite {
             statement.executeUpdate();
             sqliteConnection.commit();
             
-            System.out.println("Livro inserido com sucesso: " + book.getTitle());
+            IO.println("Livro inserido com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            System.err.println("Erro ao inserir livro: " + e.getMessage());
+            IO.println("Erro ao inserir livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                System.err.println("Erro no rollback: " + rollbackException.getMessage());
+                IO.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao inserir livro", e);
         }
@@ -98,10 +98,10 @@ public class BookRepositorySQLite {
                 books.add(book);
             }
             
-            System.out.println("Total de livros recuperados: " + books.size());
+            IO.println("Total de livros recuperados: " + books.size());
             
         } catch (SQLException e) {
-            System.err.println("Erro ao recuperar todos os livros: " + e.getMessage());
+            IO.println("Erro ao recuperar todos os livros: " + e.getMessage());
             throw new RuntimeException("Erro ao recuperar livros", e);
         }
         
@@ -144,14 +144,14 @@ public class BookRepositorySQLite {
                 throw new RuntimeException("Livro não encontrado para atualização: " + book.getId());
             }
             
-            System.out.println("Livro atualizado com sucesso: " + book.getTitle());
+            IO.println("Livro atualizado com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            System.err.println("Erro ao atualizar livro: " + e.getMessage());
+            IO.println("Erro ao atualizar livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                System.err.println("Erro no rollback: " + rollbackException.getMessage());
+                IO.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao atualizar livro", e);
         }
@@ -178,14 +178,14 @@ public class BookRepositorySQLite {
                 throw new RuntimeException("Livro não encontrado para exclusão: " + id);
             }
             
-            System.out.println("Livro excluído com sucesso: " + book.getTitle());
+            IO.println("Livro excluído com sucesso: " + book.getTitle());
             
         } catch (SQLException e) {
-            System.err.println("Erro ao excluir livro: " + e.getMessage());
+            IO.println("Erro ao excluir livro: " + e.getMessage());
             try {
                 sqliteConnection.rollback();
             } catch (SQLException rollbackException) {
-                System.err.println("Erro no rollback: " + rollbackException.getMessage());
+                IO.println("Erro no rollback: " + rollbackException.getMessage());
             }
             throw new RuntimeException("Erro ao excluir livro", e);
         }
@@ -208,7 +208,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar livro por ID: " + e.getMessage());
+            IO.println("Erro ao buscar livro por ID: " + e.getMessage());
             throw new RuntimeException("Erro ao buscar livro", e);
         }
         
@@ -245,7 +245,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar livro por ISBN: " + e.getMessage());
+            IO.println("Erro ao buscar livro por ISBN: " + e.getMessage());
             throw new RuntimeException("Erro ao buscar livro por ISBN", e);
         }
         
@@ -294,7 +294,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao contar livros: " + e.getMessage());
+            IO.println("Erro ao contar livros: " + e.getMessage());
             throw new RuntimeException("Erro ao contar livros", e);
         }
         
@@ -313,7 +313,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao calcular preço médio: " + e.getMessage());
+            IO.println("Erro ao calcular preço médio: " + e.getMessage());
             throw new RuntimeException("Erro ao calcular preço médio", e);
         }
         
@@ -327,9 +327,9 @@ public class BookRepositorySQLite {
     public void clearAllBooks() {
         try {
             sqliteDB.clearBookTable();
-            System.out.println("Todos os livros foram removidos");
+            IO.println("Todos os livros foram removidos");
         } catch (SQLException e) {
-            System.err.println("Erro ao limpar todos os livros: " + e.getMessage());
+            IO.println("Erro ao limpar todos os livros: " + e.getMessage());
             throw new RuntimeException("Erro ao limpar livros", e);
         }
     }
@@ -359,7 +359,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao executar consulta de busca: " + e.getMessage());
+            IO.println("Erro ao executar consulta de busca: " + e.getMessage());
             throw new RuntimeException("Erro ao executar consulta", e);
         }
         
@@ -382,7 +382,7 @@ public class BookRepositorySQLite {
             }
             
         } catch (SQLException e) {
-            System.err.println("Erro ao executar consulta de livro único: " + e.getMessage());
+            IO.println("Erro ao executar consulta de livro único: " + e.getMessage());
             throw new RuntimeException("Erro ao executar consulta", e);
         }
         

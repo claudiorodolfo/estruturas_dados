@@ -54,7 +54,7 @@ public class ListaEstaticaCircularGenerica<T> implements Listavel<T> {
 			quantidade++;
 			dados[ponteiroFim] = dado;			
 		} else {
-			System.err.println("Lista Cheia!");
+			IO.println("Lista Cheia!");
 		}			
 	}
 
@@ -86,10 +86,10 @@ public class ListaEstaticaCircularGenerica<T> implements Listavel<T> {
 				int posicaoFisica = (ponteiroInicio + posicao) % dados.length;
 				dadoAux = dados[posicaoFisica];
 			} else {
-				System.err.println("Indice Invalido!");	
+				IO.println("Indice Invalido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");		
+			IO.println("Lista Vazia!");		
 		}
 		return dadoAux;
 	}
@@ -105,10 +105,10 @@ public class ListaEstaticaCircularGenerica<T> implements Listavel<T> {
 				int posicaoFisica = (ponteiroInicio + posicao) % dados.length;
 				dados[posicaoFisica] = novoDado;
 			} else {
-				System.err.println("Indice Invalido!");	
+				IO.println("Indice Invalido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");
+			IO.println("Lista Vazia!");
 		}
 	}
 
@@ -140,10 +140,10 @@ public class ListaEstaticaCircularGenerica<T> implements Listavel<T> {
 				}
 				quantidade++;
 			} else {
-				System.err.println("Indice Invalido");
+				IO.println("Indice Invalido");
 			}
 		} else {
-			System.err.println("Lista Cheia!");
+			IO.println("Lista Cheia!");
 		}
 	}
 	
@@ -174,10 +174,10 @@ public class ListaEstaticaCircularGenerica<T> implements Listavel<T> {
 				}
 				quantidade--;
 			} else {
-				System.err.println("Indice Invalido!");
+				IO.println("Indice Invalido!");
 			}
 		} else {
-			System.err.println("Lista Vazia!");
+			IO.println("Lista Vazia!");
 		}
 		return dadoAux;
 	}

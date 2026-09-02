@@ -17,7 +17,7 @@ public class ArrayStack<T> implements Stackable<T> {
     @Override
     public void push(T book) {
         if (isFull()) {
-            System.out.println("Pilha cheia!");
+            IO.println("Pilha cheia!");
             return;
         }
         topPointer++; 
@@ -27,7 +27,7 @@ public class ArrayStack<T> implements Stackable<T> {
     @Override
     public T pop() {
         if (isEmpty()) {
-            System.out.println("Pilha vazia!");
+            IO.println("Pilha vazia!");
             return null;
         }
         T temp = stack[topPointer];
@@ -39,7 +39,7 @@ public class ArrayStack<T> implements Stackable<T> {
     @Override
     public T peek() {
         if (isEmpty()) {
-         System.out.println("Pilha vazia!");
+         IO.println("Pilha vazia!");
             return null;
         }
         return stack[topPointer];

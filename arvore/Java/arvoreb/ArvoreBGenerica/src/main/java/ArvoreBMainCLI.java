@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Interface de linha de comando (CLI) para interagir com uma Árvore B.
  * Esta classe fornece uma interface interativa para testar e demonstrar
@@ -64,50 +62,35 @@ public class ArvoreBMainCLI {
      *   <li>Tratamento de entrada inválida</li>
      *   <li>Feedback claro para o usuário</li>
      * </ul>
-     * 
-     * @param args Argumentos da linha de comando (não utilizados).
      */
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+    void main() {
         // Solicita e valida a ordem da árvore
-        System.out.print("Informe a ordem da árvore B (t >= 2): ");
-        int ordem = scanner.nextInt();
+        int ordem = Integer.parseInt(IO.readln("Informe a ordem da árvore B (t >= 2): ").trim());
 
         if (ordem < 2) {
-            System.out.println("Ordem inválida. Deve ser no mínimo 2.");
+            IO.println("Ordem inválida. Deve ser no mínimo 2.");
             return;
         }
 
         // Cria a árvore B com a ordem especificada
         ArvoreB<Integer> arvore = new ArvoreB<>(ordem);
-        System.out.println("Árvore B criada com ordem " + ordem + ".");
+        IO.println("Árvore B criada com ordem " + ordem + ".");
 
         // Loop principal do menu
         while (true) {
             exibirMenu();
-            System.out.print("Escolha: ");
-
-            int opcao = scanner.nextInt();
+            int opcao = Integer.parseInt(IO.readln("Escolha: ").trim());
 
             switch (opcao) {
-                case 1:
-                    inserirChave(scanner, arvore);
-                    break;
-                case 2:
-                    removerChave(scanner, arvore);
-                    break;
-                case 3:
-                    buscarChave(scanner, arvore);
-                    break;
-                case 4:
-                    imprimirArvore(arvore);
-                    break;
-                case 0:
-                    encerrarPrograma(scanner);
+                case 1 -> inserirChave(arvore);
+                case 2 -> removerChave(arvore);
+                case 3 -> buscarChave(arvore);
+                case 4 -> imprimirArvore(arvore);
+                case 0 -> {
+                    encerrarPrograma();
                     return;
-                default:
-                    System.out.println("Opção inválida.");
+                }
+                default -> IO.println("Opção inválida.");
             }
         }
     }
@@ -117,43 +100,39 @@ public class ArvoreBMainCLI {
      * Apresenta todas as opções disponíveis para o usuário.
      */
     private static void exibirMenu() {
-        System.out.println("\nMenu:");
-        System.out.println("1 - Inserir chave");
-        System.out.println("2 - Remover chave");
-        System.out.println("3 - Buscar chave");
-        System.out.println("4 - Imprimir árvore em ordem");
-        System.out.println("0 - Sair");
+        IO.println("\nMenu:");
+        IO.println("1 - Inserir chave");
+        IO.println("2 - Remover chave");
+        IO.println("3 - Buscar chave");
+        IO.println("4 - Imprimir árvore em ordem");
+        IO.println("0 - Sair");
     }
 
     /**
      * Realiza a operação de inserção de uma chave.
      * Solicita ao usuário a chave a ser inserida e executa a operação.
      * 
-     * @param scanner Scanner para leitura da entrada do usuário.
      * @param arvore A árvore B onde a chave será inserida.
      */
-    private static void inserirChave(Scanner scanner, ArvoreB<Integer> arvore) {
-        System.out.print("Chave para inserir: ");
-        int chaveInserir = scanner.nextInt();
+    private static void inserirChave(ArvoreB<Integer> arvore) {
+        int chaveInserir = Integer.parseInt(IO.readln("Chave para inserir: ").trim());
         arvore.inserir(chaveInserir);
-        System.out.println("Chave " + chaveInserir + " inserida com sucesso.");
+        IO.println("Chave " + chaveInserir + " inserida com sucesso.");
     }
 
     /**
      * Realiza a operação de remoção de uma chave.
      * Solicita ao usuário a chave a ser removida e executa a operação.
      * 
-     * @param scanner Scanner para leitura da entrada do usuário.
      * @param arvore A árvore B de onde a chave será removida.
      */
-    private static void removerChave(Scanner scanner, ArvoreB<Integer> arvore) {
-        System.out.print("Chave para remover: ");
-        int chaveRemover = scanner.nextInt();
+    private static void removerChave(ArvoreB<Integer> arvore) {
+        int chaveRemover = Integer.parseInt(IO.readln("Chave para remover: ").trim());
         Integer resultado = arvore.apagar(chaveRemover);
         if (resultado != null) {
-            System.out.println("Chave " + chaveRemover + " removida com sucesso.");
+            IO.println("Chave " + chaveRemover + " removida com sucesso.");
         } else {
-            System.out.println("Chave " + chaveRemover + " não encontrada na árvore.");
+            IO.println("Chave " + chaveRemover + " não encontrada na árvore.");
         }
     }
 
@@ -161,17 +140,15 @@ public class ArvoreBMainCLI {
      * Realiza a operação de busca de uma chave.
      * Solicita ao usuário a chave a ser buscada e informa o resultado.
      * 
-     * @param scanner Scanner para leitura da entrada do usuário.
      * @param arvore A árvore B onde a chave será buscada.
      */
-    private static void buscarChave(Scanner scanner, ArvoreB<Integer> arvore) {
-        System.out.print("Chave para buscar: ");
-        int chaveBuscar = scanner.nextInt();
+    private static void buscarChave(ArvoreB<Integer> arvore) {
+        int chaveBuscar = Integer.parseInt(IO.readln("Chave para buscar: ").trim());
         PaginaArvoreB<Integer> resultado = arvore.buscar(chaveBuscar);
         if (resultado != null) {
-            System.out.println("Chave " + chaveBuscar + " encontrada no nó com chaves: " + resultado.chaves);
+            IO.println("Chave " + chaveBuscar + " encontrada no nó com chaves: " + resultado.chaves);
         } else {
-            System.out.println("Chave " + chaveBuscar + " não encontrada na árvore.");
+            IO.println("Chave " + chaveBuscar + " não encontrada na árvore.");
         }
     }
 
@@ -182,23 +159,20 @@ public class ArvoreBMainCLI {
      * @param arvore A árvore B a ser exibida.
      */
     private static void imprimirArvore(ArvoreB<Integer> arvore) {
-        System.out.println("Árvore em ordem:");
+        IO.println("Árvore em ordem:");
         String elementos = arvore.imprimirEmOrdem();
         if (elementos.trim().isEmpty()) {
-            System.out.println("Árvore vazia.");
+            IO.println("Árvore vazia.");
         } else {
-            System.out.println(elementos);
+            IO.println(elementos);
         }
     }
 
     /**
      * Encerra o programa de forma adequada.
-     * Fecha o scanner e exibe mensagem de despedida.
-     * 
-     * @param scanner Scanner a ser fechado.
+     * Exibe mensagem de despedida.
      */
-    private static void encerrarPrograma(Scanner scanner) {
-        System.out.println("Encerrando programa...");
-        scanner.close();
+    private static void encerrarPrograma() {
+        IO.println("Encerrando programa...");
     }
 }

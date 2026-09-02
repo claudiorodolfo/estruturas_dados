@@ -38,7 +38,7 @@ public class FilaEstatica implements Enfileiravel {
             dados[ponteiroFim] = objeto;
             quantidade++;
         } else {
-            System.err.println("Fila cheia");
+            IO.println("Fila cheia");
         }
     }
 
@@ -50,7 +50,7 @@ public class FilaEstatica implements Enfileiravel {
             ponteiroInicio = avancarPonteiro(ponteiroInicio);
             quantidade--;
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
         return objetoRetorno;
     }
@@ -60,7 +60,7 @@ public class FilaEstatica implements Enfileiravel {
         if (!estaVazia()) {
             dados[ponteiroFim] = objeto;
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
     }
 
@@ -69,7 +69,7 @@ public class FilaEstatica implements Enfileiravel {
         if (!estaVazia()) {
             dados[ponteiroInicio] = objeto;
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
     }
     
@@ -78,7 +78,7 @@ public class FilaEstatica implements Enfileiravel {
         if (!estaVazia()) {
         return dados[ponteiroInicio];
         } else {
-            System.err.println("Fila vazia");
+            IO.println("Fila vazia");
         }
         return null;
     }

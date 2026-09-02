@@ -77,11 +77,11 @@ public class Questao2 {
         return pilha.imprimir();
     }
     
-    public static void main(String[] args) {
+    void main(){
         Questao3 q3 = new Questao3();
-        System.out.println(q3.decToBin("10"));
-        System.out.println(q3.decToBin("255"));
-        System.out.println(q3.decToBin("35"));
+        IO.println(q3.decToBin("10"));
+        IO.println(q3.decToBin("255"));
+        IO.println(q3.decToBin("35"));
     }
 }
 
@@ -124,14 +124,14 @@ public class Questao4 {
         }
     }
     
-    public static void main(String[] args) {
+    void main(){
         Questao4 q4 = new Questao4();
         int[] dados = {5, 7, 2, 6, 1, 4, 3, 0, 9, 8};
 
         q4.sort(Order.ASCENDING, dados);
-        for (int num : dados) {System.out.print(num + " ");}
+        for (int num : dados) {IO.print(num + " ");}
 
         q4.sort(Order.DESCENDING, dados);
-        for (int num : dados) {System.out.print(num + " ");} 
+        for (int num : dados) {IO.print(num + " ");} 
     }
 }

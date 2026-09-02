@@ -6,7 +6,7 @@ package prova;
 
 public class SegundaChamada {
 					
-    public static void main(String args[]) {
+    void main() {
 		SegundaChamada prova = new SegundaChamada();
 		ABP<Integer> arvore1 = new ABP<>();
 		AVL<Integer> arvore2 = new AVL<>();
@@ -14,15 +14,15 @@ public class SegundaChamada {
         int dados2[] = {50,42,98,82,23,34,81,28,15,17};
 		
 		//Questão 1
-		System.out.println("");		
-		System.out.println("Questao 1");							
+		IO.println("");		
+		IO.println("Questao 1");							
 		prova.resolveQ1(dados1, arvore1);
-		System.out.println("");
+		IO.println("");
 		//Questão 2
-		System.out.println("");
-		System.out.println("Questao 2");		
+		IO.println("");
+		IO.println("Questao 2");		
 		prova.resolveQ2(dados2, arvore2);
-		System.out.println("");		
+		IO.println("");		
 
     }	
 
@@ -41,7 +41,7 @@ public class SegundaChamada {
 		//apaga o sexto
 		arvore1.apagar(Integer.parseInt(valores[5]));
 
-		System.out.println("Pos-Ordem: "+ arvore1.imprimirPosOrdem());	
+		IO.println("Pos-Ordem: "+ arvore1.imprimirPosOrdem());	
 	}
 	
 	private void resolveQ2(int dados[], AVL<Integer> arvore2) {
@@ -49,6 +49,6 @@ public class SegundaChamada {
 		for (int dado : dados) {
 			arvore2.inserir(dado);
 		}
-		System.out.println("Pos-Ordem:"+arvore2.imprimirPosOrdem());
+		IO.println("Pos-Ordem:"+arvore2.imprimirPosOrdem());
 	}
 }

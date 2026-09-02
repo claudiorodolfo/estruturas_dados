@@ -22,9 +22,9 @@ public class Sistema {
     private Client[] clientes;
     private Order[] pedidos;
 
-    public Sistema(ArrayList clientes, ArrayList pedidos) {
-        this.clientes = (Client[]) clientes.selectAll();
-        this.pedidos = (Order[]) pedidos.selectAll();
+    public Sistema(Client[] clientes, Order[] pedidos) {
+        this.clientes = clientes;
+        this.pedidos = pedidos;
     }
 
     //////////////////////
@@ -39,7 +39,7 @@ public class Sistema {
                 break;
             }
 
-        float soma = 0.0;
+        float soma = 0.0f;
         if (cpfBusca != null) {
             for (Order o : pedidos)
                 if (o.clientCPF == cpfBusca)
@@ -49,23 +49,23 @@ public class Sistema {
     }
     //////////////////////
     
-    public static void main(String[] args) {
-        ArrayList clientes = new ArrayList(10);
-        ArrayList pedidos = new ArrayList(10);
-
-        clientes.append(new Client(123, "J"));
-        clientes.append(new Client(156, "M"));
-        clientes.append(new Client(246, "A"));
-
-        pedidos.append(new Order(123, 100.0));
-        pedidos.append(new Order(156, 1000.5));
-        pedidos.append(new Order(156, 200.0));
-        pedidos.append(new Order(123, 300.3));
-        pedidos.append(new Order(123, 10.2));
+    void main() {
+        Client[] clientes = {
+            new Client(123, "J"),
+            new Client(156, "M"),
+            new Client(246, "A")
+        };
+        Order[] pedidos = {
+            new Order(123, 100.0f),
+            new Order(156, 1000.5f),
+            new Order(156, 200.0f),
+            new Order(123, 300.3f),
+            new Order(123, 10.2f)
+        };
 
         Sistema sys = new Sistema(clientes, pedidos);
-        System.out.println("Total para J: " + sys.masterDetail("J")); // espera 410.5
-        System.out.println("Total para M: " + sys.masterDetail("M")); // espera 1200.5
-        System.out.println("Total para A: " + sys.masterDetail("A")); // espera 0.0
+        IO.println("Total para J: " + sys.masterDetail("J")); // espera 410.5
+        IO.println("Total para M: " + sys.masterDetail("M")); // espera 1200.5
+        IO.println("Total para A: " + sys.masterDetail("A")); // espera 0.0
     }
 }

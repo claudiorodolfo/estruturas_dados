@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class InsertionsortDinamicoPrincipal {
 
-    public static void main(String[] args){
+    void main(){
         Random gerador = new Random();
 		int tamanho = 20;
 		InsertionsortDinamico sort = new InsertionsortDinamico();
@@ -15,8 +15,8 @@ public class InsertionsortDinamicoPrincipal {
 		}
 		
 
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 		sort.ordenar();
-		System.out.println(sort.imprimir());
+		IO.println(sort.imprimir());
 	}
 }

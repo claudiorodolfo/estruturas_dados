@@ -26,7 +26,7 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 				f1.enfileirar(f2.desenfileirar());
 			}
 		} else {
-			System.err.println("Pilha Cheia!");
+			IO.println("Pilha Cheia!");
 		}			
 	}
 
@@ -35,7 +35,7 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 		if (!estaVazia()) {	
 			f1.atualizarInicio(dado);
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}			
 	}
 	
@@ -45,7 +45,7 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 		if (!estaVazia()) {
 			dadoAux = f1.desenfileirar();	
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}
 		return dadoAux;
 	}
@@ -56,7 +56,7 @@ public class PilhaEstaticaComFilas implements Empilhavel {
 		if (!estaVazia()) {		
 			return f1.frente();	
 		} else {
-			System.err.println("Pilha Vazia!");
+			IO.println("Pilha Vazia!");
 		}
 		return dadoAux;			
 	}

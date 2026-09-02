@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Interface de linha de comando para manipular uma árvore AVL de produtos.
  * Permite inserir, buscar, remover e imprimir produtos com validação de dados.
@@ -11,89 +9,82 @@ import java.util.Scanner;
 public class AVLProdutoMainCLI {
     /**
      * Método principal. Inicia o menu interativo para manipulação da árvore AVL de produtos.
-     * @param args Argumentos de linha de comando (não utilizados).
      */
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    void main() {
         AVL<Produto> avl = new AVL<>();
         int opcao;
         do {
             exibirMenu();
-            opcao = lerInt(scanner, "Escolha uma opção: ");
+            opcao = lerInt("Escolha uma opção: ");
             try {
                 switch (opcao) {
-                    case 1:
-                        System.out.print("Nome do produto: ");
-                        String nome = scanner.nextLine();
-                        long codigo = lerLong(scanner, "Código de barras: ");
+                    case 1 -> {
+                        String nome = IO.readln("Nome do produto: ");
+                        long codigo = lerLong("Código de barras: ");
                         Produto p = new Produto(nome, codigo);
                         avl.inserir(p);
-                        System.out.println("Produto inserido: " + p);
-                        break;
-                    case 2:
-                        long codigoBusca = lerLong(scanner, "Código de barras do produto a buscar: ");
+                        IO.println("Produto inserido: " + p);
+                    }
+                    case 2 -> {
+                        long codigoBusca = lerLong("Código de barras do produto a buscar: ");
                         Produto busca = new Produto("Produto temporário", codigoBusca);
                         Produto encontrado = buscarProduto(avl, busca);
                         if (encontrado != null) {
-                            System.out.println("Produto encontrado: " + encontrado);
+                            IO.println("Produto encontrado: " + encontrado);
                         } else {
-                            System.out.println("Produto não encontrado.");
+                            IO.println("Produto não encontrado.");
                         }
-                        break;
-                    case 3:
-                        long codigoRemover = lerLong(scanner, "Código de barras do produto a remover: ");
+                    }
+                    case 3 -> {
+                        long codigoRemover = lerLong("Código de barras do produto a remover: ");
                         Produto remover = new Produto("Produto temporário", codigoRemover);
                         Produto removido = avl.apagar(remover);
                         if (removido != null) {
-                            System.out.println("Produto removido: " + removido);
+                            IO.println("Produto removido: " + removido);
                         } else {
-                            System.out.println("Produto não encontrado para remoção.");
+                            IO.println("Produto não encontrado para remoção.");
                         }
-                        break;
-                    case 4:
-                        System.out.println("Produtos em ordem:");
-                        System.out.println(avl.imprimirEmOrdem());
-                        break;
-                    case 5:
-                        System.out.println("Produtos em pré-ordem:");
-                        System.out.println(avl.imprimirPreOrdem());
-                        break;
-                    case 6:
-                        System.out.println("Produtos em pós-ordem:");
-                        System.out.println(avl.imprimirPosOrdem());
-                        break;
-                    case 7:
+                    }
+                    case 4 -> {
+                        IO.println("Produtos em ordem:");
+                        IO.println(avl.imprimirEmOrdem());
+                    }
+                    case 5 -> {
+                        IO.println("Produtos em pré-ordem:");
+                        IO.println(avl.imprimirPreOrdem());
+                    }
+                    case 6 -> {
+                        IO.println("Produtos em pós-ordem:");
+                        IO.println(avl.imprimirPosOrdem());
+                    }
+                    case 7 -> {
                         avl.limpar();
-                        System.out.println("Árvore AVL de produtos limpa!");
-                        break;
-                    case 0:
-                        System.out.println("Saindo...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida!");
+                        IO.println("Árvore AVL de produtos limpa!");
+                    }
+                    case 0 -> IO.println("Saindo...");
+                    default -> IO.println("Opção inválida!");
                 }
             } catch (IllegalArgumentException e) {
-                System.out.println("Erro: " + e.getMessage());
+                IO.println("Erro: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Erro inesperado: " + e.getMessage());
+                IO.println("Erro inesperado: " + e.getMessage());
             }
         } while (opcao != 0);
-        scanner.close();
     }
 
     /**
      * Exibe o menu principal de opções.
      */
     private static void exibirMenu() {
-        System.out.println("\n==== Árvore AVL de Produtos ====");
-        System.out.println("1. Inserir produto");
-        System.out.println("2. Buscar produto");
-        System.out.println("3. Remover produto");
-        System.out.println("4. Imprimir produtos em ordem");
-        System.out.println("5. Imprimir produtos em pré-ordem");
-        System.out.println("6. Imprimir produtos em pós-ordem");
-        System.out.println("7. Limpar árvore");
-        System.out.println("0. Sair");
+        IO.println("\n==== Árvore AVL de Produtos ====");
+        IO.println("1. Inserir produto");
+        IO.println("2. Buscar produto");
+        IO.println("3. Remover produto");
+        IO.println("4. Imprimir produtos em ordem");
+        IO.println("5. Imprimir produtos em pré-ordem");
+        IO.println("6. Imprimir produtos em pós-ordem");
+        IO.println("7. Limpar árvore");
+        IO.println("0. Sair");
     }
 
     /**
@@ -116,17 +107,15 @@ public class AVLProdutoMainCLI {
     /**
      * Lê um valor inteiro do usuário com tratamento de erro.
      * 
-     * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor inteiro lido
      */
-    private static int lerInt(Scanner scanner, String msg) {
+    private static int lerInt(String msg) {
         while (true) {
-            System.out.print(msg);
             try {
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(IO.readln(msg).trim());
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                IO.println("Valor inválido. Tente novamente.");
             }
         }
     }
@@ -134,18 +123,16 @@ public class AVLProdutoMainCLI {
     /**
      * Lê um valor long do usuário com tratamento de erro.
      * 
-     * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor long lido
      */
-    private static long lerLong(Scanner scanner, String msg) {
+    private static long lerLong(String msg) {
         while (true) {
-            System.out.print(msg);
             try {
-                return Long.parseLong(scanner.nextLine());
+                return Long.parseLong(IO.readln(msg).trim());
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                IO.println("Valor inválido. Tente novamente.");
             }
         }
     }
-} 
+}

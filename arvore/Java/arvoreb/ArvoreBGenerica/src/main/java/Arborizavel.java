@@ -14,11 +14,11 @@
  * arvore.inserir(15);
  * 
  * if (arvore.existe(10)) {
- *     System.out.println("Elemento encontrado!");
+ *     IO.println("Elemento encontrado!");
  * }
  * 
  * String elementos = arvore.imprimirEmOrdem();
- * System.out.println("Elementos em ordem: " + elementos);
+ * IO.println("Elementos em ordem: " + elementos);
  * }</pre>
  * 
  * @param <T> Tipo dos dados armazenados na árvore. Deve implementar Comparable.

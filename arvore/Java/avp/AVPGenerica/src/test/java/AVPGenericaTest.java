@@ -94,20 +94,20 @@ public class AVPGenericaTest {
         avpDouble.inserir(2.71);
         avpDouble.inserir(1.41);
         
-        System.out.println("Antes da remoção:");
-        System.out.println("3.14 existe: " + avpDouble.existe(3.14));
-        System.out.println("2.71 existe: " + avpDouble.existe(2.71));
-        System.out.println("1.41 existe: " + avpDouble.existe(1.41));
-        System.out.println("Árvore em ordem: " + avpDouble.imprimirEmOrdem());
+        IO.println("Antes da remoção:");
+        IO.println("3.14 existe: " + avpDouble.existe(3.14));
+        IO.println("2.71 existe: " + avpDouble.existe(2.71));
+        IO.println("1.41 existe: " + avpDouble.existe(1.41));
+        IO.println("Árvore em ordem: " + avpDouble.imprimirEmOrdem());
         
         Double removido = avpDouble.apagar(2.71);
-        System.out.println("Elemento removido: " + removido);
+        IO.println("Elemento removido: " + removido);
         
-        System.out.println("Após a remoção:");
-        System.out.println("3.14 existe: " + avpDouble.existe(3.14));
-        System.out.println("2.71 existe: " + avpDouble.existe(2.71));
-        System.out.println("1.41 existe: " + avpDouble.existe(1.41));
-        System.out.println("Árvore em ordem: " + avpDouble.imprimirEmOrdem());
+        IO.println("Após a remoção:");
+        IO.println("3.14 existe: " + avpDouble.existe(3.14));
+        IO.println("2.71 existe: " + avpDouble.existe(2.71));
+        IO.println("1.41 existe: " + avpDouble.existe(1.41));
+        IO.println("Árvore em ordem: " + avpDouble.imprimirEmOrdem());
         
         assertEquals(Double.valueOf(2.71), removido);
         assertFalse(avpDouble.existe(2.71));

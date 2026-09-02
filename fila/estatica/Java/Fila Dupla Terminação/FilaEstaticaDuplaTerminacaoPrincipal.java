@@ -1,36 +1,36 @@
 public class FilaEstaticaDuplaTerminacaoPrincipal {
-	public static void main(String[] args) {
+	void main() {
 		DuplamenteEnfileiravel fila = new FilaEstaticaDuplaTerminacao();
 		fila.enfileirarInicio("A");
-		System.out.println(fila.imprimirDeFrentePraTras()); //[A]
-		System.out.println(fila.tras()); //A
-		System.out.println(fila.frente()); //A	
+		IO.println(fila.imprimirDeFrentePraTras()); //[A]
+		IO.println(fila.tras()); //A
+		IO.println(fila.frente()); //A	
 		fila.enfileirarInicio("B");
 		fila.desenfileirarFim();
 		fila.enfileirarFim("C");
 		fila.atualizarInicio("Y");
 		fila.desenfileirarInicio();
 		fila.enfileirarInicio("D"); 
-		System.out.println(fila.imprimirDeTrasPraFrente()); //[C,D]
+		IO.println(fila.imprimirDeTrasPraFrente()); //[C,D]
 		fila.frente(); 
 		fila.desenfileirarFim();
-		System.out.println(fila.tras()); //D
+		IO.println(fila.tras()); //D
 		fila.enfileirarInicio("E");
 		fila.atualizarFim("R");
-		System.out.println(fila.imprimirDeTrasPraFrente());//[R,E]
+		IO.println(fila.imprimirDeTrasPraFrente());//[R,E]
 		fila.enfileirarFim("F");
 		fila.desenfileirarInicio();
 		fila.enfileirarFim("G");
-		System.out.println(fila.tras()); //G
+		IO.println(fila.tras()); //G
 		fila.enfileirarInicio("H");
 		fila.desenfileirarFim();
 		fila.enfileirarFim("I");
-		System.out.println(fila.imprimirDeFrentePraTras()); //[H,R,F,I]
+		IO.println(fila.imprimirDeFrentePraTras()); //[H,R,F,I]
 		fila.enfileirarInicio("J");
 		fila.enfileirarFim("K");
 		fila.enfileirarFim("L");
-		System.out.println(fila.frente()); //J
+		IO.println(fila.frente()); //J
 		fila.desenfileirarInicio();
-		System.out.println(fila.imprimirDeFrentePraTras()); //[H,R,F,I,K,L]
+		IO.println(fila.imprimirDeFrentePraTras()); //[H,R,F,I,K,L]
 	}
 }

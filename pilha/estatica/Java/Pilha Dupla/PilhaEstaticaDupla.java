@@ -20,7 +20,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			ponteiroTopo1++;
 			dados[ponteiroTopo1] = dado;
 		} else {
-			System.err.println("Pilha1 Cheia!");
+			IO.println("Pilha1 Cheia!");
 		}
 	}
 
@@ -29,7 +29,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia1()) {
 			dados[ponteiroTopo1] = dado;
 		} else {
-			System.err.println("Pilha1 Vazia!");
+			IO.println("Pilha1 Vazia!");
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			dadoTopo = dados[ponteiroTopo1]; 
 			ponteiroTopo1--;
 		} else {
-			System.err.println("Pilha1 Vazia!");
+			IO.println("Pilha1 Vazia!");
 		}
 		return dadoTopo;
 	}
@@ -51,7 +51,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia1()) {
 			dadoTopo = dados[ponteiroTopo1]; 
 		} else {
-			System.err.println("Pilha1 Vazia!");
+			IO.println("Pilha1 Vazia!");
 		}
 		return dadoTopo;	
 	}
@@ -86,7 +86,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			ponteiroTopo2--;
 			dados[ponteiroTopo2] = dado;
 		} else {
-			System.out.println("Pilha2 Cheia!");
+			IO.println("Pilha2 Cheia!");
 		}
 	}
 
@@ -95,7 +95,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia2()) {
 			dados[ponteiroTopo2] = dado;
 		} else {
-			System.out.println("Pilha2 Vazia!");
+			IO.println("Pilha2 Vazia!");
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			dadoTopo = dados[ponteiroTopo2]; 
 			ponteiroTopo2++;
 		} else {
-			System.out.println("Pilha2 Vazia!");
+			IO.println("Pilha2 Vazia!");
 		}
 		return dadoTopo;
 	}
@@ -117,7 +117,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia2()) {
 			dadoTopo = dados[ponteiroTopo2]; 
 		} else {
-			System.out.println("Pilha2 Vazia!");
+			IO.println("Pilha2 Vazia!");
 		}
 		return dadoTopo;	
 	}

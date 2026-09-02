@@ -24,7 +24,7 @@ import java.util.List;
  * 
  * NoArvoreB<Integer> resultado = no.buscar(10);
  * if (resultado != null) {
- *     System.out.println("Chave encontrada!");
+ *     IO.println("Chave encontrada!");
  * }
  * }</pre>
  * 
@@ -478,7 +478,7 @@ public class PaginaArvoreB<T extends Comparable<T>> {
             }
     
             // Imprime a chave atual seguida de espaço
-            System.out.print(chaves.get(i) + " ");
+            IO.print(chaves.get(i) + " ");
         }
     
         // Após imprimir todas as chaves, se o nó não for folha, imprime recursivamente o último filho

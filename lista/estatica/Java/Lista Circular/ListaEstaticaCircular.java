@@ -65,7 +65,7 @@ public class ListaEstaticaCircular implements Listavel {
 			dados[ponteiroFim] = dado;			
 			quantidade++;
 		} else {
-			System.err.println("Lista Cheia!");
+			IO.println("Lista Cheia!");
 		}			
 	}
 
@@ -80,7 +80,7 @@ public class ListaEstaticaCircular implements Listavel {
 				ponteiroAux = avancar(ponteiroAux);
 			}
 		} else {
-			System.err.println("List is empty!");
+			IO.println("List is empty!");
 		}
 		return dadosAux;
 	}
@@ -94,10 +94,10 @@ public class ListaEstaticaCircular implements Listavel {
 				int posicaoFisica = mapeamento(posicao);
 				dadoAux = dados[posicaoFisica];
 			} else {
-				System.err.println("Indice Invalido!");	
+				IO.println("Indice Invalido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");		
+			IO.println("Lista Vazia!");		
 		}
 		return dadoAux;
 	}
@@ -110,10 +110,10 @@ public class ListaEstaticaCircular implements Listavel {
 				int posicaoFisica = mapeamento(posicao);
 				dados[posicaoFisica] = novoDado;
 			} else {
-				System.err.println("Indice Invalido!");	
+				IO.println("Indice Invalido!");	
 			}
 		} else {
-			System.err.println("Lista Vazia!");
+			IO.println("Lista Vazia!");
 		}
 	}
 
@@ -133,10 +133,10 @@ public class ListaEstaticaCircular implements Listavel {
 				quantidade++;
 				avancar(ponteiroFim);
 			} else {
-				System.err.println("Invalid Index!");
+				IO.println("Invalid Index!");
 			}
 		} else {
-			System.err.println("List is empty!");
+			IO.println("List is empty!");
 		}
 	}
 	
@@ -157,10 +157,10 @@ public class ListaEstaticaCircular implements Listavel {
 				quantidade--;
 				ponteiroFim = retroceder(ponteiroFim);
 			} else {
-				System.err.println("Invalid Index!");
+				IO.println("Invalid Index!");
 			}
 		} else {
-			System.err.println("List is empty!");
+			IO.println("List is empty!");
 		}
 		return dadoAux;
 	}

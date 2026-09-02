@@ -6,8 +6,8 @@ package com.estruturasdados;
  */
 public class App 
 {
-    public static void main( String[] args )
+    void main()
     {
-        System.out.println( "Hello World!" );
+        IO.println( "Hello World!" );
     }
 }

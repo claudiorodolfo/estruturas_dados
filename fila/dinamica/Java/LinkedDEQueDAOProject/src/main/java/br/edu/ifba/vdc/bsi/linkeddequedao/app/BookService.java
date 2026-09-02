@@ -4,7 +4,6 @@ import br.edu.ifba.vdc.bsi.linkeddequedao.dao.BookDAO;
 import br.edu.ifba.vdc.bsi.linkeddequedao.dao.BookDAOLinkedDEQue;
 import br.edu.ifba.vdc.bsi.linkeddequedao.model.Book;
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class BookService {
 
@@ -12,319 +11,271 @@ public class BookService {
         return new BookDAOLinkedDEQue();
     }
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    void main() {
         BookDAO dbAccessor = BookService.getDBBook();
         
-        System.out.println("=== Sistema de Gerenciamento de Livros ===");
-        System.out.println("Usando implementação LinkedDEQue");
+        IO.println("=== Sistema de Gerenciamento de Livros ===");
+        IO.println("Usando implementação LinkedDEQue");
         
         boolean continuar = true;
         
         while (continuar) {
             mostrarMenu();
-            int opcao = lerOpcao(scanner);
+            int opcao = lerOpcao();
             
             switch (opcao) {
-                case 1:
-                    adicionarLivro(scanner, dbAccessor);
-                    break;
-                case 2:
-                    buscarLivroPorId(scanner, dbAccessor);
-                    break;
-                case 3:
-                    atualizarLivro(scanner, dbAccessor);
-                    break;
-                case 4:
-                    deletarLivro(scanner, dbAccessor);
-                    break;
-                case 5:
-                    buscarLivrosPorAutor(scanner, dbAccessor);
-                    break;
-                case 6:
-                    buscarLivroPorIsbn(scanner, dbAccessor);
-                    break;
-                case 7:
-                    buscarLivrosMaisCaros(scanner, dbAccessor);
-                    break;
-                case 8:
-                    buscarLivrosMaisBaratos(scanner, dbAccessor);
-                    break;
-                case 9:
-                    listarTodosLivros(dbAccessor);
-                    break;
-                case 10:
-                    imprimirLivros(dbAccessor);
-                    break;
-                case 11:
-                    mostrarTotalLivros(dbAccessor);
-                    break;
-                case 0:
+                case 1 -> adicionarLivro(dbAccessor);
+                case 2 -> buscarLivroPorId(dbAccessor);
+                case 3 -> atualizarLivro(dbAccessor);
+                case 4 -> deletarLivro(dbAccessor);
+                case 5 -> buscarLivrosPorAutor(dbAccessor);
+                case 6 -> buscarLivroPorIsbn(dbAccessor);
+                case 7 -> buscarLivrosMaisCaros(dbAccessor);
+                case 8 -> buscarLivrosMaisBaratos(dbAccessor);
+                case 9 -> listarTodosLivros(dbAccessor);
+                case 10 -> imprimirLivros(dbAccessor);
+                case 11 -> mostrarTotalLivros(dbAccessor);
+                case 0 -> {
                     continuar = false;
-                    System.out.println("Saindo do sistema...");
-                    break;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                    IO.println("Saindo do sistema...");
+                }
+                default -> IO.println("Opção inválida! Tente novamente.");
             }
             
             if (continuar) {
-                System.out.println("\nPressione Enter para continuar...");
-                scanner.nextLine();
+                IO.readln("\nPressione Enter para continuar...");
             }
         }
-        
-        scanner.close();
     }
     
     private static void mostrarMenu() {
-        System.out.println("\n=== MENU PRINCIPAL ===");
-        System.out.println("1.  Adicionar Livro");
-        System.out.println("2.  Buscar Livro por ID");
-        System.out.println("3.  Atualizar Livro");
-        System.out.println("4.  Deletar Livro");
-        System.out.println("5.  Buscar Livros por Autor");
-        System.out.println("6.  Buscar Livro por ISBN");
-        System.out.println("7.  Buscar Livro Mais Caro");
-        System.out.println("8.  Buscar Livro Mais Barato");
-        System.out.println("9. Listar Todos os Livros");
-        System.out.println("10. Imprimir Livros");
-        System.out.println("11. Mostrar Total de Livros");
-        System.out.println("0.  Sair");
-        System.out.print("Escolha uma opção: ");
+        IO.println("\n=== MENU PRINCIPAL ===");
+        IO.println("1.  Adicionar Livro");
+        IO.println("2.  Buscar Livro por ID");
+        IO.println("3.  Atualizar Livro");
+        IO.println("4.  Deletar Livro");
+        IO.println("5.  Buscar Livros por Autor");
+        IO.println("6.  Buscar Livro por ISBN");
+        IO.println("7.  Buscar Livro Mais Caro");
+        IO.println("8.  Buscar Livro Mais Barato");
+        IO.println("9. Listar Todos os Livros");
+        IO.println("10. Imprimir Livros");
+        IO.println("11. Mostrar Total de Livros");
+        IO.println("0.  Sair");
+        
     }
     
-    private static int lerOpcao(Scanner scanner) {
+    private static int lerOpcao() {
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(IO.readln("Escolha uma opção: ").trim());
         } catch (NumberFormatException e) {
             return -1;
         }
     }
     
-    private static void adicionarLivro(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== ADICIONAR LIVRO ===");
+    private static void adicionarLivro(BookDAO dbAccessor) {
+        IO.println("\n=== ADICIONAR LIVRO ===");
         
         try {
-            System.out.print("ID: ");
-            Long id = Long.parseLong(scanner.nextLine());
+            Long id = Long.parseLong(IO.readln("ID: ").trim());
             
-            System.out.print("Título: ");
-            String titulo = scanner.nextLine();
+            String titulo = IO.readln("Título: ");
             
-            System.out.print("Autor: ");
-            String autor = scanner.nextLine();
+            String autor = IO.readln("Autor: ");
             
-            System.out.print("Data de Publicação (yyyy-mm-dd): ");
-            String dataStr = scanner.nextLine();
+            String dataStr = IO.readln("Data de Publicação (yyyy-mm-dd): ");
             LocalDate dataPublicacao = LocalDate.parse(dataStr);
             
-            System.out.print("ISBN: ");
-            String isbn = scanner.nextLine();
+            String isbn = IO.readln("ISBN: ");
             
-            System.out.print("Preço: ");
-            Double preco = Double.parseDouble(scanner.nextLine());
+            Double preco = Double.parseDouble(IO.readln("Preço: ").trim());
             
             Book livro = new Book(id, titulo, autor, dataPublicacao, isbn, preco);
             dbAccessor.addBook(livro);
             
-            System.out.println("Livro adicionado com sucesso!");
+            IO.println("Livro adicionado com sucesso!");
             
         } catch (Exception e) {
-            System.out.println("Erro ao adicionar livro: " + e.getMessage());
+            IO.println("Erro ao adicionar livro: " + e.getMessage());
         }
     }
     
-    private static void buscarLivroPorId(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVRO POR ID ===");
-        System.out.print("Digite o ID do livro: ");
-        
+    private static void buscarLivroPorId(BookDAO dbAccessor) {
+        IO.println("\n=== BUSCAR LIVRO POR ID ===");
         try {
-            Long id = Long.parseLong(scanner.nextLine());
+            Long id = Long.parseLong(IO.readln("Digite o ID do livro: ").trim());
             Book livro = dbAccessor.getBookById(id);
             
             if (livro != null) {
-                System.out.println("Livro encontrado:");
-                System.out.println(livro.toString());
+                IO.println("Livro encontrado:");
+                IO.println(livro.toString());
             } else {
-                System.out.println("Livro não encontrado!");
+                IO.println("Livro não encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar livro: " + e.getMessage());
+            IO.println("Erro ao buscar livro: " + e.getMessage());
         }
     }
     
-    private static void atualizarLivro(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== ATUALIZAR LIVRO ===");
-        System.out.print("Digite o ID do livro a ser atualizado: ");
-        
+    private static void atualizarLivro(BookDAO dbAccessor) {
+        IO.println("\n=== ATUALIZAR LIVRO ===");
         try {
-            Long id = Long.parseLong(scanner.nextLine());
+            Long id = Long.parseLong(IO.readln("Digite o ID do livro a ser atualizado: ").trim());
             Book livroExistente = dbAccessor.getBookById(id);
             
             if (livroExistente == null) {
-                System.out.println("Livro não encontrado!");
+                IO.println("Livro não encontrado!");
                 return;
             }
             
-            System.out.println("Livro atual: " + livroExistente.toString());
-            System.out.println("\nDigite os novos dados:");
+            IO.println("Livro atual: " + livroExistente.toString());
+            IO.println("\nDigite os novos dados:");
             
-            System.out.print("Novo título: ");
-            String novoTitulo = scanner.nextLine();
+            String novoTitulo = IO.readln("Novo título: ");
             
-            System.out.print("Novo autor: ");
-            String novoAutor = scanner.nextLine();
+            String novoAutor = IO.readln("Novo autor: ");
             
-            System.out.print("Nova data de publicação (yyyy-mm-dd): ");
-            String novaDataStr = scanner.nextLine();
+            String novaDataStr = IO.readln("Nova data de publicação (yyyy-mm-dd): ");
             LocalDate novaDataPublicacao = LocalDate.parse(novaDataStr);
             
-            System.out.print("Novo ISBN: ");
-            String novoIsbn = scanner.nextLine();
+            String novoIsbn = IO.readln("Novo ISBN: ");
             
-            System.out.print("Novo preço: ");
-            Double novoPreco = Double.parseDouble(scanner.nextLine());
+            Double novoPreco = Double.parseDouble(IO.readln("Novo preço: ").trim());
             
             Book livroAtualizado = new Book(id, novoTitulo, novoAutor, novaDataPublicacao, novoIsbn, novoPreco);
             dbAccessor.updateBook(livroAtualizado);
             
-            System.out.println("Livro atualizado com sucesso!");
+            IO.println("Livro atualizado com sucesso!");
             
         } catch (Exception e) {
-            System.out.println("Erro ao atualizar livro: " + e.getMessage());
+            IO.println("Erro ao atualizar livro: " + e.getMessage());
         }
     }
     
-    private static void deletarLivro(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== DELETAR LIVRO ===");
-        System.out.print("Digite o ID do livro a ser deletado: ");
-        
+    private static void deletarLivro(BookDAO dbAccessor) {
+        IO.println("\n=== DELETAR LIVRO ===");
         try {
-            Long id = Long.parseLong(scanner.nextLine());
+            Long id = Long.parseLong(IO.readln("Digite o ID do livro a ser deletado: ").trim());
             Book livro = dbAccessor.deleteBook(id);
             
             if (livro != null) {
-                System.out.println("Livro deletado com sucesso:");
-                System.out.println(livro.toString());
+                IO.println("Livro deletado com sucesso:");
+                IO.println(livro.toString());
             } else {
-                System.out.println("Livro não encontrado!");
+                IO.println("Livro não encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao deletar livro: " + e.getMessage());
+            IO.println("Erro ao deletar livro: " + e.getMessage());
         }
     }
     
-    private static void buscarLivrosPorAutor(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVROS POR AUTOR ===");
-        System.out.print("Digite o nome do autor: ");
-        
+    private static void buscarLivrosPorAutor(BookDAO dbAccessor) {
+        IO.println("\n=== BUSCAR LIVROS POR AUTOR ===");
         try {
-            String autor = scanner.nextLine();
+            String autor = IO.readln("Digite o nome do autor: ");
             Book[] livros = dbAccessor.getBooksByAuthor(autor);
             
             if (livros != null && livros.length > 0) {
-                System.out.println("Livros encontrados:");
+                IO.println("Livros encontrados:");
                 for (Book livro : livros) {
-                    System.out.println(livro.toString());
+                    IO.println(livro.toString());
                 }
             } else {
-                System.out.println("Nenhum livro encontrado para este autor!");
+                IO.println("Nenhum livro encontrado para este autor!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar livros: " + e.getMessage());
+            IO.println("Erro ao buscar livros: " + e.getMessage());
         }
     }
     
-    private static void buscarLivroPorIsbn(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVRO POR ISBN ===");
-        System.out.print("Digite o ISBN: ");
-        
+    private static void buscarLivroPorIsbn(BookDAO dbAccessor) {
+        IO.println("\n=== BUSCAR LIVRO POR ISBN ===");
         try {
-            String isbn = scanner.nextLine();
+            String isbn = IO.readln("Digite o ISBN: ");
             Book livro = dbAccessor.getBookByIsbn(isbn);
             
             if (livro != null) {
-                System.out.println("Livro encontrado:");
-                System.out.println(livro.toString());
+                IO.println("Livro encontrado:");
+                IO.println(livro.toString());
             } else {
-                System.out.println("Livro não encontrado!");
+                IO.println("Livro não encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar livro: " + e.getMessage());
+            IO.println("Erro ao buscar livro: " + e.getMessage());
         }
     }
     
-    private static void buscarLivrosMaisCaros(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVRO MAIS CAROS ===");        
+    private static void buscarLivrosMaisCaros(BookDAO dbAccessor) {
+        IO.println("\n=== BUSCAR LIVRO MAIS CAROS ===");        
         try {
             Book livro = dbAccessor.getMostExpensiveBook();
             
             if (livro != null) {
-                System.out.println("Livro mais caros:");
-                System.out.println(livro.toString());
+                IO.println("Livro mais caros:");
+                IO.println(livro.toString());
             } else {
-                System.out.println("Nenhum livro encontrado!");
+                IO.println("Nenhum livro encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar livros: " + e.getMessage());
+            IO.println("Erro ao buscar livros: " + e.getMessage());
         }
     }
     
-    private static void buscarLivrosMaisBaratos(Scanner scanner, BookDAO dbAccessor) {
-        System.out.println("\n=== BUSCAR LIVROS MAIS BARATOS ===");       
+    private static void buscarLivrosMaisBaratos(BookDAO dbAccessor) {
+        IO.println("\n=== BUSCAR LIVROS MAIS BARATOS ===");       
         try {
             Book livro = dbAccessor.getCheapestBook();
             
             if (livro != null) {
-                System.out.println("Livro mais baratos:");
-                System.out.println(livro.toString());
+                IO.println("Livro mais baratos:");
+                IO.println(livro.toString());
             } else {
-                System.out.println("Nenhum livro encontrado!");
+                IO.println("Nenhum livro encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao buscar livro: " + e.getMessage());
+            IO.println("Erro ao buscar livro: " + e.getMessage());
         }
     }  
     
     private static void listarTodosLivros(BookDAO dbAccessor) {
-        System.out.println("\n=== LISTAR TODOS OS LIVROS ===");
+        IO.println("\n=== LISTAR TODOS OS LIVROS ===");
         
         try {
             Book[] livros = dbAccessor.getAllBooks();
             
             if (livros != null && livros.length > 0) {
-                System.out.println("Todos os livros:");
+                IO.println("Todos os livros:");
                 for (Book livro : livros) {
-                    System.out.println(livro.toString());
+                    IO.println(livro.toString());
                 }
             } else {
-                System.out.println("Nenhum livro encontrado!");
+                IO.println("Nenhum livro encontrado!");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao listar livros: " + e.getMessage());
+            IO.println("Erro ao listar livros: " + e.getMessage());
         }
     }
     
     private static void imprimirLivros(BookDAO dbAccessor) {
-        System.out.println("\n=== IMPRIMIR LIVROS (toString) ===");
+        IO.println("\n=== IMPRIMIR LIVROS (toString) ===");
         
         try {
             String resultado = dbAccessor.printBooks();
-            System.out.println("Resultado:");
-            System.out.println(resultado);
+            IO.println("Resultado:");
+            IO.println(resultado);
         } catch (Exception e) {
-            System.out.println("Erro ao imprimir livros: " + e.getMessage());
+            IO.println("Erro ao imprimir livros: " + e.getMessage());
         }
     }
     
     private static void mostrarTotalLivros(BookDAO dbAccessor) {
-        System.out.println("\n=== TOTAL DE LIVROS ===");
+        IO.println("\n=== TOTAL DE LIVROS ===");
         
         try {
             int total = dbAccessor.getTotalBooks();
-            System.out.println("Total de livros: " + total);
+            IO.println("Total de livros: " + total);
         } catch (Exception e) {
-            System.out.println("Erro ao contar livros: " + e.getMessage());
+            IO.println("Erro ao contar livros: " + e.getMessage());
         }
     }
 }

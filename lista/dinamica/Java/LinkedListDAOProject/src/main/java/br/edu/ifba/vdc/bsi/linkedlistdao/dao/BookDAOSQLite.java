@@ -45,7 +45,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         bookRepositorySQLite.insertBook(book);
         
-        System.out.println("Livro adicionado com sucesso: " + book.getTitle());
+        IO.println("Livro adicionado com sucesso: " + book.getTitle());
     }
     
     /**
@@ -58,7 +58,7 @@ public class BookDAOSQLite implements BookDAO {
         // Regra de negócio: retornar todos os livros ordenados
         Book[] books = bookRepositorySQLite.selectAllBooks();
         
-        System.out.println("Total de livros recuperados: " + books.length);
+        IO.println("Total de livros recuperados: " + books.length);
         
         return books;
     }
@@ -83,7 +83,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         bookRepositorySQLite.updateBook(newBook);
         
-        System.out.println("Livro atualizado com sucesso: " + newBook.getTitle());
+        IO.println("Livro atualizado com sucesso: " + newBook.getTitle());
     }
     
     /**
@@ -103,7 +103,7 @@ public class BookDAOSQLite implements BookDAO {
         // Delegar para o repository
         Book deletedBook = bookRepositorySQLite.deleteBook(id);
         
-        System.out.println("Livro excluído com sucesso: " + deletedBook.getTitle());
+        IO.println("Livro excluído com sucesso: " + deletedBook.getTitle());
         
         return deletedBook;
     }
@@ -342,12 +342,12 @@ public class BookDAOSQLite implements BookDAO {
     @Override
     public void clearAllBooks() {
         // Regra de negócio: confirmar operação destrutiva
-        System.out.println("Operação destrutiva: removendo todos os livros");
+        IO.println("Operação destrutiva: removendo todos os livros");
         
         // Delegar para o repository
         bookRepositorySQLite.clearAllBooks();
         
-        System.out.println("Todos os livros foram removidos");
+        IO.println("Todos os livros foram removidos");
     }
     
     /**

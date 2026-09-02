@@ -1,86 +1,71 @@
 package com.estruturasdados;
 
-import java.util.List;
-import java.util.Scanner;
-
 /**
  * Classe principal com exemplo de uso da árvore B+ (ArvoreBMais).
  */
 public class ArvoreBMaisPrincipal {
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    void main() {
         ArvoreBMais<Integer, String> arvore = new ArvoreBMais<>(3); // Ordem 3
         
-        System.out.println("=== Árvore B+ (B Mais) ===");
-        System.out.println("Comandos:");
-        System.out.println("1 - Inserir chave-valor");
-        System.out.println("2 - Buscar por chave");
-        System.out.println("3 - Remover por chave");
-        System.out.println("4 - Mostrar todos os valores");
-        System.out.println("5 - Mostrar árvore");
-        System.out.println("6 - Limpar árvore");
-        System.out.println("0 - Sair");
+        IO.println("=== Árvore B+ (B Mais) ===");
+        IO.println("Comandos:");
+        IO.println("1 - Inserir chave-valor");
+        IO.println("2 - Buscar por chave");
+        IO.println("3 - Remover por chave");
+        IO.println("4 - Mostrar todos os valores");
+        IO.println("5 - Mostrar árvore");
+        IO.println("6 - Limpar árvore");
+        IO.println("0 - Sair");
         
         int opcao;
         do {
-            System.out.print("\nEscolha uma opção: ");
-            opcao = scanner.nextInt();
+            opcao = Integer.parseInt(IO.readln("\nEscolha uma opção: ").trim());
             
             switch (opcao) {
-                case 1:
-                    System.out.print("Chave (inteiro): ");
-                    int chave = scanner.nextInt();
-                    scanner.nextLine(); // Consumir quebra de linha
-                    System.out.print("Valor (string): ");
-                    String valor = scanner.nextLine();
+                case 1 -> {
+                    int chave = Integer.parseInt(IO.readln("Chave (inteiro): ").trim());
+                    String valor = IO.readln("Valor (string): ");
                     arvore.inserir(chave, valor);
-                    System.out.println("Inserido: " + chave + " -> " + valor);
-                    break;
-                case 2:
-                    System.out.print("Chave a buscar: ");
-                    int chaveBusca = scanner.nextInt();
+                    IO.println("Inserido: " + chave + " -> " + valor);
+                }
+                case 2 -> {
+                    int chaveBusca = Integer.parseInt(IO.readln("Chave a buscar: ").trim());
                     String resultado = arvore.buscar(chaveBusca);
                     if (resultado != null) {
-                        System.out.println("Encontrado: " + chaveBusca + " -> " + resultado);
+                        IO.println("Encontrado: " + chaveBusca + " -> " + resultado);
                     } else {
-                        System.out.println("Chave não encontrada: " + chaveBusca);
+                        IO.println("Chave não encontrada: " + chaveBusca);
                     }
-                    break;
-                case 3:
-                    System.out.print("Chave a remover: ");
-                    int chaveRemover = scanner.nextInt();
+                }
+                case 3 -> {
+                    int chaveRemover = Integer.parseInt(IO.readln("Chave a remover: ").trim());
                     String removido = arvore.remover(chaveRemover);
                     if (removido != null) {
-                        System.out.println("Removido: " + chaveRemover + " -> " + removido);
+                        IO.println("Removido: " + chaveRemover + " -> " + removido);
                     } else {
-                        System.out.println("Chave não encontrada para remoção: " + chaveRemover);
+                        IO.println("Chave não encontrada para remoção: " + chaveRemover);
                     }
-                    break;
-                case 4:
-                    List<String> todosValores = arvore.obterTodosOsValores();
-                    System.out.println("Todos os valores em ordem:");
+                }
+                case 4 -> {
+                    String[] todosValores = arvore.obterTodosOsValores().toArray(new String[0]);
+                    IO.println("Todos os valores em ordem:");
                     for (String val : todosValores) {
-                        System.out.print(val + " ");
+                        IO.print(val + " ");
                     }
-                    System.out.println();
-                    break;
-                case 5:
-                    System.out.println("Estrutura da árvore:");
-                    System.out.println(arvore);
-                    break;
-                case 6:
+                    IO.println();
+                }
+                case 5 -> {
+                    IO.println("Estrutura da árvore:");
+                    IO.println(arvore);
+                }
+                case 6 -> {
                     arvore.limpar();
-                    System.out.println("Árvore limpa!");
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
+                    IO.println("Árvore limpa!");
+                }
+                case 0 -> IO.println("Saindo...");
+                default -> IO.println("Opção inválida!");
             }
         } while (opcao != 0);
-        
-        scanner.close();
     }
-} 
+}

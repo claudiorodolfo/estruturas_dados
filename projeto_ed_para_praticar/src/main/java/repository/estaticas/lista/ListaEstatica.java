@@ -38,10 +38,10 @@ public class ListaEstatica implements Listavel {
                 dados[mapearPosicaoFisica(posicao)] = objeto;
                 quantidade++;
             } else {
-                System.err.println("Posição inválida");
+                IO.println("Posição inválida");
             }
         } else {
-            System.err.println("Lista cheia");
+            IO.println("Lista cheia");
         }
     }
 
@@ -84,7 +84,7 @@ public class ListaEstatica implements Listavel {
             }
             quantidade--;
         } else {
-            System.err.println("Posição inválida");
+            IO.println("Posição inválida");
         }
         return objetoRetorno;
     }
@@ -126,7 +126,7 @@ public class ListaEstatica implements Listavel {
             dados[ponteiroFim] = objeto;
             quantidade++;
         } else {
-            System.err.println("Lista cheia");
+            IO.println("Lista cheia");
         }
     }
 
@@ -136,7 +136,7 @@ public class ListaEstatica implements Listavel {
             int posicaoFisica = mapearPosicaoFisica(posicao); 
             dados[posicaoFisica] = objeto;
         } else {
-            System.err.println("Posição inválida");
+            IO.println("Posição inválida");
         }
     }
 
@@ -147,7 +147,7 @@ public class ListaEstatica implements Listavel {
             int posicaoFisica = mapearPosicaoFisica(posicao);
             objetoRetorno = dados[posicaoFisica];
         } else {
-            System.err.println("Posição inválida");
+            IO.println("Posição inválida");
         }
         return objetoRetorno;
     }

@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Interface de linha de comando para manipular uma árvore vermelho e preto genérica.
  * Permite inserir, buscar, remover e imprimir elementos de qualquer tipo Comparable.
@@ -13,111 +11,98 @@ import java.util.Scanner;
 public class AVPGenericaMainCLI {
     /**
      * Método principal. Inicia o menu interativo para manipulação da árvore vermelho e preto.
-     * @param args Argumentos de linha de comando (não utilizados).
      */
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    void main() {
         AVP<String> avp = new AVP<>();
         int opcao;
         do {
             exibirMenu();
-            opcao = lerInt(scanner, "Escolha uma opção: ");
+            opcao = lerInt("Escolha uma opção: ");
             try {
                 switch (opcao) {
-                    case 1:
-                        System.out.print("Digite o elemento a inserir: ");
-                        String elemento = scanner.nextLine();
+                    case 1 -> {
+                        String elemento = IO.readln("Digite o elemento a inserir: ");
                         if (elemento.trim().isEmpty()) {
-                            System.out.println("Erro: Elemento não pode ser vazio.");
-                            break;
+                        IO.println("Erro: Elemento não pode ser vazio.");
+
                         }
                         avp.inserir(elemento);
-                        System.out.println("Elemento inserido: " + elemento);
-                        break;
-                    case 2:
-                        System.out.print("Digite o elemento a buscar: ");
-                        String busca = scanner.nextLine();
+                        IO.println("Elemento inserido: " + elemento);
+                    }
+                    case 2 -> {
+                        String busca = IO.readln("Digite o elemento a buscar: ");
                         if (busca.trim().isEmpty()) {
-                            System.out.println("Erro: Elemento não pode ser vazio.");
-                            break;
+                        IO.println("Erro: Elemento não pode ser vazio.");
+
                         }
                         if (avp.existe(busca)) {
-                            System.out.println("Elemento encontrado: " + busca);
+                            IO.println("Elemento encontrado: " + busca);
                         } else {
-                            System.out.println("Elemento não encontrado.");
+                            IO.println("Elemento não encontrado.");
                         }
-                        break;
-                    case 3:
-                        System.out.print("Digite o elemento a remover: ");
-                        String remover = scanner.nextLine();
+                    }
+                    case 3 -> {
+                        String remover = IO.readln("Digite o elemento a remover: ");
                         if (remover.trim().isEmpty()) {
-                            System.out.println("Erro: Elemento não pode ser vazio.");
-                            break;
+                        IO.println("Erro: Elemento não pode ser vazio.");
+
                         }
                         String removido = avp.apagar(remover);
                         if (removido != null) {
-                            System.out.println("Elemento removido: " + removido);
+                            IO.println("Elemento removido: " + removido);
                         } else {
-                            System.out.println("Elemento não encontrado para remoção.");
+                            IO.println("Elemento não encontrado para remoção.");
                         }
-                        break;
-                    case 4:
-                        System.out.println("Elementos em ordem:");
-                        System.out.println(avp.imprimirEmOrdem());
-                        break;
-                    case 5:
-                        System.out.println("Elementos em pré-ordem:");
-                        System.out.println(avp.imprimirPreOrdem());
-                        break;
-                    case 6:
-                        System.out.println("Elementos em pós-ordem:");
-                        System.out.println(avp.imprimirPosOrdem());
-                        break;
-                    case 7:
+                    }
+                    case 4 -> {
+                        IO.println("Elementos em ordem:");
+                        IO.println(avp.imprimirEmOrdem());
+                    }
+                    case 5 -> {
+                        IO.println("Elementos em pré-ordem:");
+                        IO.println(avp.imprimirPreOrdem());
+                    }
+                    case 6 -> {
+                        IO.println("Elementos em pós-ordem:");
+                        IO.println(avp.imprimirPosOrdem());
+                    }
+                    case 7 -> {
                         avp.limpar();
-                        System.out.println("Árvore vermelho e preto genérica limpa!");
-                        break;
-                    case 8:
-                        testarComInteiros();
-                        break;
-                    case 9:
-                        testarComDecimais();
-                        break;
-                    case 0:
-                        System.out.println("Saindo...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida!");
+                        IO.println("Árvore vermelho e preto genérica limpa!");
+                    }
+                    case 8 -> testarComInteiros();
+                    case 9 -> testarComDecimais();
+                    case 0 -> IO.println("Saindo...");
+                    default -> IO.println("Opção inválida!");
                 }
             } catch (Exception e) {
-                System.out.println("Erro inesperado: " + e.getMessage());
+                IO.println("Erro inesperado: " + e.getMessage());
             }
         } while (opcao != 0);
-        scanner.close();
     }
 
     /**
      * Exibe o menu principal de opções para o usuário.
      */
     private static void exibirMenu() {
-        System.out.println("\n==== Árvore Vermelho e Preto Genérica ====");
-        System.out.println("1. Inserir elemento (String)");
-        System.out.println("2. Buscar elemento");
-        System.out.println("3. Remover elemento");
-        System.out.println("4. Imprimir elementos em ordem");
-        System.out.println("5. Imprimir elementos em pré-ordem");
-        System.out.println("6. Imprimir elementos em pós-ordem");
-        System.out.println("7. Limpar árvore");
-        System.out.println("8. Testar com inteiros");
-        System.out.println("9. Testar com decimais");
-        System.out.println("0. Sair");
+        IO.println("\n==== Árvore Vermelho e Preto Genérica ====");
+        IO.println("1. Inserir elemento (String)");
+        IO.println("2. Buscar elemento");
+        IO.println("3. Remover elemento");
+        IO.println("4. Imprimir elementos em ordem");
+        IO.println("5. Imprimir elementos em pré-ordem");
+        IO.println("6. Imprimir elementos em pós-ordem");
+        IO.println("7. Limpar árvore");
+        IO.println("8. Testar com inteiros");
+        IO.println("9. Testar com decimais");
+        IO.println("0. Sair");
     }
 
     /**
      * Testa a árvore com elementos inteiros, exibindo operações básicas.
      */
     private static void testarComInteiros() {
-        System.out.println("\n=== Teste com Inteiros ===");
+        IO.println("\n=== Teste com Inteiros ===");
         AVP<Integer> avpInt = new AVP<>();
         
         // Inserir alguns inteiros
@@ -129,25 +114,25 @@ public class AVPGenericaMainCLI {
         avpInt.inserir(60);
         avpInt.inserir(80);
         
-        System.out.println("Elementos em ordem: " + avpInt.imprimirEmOrdem());
-        System.out.println("Elementos em pré-ordem: " + avpInt.imprimirPreOrdem());
-        System.out.println("Elementos em pós-ordem: " + avpInt.imprimirPosOrdem());
+        IO.println("Elementos em ordem: " + avpInt.imprimirEmOrdem());
+        IO.println("Elementos em pré-ordem: " + avpInt.imprimirPreOrdem());
+        IO.println("Elementos em pós-ordem: " + avpInt.imprimirPosOrdem());
         
         // Testar busca
-        System.out.println("Existe 30? " + avpInt.existe(30));
-        System.out.println("Existe 90? " + avpInt.existe(90));
+        IO.println("Existe 30? " + avpInt.existe(30));
+        IO.println("Existe 90? " + avpInt.existe(90));
         
         // Testar remoção
         Integer removido = avpInt.apagar(30);
-        System.out.println("Removido: " + removido);
-        System.out.println("Após remoção: " + avpInt.imprimirEmOrdem());
+        IO.println("Removido: " + removido);
+        IO.println("Após remoção: " + avpInt.imprimirEmOrdem());
     }
 
     /**
      * Testa a árvore com elementos decimais, exibindo operações básicas.
      */
     private static void testarComDecimais() {
-        System.out.println("\n=== Teste com Decimais ===");
+        IO.println("\n=== Teste com Decimais ===");
         AVP<Double> avpDouble = new AVP<>();
         
         // Inserir alguns decimais
@@ -157,35 +142,33 @@ public class AVPGenericaMainCLI {
         avpDouble.inserir(2.23);
         avpDouble.inserir(1.73);
         
-        System.out.println("Elementos em ordem: " + avpDouble.imprimirEmOrdem());
-        System.out.println("Elementos em pré-ordem: " + avpDouble.imprimirPreOrdem());
-        System.out.println("Elementos em pós-ordem: " + avpDouble.imprimirPosOrdem());
+        IO.println("Elementos em ordem: " + avpDouble.imprimirEmOrdem());
+        IO.println("Elementos em pré-ordem: " + avpDouble.imprimirPreOrdem());
+        IO.println("Elementos em pós-ordem: " + avpDouble.imprimirPosOrdem());
         
         // Testar busca
-        System.out.println("Existe 3.14? " + avpDouble.existe(3.14));
-        System.out.println("Existe 2.5? " + avpDouble.existe(2.5));
+        IO.println("Existe 3.14? " + avpDouble.existe(3.14));
+        IO.println("Existe 2.5? " + avpDouble.existe(2.5));
         
         // Testar remoção
         Double removido = avpDouble.apagar(2.71);
-        System.out.println("Removido: " + removido);
-        System.out.println("Após remoção: " + avpDouble.imprimirEmOrdem());
+        IO.println("Removido: " + removido);
+        IO.println("Após remoção: " + avpDouble.imprimirEmOrdem());
     }
 
     /**
      * Lê um valor inteiro do usuário com tratamento de erro.
      *
-     * @param scanner Scanner para leitura
      * @param msg Mensagem a ser exibida
      * @return Valor inteiro lido
      */
-    private static int lerInt(Scanner scanner, String msg) {
+    private static int lerInt(String msg) {
         while (true) {
-            System.out.print(msg);
             try {
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(IO.readln(msg).trim());
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                IO.println("Valor inválido. Tente novamente.");
             }
         }
     }
-} 
+}

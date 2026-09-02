@@ -35,17 +35,10 @@ public class SortedLinkedList extends LinkedList<Integer> implements Sortable {
      */
     public void sort(SortOrder order, SortAlgorithm algorithm) {
         switch (algorithm) {
-            case BUBBLE_SORT:
-                bubbleSort(order);
-                break;
-            case INSERTION_SORT:
-                insertionSort(order);
-                break;
-            case SELECTION_SORT:
-                selectionSort(order);
-                break;
-            default:
-                bubbleSort(order); // Fallback para bubble sort
+            case BUBBLE_SORT -> bubbleSort(order);
+            case INSERTION_SORT -> insertionSort(order);
+            case SELECTION_SORT -> selectionSort(order);
+            default -> bubbleSort(order); // Fallback para bubble sort
         }
     }
 

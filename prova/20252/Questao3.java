@@ -30,7 +30,7 @@ public class Questao3 {
         //////////////////////
     }
     
-    public static void main(String[] args) {
+    void main(){
         BinaryHeap filaPacientes = new BinaryHeap();
 
         filaPacientes.enqueue(new Patient("João", 30, 1));
@@ -39,10 +39,10 @@ public class Questao3 {
         filaPacientes.enqueue(new Patient("Maria", 25, 2));
         filaPacientes.enqueue(new Patient("Ana", 35, 3));
 
-        System.out.println("Atendendo pacientes por ordem de prioridade:");
+        IO.println("Atendendo pacientes por ordem de prioridade:");
         while (!filaPacientes.isEmpty()) {
             Patient p = (Patient) filaPacientes.dequeue();
-            System.out.println("Paciente:" + p.name);
+            IO.println("Paciente:" + p.name);
         }
     }
 }
