@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "lista/dinamica/Java/Lista Dinâmica Genérica/src"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out ListaDinamicaGenericaMainCLI
 /**
  * Classe que demonstra o uso da lista dinâmica genérica através de uma interface de linha de comando.
  * Esta classe implementa um menu interativo que permite ao usuário testar todas as operações

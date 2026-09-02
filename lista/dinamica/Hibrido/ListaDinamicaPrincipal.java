@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd lista/dinamica/Hibrido
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out ListaDinamicaPrincipal
 public class ListaDinamicaPrincipal {
 	void main() {
 		Listavel lista = new ListaDinamica();

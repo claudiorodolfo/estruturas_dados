@@ -1,5 +1,6 @@
-//Para compilar os arquivos. javac *.java
-//Para rodar o programa. java PilhaEstaticaPrincipal
+//cd pilha/estatica/Java/Pilha
+//javac -d out *.java
+//java -cp out PilhaEstaticaPrincipal
 public class PilhaEstaticaPrincipal {
 	void main() {
 		Empilhavel pilha = new PilhaEstatica(7);

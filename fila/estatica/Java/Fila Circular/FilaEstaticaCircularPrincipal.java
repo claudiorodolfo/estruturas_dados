@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "fila/estatica/Java/Fila Circular"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out FilaEstaticaCircularPrincipal
 public class FilaEstaticaCircularPrincipal {
 	void main() {
 		Enfileiravel fila = new FilaEstaticaCircular();

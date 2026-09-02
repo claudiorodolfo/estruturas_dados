@@ -1,10 +1,9 @@
-//Executar todos os comandos dentro da pasta "Pilha Dinâmica Genérica"
-//compilar fonte: javac src/Empilhavel.java -d bin
-//ou
-//compilar fonte: javac src/*.java -d bin
-
-//executar fonte: java -cp .;bin PilhaDinamicaGenericaMainCLI
-
+// Acessar o diretório dos fontes:
+// cd "pilha/dinamica/Java/Pilha Dinâmica Genérica/src"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out PilhaDinamicaGenericaMainCLI
 import java.util.NoSuchElementException;
 
 /**

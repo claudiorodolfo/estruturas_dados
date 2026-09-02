@@ -1,3 +1,10 @@
+// Acessar o diretório dos fontes:
+// cd lista/estatica/Java/prova
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out Questao2
+// java -cp out Questao4
 //Questão 1
 
 public interface ControleReservasAereas {

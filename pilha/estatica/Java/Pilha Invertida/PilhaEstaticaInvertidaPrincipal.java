@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "pilha/estatica/Java/Pilha Invertida"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out PilhaEstaticaInvertidaPrincipal
 public class PilhaEstaticaInvertidaPrincipal {
 	void main() {
 		Empilhavel pilha = new PilhaEstaticaInvertida(7);

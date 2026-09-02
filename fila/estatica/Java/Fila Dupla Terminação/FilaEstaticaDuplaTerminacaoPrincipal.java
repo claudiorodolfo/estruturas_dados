@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "fila/estatica/Java/Fila Dupla Terminação"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out FilaEstaticaDuplaTerminacaoPrincipal
 public class FilaEstaticaDuplaTerminacaoPrincipal {
 	void main() {
 		DuplamenteEnfileiravel fila = new FilaEstaticaDuplaTerminacao();

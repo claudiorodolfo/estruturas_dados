@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd ordenacao/estatica/Java/Selectionsort
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out SelectionsortEstaticoPrincipal
 import java.util.Random;
 
 public class SelectionsortEstaticoPrincipal {

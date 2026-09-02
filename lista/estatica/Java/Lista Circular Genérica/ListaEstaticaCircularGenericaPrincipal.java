@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "lista/estatica/Java/Lista Circular Genérica"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out ListaEstaticaCircularGenericaPrincipal
 public class ListaEstaticaCircularGenericaPrincipal {
 	void main() {
 		Listavel<Character> lista = new ListaEstaticaCircularGenerica<>();

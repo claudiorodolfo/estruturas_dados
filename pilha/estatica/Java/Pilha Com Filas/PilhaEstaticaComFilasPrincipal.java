@@ -1,5 +1,9 @@
-//Para compilar os arquivos. javac *.java
-//Para rodar o programa. java PilhaPrincipal
+// Acessar o diretório dos fontes:
+// cd "pilha/estatica/Java/Pilha Com Filas"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out PilhaEstaticaComFilasPrincipal
 public class PilhaEstaticaComFilasPrincipal {
 	void main() {
 		Empilhavel pilha = new PilhaEstaticaComFilas(7);

@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd prova/20252
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out Questao2
 public class Questao2 {
     String[] alunosA;
     String[] alunosB;

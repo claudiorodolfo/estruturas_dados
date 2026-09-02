@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "fila/dinamica/Java/Fila Dinâmica Dupla Terminacão Genérica/src"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out FilaDinamicaDuplaTerminacaoGenericaMainCLI
 import java.util.NoSuchElementException;
 
 public class FilaDinamicaDuplaTerminacaoGenericaMainCLI {

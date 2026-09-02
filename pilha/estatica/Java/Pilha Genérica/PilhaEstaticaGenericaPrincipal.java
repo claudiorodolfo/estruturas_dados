@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "pilha/estatica/Java/Pilha Genérica"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out PilhaEstaticaGenericaPrincipal
 public class PilhaEstaticaGenericaPrincipal {
 	void main() {
 		Empilhavel<String> pilha = new PilhaEstaticaGenerica<>(7);

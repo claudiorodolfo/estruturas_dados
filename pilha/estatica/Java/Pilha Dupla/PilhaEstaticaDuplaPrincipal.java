@@ -1,3 +1,9 @@
+// Acessar o diretório dos fontes:
+// cd "pilha/estatica/Java/Pilha Dupla"
+// Compilar e enviar os .class para a pasta out:
+// javac -d out *.java
+// Executar a partir desta pasta, usando out no classpath:
+// java -cp out PilhaEstaticaDuplaPrincipal
 public class PilhaEstaticaDuplaPrincipal {
 	void main() {
 		EmpilhavelDupla pilha = new PilhaEstaticaDupla(14);		
