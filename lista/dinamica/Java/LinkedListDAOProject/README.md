@@ -1,7 +1,7 @@
 # 📚 LinkedListDAOProject
 
 [![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
-[![Maven](https://img.shields.io/badge/Maven-3.6+-blue.svg)](https://maven.apache.org/)
+[![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
 [![JUnit](https://img.shields.io/badge/JUnit-4.13.2-green.svg)](https://junit.org/junit4/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -67,7 +67,7 @@ src/
 | Tecnologia | Versão | Descrição |
 |------------|--------|-----------|
 | **Java** | 25 | Linguagem de programação |
-| **Maven** | 3.6+ | Gerenciamento de dependências |
+| **Maven** | 3.9+ | Gerenciamento de dependências |
 | **JUnit** | 4.13.2 | Framework de testes |
 | **Hamcrest** | 1.3 | Biblioteca de asserções |
 | **JavaDoc** | 3.5.0 | Geração de documentação |
@@ -75,7 +75,7 @@ src/
 ## 📋 Pré-requisitos
 
 - ☕ **Java 25** ou superior
-- 🔧 **Maven 3.6+** ou superior
+- 🔧 **Maven 3.9+** ou superior
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code, Cursor)
 
 ## 🛠️ Instalação e Configuração

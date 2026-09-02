@@ -44,7 +44,7 @@ ArvoreBGenericaProduto/
 ## Pré-requisitos
 
 - **JDK** 25 ou superior
-- **Maven** 3.6+
+- **Maven** 3.9+
 
 ---
 

@@ -42,7 +42,7 @@ ABPGenerica/
 ## Pré-requisitos
 
 - Java 25 ou superior
-- Maven 3.6 ou superior
+- Maven 3.9 ou superior
 
 ## Como Usar
 

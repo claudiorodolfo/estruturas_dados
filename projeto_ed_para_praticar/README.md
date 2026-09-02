@@ -14,7 +14,7 @@ Este projeto foi criado para exercitar:
 ## Tecnologias
 
 - Java 25 (`maven.compiler.release` no `pom.xml`)
-- Apache Maven (compilação e execução)
+- Apache Maven 3.9+ (compilação e execução)
 - Programas principais com `void main()`, `IO.println` / `IO.readln` (sem `Scanner`)
 - Estruturas implementadas manualmente (sem frameworks de persistência)
 

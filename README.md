@@ -2,7 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.8+-purple.svg)](https://kotlinlang.org/)
-[![Maven](https://img.shields.io/badge/Maven-3.6+-blue.svg)](https://maven.apache.org/)
+[![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Coleção completa de implementações de estruturas de dados em Java e Kotlin**  
@@ -71,14 +71,14 @@ estruturas_dados/
 |------------|--------|-----|
 | **Java** | 25 | Linguagem principal |
 | **Kotlin** | 1.8+ | Linguagem alternativa |
-| **Maven** | 3.6+ | Gerenciamento de dependências |
+| **Maven** | 3.9+ | Gerenciamento de dependências |
 | **JUnit** | 4.13.2 | Testes unitários |
 | **Hamcrest** | 1.3 | Asserções expressivas |
 
 ## 📋 Pré-requisitos
 
 - ☕ **Java 25** ou superior
-- 🔧 **Maven 3.6+** ou superior
+- 🔧 **Maven 3.9+** ou superior
 - 🐘 **Kotlin 1.8+** (para projetos Kotlin)
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
 
