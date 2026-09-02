@@ -17,14 +17,16 @@ ABPGenerica/
 ├── src/
 │   ├── main/
 │   │   ├── java/                    # Código fonte principal
-│   │   │   ├── ABP.java            # Implementação da ABP
-│   │   │   ├── ABPMainCLI.java     # Interface de linha de comando
-│   │   │   ├── Arborizavel.java    # Interface da árvore
-│   │   │   └── NoTriplo.java       # Classe do nó da árvore
+│   │   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │   │       ├── ABP.java            # Implementação da ABP
+│   │   │       ├── ABPMainCLI.java     # Interface de linha de comando
+│   │   │       ├── Arborizavel.java    # Interface da árvore
+│   │   │       └── NoTriplo.java       # Classe do nó da árvore
 │   │   └── resources/              # Recursos da aplicação
 │   └── test/
 │       ├── java/                   # Testes unitários
-│       │   └── ABPTest.java        # Testes da ABP
+│       │   └── br/edu/ifba/vdc/bsi/ed/
+│       │       └── ABPTest.java        # Testes da ABP
 │       └── resources/              # Recursos para testes
 └── target/                         # Arquivos gerados (ignorado pelo Git)
 ```

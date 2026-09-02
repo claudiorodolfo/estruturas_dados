@@ -27,14 +27,16 @@ ArvoreBGenericaProduto/
 ├── src/
 │   ├── main/
 │   │   └── java/
-│   │       ├── Arborizavel.java
-│   │       ├── NoArvoreB.java
-│   │       ├── ArvoreB.java
-│   │       ├── Produto.java
-│   │       └── ArvoreBProdutoMainCLI.java
+│   │       └── br/edu/ifba/vdc/bsi/ed/
+│   │           ├── Arborizavel.java
+│   │           ├── PaginaArvoreB.java
+│   │           ├── ArvoreB.java
+│   │           ├── Produto.java
+│   │           └── ArvoreBProdutoMainCLI.java
 │   └── test/
 │       └── java/
-│           └── ArvoreBProdutoTest.java
+│           └── br/edu/ifba/vdc/bsi/ed/
+│               └── ArvoreBProdutoTest.java
 ```
 
 ---

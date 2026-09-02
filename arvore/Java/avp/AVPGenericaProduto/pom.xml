@@ -67,7 +67,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>AVPProdutoMainCLI</mainClass>
+                            <mainClass>br.edu.ifba.vdc.bsi.ed.AVPProdutoMainCLI</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -90,7 +90,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>AVPProdutoMainCLI</mainClass>
+                    <mainClass>br.edu.ifba.vdc.bsi.ed.AVPProdutoMainCLI</mainClass>
                 </configuration>
             </plugin>
         </plugins>

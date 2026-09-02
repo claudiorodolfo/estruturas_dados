@@ -17,15 +17,17 @@ AVLGenericaProduto/
 ├── src/
 │   ├── main/
 │   │   ├── java/                    # Código fonte principal
-│   │   │   ├── AVL.java            # Implementação da AVL
-│   │   │   ├── AVLProdutoMainCLI.java # Interface de linha de comando
-│   │   │   ├── Arborizavel.java    # Interface da árvore
-│   │   │   ├── NoTriplo.java       # Classe do nó da árvore
-│   │   │   └── Produto.java        # Classe do produto
+│   │   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │   │       ├── AVL.java            # Implementação da AVL
+│   │   │       ├── AVLProdutoMainCLI.java # Interface de linha de comando
+│   │   │       ├── Arborizavel.java    # Interface da árvore
+│   │   │       ├── NoTriplo.java       # Classe do nó da árvore
+│   │   │       └── Produto.java        # Classe do produto
 │   │   └── resources/              # Recursos da aplicação
 │   └── test/
 │       ├── java/                   # Testes unitários
-│       │   └── AVLProdutoTest.java # Testes da AVL de produtos
+│       │   └── br/edu/ifba/vdc/bsi/ed/
+│       │       └── AVLProdutoTest.java # Testes da AVL de produtos
 │       └── resources/              # Recursos para testes
 └── target/                         # Arquivos gerados (ignorado pelo Git)
 ```

@@ -19,13 +19,15 @@ A Árvore Vermelho-Preto é uma árvore binária de pesquisa auto-balanceável q
 AVPGenerica/
 ├── src/
 │   ├── main/java/
-│   │   ├── Arborizavel.java      # Interface para estruturas arbóreas
-│   │   ├── AVP.java              # Implementação da Árvore Vermelho-Preto
-│   │   ├── AVPGenericaMainCLI.java # Interface de linha de comando
-│   │   ├── Cor.java              # Enum para cores dos nós
-│   │   └── NoTriplo.java         # Nó da árvore com referência tripla
+│   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │       ├── Arborizavel.java      # Interface para estruturas arbóreas
+│   │       ├── AVP.java              # Implementação da Árvore Vermelho-Preto
+│   │       ├── AVPGenericaMainCLI.java # Interface de linha de comando
+│   │       ├── Cor.java              # Enum para cores dos nós
+│   │       └── NoTriplo.java         # Nó da árvore com referência tripla
 │   └── test/java/
-│       └── AVPGenericaTest.java  # Testes unitários
+│       └── br/edu/ifba/vdc/bsi/ed/
+│           └── AVPGenericaTest.java  # Testes unitários
 ├── pom.xml                       # Configuração Maven
 ├── .gitignore                    # Arquivos ignorados pelo Git
 └── README.md                     # Este arquivo

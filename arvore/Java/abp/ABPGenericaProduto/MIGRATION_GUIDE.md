@@ -39,7 +39,7 @@ ABPGenericaProduto/
 
 **Original:**
 ```bash
-javac src/*.java -d bin
+javac src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
 ```
 
 **Maven:**
@@ -51,7 +51,7 @@ mvn compile
 
 **Original:**
 ```bash
-java -cp .;bin ABPProdutoMainCLI
+java -cp .;bin br.edu.ifba.vdc.bsi.ed.ABPProdutoMainCLI
 ```
 
 **Maven:**
@@ -63,8 +63,8 @@ mvn exec:java
 
 **Original:**
 ```bash
-javac -cp .;bin;lib/junit-4.13.2.jar -d test test/ABPProdutoTest.java
-java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore ABPProdutoTest
+javac -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/ABPProdutoTest.java
+java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.ABPProdutoTest
 ```
 
 **Maven:**
@@ -76,7 +76,7 @@ mvn test
 
 **Original:**
 ```bash
-jar cvfe build/Main.jar ABPProdutoMainCLI -C bin .
+jar cvfe build/Main.jar br.edu.ifba.vdc.bsi.ed.ABPProdutoMainCLI -C bin .
 ```
 
 **Maven:**
@@ -88,7 +88,7 @@ mvn package
 
 **Original:**
 ```bash
-javadoc -d doc src/*.java
+javadoc -d doc src/br/edu/ifba/vdc/bsi/ed/*.java
 ```
 
 **Maven:**

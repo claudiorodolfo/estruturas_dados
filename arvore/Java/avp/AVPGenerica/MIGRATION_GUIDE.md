@@ -26,9 +26,11 @@ AVPGenerica/
 AVPGenerica/
 ├── src/
 │   ├── main/java/
-│   │   └── *.java
+│   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │       └── *.java
 │   └── test/java/
-│       └── *.java
+│       └── br/edu/ifba/vdc/bsi/ed/
+│           └── *.java
 ├── target/          # Gerado pelo Maven
 ├── pom.xml
 ├── .gitignore
@@ -46,7 +48,7 @@ AVPGenerica/
 - `src/NoTriplo.java` → `src/main/java/NoTriplo.java`
 
 #### Testes
-- `test/AVPGenericaTest.java` → `src/test/java/AVPGenericaTest.java`
+- `test/br/edu/ifba/vdc/bsi/ed/AVPGenericaTest.java` → `src/test/java/AVPGenericaTest.java`
 
 ### 3. Arquivos Removidos
 
@@ -82,7 +84,7 @@ Documentação completa do projeto com:
 ### Compilação
 ```bash
 # Antes
-javac -cp . src/*.java
+javac -cp . src/br/edu/ifba/vdc/bsi/ed/*.java
 
 # Depois
 mvn clean compile
@@ -91,8 +93,8 @@ mvn clean compile
 ### Execução de Testes
 ```bash
 # Antes
-javac -cp . test/*.java
-java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore AVPGenericaTest
+javac -cp . test/br/edu/ifba/vdc/bsi/ed/*.java
+java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.AVPGenericaTest
 
 # Depois
 mvn test
@@ -101,7 +103,7 @@ mvn test
 ### Execução da Aplicação
 ```bash
 # Antes
-java -cp . AVPGenericaMainCLI
+java -cp . br.edu.ifba.vdc.bsi.ed.AVPGenericaMainCLI
 
 # Depois
 mvn exec:java

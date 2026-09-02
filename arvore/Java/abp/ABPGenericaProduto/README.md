@@ -17,15 +17,17 @@ ABPGenericaProduto/
 ├── src/
 │   ├── main/
 │   │   ├── java/                    # Código fonte principal
-│   │   │   ├── ABP.java            # Implementação da ABP
-│   │   │   ├── ABPProdutoMainCLI.java # Interface de linha de comando
-│   │   │   ├── Arborizavel.java    # Interface da árvore
-│   │   │   ├── NoTriplo.java       # Classe do nó da árvore
-│   │   │   └── Produto.java        # Classe do produto
+│   │   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │   │       ├── ABP.java            # Implementação da ABP
+│   │   │       ├── ABPProdutoMainCLI.java # Interface de linha de comando
+│   │   │       ├── Arborizavel.java    # Interface da árvore
+│   │   │       ├── NoTriplo.java       # Classe do nó da árvore
+│   │   │       └── Produto.java        # Classe do produto
 │   │   └── resources/              # Recursos da aplicação
 │   └── test/
 │       ├── java/                   # Testes unitários
-│       │   └── ABPProdutoTest.java # Testes da ABP de produtos
+│       │   └── br/edu/ifba/vdc/bsi/ed/
+│       │       └── ABPProdutoTest.java # Testes da ABP de produtos
 │       └── resources/              # Recursos para testes
 └── target/                         # Arquivos gerados (ignorado pelo Git)
 ```

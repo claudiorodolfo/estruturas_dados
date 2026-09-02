@@ -27,13 +27,15 @@ ArvoreBGenerica/
 ├── src/
 │   ├── main/
 │   │   └── java/
-│   │       ├── Arborizavel.java
-│   │       ├── NoArvoreB.java
-│   │       ├── ArvoreB.java
-│   │       └── ArvoreBGenericaMainCLI.java
+│   │       └── br/edu/ifba/vdc/bsi/ed/
+│   │           ├── Arborizavel.java
+│   │           ├── PaginaArvoreB.java
+│   │           ├── ArvoreB.java
+│   │           └── ArvoreBMainCLI.java
 │   └── test/
 │       └── java/
-│           └── ArvoreBGenericaTest.java
+│           └── br/edu/ifba/vdc/bsi/ed/
+│               └── ArvoreBGenericaTest.java
 ```
 
 ---

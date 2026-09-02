@@ -39,7 +39,7 @@ AVLGenericaProduto/
 
 **Original:**
 ```bash
-javac -cp "lib/*" -d bin src/*.java
+javac -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java
 ```
 
 **Maven:**
@@ -51,7 +51,7 @@ mvn compile
 
 **Original:**
 ```bash
-java -cp bin AVLProdutoMainCLI
+java -cp bin br.edu.ifba.vdc.bsi.ed.AVLProdutoMainCLI
 ```
 
 **Maven:**
@@ -63,8 +63,8 @@ mvn exec:java
 
 **Original:**
 ```bash
-javac -cp "lib/*" -d bin src/*.java test/*.java
-java -cp "bin:lib/*" org.junit.runner.JUnitCore AVLProdutoTest
+javac -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java test/br/edu/ifba/vdc/bsi/ed/*.java
+java -cp "bin:lib/*" org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.AVLProdutoTest
 ```
 
 **Maven:**
@@ -76,7 +76,7 @@ mvn test
 
 **Original:**
 ```bash
-jar cvfe build/Main.jar AVLProdutoMainCLI -C bin .
+jar cvfe build/Main.jar br.edu.ifba.vdc.bsi.ed.AVLProdutoMainCLI -C bin .
 ```
 
 **Maven:**
@@ -88,7 +88,7 @@ mvn package
 
 **Original:**
 ```bash
-javadoc -d doc src/*.java
+javadoc -d doc src/br/edu/ifba/vdc/bsi/ed/*.java
 ```
 
 **Maven:**

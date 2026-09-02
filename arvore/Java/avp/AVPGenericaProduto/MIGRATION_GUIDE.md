@@ -26,9 +26,11 @@ AVPGenericaProduto/
 AVPGenericaProduto/
 ├── src/
 │   ├── main/java/
-│   │   └── *.java
+│   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │       └── *.java
 │   └── test/java/
-│       └── *.java
+│       └── br/edu/ifba/vdc/bsi/ed/
+│           └── *.java
 ├── target/          # Gerado pelo Maven
 ├── pom.xml
 ├── .gitignore
@@ -47,7 +49,7 @@ AVPGenericaProduto/
 - `src/Produto.java` → `src/main/java/Produto.java`
 
 #### Testes
-- `test/AVPProdutoTest.java` → `src/test/java/AVPProdutoTest.java`
+- `test/br/edu/ifba/vdc/bsi/ed/AVPProdutoTest.java` → `src/test/java/AVPProdutoTest.java`
 
 ### 3. Arquivos Removidos
 
@@ -83,7 +85,7 @@ Documentação completa do projeto com:
 ### Compilação
 ```bash
 # Antes
-javac -cp . src/*.java
+javac -cp . src/br/edu/ifba/vdc/bsi/ed/*.java
 
 # Depois
 mvn clean compile
@@ -92,8 +94,8 @@ mvn clean compile
 ### Execução de Testes
 ```bash
 # Antes
-javac -cp . test/*.java
-java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore AVPProdutoTest
+javac -cp . test/br/edu/ifba/vdc/bsi/ed/*.java
+java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.AVPProdutoTest
 
 # Depois
 mvn test
@@ -102,7 +104,7 @@ mvn test
 ### Execução da Aplicação
 ```bash
 # Antes
-java -cp . AVPProdutoMainCLI
+java -cp . br.edu.ifba.vdc.bsi.ed.AVPProdutoMainCLI
 
 # Depois
 mvn exec:java

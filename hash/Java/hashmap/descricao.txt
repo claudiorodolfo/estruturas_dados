@@ -1,5 +1,8 @@
 Espalhamento (Hash)
 
+Os fontes estão no pacote br.edu.ifba.vdc.bsi.ed
+(pasta br/edu/ifba/vdc/bsi/ed/).
+
 //Usados como Slots da ED Espalhamento.
 Listavel.java
 ListaEstaticaCircular.java
@@ -14,5 +17,5 @@ Cliente.java
 
 //Arquivos que realmente compõem a estrutura de dados Espalhamento (Hash).
 Espalhavel.java
-ConjuntoEspalhamento.java
-ConjuntoEspalhamentoPrincipal.java
+MapaEspalhamento.java
+MapaEspalhamentoPrincipal.java

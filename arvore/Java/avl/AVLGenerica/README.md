@@ -17,13 +17,16 @@ AVLGenerica/
 ├── src/
 │   ├── main/
 │   │   ├── java/                    # Código fonte principal
-│   │   │   ├── AVL.java            # Implementação da AVL
-│   │   │   ├── AVLPrincipalCLI.java # Interface de linha de comando
-│   │   │   ├── Arborizavel.java    # Interface da árvore
-│   │   │   └── NoTriplo.java       # Classe do nó da árvore
+│   │   │   └── br/edu/ifba/vdc/bsi/ed/
+│   │   │       ├── AVL.java            # Implementação da AVL
+│   │   │       ├── AVLPrincipalCLI.java # Interface de linha de comando
+│   │   │       ├── Arborizavel.java    # Interface da árvore
+│   │   │       └── NoTriplo.java       # Classe do nó da árvore
 │   │   └── resources/              # Recursos da aplicação
 │   └── test/
 │       ├── java/                   # Testes unitários
+│       │   └── br/edu/ifba/vdc/bsi/ed/
+│       │       └── AVLTest.java        # Testes da AVL
 │       └── resources/              # Recursos para testes
 └── target/                         # Arquivos gerados (ignorado pelo Git)
 ```

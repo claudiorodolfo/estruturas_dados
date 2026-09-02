@@ -39,7 +39,7 @@ ABPGenerica/
 
 **Original:**
 ```bash
-javac src/*.java -d bin
+javac src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
 ```
 
 **Maven:**
@@ -51,7 +51,7 @@ mvn compile
 
 **Original:**
 ```bash
-java -cp .;bin ABPMainCLI
+java -cp .;bin br.edu.ifba.vdc.bsi.ed.ABPMainCLI
 ```
 
 **Maven:**
@@ -63,8 +63,8 @@ mvn exec:java
 
 **Original:**
 ```bash
-javac -cp .;bin;lib/junit-4.13.2.jar -d test test/ABPTest.java
-java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore ABPTest
+javac -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/ABPTest.java
+java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.ABPTest
 ```
 
 **Maven:**
@@ -76,7 +76,7 @@ mvn test
 
 **Original:**
 ```bash
-jar cvfe build/Main.jar ABPMainCLI -C bin .
+jar cvfe build/Main.jar br.edu.ifba.vdc.bsi.ed.ABPMainCLI -C bin .
 ```
 
 **Maven:**
@@ -88,7 +88,7 @@ mvn package
 
 **Original:**
 ```bash
-javadoc -d doc src/*.java
+javadoc -d doc src/br/edu/ifba/vdc/bsi/ed/*.java
 ```
 
 **Maven:**
