@@ -56,7 +56,7 @@ public class BookRepositorySQLite {
             statement.setString(3, book.getAuthor());
             
             if (book.getPublicationDate() != null) {
-                statement.setDate(4, Date.valueOf(book.getPublicationDate()));
+                statement.setObject(4, book.getPublicationDate());
             } else {
                 statement.setNull(4, Types.DATE);
             }
@@ -122,7 +122,7 @@ public class BookRepositorySQLite {
             statement.setString(2, book.getAuthor());
             
             if (book.getPublicationDate() != null) {
-                statement.setDate(3, Date.valueOf(book.getPublicationDate()));
+                statement.setObject(3, book.getPublicationDate());
             } else {
                 statement.setNull(3, Types.DATE);
             }
@@ -222,7 +222,7 @@ public class BookRepositorySQLite {
     
     public Book[] selectBooksByPublicationDate(LocalDate date) {
         String sql = "SELECT * FROM book WHERE publication_date = ? ORDER BY title";
-        return executeSearchQuery(sql, Date.valueOf(date));
+        return executeSearchQuery(sql, date);
     }
     
     public Book[] selectBooksByTitle(String title) {
@@ -259,7 +259,7 @@ public class BookRepositorySQLite {
     
     public Book[] selectBooksByDateRange(LocalDate minDate, LocalDate maxDate) {
         String sql = "SELECT * FROM book WHERE publication_date BETWEEN ? AND ? ORDER BY publication_date";
-        return executeSearchQuery(sql, Date.valueOf(minDate), Date.valueOf(maxDate));
+        return executeSearchQuery(sql, minDate, maxDate);
     }
     
     public Book selectMostExpensiveBook() {
@@ -401,11 +401,7 @@ public class BookRepositorySQLite {
         String title = resultSet.getString("title");
         String author = resultSet.getString("author");
         
-        Date publicationDateSql = resultSet.getDate("publication_date");
-        LocalDate publicationDate = null;
-        if (publicationDateSql != null) {
-            publicationDate = publicationDateSql.toLocalDate();
-        }
+        LocalDate publicationDate = resultSet.getObject("publication_date", LocalDate.class);
         
         String isbn = resultSet.getString("isbn");
         Double price = resultSet.getDouble("price");
