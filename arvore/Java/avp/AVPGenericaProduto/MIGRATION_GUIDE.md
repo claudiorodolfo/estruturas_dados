@@ -85,7 +85,7 @@ Documentação completa do projeto com:
 ### Compilação
 ```bash
 # Antes
-javac -cp . src/br/edu/ifba/vdc/bsi/ed/*.java
+javac --release 25 -cp . src/br/edu/ifba/vdc/bsi/ed/*.java
 
 # Depois
 mvn clean compile
@@ -94,7 +94,7 @@ mvn clean compile
 ### Execução de Testes
 ```bash
 # Antes
-javac -cp . test/br/edu/ifba/vdc/bsi/ed/*.java
+javac --release 25 -cp . test/br/edu/ifba/vdc/bsi/ed/*.java
 java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.AVPProdutoTest
 
 # Depois

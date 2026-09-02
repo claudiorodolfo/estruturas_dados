@@ -39,7 +39,7 @@ ABPGenericaProduto/
 
 **Original:**
 ```bash
-javac src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
+javac --release 25 src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
 ```
 
 **Maven:**
@@ -63,7 +63,7 @@ mvn exec:java
 
 **Original:**
 ```bash
-javac -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/ABPProdutoTest.java
+javac --release 25 -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/ABPProdutoTest.java
 java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.ABPProdutoTest
 ```
 

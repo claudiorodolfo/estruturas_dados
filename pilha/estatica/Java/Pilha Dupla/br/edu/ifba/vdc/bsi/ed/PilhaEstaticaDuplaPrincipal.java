@@ -1,9 +1,9 @@
 // Acessar o diretório dos fontes:
 // cd "pilha/estatica/Java/Pilha Dupla"
-// Compilar e enviar os .class para a pasta out:
-// javac -d out br/edu/ifba/vdc/bsi/ed/*.java
-// Executar a partir desta pasta, usando out no classpath:
-// java -cp out br.edu.ifba.vdc.bsi.ed.PilhaEstaticaDuplaPrincipal
+// Compilar e enviar os .class para a pasta bin:
+// javac --release 25 -d bin br/edu/ifba/vdc/bsi/ed/*.java
+// Executar a partir desta pasta, usando bin no classpath:
+// java -cp bin br.edu.ifba.vdc.bsi.ed.PilhaEstaticaDuplaPrincipal
 package br.edu.ifba.vdc.bsi.ed;
 
 public class PilhaEstaticaDuplaPrincipal {

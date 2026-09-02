@@ -1,9 +1,9 @@
 // Acessar o diretório dos fontes:
 // cd arvore/Java/prova1
-// Compilar e enviar os .class para a pasta out:
-// javac -d out *.java
-// Executar a partir desta pasta, usando out no classpath:
-// java -cp out prova.SegundaChamada
+// Compilar e enviar os .class para a pasta bin:
+// javac --release 25 -d bin *.java
+// Executar a partir desta pasta, usando bin no classpath:
+// java -cp bin prova.SegundaChamada
 package prova;
 
 public class SegundaChamada {

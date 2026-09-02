@@ -39,7 +39,7 @@ AVLGenericaProduto/
 
 **Original:**
 ```bash
-javac -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java
+javac --release 25 -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java
 ```
 
 **Maven:**
@@ -63,7 +63,7 @@ mvn exec:java
 
 **Original:**
 ```bash
-javac -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java test/br/edu/ifba/vdc/bsi/ed/*.java
+javac --release 25 -cp "lib/*" -d bin src/br/edu/ifba/vdc/bsi/ed/*.java test/br/edu/ifba/vdc/bsi/ed/*.java
 java -cp "bin:lib/*" org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.AVLProdutoTest
 ```
 

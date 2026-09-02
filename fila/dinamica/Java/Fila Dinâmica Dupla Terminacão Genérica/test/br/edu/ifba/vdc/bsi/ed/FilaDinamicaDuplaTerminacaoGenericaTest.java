@@ -1,7 +1,7 @@
 //Executar todos os comandos dentro da pasta "Fila Dinâmica Dupla Terminacão Genérica"
-//compilar fonte: javac src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
+//compilar fonte: javac --release 25 src/br/edu/ifba/vdc/bsi/ed/*.java -d bin
 
-//compilar teste: javac -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/FilaDinamicaDuplaTerminacaoGenericaTest.java
+//compilar teste: javac --release 25 -cp .;bin;lib/junit-4.13.2.jar -d test test/br/edu/ifba/vdc/bsi/ed/FilaDinamicaDuplaTerminacaoGenericaTest.java
 //executar teste: java -cp .;bin;test;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore br.edu.ifba.vdc.bsi.ed.FilaDinamicaDuplaTerminacaoGenericaTest
 package br.edu.ifba.vdc.bsi.ed;
 
