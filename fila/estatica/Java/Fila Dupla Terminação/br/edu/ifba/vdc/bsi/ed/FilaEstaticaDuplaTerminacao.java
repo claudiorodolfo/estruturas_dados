@@ -129,7 +129,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 	//funciona como o imprimir de FilaEstaticaCircular
 	@Override
 	public String imprimirDeFrentePraTras() {
-		String retorno = "[";
+		String retorno = "";
 		int ponteiroAux = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {			
 			retorno += dados[ponteiroAux];
@@ -138,13 +138,13 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 			
 			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return retorno + "]";		
+		return "[" + retorno + "]";		
 	}
 
 	//NOVO
 	@Override
 	public String imprimirDeTrasPraFrente() {
-		String retorno = "[";
+		String retorno = "";
 		int ponteiroAux = ponteiroFim;
 		for (int i = 0; i < quantidade; i++) {			
 			retorno += dados[ponteiroAux];
@@ -153,7 +153,7 @@ public class FilaEstaticaDuplaTerminacao implements DuplamenteEnfileiravel {
 
 			ponteiroAux = retroceder(ponteiroAux); 
 		}
-		return retorno + "]";		
+		return "[" + retorno + "]";		
 	}
 	
 	private int avancar(int ponteiro) {

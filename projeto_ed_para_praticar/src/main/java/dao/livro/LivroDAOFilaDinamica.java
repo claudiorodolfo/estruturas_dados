@@ -5,6 +5,7 @@ import dao.LivroDAO;
 import repository.Enfileiravel;
 import repository.dinamicas.fila.FilaDinamica;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class LivroDAOFilaDinamica implements LivroDAO {
 
@@ -442,14 +443,14 @@ public class LivroDAOFilaDinamica implements LivroDAO {
         if (livros == null) {
             return "null";
         }
-        String s = "[";
+        String s = "";
         for (int i = 0; i < livros.length; i++) {
             s += livros[i];
             if (i != livros.length - 1) {
                 s += ",";
             }
         }
-        return s + "]";
+        return "[" + s + "]";
     }
 
     private int contarLivros(Enfileiravel fila) {
@@ -473,21 +474,11 @@ public class LivroDAOFilaDinamica implements LivroDAO {
             return new Livro[0];
         }
 
-        int tamanho = contarLivros(fila);
-        Livro[] array = new Livro[tamanho];
-        Enfileiravel aux = new FilaDinamica(100);
-
+        Livro[] array = new Livro[100];
         int i = 0;
         while (!fila.estaVazia()) {
-            Livro atual = (Livro) fila.desenfileirar();
-            array[i++] = atual;
-            aux.enfileirar(atual);
+            array[i++] = (Livro) fila.desenfileirar();
         }
-
-        while (!aux.estaVazia()) {
-            fila.enfileirar(aux.desenfileirar());
-        }
-
-        return array;
+        return Arrays.copyOf(array, i);
     }
 }

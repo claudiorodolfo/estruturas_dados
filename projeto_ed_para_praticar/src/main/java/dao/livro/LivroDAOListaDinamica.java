@@ -290,14 +290,14 @@ public class LivroDAOListaDinamica implements LivroDAO {
         if (livros == null) {
             return "null";
         }
-        String s = "[";
+        String s = "";
         for (int i = 0; i < livros.length; i++) {
             s += livros[i];
             if (i != livros.length - 1) {
                 s += ",";
             }
         }
-        return s + "]";
+        return "[" + s + "]";
     }
 
     private static Livro[] listaParaArray(Listavel lista) {

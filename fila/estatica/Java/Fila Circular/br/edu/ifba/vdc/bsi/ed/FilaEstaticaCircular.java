@@ -83,7 +83,7 @@ public class FilaEstaticaCircular implements Enfileiravel {
 	
 	@Override
 	public String imprimir(){
-		String retorno = "[";
+		String retorno = "";
 		int ponteiroAux = ponteiroInicio;
 		for (int i = 0; i < quantidade; i++) {			
 			retorno += dados[ponteiroAux];
@@ -92,7 +92,7 @@ public class FilaEstaticaCircular implements Enfileiravel {
 							
 			ponteiroAux = avancar(ponteiroAux); 
 		}
-		return retorno + "]";
+		return"[" + retorno + "]";	
 	}
 	
 	private int avancar(int ponteiro) {

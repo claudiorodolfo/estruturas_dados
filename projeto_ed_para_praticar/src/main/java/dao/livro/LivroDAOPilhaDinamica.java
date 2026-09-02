@@ -5,6 +5,7 @@ import model.Livro;
 import repository.Empilhavel;
 import repository.dinamicas.pilha.PilhaDinamica;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class LivroDAOPilhaDinamica implements LivroDAO {
     
@@ -450,22 +451,12 @@ public class LivroDAOPilhaDinamica implements LivroDAO {
             return new Livro[0];
         }
 
-        int tamanho = contarLivros(pilha);
-        Livro[] array = new Livro[tamanho];
-        Empilhavel aux = new PilhaDinamica(100);
-
+        Livro[] array = new Livro[100];
         int i = 0;
         while (!pilha.estaVazia()) {
-            Livro topo = (Livro) pilha.desempilhar();
-            array[i++] = topo;
-            aux.empilhar(topo);
+            array[i++] = (Livro) pilha.desempilhar();
         }
-
-        while (!aux.estaVazia()) {
-            pilha.empilhar(aux.desempilhar());
-        }
-
-        return array;
+        return Arrays.copyOf(array, i);
     }
 
     @Override
@@ -473,13 +464,13 @@ public class LivroDAOPilhaDinamica implements LivroDAO {
         if (livros == null) {
             return "null";
         }
-        String s = "[";
+        String s = "";
         for (int i = 0; i < livros.length; i++) {
             s += livros[i];
             if (i != livros.length - 1) {
                 s += ",";
             }
         }
-        return s + "]";
+        return "[" + s + "]";
     }
 }

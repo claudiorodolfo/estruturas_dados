@@ -82,13 +82,12 @@ public class FilaEstatica implements Enfileiravel {
 
 	@Override	
 	public String imprimir(){
-		String resultado = "[";
+		String resultado = "";
 		for (int i = ponteiroInicio; i <= ponteiroFim; i++) {
-			if (i == ponteiroFim)
-				resultado += dados[i];
-			else
-				resultado += dados[i] + ",";
+			resultado += dados[i];
+			if (i != ponteiroFim)
+				resultado += ",";
 		}
-		return resultado + "]";		
+		return"[" + resultado + "]";		
 	}
 }
