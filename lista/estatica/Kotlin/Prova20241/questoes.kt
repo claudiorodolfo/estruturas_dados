@@ -1,10 +1,10 @@
 fun main() {
 	//matricula como string para facilitar a iteração
 	print("Digite o número de matrícula: ")
-	val matricula = readLine() ?: ""
+	val matricula = readlnOrNull() ?: ""
 	//pode ser inteiro pois só é usado no cálculo
 	print("Digite o número aleatório: ")
-	val aleatorio = readLine()!!.toInt()
+	val aleatorio = readln().toInt()
 	
 	// Calcula a soma dos dígitos da matricula
 	var soma = 0

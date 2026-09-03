@@ -3,7 +3,7 @@ fun main() {
     do {
         exibirMenu()
         print("Escolha uma opcao (0-5): ")
-        val opcao = readLine()!!.toInt()
+        val opcao = readln().toInt()
         
         when(opcao) {
             0 -> {
@@ -12,12 +12,12 @@ fun main() {
             }
             1 -> {
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 fila.enfileirar(valor)
             }
             2 -> {
                 print("Deseja desenfileirar[s/n]? ")
-                val confirmacao = readLine() ?: "n"
+                val confirmacao = readlnOrNull() ?: "n"
                 if (confirmacao == "s" || 
                         confirmacao == "S")
                     fila.desenfileirar()                   
@@ -25,7 +25,7 @@ fun main() {
             3 -> println("Frente: ${fila.frente()}")
             4 -> {
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 fila.atualizar(valor)
             }
             5 -> println(fila.imprimir())

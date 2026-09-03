@@ -3,7 +3,7 @@ fun main() {
     do {
         exibirMenu()
         print("Escolha uma opcao (0-7): ")
-        val opcao = readLine()!!.toInt()
+        val opcao = readln().toInt()
         
         when(opcao) {
             0 -> {
@@ -12,36 +12,36 @@ fun main() {
             }
 			1 -> {
                 print("Digite a posição: ")
-                val posicao = readLine()!!.toInt()
+                val posicao = readln().toInt()
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 lista.inserir(posicao, valor)			
 			}
             2 -> {
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 lista.anexar(valor)
             }
             3 -> {
                 print("Digite a posição: ")
-                val posicao = readLine()!!.toInt()
+                val posicao = readln().toInt()
                 print("Deseja apagar[s/n]? ")
-                val confirmacao= readLine() ?: "n"
+                val confirmacao= readlnOrNull() ?: "n"
                 if (confirmacao == "s" || 
                         confirmacao == "S")
                     lista.apagar(posicao)                   
             }
             4 -> {
                 print("Digite a posição: ")
-                val posicao = readLine()!!.toInt()
+                val posicao = readln().toInt()
                 lista.selecionar(posicao) 
             }
             5 -> lista.selecionarTodos()
             6 -> {
                 print("Digite a posicao: ")
-                val posicao = readLine()!!.toInt()
+                val posicao = readln().toInt()
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 lista.atualizar(posicao, valor)
             }
             7 -> println(lista.imprimir())

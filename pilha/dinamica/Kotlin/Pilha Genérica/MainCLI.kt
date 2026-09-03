@@ -3,7 +3,7 @@ fun main() {
     do {
         exibirMenu()
         print("Escolha uma opcao (0-5): ")
-        val opcao = readLine()!!.toInt()
+        val opcao = readln().toInt()
         
         when(opcao) {
             0 -> {
@@ -12,12 +12,12 @@ fun main() {
             }
             1 -> {
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 pilha.empilhar(valor)
             }
             2 -> {
                 print("Deseja desempilhar[s/n]? ")
-                val confirmacao= readLine()
+                val confirmacao= readlnOrNull()
                 if (confirmacao == "s" || 
                         confirmacao == "S")
                     pilha.desempilhar()                   
@@ -25,7 +25,7 @@ fun main() {
             3 -> println("Topo: ${pilha.espiar()}")
             4 -> {
                 print("Digite o valor: ")
-                val valor = readLine()
+                val valor = readlnOrNull()
                 pilha.atualizar(valor)
             }
             5 -> println(pilha.imprimir())

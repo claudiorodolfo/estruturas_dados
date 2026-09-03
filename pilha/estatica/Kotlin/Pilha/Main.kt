@@ -1,4 +1,4 @@
-fun main(args: Array<String>) {
+fun main() {
     var pilha: Empilhavel = PilhaEstatica(7)
     pilha.empilhar("Instituto")
     pilha.empilhar("Federal")

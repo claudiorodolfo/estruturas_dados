@@ -6,27 +6,27 @@ fun main() {
     var arvore: Arborizavel = ABP()
     do {
         exibirMenu()
-        val opcao = readLine()!!.toInt()
+        val opcao = readln().toInt()
         when(opcao) {
             0 -> println("Saindo da ABP. Ate mais!")
             1 -> {
                 print("Digite o valor : ")
-                val valor = readLine()!!.toInt()
+                val valor = readln().toInt()
                 arvore.inserir(valor)
             }
             2 -> {
                 print("Digite o valor : ")
-                val valor = readLine()!!.toInt()            
+                val valor = readln().toInt()            
                 arvore.apagar(valor)
             }
             3 -> {
                 print("Digite o valor : ")
-                val valor = readLine()!!.toInt()
+                val valor = readln().toInt()
                 println(arvore.existe(valor))
             }
             4 -> {
                 exibirMenuImprimir()
-                val opcaoImprimir = readLine()!!.toInt()
+                val opcaoImprimir = readln().toInt()
                 when(opcaoImprimir) {
                     1 -> println("\nPre-Ordem: ${arvore.imprimirPreOrdem()}\n")
                     2 -> println("\nEm-Ordem: ${arvore.imprimirEmOrdem()}\n")                        

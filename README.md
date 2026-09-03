@@ -1,7 +1,7 @@
 # 📚 Estruturas de Dados
 
 [![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.8+-purple.svg)](https://kotlinlang.org/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4-purple.svg)](https://kotlinlang.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -70,7 +70,7 @@ estruturas_dados/
 | Tecnologia | Versão | Uso |
 |------------|--------|-----|
 | **Java** | 25 | Linguagem principal |
-| **Kotlin** | 1.8+ | Linguagem alternativa |
+| **Kotlin** | 2.4 | Linguagem alternativa |
 | **Maven** | 3.9+ | Gerenciamento de dependências |
 | **JUnit** | 4.13.2 | Testes unitários |
 | **Hamcrest** | 1.3 | Asserções expressivas |
@@ -79,7 +79,7 @@ estruturas_dados/
 
 - ☕ **Java 25** ou superior
 - 🔧 **Maven 3.9+** ou superior
-- 🐘 **Kotlin 1.8+** (para projetos Kotlin)
+- 🐘 **Kotlin 2.4** (para projetos Kotlin)
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code)
 
 ## 🚀 Como Executar
