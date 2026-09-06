@@ -29,18 +29,21 @@ public class SortedLinkedListApp {
      * Exibe o menu principal.
      */
     private static void exibirMenu() {
-        IO.println("\n" + "=".repeat(50));
-        IO.println("MENU PRINCIPAL");
-        IO.println("=".repeat(50));
-        IO.println("1. Inserir valor na lista");
-        IO.println("2. Inserir múltiplos valores");
-        IO.println("3. Visualizar lista atual");
-        IO.println("4. Ordenar lista (selecionar algoritmo)");
-        IO.println("5. Limpar lista");
-        IO.println("6. Carregar lista de teste padrão");
-        IO.println("7. Executar testes pré-definidos");
-        IO.println("0. Sair");
-        IO.println("=".repeat(50));
+        IO.print("""
+
+                ==================================================
+                MENU PRINCIPAL
+                ==================================================
+                1. Inserir valor na lista
+                2. Inserir múltiplos valores
+                3. Visualizar lista atual
+                4. Ordenar lista (selecionar algoritmo)
+                5. Limpar lista
+                6. Carregar lista de teste padrão
+                7. Executar testes pré-definidos
+                0. Sair
+                ==================================================
+                """);
     }
     
     /**
@@ -75,8 +78,11 @@ public class SortedLinkedListApp {
      * Insere múltiplos valores na lista.
      */
     private static void inserirMultiplosValores() {
-        IO.println("\n--- Inserir Múltiplos Valores ---");
-        IO.println("Digite os valores separados por espaço (ex: 64 34 25 12 22):");
+        IO.print("""
+
+                --- Inserir Múltiplos Valores ---
+                Digite os valores separados por espaço (ex: 64 34 25 12 22):
+                """);
         String entrada = IO.readln("");
         
         try {
@@ -122,10 +128,13 @@ public class SortedLinkedListApp {
         IO.println("Lista antes da ordenação: " + list.print());
         
         // Selecionar algoritmo
-        IO.println("\nEscolha o algoritmo de ordenação:");
-        IO.println("1. Bubble Sort");
-        IO.println("2. Insertion Sort");
-        IO.println("3. Selection Sort");
+        IO.print("""
+
+                Escolha o algoritmo de ordenação:
+                1. Bubble Sort
+                2. Insertion Sort
+                3. Selection Sort
+                """);
         
         int escolhaAlgoritmo = lerInteiro("Opção: ");
         SortAlgorithm algoritmo;
@@ -146,9 +155,12 @@ public class SortedLinkedListApp {
         }
         
         // Selecionar ordem
-        IO.println("\nEscolha a ordem de ordenação:");
-        IO.println("1. Crescente (ASC)");
-        IO.println("2. Decrescente (DESC)");
+        IO.print("""
+
+                Escolha a ordem de ordenação:
+                1. Crescente (ASC)
+                2. Decrescente (DESC)
+                """);
         
         int escolhaOrdem = lerInteiro("Opção: ");
         SortOrder ordem;
@@ -208,18 +220,21 @@ public class SortedLinkedListApp {
      * Executa testes pré-definidos.
      */
     private static void executarTestesPredefinidos() {
-        IO.println("\n--- Executar Testes Pré-definidos ---");
-        IO.println("Escolha o teste:");
-        IO.println("1. Bubble Sort - Ordem Crescente");
-        IO.println("2. Bubble Sort - Ordem Decrescente");
-        IO.println("3. Insertion Sort - Ordem Crescente");
-        IO.println("4. Insertion Sort - Ordem Decrescente");
-        IO.println("5. Selection Sort - Ordem Crescente");
-        IO.println("6. Selection Sort - Ordem Decrescente");
-        IO.println("7. Lista vazia");
-        IO.println("8. Lista com um elemento");
-        IO.println("9. Lista já ordenada");
-        IO.println("10. Executar todos os testes");
+        IO.print("""
+
+                --- Executar Testes Pré-definidos ---
+                Escolha o teste:
+                1. Bubble Sort - Ordem Crescente
+                2. Bubble Sort - Ordem Decrescente
+                3. Insertion Sort - Ordem Crescente
+                4. Insertion Sort - Ordem Decrescente
+                5. Selection Sort - Ordem Crescente
+                6. Selection Sort - Ordem Decrescente
+                7. Lista vazia
+                8. Lista com um elemento
+                9. Lista já ordenada
+                10. Executar todos os testes
+                """);
         
         int escolha = lerInteiro("Opção: ");
         

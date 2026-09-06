@@ -116,11 +116,16 @@ public class OperacoesConjunto {
         int[] lista2 = {3, 4, 5, 6};
 
         OperacoesConjunto oc = new OperacoesConjunto();
-        IO.println("Diferença: ");
-        IO.println(java.util.Arrays.toString(oc.difference(lista1, lista2)));
-        IO.println("União: ");
-        IO.println(java.util.Arrays.toString(oc.union(lista1, lista2)));
-        IO.println("Interseção: ");
-        IO.println(java.util.Arrays.toString(oc.intersection(lista1, lista2)));
+        IO.print("""
+                Diferença: 
+                %s
+                União: 
+                %s
+                Interseção: 
+                %s
+                """.formatted(
+                java.util.Arrays.toString(oc.difference(lista1, lista2)),
+                java.util.Arrays.toString(oc.union(lista1, lista2)),
+                java.util.Arrays.toString(oc.intersection(lista1, lista2))));
     }
 }

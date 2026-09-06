@@ -14,8 +14,10 @@ public class BookService {
     void main() {
         BookDAO dbAccessor = BookService.getDBBook();
         
-        IO.println("=== Sistema de Gerenciamento de Livros ===");
-        IO.println("Usando implementação LinkedDEQue");
+        IO.print("""
+                === Sistema de Gerenciamento de Livros ===
+                Usando implementação LinkedDEQue
+                """);
         
         boolean continuar = true;
         
@@ -49,20 +51,22 @@ public class BookService {
     }
     
     private static void mostrarMenu() {
-        IO.println("\n=== MENU PRINCIPAL ===");
-        IO.println("1.  Adicionar Livro");
-        IO.println("2.  Buscar Livro por ID");
-        IO.println("3.  Atualizar Livro");
-        IO.println("4.  Deletar Livro");
-        IO.println("5.  Buscar Livros por Autor");
-        IO.println("6.  Buscar Livro por ISBN");
-        IO.println("7.  Buscar Livro Mais Caro");
-        IO.println("8.  Buscar Livro Mais Barato");
-        IO.println("9. Listar Todos os Livros");
-        IO.println("10. Imprimir Livros");
-        IO.println("11. Mostrar Total de Livros");
-        IO.println("0.  Sair");
-        
+        IO.print("""
+
+                === MENU PRINCIPAL ===
+                1.  Adicionar Livro
+                2.  Buscar Livro por ID
+                3.  Atualizar Livro
+                4.  Deletar Livro
+                5.  Buscar Livros por Autor
+                6.  Buscar Livro por ISBN
+                7.  Buscar Livro Mais Caro
+                8.  Buscar Livro Mais Barato
+                9. Listar Todos os Livros
+                10. Imprimir Livros
+                11. Mostrar Total de Livros
+                0.  Sair
+                """);
     }
     
     private static int lerOpcao() {

@@ -23,8 +23,13 @@ public class CarService {
         IO.println("Carro encontrado: " + readCar.getLicensePlate());
 
         Car deletedCar = dbAcessor.deleteCar("DEF-5678");
-        IO.println("Carro removido: " + deletedCar.getLicensePlate());
-        IO.println(deletedCar.toString());
-        IO.println("Carros restantes: " + dbAcessor.printCars());
+        IO.print("""
+                Carro removido: %s
+                %s
+                Carros restantes: %s
+                """.formatted(
+                deletedCar.getLicensePlate(),
+                deletedCar,
+                dbAcessor.printCars()));
     }
 }

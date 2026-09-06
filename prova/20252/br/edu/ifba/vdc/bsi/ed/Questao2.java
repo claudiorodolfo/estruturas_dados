@@ -92,8 +92,13 @@ public class Questao2 {
         String[] extensaoC = {"Carol", "David", "Frank", "Gael"};
 
         Questao2 q2 = new Questao2(culturaA, esporteB, extensaoC);
-        IO.println("a) Esporte + Cultura, sem Extensão: " + java.util.Arrays.toString(q2.culturaEEsporteSemExtensao()));     // Bob
-        IO.println("b) Somente Extensão: " + java.util.Arrays.toString(q2.somenteExtensao()));                               // Gael
-        IO.println("c) Cultura ou Extensão, sem Esporte: " + java.util.Arrays.toString(q2.culturaOuExtensaoSemEsporte()));   // Alice, Caro, Gael
+        IO.print("""
+                a) Esporte + Cultura, sem Extensão: %s
+                b) Somente Extensão: %s
+                c) Cultura ou Extensão, sem Esporte: %s
+                """.formatted(
+                java.util.Arrays.toString(q2.culturaEEsporteSemExtensao()),     // Bob
+                java.util.Arrays.toString(q2.somenteExtensao()),                               // Gael
+                java.util.Arrays.toString(q2.culturaOuExtensaoSemEsporte())));   // Alice, Caro, Gael
     }
 }

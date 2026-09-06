@@ -11,9 +11,9 @@ public class Carro {
     private LocalDateTime chegada;
 
     public Carro(String placa, String marca, String modelo) {
-        obrigatorio(placa);
-        obrigatorio(marca);
-        obrigatorio(modelo);
+        obrigatorio(placa, "placa");
+        obrigatorio(marca, "marca");
+        obrigatorio(modelo, "modelo");
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -26,9 +26,17 @@ public class Carro {
         this.chegada = chegada;
     }
 
-    private void obrigatorio(Object obj) {
+    private void obrigatorio(Object obj, String campo) {
         if (obj == null)
-            throw new IllegalArgumentException("campo obrigatório não pode ser nulo!");
+            throw new IllegalArgumentException(campo + " é obrigatório!");
+    }
+
+    private void obrigatorio(String valor, String campo) {
+        if (valor == null || valor.isBlank()) {
+            throw new IllegalArgumentException(
+                campo + " é obrigatório."
+            );
+        }
     }
 
     public String getPlaca() {
@@ -78,20 +86,13 @@ public class Carro {
 
     @Override
     public String toString() {
-        String placaJson = "\"" + placa + "\"";
-        String marcaJson = "\"" + marca + "\"";
-        String modeloJson = "\"" + modelo + "\"";
-        String corJson = (cor == null) ? "null" : "\"" + cor + "\"";
-        String nomeProprietarioJson = (nomeProprietario == null) ? "null" : "\"" + nomeProprietario + "\"";
-        String chegadaJson = (chegada == null) ? "null" : "\"" + chegada.toString() + "\""; // ISO yyyy-MM-dd
-
         return "Carro{" +
-                "placa:" + placaJson +
-                ",marca:" + marcaJson +
-                ",modelo:" + modeloJson +
-                ",cor:" + corJson +
-                ",nomeProprietario:" + nomeProprietarioJson +
-                ",chegada:" + chegadaJson +
+                "placa:'" + placa + '\'' +
+                ",marca:'" + marca + '\'' +
+                ",modelo:'" + modelo + '\'' +
+                ",cor:'" + cor + '\'' +
+                ",nomeProprietario:'" + nomeProprietario + '\'' +
+                ",chegada:" + chegada + '\'' +
                 "}";
     }
 }

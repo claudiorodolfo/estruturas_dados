@@ -119,9 +119,14 @@ public class AVPGenericaMainCLI {
         avpInt.inserir(60);
         avpInt.inserir(80);
         
-        IO.println("Elementos em ordem: " + avpInt.imprimirEmOrdem());
-        IO.println("Elementos em pré-ordem: " + avpInt.imprimirPreOrdem());
-        IO.println("Elementos em pós-ordem: " + avpInt.imprimirPosOrdem());
+        IO.print("""
+                Elementos em ordem: %s
+                Elementos em pré-ordem: %s
+                Elementos em pós-ordem: %s
+                """.formatted(
+                avpInt.imprimirEmOrdem(),
+                avpInt.imprimirPreOrdem(),
+                avpInt.imprimirPosOrdem()));
         
         // Testar busca
         IO.println("Existe 30? " + avpInt.existe(30));
@@ -147,9 +152,14 @@ public class AVPGenericaMainCLI {
         avpDouble.inserir(2.23);
         avpDouble.inserir(1.73);
         
-        IO.println("Elementos em ordem: " + avpDouble.imprimirEmOrdem());
-        IO.println("Elementos em pré-ordem: " + avpDouble.imprimirPreOrdem());
-        IO.println("Elementos em pós-ordem: " + avpDouble.imprimirPosOrdem());
+        IO.print("""
+                Elementos em ordem: %s
+                Elementos em pré-ordem: %s
+                Elementos em pós-ordem: %s
+                """.formatted(
+                avpDouble.imprimirEmOrdem(),
+                avpDouble.imprimirPreOrdem(),
+                avpDouble.imprimirPosOrdem()));
         
         // Testar busca
         IO.println("Existe 3.14? " + avpDouble.existe(3.14));

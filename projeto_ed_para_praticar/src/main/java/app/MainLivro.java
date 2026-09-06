@@ -100,12 +100,20 @@ public class MainLivro {
                 }
                 case 15 -> {
                     // estatísticas
-                    IO.println("Total: " + dao.getTotalLivros());
-                    IO.println("Preço médio: " + dao.getPrecoMedio());
-                    IO.println("Mais caro: " + dao.getLivroMaisCaro());
-                    IO.println("Mais barato: " + dao.getLivroMaisBarato());
-                    IO.println("Mais novo: " + dao.getLivroMaisNovo());
-                    IO.println("Mais antigo: " + dao.getLivroMaisAntigo());
+                    IO.print("""
+                            Total: %s
+                            Preço médio: %s
+                            Mais caro: %s
+                            Mais barato: %s
+                            Mais novo: %s
+                            Mais antigo: %s
+                            """.formatted(
+                            dao.getTotalLivros(),
+                            dao.getPrecoMedio(),
+                            dao.getLivroMaisCaro(),
+                            dao.getLivroMaisBarato(),
+                            dao.getLivroMaisNovo(),
+                            dao.getLivroMaisAntigo()));
                 }
                 case 16 -> {
                     // limpar
@@ -126,24 +134,26 @@ public class MainLivro {
     }
 
     private static void printMenu() {
-        IO.println("==== MENU LIVROS (PILHA ESTÁTICA) ====");
-        IO.println("1) Carregar exemplos");
-        IO.println("2) Cadastrar livro");
-        IO.println("3) Listar livros");
-        IO.println("4) Total de livros");
-        IO.println("5) Buscar por ID");
-        IO.println("6) Buscar por ISBN");
-        IO.println("7) Buscar por autor");
-        IO.println("8) Buscar por título");
-        IO.println("9) Buscar por data de publicação (exata)");
-        IO.println("10) Buscar por faixa de preço");
-        IO.println("11) Buscar por faixa de datas");
-        IO.println("12) Atualizar livro");
-        IO.println("13) Remover por ID");
-        IO.println("14) Remover por título");
-        IO.println("15) Estatísticas");
-        IO.println("16) Limpar todos");
-        IO.println("0) Sair");
+        IO.print("""
+                ==== MENU LIVROS (PILHA ESTÁTICA) ====
+                1) Carregar exemplos
+                2) Cadastrar livro
+                3) Listar livros
+                4) Total de livros
+                5) Buscar por ID
+                6) Buscar por ISBN
+                7) Buscar por autor
+                8) Buscar por título
+                9) Buscar por data de publicação (exata)
+                10) Buscar por faixa de preço
+                11) Buscar por faixa de datas
+                12) Atualizar livro
+                13) Remover por ID
+                14) Remover por título
+                15) Estatísticas
+                16) Limpar todos
+                0) Sair
+                """);
     }
 
     private static void carregarExemplos(LivroDAO dao) {
