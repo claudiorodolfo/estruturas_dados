@@ -87,12 +87,12 @@ public class Carro {
     @Override
     public String toString() {
         return "Carro{" +
-                "placa:'" + placa + '\'' +
-                ",marca:'" + marca + '\'' +
-                ",modelo:'" + modelo + '\'' +
-                ",cor:'" + cor + '\'' +
-                ",nomeProprietario:'" + nomeProprietario + '\'' +
-                ",chegada:" + chegada + '\'' +
-                "}";
+                "placa='" + placa + '\'' +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", cor='" + cor + '\'' +
+                ", nomeProprietario='" + nomeProprietario + '\'' +
+                ", chegada=" + chegada +
+                '}';
     }
 }
