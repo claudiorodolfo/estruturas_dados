@@ -2,10 +2,10 @@ package br.edu.ifba.vdc.bsi.ed;
 
 public class FilaEstaticaCircular implements Enfileiravel {
 
-	private int ponteiroInicio;	//cabeca = head
-	private int ponteiroFim;	//cauda  = tail
-	private int quantidade;
-	private Object[] dados;
+	protected int ponteiroInicio;	//cabeca = head
+	protected int ponteiroFim;		//cauda  = tail
+	protected int quantidade;
+	protected Object[] dados;
 	
 	public FilaEstaticaCircular(int tamanho) {
 		ponteiroInicio = 0;
@@ -95,7 +95,7 @@ public class FilaEstaticaCircular implements Enfileiravel {
 		return"[" + retorno + "]";	
 	}
 	
-	private int avancar(int ponteiro) {
-		return (ponteiro+1)%dados.length;
+	protected int avancar(int ponteiro) {
+		return (ponteiro+1) % dados.length;
 	}	
 }
