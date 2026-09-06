@@ -48,6 +48,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
+                    <!--<mainClass>app.MainCarro</mainClass>-->
                     <mainClass>app.MainLivro</mainClass>
                 </configuration>
             </plugin>

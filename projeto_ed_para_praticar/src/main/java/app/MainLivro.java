@@ -1,10 +1,17 @@
+// Acessar o diretório do projeto (onde está o pom.xml):
+// cd projeto_ed_para_praticar
+// Compilar:
+// mvn compile
+// Executar (classe principal configurada no pom.xml):
+// mvn exec:java
+
 package app;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import model.Livro;
 import dao.LivroDAO;
 import dao.livro.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class MainLivro {
     void main() {
