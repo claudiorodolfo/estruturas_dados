@@ -1,0 +1,21 @@
+//TIPO 1
+Resposta: D) V-F-F.
+
+Analisando cada afirmação
+1ª — Verdadeira. A fila segue FIFO (First In, First Out). Portanto, o primeiro elemento que entra é o primeiro que sai.
+2ª — Falsa. Na pilha, um novo elemento é inserido no topo, e não na base. Além disso, justamente por seguir LIFO, esse elemento será o primeiro a sair, e não o último.
+3ª — Falsa. A pilha segue LIFO (Last In, First Out), e não FIFO.
+
+//TIPO 2
+Resposta: D) 42, 51.
+
+Operação	    Situação da fila
+Inserir 15	    15
+Inserir 20	    15, 20
+Remover	        20
+Inserir 35	    20, 35
+Inserir 42	    20, 35, 42
+Remover	        35, 42
+Remover	        42
+Inserir 51	    42, 51
+Ler             42, 51

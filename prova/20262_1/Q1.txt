@@ -1,0 +1,17 @@
+//TIPO 1
+Resposta: A) Pilha.
+
+Por que as outras estão erradas?
+B) Fila — incorreta: a fila segue o princípio FIFO, em que o primeiro elemento inserido é o primeiro a sair.
+C) Fila com Dupla Terminação — incorreta: um deque permite inserção e remoção nas duas extremidades, não sendo caracterizado necessariamente pelo comportamento LIFO.
+D) Lista — incorreta: uma lista é uma estrutura linear que permite acesso/inserção/remoção conforme suas operações, mas não possui necessariamente a disciplina LIFO.
+E) Nenhuma das anteriores — incorreta: a pilha está explicitamente entre as alternativas e corresponde ao comportamento descrito.
+
+//TIPO 2
+Resposta: C) ENQUEUE / overflow.
+
+Por que as outras estão erradas?
+A) DEQUEUE / underflow — incorreta: dequeue representa remoção, não inserção. underflow está associado à tentativa de remover de uma estrutura vazia.
+B) PUSH / underflow — incorreta: push é normalmente associado à inserção em uma pilha, não à fila; além disso, underflow não representa fila cheia.
+D) POP / overflow — incorreta: pop é uma operação de remoção, normalmente associada à pilha.
+E) Nenhuma das anteriores — incorreta: a alternativa C apresenta exatamente a sequência correta.
