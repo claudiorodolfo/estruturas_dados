@@ -1,0 +1,5 @@
+//Tipos 1 e 2
+I. compatibilidade com o semestre da disciplina, caracterizado pelo período de referência do estudante e da disciplina;
+II. - concluintes no respectivo semestre;
+III. - estudantes em cumprimento de adaptação curricular; e
+IV. - classificação decrescente do Coeficiente de Aproveitamento (CAP).
